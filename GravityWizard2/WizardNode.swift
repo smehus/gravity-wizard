@@ -25,6 +25,8 @@ class WizardNode: SKSpriteNode {
 
 extension WizardNode: LifecycleListener {
     func didMoveToScene() {
+        let newSize = texture!.size() * 0.8
+        physicsBody = SKPhysicsBody(rectangleOf: newSize)
         physicsBody?.categoryBitMask = PhysicsCategory.Wizard
         physicsBody?.contactTestBitMask = PhysicsCategory.Ground
         physicsBody?.collisionBitMask = PhysicsCategory.Ground

@@ -85,3 +85,18 @@ public extension SKNode {
     zRotation += (newAngle - zRotation) * rate
   }
 }
+
+
+extension SKNode {
+    func addChildren(children: [SKNode]) {
+        for node in children {
+            addChild(node)
+        }
+    }
+    
+    func removeChildren(children: [SKNode]) {
+        for node in children {
+            node.removeFromParent()
+        }
+    }
+}

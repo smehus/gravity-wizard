@@ -13,5 +13,53 @@
             stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GravityWizard2/GameScene.swift"
+            timestampString = "503982630.399013"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "removeRadialGravity()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GravityWizard2.GameScene.removeRadialGravity () -&gt; ()"
+                  moduleName = "GravityWizard2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/scottmehus/Documents/Games/GravityWizard2/GravityWizard2/GameScene.swift"
+                  timestampString = "503982153.671756"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "57"
+                  endingLineNumber = "57"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GravityWizard2.GameScene.removeRadialGravity () -&gt; ()"
+                  moduleName = "GravityWizard2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/scottmehus/Documents/Games/GravityWizard2/GravityWizard2/GameScene.swift"
+                  timestampString = "503982153.675744"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "57"
+                  endingLineNumber = "57"
+                  offsetFromSymbolStart = "68">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

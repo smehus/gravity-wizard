@@ -9,11 +9,15 @@
 import SpriteKit
 import GameplayKit
 
+struct Images {
+    static let radialGravity = "deathtex1"
+}
+
 struct PhysicsCategory {
     static let None:  UInt32 = 0
     static let Wizard: UInt32 = 0b1 // 1
     static let Ground: UInt32 = 0b10 // 2
-    static let Bed:   UInt32 = 0b100 // 4
+    static let World:   UInt32 = 0b100 // 4
     static let Edge:  UInt32 = 0b1000 // 8
     static let Label: UInt32 = 0b10000 // 16
     static let Spring:UInt32 = 0b100000 // 32
@@ -26,6 +30,7 @@ class GameScene: SKScene, LifecycleEmitter {
     var worldNode: SKNode!
     var wizardNode: WizardNode!
     var radialGravity: SKFieldNode?
+    var radialMarker: SKSpriteNode?
      
     override func didMove(to view: SKView) {
         physicsWorld.contactDelegate = self
@@ -33,9 +38,9 @@ class GameScene: SKScene, LifecycleEmitter {
     }
     
     fileprivate func setupNodes() {
+        physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         emitDidMoveToView()
         wizardNode = childNode(withName: "//Wizard") as! WizardNode
-        radialGravity = childNode(withName: "//RadialGravityField") as! SKFieldNode
     }
 }
 
@@ -44,12 +49,18 @@ extension GameScene {
         super.touchesBegan(touches, with: event)
         guard let touch = touches.first else { return }
         let touchLocation = touch.location(in: self)
-        if let field = radialGravity {
-            field.removeFromParent()
-            radialGravity = nil
+        if let _ = radialGravity {
+            removeRadialGravity()
         } else {
             radialGravity = createRadialGravity(at: touchLocation)
         }
+    }
+    
+    func removeRadialGravity() {
+        guard let field = radialGravity, let marker = radialMarker else { return }
+        self.removeChildren(in: [field, marker])
+        radialGravity = nil
+        radialMarker = nil
     }
     
     func createRadialGravity(at point: CGPoint) -> SKFieldNode {
@@ -59,7 +70,14 @@ extension GameScene {
         field.falloff = 0
         field.categoryBitMask = PhysicsCategory.RadialGravity
         field.minimumRadius = 2
-        addChild(field)
+        
+        
+        let marker = SKSpriteNode(imageNamed: Images.radialGravity)
+        marker.position = point
+        radialMarker = marker
+        
+        
+        addChildren(children: [field, marker])
         return field
     }
 }
