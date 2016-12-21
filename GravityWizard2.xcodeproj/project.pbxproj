@@ -24,6 +24,7 @@
 		A59FB6A41E0A08C200D1C915 /* LifecycleListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59FB6A31E0A08C200D1C915 /* LifecycleListener.swift */; };
 		A59FB6A61E0A08DF00D1C915 /* GestureInteractive.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59FB6A51E0A08DF00D1C915 /* GestureInteractive.swift */; };
 		A59FB6A81E0A091400D1C915 /* LifecycleEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59FB6A71E0A091400D1C915 /* LifecycleEmitter.swift */; };
+		A59FB6AA1E0A13FA00D1C915 /* GroundNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59FB6A91E0A13FA00D1C915 /* GroundNode.swift */; };
 		A5B58EB71E09DC4900ADC865 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B58EB61E09DC4900ADC865 /* AppDelegate.swift */; };
 		A5B58EB91E09DC4900ADC865 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5B58EB81E09DC4900ADC865 /* GameScene.sks */; };
 		A5B58EBD1E09DC4900ADC865 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B58EBC1E09DC4900ADC865 /* GameScene.swift */; };
@@ -51,6 +52,7 @@
 		A59FB6A31E0A08C200D1C915 /* LifecycleListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifecycleListener.swift; sourceTree = "<group>"; };
 		A59FB6A51E0A08DF00D1C915 /* GestureInteractive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GestureInteractive.swift; sourceTree = "<group>"; };
 		A59FB6A71E0A091400D1C915 /* LifecycleEmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifecycleEmitter.swift; sourceTree = "<group>"; };
+		A59FB6A91E0A13FA00D1C915 /* GroundNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroundNode.swift; sourceTree = "<group>"; };
 		A5B58EB31E09DC4900ADC865 /* GravityWizard2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GravityWizard2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5B58EB61E09DC4900ADC865 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5B58EB81E09DC4900ADC865 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				A59FB6871E0A081B00D1C915 /* WizardNode.swift */,
+				A59FB6A91E0A13FA00D1C915 /* GroundNode.swift */,
 			);
 			name = Sprites;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 				A59FB6981E0A088A00D1C915 /* CGVector+Extensions.swift in Sources */,
 				A59FB69E1E0A088A00D1C915 /* SKTAudio.swift in Sources */,
 				A59FB6961E0A088A00D1C915 /* CGFloat+Extensions.swift in Sources */,
+				A59FB6AA1E0A13FA00D1C915 /* GroundNode.swift in Sources */,
 				A59FB69D1E0A088A00D1C915 /* SKNode+Extensions.swift in Sources */,
 				A59FB69F1E0A088A00D1C915 /* SKTEffects.swift in Sources */,
 				A5B58EBF1E09DC4900ADC865 /* GameViewController.swift in Sources */,
