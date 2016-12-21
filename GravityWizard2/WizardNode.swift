@@ -10,18 +10,16 @@ import SpriteKit
 
 class WizardNode: SKSpriteNode {
     
-    /// Actions
-    var jumpAction: SKAction?
-    
-
-    fileprivate func setupActions() {
-        jumpAction = SKAction.moveBy(x: 40, y: 500, duration: 0.4)
+    func jump(towards point: CGPoint) {
         
-    }
-    
-    func jump() {
-        guard let action = jumpAction else { return }
-        run(action)
+        var xValue = 0
+        if point.x > position.x {
+            xValue = 50
+        } else {
+            xValue = -50
+        }
+        let jumpVector = CGVector(dx: xValue, dy: 1200)
+        physicsBody!.applyImpulse(jumpVector)
     }
 }
 
@@ -30,8 +28,7 @@ extension WizardNode: LifecycleListener {
         physicsBody?.categoryBitMask = PhysicsCategory.Wizard
         physicsBody?.contactTestBitMask = PhysicsCategory.Ground
         physicsBody?.collisionBitMask = PhysicsCategory.Ground
-        
-        setupActions()
+        physicsBody?.fieldBitMask = PhysicsCategory.RadialGravity
         
     }
 }
