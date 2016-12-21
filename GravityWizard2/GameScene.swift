@@ -25,23 +25,53 @@ class GameScene: SKScene, LifecycleEmitter {
     /// Nodes
     var worldNode: SKNode!
     var wizardNode: WizardNode!
+    var radialGravity: SKFieldNode?
      
     override func didMove(to view: SKView) {
+        physicsWorld.contactDelegate = self
         setupNodes()
     }
     
     fileprivate func setupNodes() {
         emitDidMoveToView()
         wizardNode = childNode(withName: "//Wizard") as! WizardNode
+        radialGravity = childNode(withName: "//RadialGravityField") as! SKFieldNode
     }
 }
 
 extension GameScene {
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         guard let touch = touches.first else { return }
         let touchLocation = touch.location(in: self)
-        wizardNode.jump(towards: touchLocation)
+        if let field = radialGravity {
+            field.removeFromParent()
+            radialGravity = nil
+        } else {
+            radialGravity = createRadialGravity(at: touchLocation)
+        }
+    }
+    
+    func createRadialGravity(at point: CGPoint) -> SKFieldNode {
+        let field = SKFieldNode.radialGravityField()
+        field.position = point
+        field.strength = 30
+        field.falloff = 0
+        field.categoryBitMask = PhysicsCategory.RadialGravity
+        field.minimumRadius = 2
+        addChild(field)
+        return field
+    }
+}
+
+extension GameScene {
+    override func update(_ currentTime: TimeInterval) {
+        
+    }
+}
+
+extension GameScene: SKPhysicsContactDelegate {
+    func didBegin(_ contact: SKPhysicsContact) {
+        
     }
 }
