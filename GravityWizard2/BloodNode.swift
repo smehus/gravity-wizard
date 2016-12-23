@@ -12,6 +12,7 @@ class BloodNode: SKSpriteNode {
     
     let removeAction = SKAction.removeFromParent()
     let wait2 = SKAction.wait(forDuration: 2.0)
+    let flattenAction = SKAction.scaleX(by: 4.0, y: 0.2, duration: 0.2)
 
     class func generateBloodNode() -> BloodNode? {
         guard let scene = SKScene(fileNamed: "Blood") else { return nil }
@@ -22,10 +23,15 @@ class BloodNode: SKSpriteNode {
     
     func hitGround() {
         physicsBody?.categoryBitMask = PhysicsCategory.None
-        run(SKAction.sequence([wait2, removeAction]))
+    
+        run(SKAction.sequence([flattenAction, wait2, removeAction]))
     }
     
     fileprivate func setupGravity() {
+        
+        physicsBody?.allowsRotation = false
+        physicsBody?.friction = 0.2
+        physicsBody?.restitution = 0
         physicsBody?.categoryBitMask = PhysicsCategory.Blood
         physicsBody?.collisionBitMask = PhysicsCategory.Ground
         physicsBody?.contactTestBitMask = PhysicsCategory.Ground
