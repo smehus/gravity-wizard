@@ -20,18 +20,28 @@ struct PhysicsCategory {
     static let World:   UInt32 = 0b100 // 4
     static let Edge:  UInt32 = 0b1000 // 8
     static let Label: UInt32 = 0b10000 // 16
-    static let Spring:UInt32 = 0b100000 // 32
+    static let Blood :UInt32 = 0b100000 // 32
     static let RadialGravity:  UInt32 = 0b1000000 // 64
 }
 
 class GameScene: SKScene, LifecycleEmitter {
 
+    /// Scense
+    var wizardScene: SKScene!
+    
     /// Nodes
-    var worldNode: SKNode!
     var wizardNode: WizardNode!
-    var radialGravity: SKFieldNode?
+    var bloodNode: BloodNode?
     var radialMarker: SKSpriteNode?
-     
+    
+    // Effects
+    var radialGravity: SKFieldNode?
+    
+    
+    /// Constants
+    let bloodExplosionCount = 10
+    
+    
     override func didMove(to view: SKView) {
         physicsWorld.contactDelegate = self
         setupNodes()
@@ -40,7 +50,13 @@ class GameScene: SKScene, LifecycleEmitter {
     fileprivate func setupNodes() {
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         emitDidMoveToView()
+
+        wizardScene = SKScene(fileNamed: "Wizard")
         wizardNode = childNode(withName: "//Wizard") as! WizardNode
+        if let node = BloodNode.generateBloodNode() {
+            bloodNode = node
+        }
+        
     }
 }
 
@@ -53,17 +69,18 @@ extension GameScene {
             removeRadialGravity()
         } else {
             radialGravity = createRadialGravity(at: touchLocation)
+            
         }
     }
     
-    func removeRadialGravity() {
+    fileprivate func removeRadialGravity() {
         guard let field = radialGravity, let marker = radialMarker else { return }
         self.removeChildren(in: [field, marker])
         radialGravity = nil
         radialMarker = nil
     }
     
-    func createRadialGravity(at point: CGPoint) -> SKFieldNode {
+    fileprivate func createRadialGravity(at point: CGPoint) -> SKFieldNode {
         let field = SKFieldNode.radialGravityField()
         field.position = point
         field.strength = 30
@@ -80,6 +97,23 @@ extension GameScene {
         addChildren(children: [field, marker])
         return field
     }
+    
+    fileprivate func createBloodExplosion(with sprite: SKSpriteNode) {
+        guard let node = bloodNode else { return }
+        let point = convert(sprite.position, from: sprite.parent!)
+        
+        let bleedAction = SKAction.run { 
+            let dup = node.copy() as! BloodNode
+            dup.position = point
+            self.addChild(dup)
+            
+            let vector = CGVector(dx: Int.random(min: -2, max: 2), dy: 8)
+            dup.physicsBody?.applyImpulse(vector)
+        }
+        
+        let wait = SKAction.wait(forDuration: 0.1)
+        run(SKAction.repeat(SKAction.sequence([bleedAction, wait]), count: bloodExplosionCount))
+    }
 }
 
 extension GameScene {
@@ -90,6 +124,27 @@ extension GameScene {
 
 extension GameScene: SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
+        let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
         
+        if collision == PhysicsCategory.Ground | PhysicsCategory.Wizard, !wizardNode.isGrounded {
+            wizardNode.isGrounded = true
+            createBloodExplosion(with: wizardNode)
+        }
+        
+        if collision == PhysicsCategory.Blood | PhysicsCategory.Ground {
+            let node = contact.bodyA.categoryBitMask == PhysicsCategory.Blood ? contact.bodyA.node : contact.bodyB.node
+            
+            if let blood = node as? BloodNode {
+                blood.hitGround()
+            }
+        }
+    }
+    
+    func didEnd(_ contact: SKPhysicsContact) {
+        let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
+        
+        if collision == PhysicsCategory.Wizard | PhysicsCategory.Ground {
+            wizardNode.isGrounded = false
+        }
     }
 }

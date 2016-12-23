@@ -10,6 +10,8 @@ import SpriteKit
 
 class WizardNode: SKSpriteNode {
     
+    var isGrounded = true
+    
     func jump(towards point: CGPoint) {
         
         var xValue = 0
@@ -25,8 +27,9 @@ class WizardNode: SKSpriteNode {
 
 extension WizardNode: LifecycleListener {
     func didMoveToScene() {
-        let newSize = texture!.size() * 0.8
+        let newSize = texture!.size()
         physicsBody = SKPhysicsBody(rectangleOf: newSize)
+        physicsBody?.allowsRotation = false
         physicsBody?.categoryBitMask = PhysicsCategory.Wizard
         physicsBody?.contactTestBitMask = PhysicsCategory.Ground
         physicsBody?.collisionBitMask = PhysicsCategory.Ground

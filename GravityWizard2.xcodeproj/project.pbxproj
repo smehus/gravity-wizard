@@ -26,6 +26,8 @@
 		A59FB6A81E0A091400D1C915 /* LifecycleEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59FB6A71E0A091400D1C915 /* LifecycleEmitter.swift */; };
 		A59FB6AA1E0A13FA00D1C915 /* GroundNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59FB6A91E0A13FA00D1C915 /* GroundNode.swift */; };
 		A59FB6AC1E0A257600D1C915 /* CGSize+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59FB6AB1E0A257500D1C915 /* CGSize+Extensions.swift */; };
+		A59FB6D21E0AD93D00D1C915 /* Blood.sks in Resources */ = {isa = PBXBuildFile; fileRef = A59FB6D11E0AD93D00D1C915 /* Blood.sks */; };
+		A59FB6D41E0AD9D700D1C915 /* BloodNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59FB6D31E0AD9D700D1C915 /* BloodNode.swift */; };
 		A5B58EB71E09DC4900ADC865 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B58EB61E09DC4900ADC865 /* AppDelegate.swift */; };
 		A5B58EB91E09DC4900ADC865 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5B58EB81E09DC4900ADC865 /* GameScene.sks */; };
 		A5B58EBD1E09DC4900ADC865 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B58EBC1E09DC4900ADC865 /* GameScene.swift */; };
@@ -55,6 +57,8 @@
 		A59FB6A71E0A091400D1C915 /* LifecycleEmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LifecycleEmitter.swift; path = Protocols/LifecycleEmitter.swift; sourceTree = "<group>"; };
 		A59FB6A91E0A13FA00D1C915 /* GroundNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GroundNode.swift; path = Sprites/GroundNode.swift; sourceTree = "<group>"; };
 		A59FB6AB1E0A257500D1C915 /* CGSize+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGSize+Extensions.swift"; sourceTree = "<group>"; };
+		A59FB6D11E0AD93D00D1C915 /* Blood.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Blood.sks; sourceTree = "<group>"; };
+		A59FB6D31E0AD9D700D1C915 /* BloodNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BloodNode.swift; sourceTree = "<group>"; };
 		A5B58EB31E09DC4900ADC865 /* GravityWizard2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GravityWizard2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5B58EB61E09DC4900ADC865 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5B58EB81E09DC4900ADC865 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = GameScene.sks; path = Scenes/GameScene.sks; sourceTree = "<group>"; };
@@ -82,6 +86,7 @@
 			children = (
 				A5B58EB81E09DC4900ADC865 /* GameScene.sks */,
 				A5868FA31E0A042A00935E3B /* Wizard.sks */,
+				A59FB6D11E0AD93D00D1C915 /* Blood.sks */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -91,6 +96,7 @@
 			children = (
 				A59FB6871E0A081B00D1C915 /* WizardNode.swift */,
 				A59FB6A91E0A13FA00D1C915 /* GroundNode.swift */,
+				A59FB6D31E0AD9D700D1C915 /* BloodNode.swift */,
 			);
 			name = Sprites;
 			sourceTree = "<group>";
@@ -219,6 +225,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A59FB6D21E0AD93D00D1C915 /* Blood.sks in Resources */,
 				A5868FA41E0A042A00935E3B /* Wizard.sks in Resources */,
 				A5B58EC21E09DC4900ADC865 /* Main.storyboard in Resources */,
 				A5B58EB91E09DC4900ADC865 /* GameScene.sks in Resources */,
@@ -238,6 +245,7 @@
 				A59FB6A01E0A088A00D1C915 /* SKTTimingFunctions.swift in Sources */,
 				A59FB69A1E0A088A00D1C915 /* SKAction+Extensions.swift in Sources */,
 				A5B58EBD1E09DC4900ADC865 /* GameScene.swift in Sources */,
+				A59FB6D41E0AD9D700D1C915 /* BloodNode.swift in Sources */,
 				A59FB6A61E0A08DF00D1C915 /* GestureInteractive.swift in Sources */,
 				A59FB6981E0A088A00D1C915 /* CGVector+Extensions.swift in Sources */,
 				A59FB69E1E0A088A00D1C915 /* SKTAudio.swift in Sources */,
