@@ -17,7 +17,7 @@ struct PhysicsCategory {
     static let None:  UInt32 = 0
     static let Wizard: UInt32 = 0b1 // 1
     static let Ground: UInt32 = 0b10 // 2
-    static let World:   UInt32 = 0b100 // 4
+    static let Rock:   UInt32 = 0b100 // 4
     static let Edge:  UInt32 = 0b1000 // 8
     static let Label: UInt32 = 0b10000 // 16
     static let Blood :UInt32 = 0b100000 // 32
@@ -73,6 +73,10 @@ extension GameScene {
         }
     }
     
+    fileprivate func shootArrow(at point: CGPoint) {
+        
+    }
+    
     fileprivate func removeRadialGravity() {
         guard let field = radialGravity, let marker = radialMarker else { return }
         self.removeChildren(in: [field, marker])
@@ -114,11 +118,21 @@ extension GameScene {
         let wait = SKAction.wait(forDuration: 0.0)
         run(SKAction.repeat(SKAction.sequence([bleedAction, wait]), count: bloodExplosionCount))
     }
+    
+    fileprivate func checkWizardVelocity() {
+        if wizardNode.physicsBody!.velocity.dy > 50 {
+            wizardNode.gravityState = .climbing
+        } else if wizardNode.physicsBody!.velocity.dy < -20 {
+            wizardNode.gravityState = .falling
+        } else {
+            wizardNode.gravityState = .ground
+        }
+    }
 }
 
 extension GameScene {
     override func update(_ currentTime: TimeInterval) {
-        
+        checkWizardVelocity()
     }
 }
 
@@ -128,6 +142,9 @@ extension GameScene: SKPhysicsContactDelegate {
         
         if collision == PhysicsCategory.Ground | PhysicsCategory.Wizard, !wizardNode.isGrounded {
             wizardNode.isGrounded = true
+        }
+        
+        if collision == PhysicsCategory.Rock | PhysicsCategory.Wizard {
             createBloodExplosion(with: wizardNode)
         }
         

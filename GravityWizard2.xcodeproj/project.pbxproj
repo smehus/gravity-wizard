@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A518235E1E0E109400DDE33A /* RockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A518235D1E0E109400DDE33A /* RockNode.swift */; };
 		A5868FA41E0A042A00935E3B /* Wizard.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5868FA31E0A042A00935E3B /* Wizard.sks */; };
 		A59FB6881E0A081B00D1C915 /* WizardNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59FB6871E0A081B00D1C915 /* WizardNode.swift */; };
 		A59FB6961E0A088A00D1C915 /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59FB68A1E0A088A00D1C915 /* CGFloat+Extensions.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A518235D1E0E109400DDE33A /* RockNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RockNode.swift; path = Sprites/RockNode.swift; sourceTree = "<group>"; };
 		A5868FA31E0A042A00935E3B /* Wizard.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = Wizard.sks; path = Scenes/Wizard.sks; sourceTree = "<group>"; };
 		A59FB6871E0A081B00D1C915 /* WizardNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WizardNode.swift; path = Sprites/WizardNode.swift; sourceTree = "<group>"; };
 		A59FB68A1E0A088A00D1C915 /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				A59FB6871E0A081B00D1C915 /* WizardNode.swift */,
 				A59FB6A91E0A13FA00D1C915 /* GroundNode.swift */,
 				A59FB6D31E0AD9D700D1C915 /* BloodNode.swift */,
+				A518235D1E0E109400DDE33A /* RockNode.swift */,
 			);
 			name = Sprites;
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 				A59FB6981E0A088A00D1C915 /* CGVector+Extensions.swift in Sources */,
 				A59FB69E1E0A088A00D1C915 /* SKTAudio.swift in Sources */,
 				A59FB6961E0A088A00D1C915 /* CGFloat+Extensions.swift in Sources */,
+				A518235E1E0E109400DDE33A /* RockNode.swift in Sources */,
 				A59FB6AA1E0A13FA00D1C915 /* GroundNode.swift in Sources */,
 				A59FB69D1E0A088A00D1C915 /* SKNode+Extensions.swift in Sources */,
 				A59FB69F1E0A088A00D1C915 /* SKTEffects.swift in Sources */,
