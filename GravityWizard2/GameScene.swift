@@ -11,6 +11,8 @@ import GameplayKit
 
 struct Images {
     static let radialGravity = "deathtex1"
+    static let arrow = "arrow"
+    static let arrowBig = "arrow_big"
 }
 
 struct PhysicsCategory {
@@ -19,7 +21,7 @@ struct PhysicsCategory {
     static let Ground: UInt32 = 0b10 // 2
     static let Rock:   UInt32 = 0b100 // 4
     static let Edge:  UInt32 = 0b1000 // 8
-    static let Label: UInt32 = 0b10000 // 16
+    static let Arrow: UInt32 = 0b10000 // 16
     static let Blood :UInt32 = 0b100000 // 32
     static let RadialGravity:  UInt32 = 0b1000000 // 64
 }
@@ -42,6 +44,14 @@ class GameScene: SKScene, LifecycleEmitter {
     let bloodExplosionCount = 5
     
     
+    /// Trackables
+    var lastUpdateTimeInterval: TimeInterval = 0
+    var deltaTime: TimeInterval = 0
+    var trackingArrowVelocity = false
+    var arrowVelocity: CGFloat = 0
+    var currentProjectile: SKSpriteNode?
+    
+    
     override func didMove(to view: SKView) {
         physicsWorld.contactDelegate = self
         setupNodes()
@@ -49,6 +59,7 @@ class GameScene: SKScene, LifecycleEmitter {
     
     fileprivate func setupNodes() {
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
+        physicsBody?.categoryBitMask = PhysicsCategory.Edge
         emitDidMoveToView()
 
         wizardScene = SKScene(fileNamed: "Wizard")
@@ -58,6 +69,14 @@ class GameScene: SKScene, LifecycleEmitter {
         }
         
     }
+    
+    fileprivate func updateDirection(with sprite: SKSpriteNode) {
+        guard let body = sprite.physicsBody else { return }
+        let shortest = shortestAngleBetween(sprite.zRotation, angle2: body.velocity.angle)
+        let rotateRadiansPerSec = 4.0 * π
+        let amountToRotate = min(rotateRadiansPerSec * CGFloat(deltaTime), abs(shortest))
+        sprite.zRotation += shortest.sign() * amountToRotate
+    }
 }
 
 extension GameScene {
@@ -65,16 +84,45 @@ extension GameScene {
         super.touchesBegan(touches, with: event)
         guard let touch = touches.first else { return }
         let touchLocation = touch.location(in: self)
+        
         if let _ = radialGravity {
             removeRadialGravity()
-        } else {
-            radialGravity = createRadialGravity(at: touchLocation)
-            
+        } else if trackingArrowVelocity == false {
+            trackingArrowVelocity = true
         }
     }
     
-    fileprivate func shootArrow(at point: CGPoint) {
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
         
+        guard let touch = touches.first else { return }
+        let touchLocation = touch.location(in: self)
+        
+        if trackingArrowVelocity {
+            shootArrow(at: touchLocation, velocityMultiply: arrowVelocity)
+            trackingArrowVelocity = false
+            arrowVelocity = 0
+        }
+        
+    }
+    
+    fileprivate func shootArrow(at point: CGPoint, velocityMultiply: CGFloat) {
+        let startingPosition = convert(wizardNode.position, from: wizardNode.parent!)
+        
+        let arrow = SKSpriteNode(imageNamed: Images.arrow)
+        arrow.physicsBody = SKPhysicsBody(circleOfRadius: arrow.texture!.size().width / 2)
+        arrow.physicsBody?.affectedByGravity = true
+        arrow.physicsBody?.categoryBitMask = PhysicsCategory.Arrow
+        arrow.physicsBody?.contactTestBitMask = PhysicsCategory.Edge | PhysicsCategory.Ground
+        arrow.physicsBody?.collisionBitMask = PhysicsCategory.Edge | PhysicsCategory.Ground
+        arrow.physicsBody?.fieldBitMask = PhysicsCategory.None
+        arrow.position = startingPosition
+        addChild(arrow)
+        
+        let newVelocity =  (point - startingPosition).normalized() * velocityMultiply
+        arrow.physicsBody!.velocity = CGVector(point: newVelocity)
+        
+        currentProjectile = arrow
     }
     
     fileprivate func removeRadialGravity() {
@@ -128,11 +176,63 @@ extension GameScene {
             wizardNode.gravityState = .ground
         }
     }
+    
+    func explosion(intensity: CGFloat) -> SKEmitterNode {
+        let emitter = SKEmitterNode()
+        let particleTexture = SKTexture(imageNamed: "spark")
+        
+        emitter.zPosition = 2
+        emitter.particleTexture = particleTexture
+        emitter.particleBirthRate = 4000 * intensity
+        emitter.numParticlesToEmit = Int(400 * intensity)
+        emitter.particleLifetime = 2.0
+        emitter.emissionAngle = CGFloat(90.0).degreesToRadians()
+        emitter.emissionAngleRange = CGFloat(360.0).degreesToRadians()
+        emitter.particleSpeed = 600 * intensity
+        emitter.particleSpeedRange = 1000 * intensity
+        emitter.particleAlpha = 1.0
+        emitter.particleAlphaRange = 0.25
+        emitter.particleScale = 1.2
+        emitter.particleScaleRange = 2.0
+        emitter.particleScaleSpeed = -1.5
+        
+        emitter.particleColorBlendFactor = 1
+        emitter.particleBlendMode = SKBlendMode.add
+        emitter.run(SKAction.removeFromParentAfterDelay(2.0))
+        
+        let sequence = SKKeyframeSequence(capacity: 5)
+        sequence.addKeyframeValue(SKColor.white, time: 0)
+        sequence.addKeyframeValue(SKColor.yellow, time: 0.10)
+        sequence.addKeyframeValue(SKColor.orange, time: 0.15)
+        sequence.addKeyframeValue(SKColor.red, time: 0.75)
+        sequence.addKeyframeValue(SKColor.black, time: 0.95)
+        emitter.particleColorSequence = sequence
+        
+        return emitter
+    }
+    
 }
 
 extension GameScene {
     override func update(_ currentTime: TimeInterval) {
         checkWizardVelocity()
+        
+        if lastUpdateTimeInterval > 0 {
+            deltaTime = currentTime - lastUpdateTimeInterval
+        } else {
+            deltaTime = 0
+        }
+        
+        lastUpdateTimeInterval = currentTime
+        
+        if trackingArrowVelocity {
+            let normalizedDelta: CGFloat = CGFloat(deltaTime) * 1000
+            arrowVelocity += normalizedDelta
+        }
+        
+        if let arrow = currentProjectile {
+            updateDirection(with: arrow)
+        }
     }
 }
 
@@ -153,6 +253,24 @@ extension GameScene: SKPhysicsContactDelegate {
             
             if let blood = node as? BloodNode {
                 blood.hitGround()
+            }
+        }
+        
+        if collision == PhysicsCategory.Arrow | PhysicsCategory.Edge {
+            if let arrow = currentProjectile {
+                radialGravity = createRadialGravity(at: arrow.position)
+                
+                let explode = explosion(intensity: 0.25 * CGFloat(4 + 1))
+                explode.position = arrow.position
+                explode.run(SKAction.removeFromParentAfterDelay(2.0))
+                addChild(explode)
+                arrow.removeFromParent()
+            }
+        }
+        
+        if collision == PhysicsCategory.Arrow | PhysicsCategory.Ground {
+            if let arrow = currentProjectile {
+                arrow.physicsBody = nil
             }
         }
     }

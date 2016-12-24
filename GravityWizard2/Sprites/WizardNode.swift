@@ -86,6 +86,7 @@ class WizardNode: SKSpriteNode {
         let idleAnimation = SKAction.animate(with: textures, timePerFrame: 0.1)
         run(SKAction.repeatForever(idleAnimation), withKey: gravityState.animationKey)
     }
+    
 }
 
 extension WizardNode: LifecycleListener {
@@ -95,7 +96,7 @@ extension WizardNode: LifecycleListener {
         physicsBody?.allowsRotation = false
         physicsBody?.categoryBitMask = PhysicsCategory.Wizard
         physicsBody?.contactTestBitMask = PhysicsCategory.Ground | PhysicsCategory.Rock
-        physicsBody?.collisionBitMask = PhysicsCategory.Ground | PhysicsCategory.Rock
+        physicsBody?.collisionBitMask = PhysicsCategory.Ground | PhysicsCategory.Rock | PhysicsCategory.Edge
         physicsBody?.fieldBitMask = PhysicsCategory.RadialGravity
         
     }
