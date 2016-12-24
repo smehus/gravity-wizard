@@ -39,7 +39,7 @@ class GameScene: SKScene, LifecycleEmitter {
     
     
     /// Constants
-    let bloodExplosionCount = 10
+    let bloodExplosionCount = 5
     
     
     override func didMove(to view: SKView) {
@@ -111,7 +111,7 @@ extension GameScene {
             dup.physicsBody?.applyImpulse(vector)
         }
         
-        let wait = SKAction.wait(forDuration: 0.1)
+        let wait = SKAction.wait(forDuration: 0.0)
         run(SKAction.repeat(SKAction.sequence([bleedAction, wait]), count: bloodExplosionCount))
     }
 }
