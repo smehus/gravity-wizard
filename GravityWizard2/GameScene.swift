@@ -36,6 +36,7 @@ class GameScene: SKScene, LifecycleEmitter {
     var wizardNode: WizardNode!
     var bloodNode: BloodNode?
     var radialMarker: SKSpriteNode?
+    var breakableRocks: BreakableRocksNode!
     
     // Effects
     var radialGravity: SKFieldNode?
@@ -65,6 +66,9 @@ class GameScene: SKScene, LifecycleEmitter {
 
         wizardScene = SKScene(fileNamed: "Wizard")
         wizardNode = childNode(withName: "//Wizard") as! WizardNode
+        
+        breakableRocks = childNode(withName: "//BreakableRocks") as! BreakableRocksNode
+        
         if let node = BloodNode.generateBloodNode() {
             bloodNode = node
         }
@@ -268,6 +272,14 @@ extension GameScene: SKPhysicsContactDelegate {
                 radialGravity = createRadialGravity(at: arrow.position)
 
                 explosion(at: arrow.position)
+                arrow.removeFromParent()
+            }
+        }
+        
+        if collision == PhysicsCategory.Arrow | PhysicsCategory.BreakableFormation {
+            if let arrow = currentProjectile {
+                explosion(at: arrow.position)
+                breakableRocks.breakRocks()
                 arrow.removeFromParent()
             }
         }

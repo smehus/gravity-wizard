@@ -14,15 +14,10 @@ class RockNode: SKSpriteNode {
 
 extension RockNode: LifecycleListener {
     func didMoveToScene() {
-
-        let textureSize = texture!.size()
-        let newSize = CGSize(width: textureSize.width / 2, height: textureSize.height / 4)
-        let body = SKPhysicsBody(rectangleOf: newSize)
-        body.isDynamic = false
-        body.categoryBitMask = PhysicsCategory.Rock
-        body.contactTestBitMask = PhysicsCategory.Wizard
-        body.collisionBitMask = PhysicsCategory.Wizard
+        physicsBody?.isDynamic = false
+        physicsBody?.categoryBitMask = PhysicsCategory.Rock
+        physicsBody?.contactTestBitMask = PhysicsCategory.Wizard | PhysicsCategory.Arrow | PhysicsCategory.Ground
+        physicsBody?.collisionBitMask = PhysicsCategory.Wizard | PhysicsCategory.Ground | PhysicsCategory.Edge | PhysicsCategory.Rock
         
-        physicsBody = body
     }
 }

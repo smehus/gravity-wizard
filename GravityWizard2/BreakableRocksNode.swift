@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class BreakableRocksNode: SKSpriteNode {
+class BreakableRocksNode: SKNode {
 
     func breakRocks() {
         for node in children {
@@ -24,14 +24,17 @@ extension BreakableRocksNode: LifecycleListener {
     }
     
     fileprivate func setupPhysicsBodies() {
+        var bodies = [SKPhysicsBody]()
         for node in children {
             guard let body = node.physicsBody else { continue }
-            body.isDynamic = false
-            body.categoryBitMask = PhysicsCategory.Rock
-            body.contactTestBitMask = PhysicsCategory.Edge | PhysicsCategory.Wizard | PhysicsCategory.Ground | PhysicsCategory.Arrow
-            body.collisionBitMask = PhysicsCategory.Edge | PhysicsCategory.Wizard | PhysicsCategory.Ground | PhysicsCategory.Arrow
-            body.fieldBitMask = PhysicsCategory.None
+            bodies.append(body)
         }
+        
+        physicsBody = SKPhysicsBody(bodies: bodies)
+        physicsBody?.categoryBitMask = PhysicsCategory.BreakableFormation
+        physicsBody?.contactTestBitMask = PhysicsCategory.Arrow
+        physicsBody?.isDynamic = false
+        physicsBody?.affectedByGravity = false
     }
 }
 
