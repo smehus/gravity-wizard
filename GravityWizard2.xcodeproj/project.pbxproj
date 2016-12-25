@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		A518235E1E0E109400DDE33A /* RockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A518235D1E0E109400DDE33A /* RockNode.swift */; };
+		A51823601E103D6800DDE33A /* BreakableRocks.sks in Resources */ = {isa = PBXBuildFile; fileRef = A518235F1E103D6800DDE33A /* BreakableRocks.sks */; };
+		A51823621E10435D00DDE33A /* BreakableRocksNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51823611E10435D00DDE33A /* BreakableRocksNode.swift */; };
 		A5868FA41E0A042A00935E3B /* Wizard.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5868FA31E0A042A00935E3B /* Wizard.sks */; };
 		A59FB6881E0A081B00D1C915 /* WizardNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59FB6871E0A081B00D1C915 /* WizardNode.swift */; };
 		A59FB6961E0A088A00D1C915 /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59FB68A1E0A088A00D1C915 /* CGFloat+Extensions.swift */; };
@@ -40,6 +42,8 @@
 
 /* Begin PBXFileReference section */
 		A518235D1E0E109400DDE33A /* RockNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RockNode.swift; path = Sprites/RockNode.swift; sourceTree = "<group>"; };
+		A518235F1E103D6800DDE33A /* BreakableRocks.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BreakableRocks.sks; sourceTree = "<group>"; };
+		A51823611E10435D00DDE33A /* BreakableRocksNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreakableRocksNode.swift; sourceTree = "<group>"; };
 		A5868FA31E0A042A00935E3B /* Wizard.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = Wizard.sks; path = Scenes/Wizard.sks; sourceTree = "<group>"; };
 		A59FB6871E0A081B00D1C915 /* WizardNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WizardNode.swift; path = Sprites/WizardNode.swift; sourceTree = "<group>"; };
 		A59FB68A1E0A088A00D1C915 /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
@@ -89,6 +93,7 @@
 				A5B58EB81E09DC4900ADC865 /* GameScene.sks */,
 				A5868FA31E0A042A00935E3B /* Wizard.sks */,
 				A59FB6D11E0AD93D00D1C915 /* Blood.sks */,
+				A518235F1E103D6800DDE33A /* BreakableRocks.sks */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -100,6 +105,7 @@
 				A59FB6A91E0A13FA00D1C915 /* GroundNode.swift */,
 				A59FB6D31E0AD9D700D1C915 /* BloodNode.swift */,
 				A518235D1E0E109400DDE33A /* RockNode.swift */,
+				A51823611E10435D00DDE33A /* BreakableRocksNode.swift */,
 			);
 			name = Sprites;
 			sourceTree = "<group>";
@@ -230,6 +236,7 @@
 			files = (
 				A59FB6D21E0AD93D00D1C915 /* Blood.sks in Resources */,
 				A5868FA41E0A042A00935E3B /* Wizard.sks in Resources */,
+				A51823601E103D6800DDE33A /* BreakableRocks.sks in Resources */,
 				A5B58EC21E09DC4900ADC865 /* Main.storyboard in Resources */,
 				A5B58EB91E09DC4900ADC865 /* GameScene.sks in Resources */,
 				A5B58EC41E09DC4900ADC865 /* Assets.xcassets in Resources */,
@@ -256,6 +263,7 @@
 				A518235E1E0E109400DDE33A /* RockNode.swift in Sources */,
 				A59FB6AA1E0A13FA00D1C915 /* GroundNode.swift in Sources */,
 				A59FB69D1E0A088A00D1C915 /* SKNode+Extensions.swift in Sources */,
+				A51823621E10435D00DDE33A /* BreakableRocksNode.swift in Sources */,
 				A59FB69F1E0A088A00D1C915 /* SKTEffects.swift in Sources */,
 				A5B58EBF1E09DC4900ADC865 /* GameViewController.swift in Sources */,
 				A59FB6881E0A081B00D1C915 /* WizardNode.swift in Sources */,
