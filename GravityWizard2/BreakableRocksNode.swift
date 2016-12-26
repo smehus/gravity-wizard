@@ -11,6 +11,7 @@ import SpriteKit
 class BreakableRocksNode: SKNode {
 
     func breakRocks() {
+        physicsBody = nil
         for node in children {
             guard let body = node.physicsBody else { continue }
             body.isDynamic = true
