@@ -30,28 +30,28 @@ struct PhysicsCategory {
 class GameScene: SKScene, LifecycleEmitter {
 
     /// Scense
-    var wizardScene: SKScene!
+    fileprivate var wizardScene: SKScene!
     
     /// Nodes
-    var wizardNode: WizardNode!
-    var bloodNode: BloodNode?
-    var radialMarker: SKSpriteNode?
-    var breakableRocks: BreakableRocksNode!
+    fileprivate var wizardNode: WizardNode!
+    fileprivate var bloodNode: BloodNode?
+    fileprivate var radialMarker: SKSpriteNode?
+    fileprivate var breakableRocks: BreakableRocksNode!
     
     // Effects
-    var radialGravity: SKFieldNode?
+    fileprivate var radialGravity: SKFieldNode?
     
     
     /// Constants
-    let bloodExplosionCount = 5
+    fileprivate let bloodExplosionCount = 5
     
     
     /// Trackables
-    var lastUpdateTimeInterval: TimeInterval = 0
-    var deltaTime: TimeInterval = 0
-    var trackingArrowVelocity = false
-    var arrowVelocity: CGFloat = 0
-    var currentProjectile: SKSpriteNode?
+    fileprivate var lastUpdateTimeInterval: TimeInterval = 0
+    fileprivate var deltaTime: TimeInterval = 0
+    fileprivate var trackingArrowVelocity = false
+    fileprivate var arrowVelocity: CGFloat = 0
+    fileprivate var currentProjectile: SKSpriteNode?
     
     
     override func didMove(to view: SKView) {
@@ -164,7 +164,7 @@ extension GameScene {
             dup.position = point
             self.addChild(dup)
             
-            let vector = CGVector(dx: Int.random(min: -2, max: 2), dy: 8)
+            let vector = CGVector(dx: Int.random(min: -1, max: 1), dy: 4)
             dup.physicsBody?.applyImpulse(vector)
         }
         
@@ -182,7 +182,7 @@ extension GameScene {
         }
     }
     
-    func explosion(intensity: CGFloat) -> SKEmitterNode {
+    fileprivate func explosion(intensity: CGFloat) -> SKEmitterNode {
         let emitter = SKEmitterNode()
         let particleTexture = SKTexture(imageNamed: "spark")
         
