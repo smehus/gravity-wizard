@@ -18,6 +18,7 @@ extension RockNode: LifecycleListener {
         physicsBody?.categoryBitMask = PhysicsCategory.Rock
         physicsBody?.contactTestBitMask = PhysicsCategory.Wizard | PhysicsCategory.Arrow | PhysicsCategory.Ground
         physicsBody?.collisionBitMask = PhysicsCategory.Wizard | PhysicsCategory.Ground | PhysicsCategory.Edge | PhysicsCategory.Rock
+        physicsBody?.fieldBitMask = PhysicsCategory.None
         
     }
 }

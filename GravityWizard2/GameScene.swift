@@ -15,6 +15,10 @@ struct Images {
     static let arrowBig = "arrow_big"
 }
 
+struct Actions {
+    static let lightMoveAction = "lightMoveAction"
+}
+
 struct PhysicsCategory {
     static let None:  UInt32 = 0
     static let Wizard: UInt32 = 0x1 << 1
@@ -37,6 +41,8 @@ class GameScene: SKScene, LifecycleEmitter {
     fileprivate var bloodNode: BloodNode?
     fileprivate var radialMarker: SKSpriteNode?
     fileprivate var breakableRocks: BreakableRocksNode!
+    
+    fileprivate var light: SKNode!
     
     // Effects
     fileprivate var radialGravity: SKFieldNode?
@@ -68,11 +74,22 @@ class GameScene: SKScene, LifecycleEmitter {
         wizardNode = childNode(withName: "//Wizard") as! WizardNode
         
         breakableRocks = childNode(withName: "//BreakableRocks") as! BreakableRocksNode
+        light = childNode(withName: "//FollowLight")
         
         if let node = BloodNode.generateBloodNode() {
             bloodNode = node
         }
         
+    }
+    
+    fileprivate func updateLightPosition() {
+        let lightTarget = convert(wizardNode.position, from: wizardNode.parent!)
+        
+        let lerpX = (lightTarget.x - light.position.x) * 0.01
+        let lerpY = (lightTarget.y - light.position.y) * 0.01
+        
+        let moveAction = SKAction.moveBy(x: lerpX, y: lerpY, duration: 0.1)
+        light.run(moveAction, withKey: Actions.lightMoveAction)
     }
     
     fileprivate func updateDirection(with sprite: SKSpriteNode) {
@@ -88,7 +105,7 @@ extension GameScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         guard let touch = touches.first else { return }
-        let touchLocation = touch.location(in: self)
+        let _ = touch.location(in: self)
         
         if let _ = radialGravity {
             removeRadialGravity()
@@ -244,6 +261,8 @@ extension GameScene {
         if let arrow = currentProjectile {
             updateDirection(with: arrow)
         }
+        
+        updateLightPosition()
     }
 }
 
