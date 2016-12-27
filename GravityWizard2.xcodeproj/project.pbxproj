@@ -31,7 +31,6 @@
 		A59FB6AC1E0A257600D1C915 /* CGSize+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59FB6AB1E0A257500D1C915 /* CGSize+Extensions.swift */; };
 		A59FB6D21E0AD93D00D1C915 /* Blood.sks in Resources */ = {isa = PBXBuildFile; fileRef = A59FB6D11E0AD93D00D1C915 /* Blood.sks */; };
 		A59FB6D41E0AD9D700D1C915 /* BloodNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59FB6D31E0AD9D700D1C915 /* BloodNode.swift */; };
-		A5B439241E1186C70066750D /* FollowLight.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5B439231E1186C70066750D /* FollowLight.sks */; };
 		A5B58EB71E09DC4900ADC865 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B58EB61E09DC4900ADC865 /* AppDelegate.swift */; };
 		A5B58EB91E09DC4900ADC865 /* Level1.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5B58EB81E09DC4900ADC865 /* Level1.sks */; };
 		A5B58EBD1E09DC4900ADC865 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B58EBC1E09DC4900ADC865 /* GameScene.swift */; };
@@ -66,7 +65,6 @@
 		A59FB6AB1E0A257500D1C915 /* CGSize+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGSize+Extensions.swift"; sourceTree = "<group>"; };
 		A59FB6D11E0AD93D00D1C915 /* Blood.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Blood.sks; sourceTree = "<group>"; };
 		A59FB6D31E0AD9D700D1C915 /* BloodNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BloodNode.swift; sourceTree = "<group>"; };
-		A5B439231E1186C70066750D /* FollowLight.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FollowLight.sks; sourceTree = "<group>"; };
 		A5B58EB31E09DC4900ADC865 /* GravityWizard2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GravityWizard2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5B58EB61E09DC4900ADC865 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5B58EB81E09DC4900ADC865 /* Level1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = Level1.sks; path = Scenes/Level1.sks; sourceTree = "<group>"; };
@@ -96,7 +94,6 @@
 				A5868FA31E0A042A00935E3B /* Wizard.sks */,
 				A59FB6D11E0AD93D00D1C915 /* Blood.sks */,
 				A518235F1E103D6800DDE33A /* BreakableRocks.sks */,
-				A5B439231E1186C70066750D /* FollowLight.sks */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -238,7 +235,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A59FB6D21E0AD93D00D1C915 /* Blood.sks in Resources */,
-				A5B439241E1186C70066750D /* FollowLight.sks in Resources */,
 				A5868FA41E0A042A00935E3B /* Wizard.sks in Resources */,
 				A51823601E103D6800DDE33A /* BreakableRocks.sks in Resources */,
 				A5B58EC21E09DC4900ADC865 /* Main.storyboard in Resources */,

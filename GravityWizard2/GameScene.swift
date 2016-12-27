@@ -74,7 +74,7 @@ class GameScene: SKScene, LifecycleEmitter {
         wizardNode = childNode(withName: "//Wizard") as! WizardNode
         
         breakableRocks = childNode(withName: "//BreakableRocks") as! BreakableRocksNode
-        light = childNode(withName: "//FollowLight")
+        light = childNode(withName: "FollowLight")
         
         if let node = BloodNode.generateBloodNode() {
             bloodNode = node
@@ -83,13 +83,15 @@ class GameScene: SKScene, LifecycleEmitter {
     }
     
     fileprivate func updateLightPosition() {
-        let lightTarget = convert(wizardNode.position, from: wizardNode.parent!)
+        let target = convert(wizardNode.position, from: wizardNode.parent!)
+        let standardizedTarget = convert(target, to: light)
         
-        let lerpX = (lightTarget.x - light.position.x) * 0.01
-        let lerpY = (lightTarget.y - light.position.y) * 0.01
+        let lerpX = (standardizedTarget.x - light.position.x) * 0.01
+        let lerpY = (standardizedTarget.y - light.position.y) * 0.01
         
-        let moveAction = SKAction.moveBy(x: lerpX, y: lerpY, duration: 0.1)
-        light.run(moveAction, withKey: Actions.lightMoveAction)
+//        light.position.x += lerpX
+//        light.position.y += lerpY
+        light.position = target
     }
     
     fileprivate func updateDirection(with sprite: SKSpriteNode) {
@@ -261,7 +263,9 @@ extension GameScene {
         if let arrow = currentProjectile {
             updateDirection(with: arrow)
         }
-        
+    }
+    
+    override func didSimulatePhysics() {
         updateLightPosition()
     }
 }
