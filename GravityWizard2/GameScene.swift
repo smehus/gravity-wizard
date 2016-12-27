@@ -9,28 +9,6 @@
 import SpriteKit
 import GameplayKit
 
-struct Images {
-    static let radialGravity = "deathtex1"
-    static let arrow = "arrow"
-    static let arrowBig = "arrow_big"
-}
-
-struct Actions {
-    static let lightMoveAction = "lightMoveAction"
-}
-
-struct PhysicsCategory {
-    static let None:  UInt32 = 0
-    static let Wizard: UInt32 = 0x1 << 1
-    static let Ground: UInt32 = 0x1 << 2
-    static let Rock:   UInt32 = 0x1 << 3
-    static let Edge:  UInt32 = 0x1 << 4
-    static let Arrow: UInt32 = 0x1 << 5
-    static let Blood :UInt32 = 0x1 << 6
-    static let RadialGravity:  UInt32 = 0x1 << 7
-    static let BreakableFormation:  UInt32 = 0x1 << 8
-}
-
 class GameScene: SKScene, LifecycleEmitter {
 
     /// Scense
@@ -58,6 +36,9 @@ class GameScene: SKScene, LifecycleEmitter {
     fileprivate var trackingArrowVelocity = false
     fileprivate var arrowVelocity: CGFloat = 0
     fileprivate var currentProjectile: SKSpriteNode?
+    
+    /// statics
+    fileprivate let particleFactory = ParticleFactory.sharedFactory
     
     
     override func didMove(to view: SKView) {
@@ -199,42 +180,8 @@ extension GameScene {
         }
     }
     
-    fileprivate func explosion(intensity: CGFloat) -> SKEmitterNode {
-        let emitter = SKEmitterNode()
-        let particleTexture = SKTexture(imageNamed: "spark")
-        
-        emitter.zPosition = 2
-        emitter.particleTexture = particleTexture
-        emitter.particleBirthRate = 4000 * intensity
-        emitter.numParticlesToEmit = Int(400 * intensity)
-        emitter.particleLifetime = 2.0
-        emitter.emissionAngle = CGFloat(90.0).degreesToRadians()
-        emitter.emissionAngleRange = CGFloat(360.0).degreesToRadians()
-        emitter.particleSpeed = 600 * intensity
-        emitter.particleSpeedRange = 1000 * intensity
-        emitter.particleAlpha = 1.0
-        emitter.particleAlphaRange = 0.25
-        emitter.particleScale = 1.2
-        emitter.particleScaleRange = 2.0
-        emitter.particleScaleSpeed = -1.5
-        
-        emitter.particleColorBlendFactor = 1
-        emitter.particleBlendMode = SKBlendMode.add
-        emitter.run(SKAction.removeFromParentAfterDelay(2.0))
-        
-        let sequence = SKKeyframeSequence(capacity: 5)
-        sequence.addKeyframeValue(SKColor.white, time: 0)
-        sequence.addKeyframeValue(SKColor.yellow, time: 0.10)
-        sequence.addKeyframeValue(SKColor.orange, time: 0.15)
-        sequence.addKeyframeValue(SKColor.red, time: 0.75)
-        sequence.addKeyframeValue(SKColor.black, time: 0.95)
-        emitter.particleColorSequence = sequence
-        
-        return emitter
-    }
-    
     fileprivate func explosion(at point: CGPoint) {
-        let explode = explosion(intensity: 0.25 * CGFloat(4 + 1))
+        let explode = particleFactory.explosion(intensity: 0.25 * CGFloat(4 + 1))
         explode.position = point
         explode.run(SKAction.removeFromParentAfterDelay(2.0))
         addChild(explode)
