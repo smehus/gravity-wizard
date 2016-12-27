@@ -84,14 +84,12 @@ class GameScene: SKScene, LifecycleEmitter {
     
     fileprivate func updateLightPosition() {
         let target = convert(wizardNode.position, from: wizardNode.parent!)
-        let standardizedTarget = convert(target, to: light)
         
-        let lerpX = (standardizedTarget.x - light.position.x) * 0.01
-        let lerpY = (standardizedTarget.y - light.position.y) * 0.01
+        let lerpX = (target.x - light.position.x) * 0.01
+        let lerpY = (target.y - light.position.y) * 0.01
         
-//        light.position.x += lerpX
-//        light.position.y += lerpY
-        light.position = target
+        light.position.x += lerpX
+        light.position.y += lerpY
     }
     
     fileprivate func updateDirection(with sprite: SKSpriteNode) {
