@@ -266,7 +266,7 @@ extension GameScene: SKPhysicsContactDelegate {
             if collision == PhysicsCategory.Arrow | PhysicsCategory.vikingBodyPart {
                 let bodyPart = contact.bodyA.categoryBitMask == PhysicsCategory.vikingBodyPart ? contact.bodyA.node : contact.bodyB.node
                 
-                if let viking = bodyPart?.parent! as? VikingNode {
+                if let viking = bodyPart?.parent! as? VikingNode, !viking.isWounded {
                     viking.arrowHit()
                 }
             }
