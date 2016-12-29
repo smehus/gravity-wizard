@@ -14,8 +14,17 @@ fileprivate struct Collisions {
 
 class VikingNode: SKSpriteNode {
 
+    /// Parts
     var head: SKSpriteNode?
     var body: SKSpriteNode?
+    
+    /// Joints
+    var neckJoint: SKPhysicsJointFixed?
+    
+    func arrowHit() {
+        guard let joint = neckJoint, let scene = scene else { return }
+        scene.physicsWorld.remove(joint)
+    }
 }
 
 extension VikingNode: LifecycleListener {
@@ -37,7 +46,9 @@ extension VikingNode: LifecycleListener {
         
 //        let joint = SKPhysicsJointPin.joint(withBodyA: bodyBody, bodyB: headBody, anchor: head!.position)
         let joint = SKPhysicsJointFixed.joint(withBodyA: bodyBody, bodyB: headBody, anchor: head!.position)
+        neckJoint = joint
         scene.physicsWorld.add(joint)
+        
     }
     
 }
