@@ -15,12 +15,12 @@ class GameScene: SKScene, LifecycleEmitter {
     fileprivate var wizardScene: SKScene!
     
     /// Nodes
-    fileprivate var wizardNode: WizardNode!
+    fileprivate var wizardNode: WizardNode?
     fileprivate var bloodNode: BloodNode?
     fileprivate var radialMarker: SKSpriteNode?
-    fileprivate var breakableRocks: BreakableRocksNode!
+    fileprivate var breakableRocks: BreakableRocksNode?
     
-    fileprivate var light: SKNode!
+    fileprivate var light: SKNode?
     
     // Effects
     fileprivate var radialGravity: SKFieldNode?
@@ -52,9 +52,9 @@ class GameScene: SKScene, LifecycleEmitter {
         emitDidMoveToView()
 
         wizardScene = SKScene(fileNamed: "Wizard")
-        wizardNode = childNode(withName: "//Wizard") as! WizardNode
+        wizardNode = childNode(withName: "//Wizard") as? WizardNode
         
-        breakableRocks = childNode(withName: "//BreakableRocks") as! BreakableRocksNode
+        breakableRocks = childNode(withName: "//BreakableRocks") as? BreakableRocksNode
         light = childNode(withName: "FollowLight")
         
         if let node = BloodNode.generateBloodNode() {
@@ -64,6 +64,7 @@ class GameScene: SKScene, LifecycleEmitter {
     }
     
     fileprivate func updateLightPosition() {
+        guard let wizardNode = wizardNode, let light = light else { return }
         let target = convert(wizardNode.position, from: wizardNode.parent!)
         
         let lerpX = (target.x - light.position.x) * 0.05
@@ -110,6 +111,7 @@ extension GameScene {
     }
     
     fileprivate func shootArrow(at point: CGPoint, velocityMultiply: CGFloat) {
+        guard let wizardNode = wizardNode else { return }
         let startingPosition = convert(wizardNode.position, from: wizardNode.parent!)
         
         let arrow = SKSpriteNode(imageNamed: Images.arrow)
@@ -171,6 +173,7 @@ extension GameScene {
     }
     
     fileprivate func checkWizardVelocity() {
+        guard let wizardNode = wizardNode else { return }
         if wizardNode.physicsBody!.velocity.dy > 50 {
             wizardNode.gravityState = .climbing
         } else if wizardNode.physicsBody!.velocity.dy < -20 {
@@ -219,50 +222,55 @@ extension GameScene: SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
         let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
         
-        if collision == PhysicsCategory.Ground | PhysicsCategory.Wizard, !wizardNode.isGrounded {
-            wizardNode.isGrounded = true
-        }
-        
-        if collision == PhysicsCategory.Rock | PhysicsCategory.Wizard {
-            createBloodExplosion(with: wizardNode)
-        }
-        
-        if collision == PhysicsCategory.Blood | PhysicsCategory.Ground {
-            let node = contact.bodyA.categoryBitMask == PhysicsCategory.Blood ? contact.bodyA.node : contact.bodyB.node
+        if let wizardNode = wizardNode {
+            if collision == PhysicsCategory.Ground | PhysicsCategory.Wizard, !wizardNode.isGrounded {
+                wizardNode.isGrounded = true
+            }
             
-            if let blood = node as? BloodNode {
-                blood.hitGround()
+            if collision == PhysicsCategory.Rock | PhysicsCategory.Wizard {
+                createBloodExplosion(with: wizardNode)
+            }
+            
+            if collision == PhysicsCategory.Blood | PhysicsCategory.Ground {
+                let node = contact.bodyA.categoryBitMask == PhysicsCategory.Blood ? contact.bodyA.node : contact.bodyB.node
+                
+                if let blood = node as? BloodNode {
+                    blood.hitGround()
+                }
+            }
+            
+            if collision == PhysicsCategory.Arrow | PhysicsCategory.Edge {
+                if let arrow = currentProjectile {
+                    radialGravity = createRadialGravity(at: arrow.position)
+                    
+                    explosion(at: arrow.position)
+                    arrow.removeFromParent()
+                }
+            }
+            
+            Breakable: if collision == PhysicsCategory.Arrow | PhysicsCategory.BreakableFormation {
+                if let arrow = currentProjectile {
+                    explosion(at: arrow.position)
+                    guard let breakableRocks = breakableRocks else { break Breakable }
+                    breakableRocks.breakRocks()
+                    arrow.removeFromParent()
+                }
+            }
+            
+            if collision == PhysicsCategory.Arrow | PhysicsCategory.Ground {
+                if let arrow = currentProjectile {
+                    arrow.physicsBody = nil
+                }
             }
         }
-        
-        if collision == PhysicsCategory.Arrow | PhysicsCategory.Edge {
-            if let arrow = currentProjectile {
-                radialGravity = createRadialGravity(at: arrow.position)
 
-                explosion(at: arrow.position)
-                arrow.removeFromParent()
-            }
-        }
-        
-        if collision == PhysicsCategory.Arrow | PhysicsCategory.BreakableFormation {
-            if let arrow = currentProjectile {
-                explosion(at: arrow.position)
-                breakableRocks.breakRocks()
-                arrow.removeFromParent()
-            }
-        }
-        
-        if collision == PhysicsCategory.Arrow | PhysicsCategory.Ground {
-            if let arrow = currentProjectile {
-                arrow.physicsBody = nil
-            }
-        }
     }
     
     func didEnd(_ contact: SKPhysicsContact) {
         let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
         
-        if collision == PhysicsCategory.Wizard | PhysicsCategory.Ground {
+        WizardGround: if collision == PhysicsCategory.Wizard | PhysicsCategory.Ground {
+            guard let wizardNode = wizardNode else { break WizardGround }
             wizardNode.isGrounded = false
         }
     }

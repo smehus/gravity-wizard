@@ -41,6 +41,8 @@
 		A5B58EC21E09DC4900ADC865 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5B58EC01E09DC4900ADC865 /* Main.storyboard */; };
 		A5B58EC41E09DC4900ADC865 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5B58EC31E09DC4900ADC865 /* Assets.xcassets */; };
 		A5B58EC71E09DC4900ADC865 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5B58EC51E09DC4900ADC865 /* LaunchScreen.storyboard */; };
+		A5C4BBB61E14A1AD002B0B18 /* Viking.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5C4BBB51E14A1AD002B0B18 /* Viking.sks */; };
+		A5C4BBB81E14C708002B0B18 /* VikingNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C4BBB71E14C708002B0B18 /* VikingNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +82,8 @@
 		A5B58EC31E09DC4900ADC865 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A5B58EC61E09DC4900ADC865 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A5B58EC81E09DC4900ADC865 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5C4BBB51E14A1AD002B0B18 /* Viking.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Viking.sks; sourceTree = "<group>"; };
+		A5C4BBB71E14C708002B0B18 /* VikingNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VikingNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +114,7 @@
 				A5868FA31E0A042A00935E3B /* Wizard.sks */,
 				A59FB6D11E0AD93D00D1C915 /* Blood.sks */,
 				A518235F1E103D6800DDE33A /* BreakableRocks.sks */,
+				A5C4BBB51E14A1AD002B0B18 /* Viking.sks */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -122,6 +127,7 @@
 				A59FB6D31E0AD9D700D1C915 /* BloodNode.swift */,
 				A518235D1E0E109400DDE33A /* RockNode.swift */,
 				A51823611E10435D00DDE33A /* BreakableRocksNode.swift */,
+				A5C4BBB71E14C708002B0B18 /* VikingNode.swift */,
 			);
 			name = Sprites;
 			sourceTree = "<group>";
@@ -254,6 +260,7 @@
 				A59FB6D21E0AD93D00D1C915 /* Blood.sks in Resources */,
 				A5868FA41E0A042A00935E3B /* Wizard.sks in Resources */,
 				A51823601E103D6800DDE33A /* BreakableRocks.sks in Resources */,
+				A5C4BBB61E14A1AD002B0B18 /* Viking.sks in Resources */,
 				A55250CC1E148BC100EED486 /* Level2.sks in Resources */,
 				A5B58EC21E09DC4900ADC865 /* Main.storyboard in Resources */,
 				A5B58EB91E09DC4900ADC865 /* Level1.sks in Resources */,
@@ -288,6 +295,7 @@
 				A59FB6991E0A088A00D1C915 /* Int+Extensions.swift in Sources */,
 				A59FB6971E0A088A00D1C915 /* CGPoint+Extensions.swift in Sources */,
 				A55250C81E122DC200EED486 /* Definitions.swift in Sources */,
+				A5C4BBB81E14C708002B0B18 /* VikingNode.swift in Sources */,
 				A59FB6A81E0A091400D1C915 /* LifecycleEmitter.swift in Sources */,
 				A59FB6AC1E0A257600D1C915 /* CGSize+Extensions.swift in Sources */,
 				A59FB69B1E0A088A00D1C915 /* SKAction+SpecialEffects.swift in Sources */,
