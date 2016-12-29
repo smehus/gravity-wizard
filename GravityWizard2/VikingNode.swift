@@ -8,6 +8,10 @@
 
 import SpriteKit
 
+fileprivate struct Collisions {
+    static let mainMasks = PhysicsCategory.Arrow | PhysicsCategory.Rock | PhysicsCategory.Ground | PhysicsCategory.Edge | PhysicsCategory.vikingBodyPart
+}
+
 class VikingNode: SKSpriteNode {
 
     var head: SKSpriteNode?
@@ -24,14 +28,15 @@ extension VikingNode: LifecycleListener {
         
         headBody.categoryBitMask = PhysicsCategory.vikingBodyPart
         headBody.contactTestBitMask = PhysicsCategory.Arrow | PhysicsCategory.Ground | PhysicsCategory.Rock
-        headBody.collisionBitMask = PhysicsCategory.Arrow | PhysicsCategory.Rock
+        headBody.collisionBitMask = Collisions.mainMasks
         
         bodyBody.categoryBitMask = PhysicsCategory.vikingBodyPart
         bodyBody.contactTestBitMask = PhysicsCategory.Arrow | PhysicsCategory.Ground | PhysicsCategory.Rock
-        bodyBody.collisionBitMask = PhysicsCategory.Arrow | PhysicsCategory.Rock | PhysicsCategory.Ground
+        bodyBody.collisionBitMask = Collisions.mainMasks
         
         
-        let joint = SKPhysicsJointPin.joint(withBodyA: bodyBody, bodyB: headBody, anchor: body!.position)
+//        let joint = SKPhysicsJointPin.joint(withBodyA: bodyBody, bodyB: headBody, anchor: head!.position)
+        let joint = SKPhysicsJointFixed.joint(withBodyA: bodyBody, bodyB: headBody, anchor: head!.position)
         scene.physicsWorld.add(joint)
     }
     
