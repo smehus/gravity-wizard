@@ -21,31 +21,36 @@ class VikingNode: SKSpriteNode {
     var body: SKSpriteNode?
     
     /// Joints
-    var neckJoint: SKPhysicsJointFixed?
+    var neckJoint: SKPhysicsJoint?
     
     /// Constants
-    let bloodExplosionCount = 20
+    let bloodExplosionCount = 10
     
     func arrowHit() {
-        guard let joint = neckJoint, let scene = scene else { return }
+        guard let scene = scene else { return }
         isWounded = true
-        scene.physicsWorld.remove(joint)
+        
+        if let joint = neckJoint {
+            scene.physicsWorld.remove(joint)
+        }
         
         var bloodPoint = head!.position
         bloodPoint.y -= head!.halfHeight()
         
-        if let blood = BloodNode.generateBloodNode(){
+        if let blood = BloodNode.generateBloodNode() {
             let bleedAction = SKAction.run { [weak self] _ in
-                let bloodNode = blood.copy() as! BloodNode
-                bloodNode.position = bloodPoint
-                bloodNode.zPosition = 10
-                self?.scene?.addChild(bloodNode)
+                guard let `self` = self else { return }
                 
-                let vector = CGVector(dx: Int.random(min: -1, max: 1), dy: 4)
-                blood.physicsBody?.applyImpulse(vector)
+                let bloodNode = blood.copy() as! BloodNode
+                bloodNode.position = self.convert(bloodPoint, to: scene)
+                bloodNode.zPosition = 10
+                scene.addChild(bloodNode)
+                
+                let vector = CGVector(dx: Int.random(min: -2, max: 2), dy: 4)
+                bloodNode.physicsBody?.applyImpulse(vector)
             }
             
-            let wait = SKAction.wait(forDuration: 0.0)
+            let wait = SKAction.wait(forDuration: 0.1)
             scene.run(SKAction.repeat(SKAction.sequence([bleedAction, wait]), count: bloodExplosionCount))
         }
     }
@@ -77,9 +82,9 @@ extension VikingNode: LifecycleListener {
         let anchor = CGPoint(x: head!.position.x, y: head!.position.y + head!.halfHeight())
         
 //        let joint = SKPhysicsJointPin.joint(withBodyA: bodyBody, bodyB: headBody, anchor: head!.position)
-        let joint = SKPhysicsJointFixed.joint(withBodyA: bodyBody, bodyB: headBody, anchor: anchor)
-        neckJoint = joint
-        scene.physicsWorld.add(joint)
+//        let joint = SKPhysicsJointFixed.joint(withBodyA: bodyBody, bodyB: headBody, anchor: anchor)
+//        neckJoint = joint
+//        scene.physicsWorld.add(joint)
         
     }
     
