@@ -31,7 +31,7 @@ class VikingNode: SKSpriteNode {
         isWounded = true
         
         if let joint = neckJoint {
-            scene.physicsWorld.remove(joint)
+//            scene.physicsWorld.remove(joint)
         }
         
         var bloodPoint = head!.position
@@ -50,7 +50,7 @@ class VikingNode: SKSpriteNode {
                 bloodNode.physicsBody?.applyImpulse(vector)
             }
             
-            let wait = SKAction.wait(forDuration: 0.1)
+            let wait = SKAction.wait(forDuration: 0.0)
             scene.run(SKAction.repeat(SKAction.sequence([bleedAction, wait]), count: bloodExplosionCount))
         }
     }
@@ -81,10 +81,13 @@ extension VikingNode: LifecycleListener {
         
         let anchor = CGPoint(x: head!.position.x, y: head!.position.y + head!.halfHeight())
         
-//        let joint = SKPhysicsJointPin.joint(withBodyA: bodyBody, bodyB: headBody, anchor: head!.position)
+        let joint = SKPhysicsJointPin.joint(withBodyA: bodyBody, bodyB: headBody, anchor: convert(anchor, to: scene))
+        joint.lowerAngleLimit = 0
+        joint.upperAngleLimit = 0
+        
 //        let joint = SKPhysicsJointFixed.joint(withBodyA: bodyBody, bodyB: headBody, anchor: anchor)
-//        neckJoint = joint
-//        scene.physicsWorld.add(joint)
+        neckJoint = joint
+        scene.physicsWorld.add(joint)
         
     }
     
