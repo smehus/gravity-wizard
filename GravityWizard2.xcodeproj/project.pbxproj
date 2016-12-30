@@ -45,6 +45,7 @@
 		A5C4BBB81E14C708002B0B18 /* VikingNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C4BBB71E14C708002B0B18 /* VikingNode.swift */; };
 		A5C4BBBD1E16D2F7002B0B18 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C4BBBC1E16D2F7002B0B18 /* Game.swift */; };
 		A5C4BBBF1E16D51A002B0B18 /* GravityStateTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C4BBBE1E16D51A002B0B18 /* GravityStateTracker.swift */; };
+		A5C4BBC11E16D8FF002B0B18 /* Level1.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C4BBC01E16D8FF002B0B18 /* Level1.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +89,7 @@
 		A5C4BBB71E14C708002B0B18 /* VikingNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VikingNode.swift; sourceTree = "<group>"; };
 		A5C4BBBC1E16D2F7002B0B18 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		A5C4BBBE1E16D51A002B0B18 /* GravityStateTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GravityStateTracker.swift; sourceTree = "<group>"; };
+		A5C4BBC01E16D8FF002B0B18 /* Level1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level1.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +209,7 @@
 			children = (
 				A5B58EBC1E09DC4900ADC865 /* GameScene.swift */,
 				A5C4BBBC1E16D2F7002B0B18 /* Game.swift */,
+				A5C4BBC01E16D8FF002B0B18 /* Level1.swift */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5C4BBC11E16D8FF002B0B18 /* Level1.swift in Sources */,
 				A59FB69C1E0A088A00D1C915 /* SKColor+Extensions.swift in Sources */,
 				A59FB6A01E0A088A00D1C915 /* SKTTimingFunctions.swift in Sources */,
 				A59FB69A1E0A088A00D1C915 /* SKAction+Extensions.swift in Sources */,

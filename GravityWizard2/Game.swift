@@ -17,6 +17,9 @@ protocol Game {
     var deltaTime: TimeInterval { get set }
     
     var particleFactory: ParticleFactory { get set }
+    var trackingArrowVelocity: Bool { get set }
+    var arrowVelocity: CGFloat { get set }
+    var currentProjectile: SKSpriteNode? { get set }
 }
 
 extension Game where Self: SKScene {
