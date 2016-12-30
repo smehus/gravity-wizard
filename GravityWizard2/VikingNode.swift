@@ -31,7 +31,7 @@ class VikingNode: SKSpriteNode {
         isWounded = true
         
         if let joint = neckJoint {
-//            scene.physicsWorld.remove(joint)
+            scene.physicsWorld.remove(joint)
         }
         
         var bloodPoint = head!.position
@@ -83,7 +83,7 @@ extension VikingNode: LifecycleListener {
         
         let joint = SKPhysicsJointPin.joint(withBodyA: bodyBody, bodyB: headBody, anchor: convert(anchor, to: scene))
         joint.shouldEnableLimits = true
-        joint.lowerAngleLimit = -30
+//        joint.lowerAngleLimit = -30
         joint.upperAngleLimit = 30
         neckJoint = joint
         scene.physicsWorld.add(joint)

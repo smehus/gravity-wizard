@@ -37,8 +37,11 @@ class GameScene: SKScene, LifecycleEmitter {
     fileprivate var arrowVelocity: CGFloat = 0
     fileprivate var currentProjectile: SKSpriteNode?
     
-    /// statics
+    /// Statics
     fileprivate let particleFactory = ParticleFactory.sharedFactory
+    
+    /// Touches
+    fileprivate var initialTouchPoint: CGPoint?
     
     
     override func didMove(to view: SKView) {
@@ -87,12 +90,25 @@ extension GameScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         guard let touch = touches.first else { return }
-        let _ = touch.location(in: self)
+        let touchPoint = touch.location(in: self)
         
         if let _ = radialGravity {
             removeRadialGravity()
         } else if trackingArrowVelocity == false {
             trackingArrowVelocity = true
+            initialTouchPoint = touchPoint
+        }
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesMoved(touches, with: event)
+        guard let touch = touches.first else { return }
+        let touchPoint = touch.location(in: self)
+        
+        if let initial = initialTouchPoint, trackingArrowVelocity {
+            let diff = initial - touchPoint
+            let vel = diff.length() * 2
+            arrowVelocity = vel
         }
     }
     
@@ -103,13 +119,39 @@ extension GameScene {
         let touchLocation = touch.location(in: self)
         
         if trackingArrowVelocity {
-            shootArrow(at: touchLocation, velocityMultiply: arrowVelocity)
+            // Difference between this point and initial point
+            
+//            shootArrow(at: touchLocation, velocityMultiply: arrowVelocity)
+            launchArrow(at: touchLocation, velocityMultiply: arrowVelocity)
             trackingArrowVelocity = false
             arrowVelocity = 0
         }
         
     }
     
+    /// Used for Arrow launching like angry birds
+    fileprivate func launchArrow(at point: CGPoint, velocityMultiply: CGFloat) {
+        guard let wizardNode = wizardNode else { return }
+        let startingPosition = convert(wizardNode.position, from: wizardNode.parent!)
+        
+        let arrow = SKSpriteNode(imageNamed: Images.arrow)
+        arrow.physicsBody = SKPhysicsBody(circleOfRadius: arrow.texture!.size().width / 2)
+        arrow.physicsBody?.affectedByGravity = true
+        arrow.physicsBody?.categoryBitMask = PhysicsCategory.Arrow
+        arrow.physicsBody?.contactTestBitMask = PhysicsCategory.Edge | PhysicsCategory.Ground
+        arrow.physicsBody?.collisionBitMask = PhysicsCategory.Edge | PhysicsCategory.Ground
+        arrow.physicsBody?.fieldBitMask = PhysicsCategory.None
+        arrow.position = startingPosition
+        addChild(arrow)
+        
+        /// The plus sign is the only difference
+        let newVelocity =  (point + startingPosition).normalized() * velocityMultiply
+        arrow.physicsBody!.velocity = CGVector(point: newVelocity)
+        
+        currentProjectile = arrow
+    }
+    
+    /// Used for shooting enemies like a gun
     fileprivate func shootArrow(at point: CGPoint, velocityMultiply: CGFloat) {
         guard let wizardNode = wizardNode else { return }
         let startingPosition = convert(wizardNode.position, from: wizardNode.parent!)
@@ -202,11 +244,6 @@ extension GameScene {
         }
         
         lastUpdateTimeInterval = currentTime
-        
-        if trackingArrowVelocity {
-            let normalizedDelta: CGFloat = CGFloat(deltaTime) * 1000
-            arrowVelocity += normalizedDelta
-        }
         
         if let arrow = currentProjectile {
             updateDirection(with: arrow)
