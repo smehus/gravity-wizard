@@ -134,18 +134,13 @@ extension GameScene {
         guard let wizardNode = wizardNode else { return }
         let startingPosition = convert(wizardNode.position, from: wizardNode.parent!)
         
-        let arrow = SKSpriteNode(imageNamed: Images.arrow)
-        arrow.physicsBody = SKPhysicsBody(circleOfRadius: arrow.texture!.size().width / 2)
-        arrow.physicsBody?.affectedByGravity = true
-        arrow.physicsBody?.categoryBitMask = PhysicsCategory.Arrow
-        arrow.physicsBody?.contactTestBitMask = PhysicsCategory.Edge | PhysicsCategory.Ground
-        arrow.physicsBody?.collisionBitMask = PhysicsCategory.Edge | PhysicsCategory.Ground
-        arrow.physicsBody?.fieldBitMask = PhysicsCategory.None
-        arrow.position = startingPosition
+        let arrow = createArrow(at: startingPosition)
         addChild(arrow)
         
         /// The plus sign is the only difference
-        let newVelocity =  (point + startingPosition).normalized() * velocityMultiply
+        
+        let newPoint = startingPosition - point
+        let newVelocity = newPoint.normalized() * velocityMultiply
         arrow.physicsBody!.velocity = CGVector(point: newVelocity)
         
         currentProjectile = arrow
@@ -155,7 +150,17 @@ extension GameScene {
     fileprivate func shootArrow(at point: CGPoint, velocityMultiply: CGFloat) {
         guard let wizardNode = wizardNode else { return }
         let startingPosition = convert(wizardNode.position, from: wizardNode.parent!)
+    
+        let arrow = createArrow(at: startingPosition)
+        addChild(arrow)
         
+        let newVelocity =  (point - startingPosition).normalized() * velocityMultiply
+        arrow.physicsBody!.velocity = CGVector(point: newVelocity)
+        
+        currentProjectile = arrow
+    }
+    
+    fileprivate func createArrow(at position: CGPoint) -> SKSpriteNode {
         let arrow = SKSpriteNode(imageNamed: Images.arrow)
         arrow.physicsBody = SKPhysicsBody(circleOfRadius: arrow.texture!.size().width / 2)
         arrow.physicsBody?.affectedByGravity = true
@@ -163,13 +168,8 @@ extension GameScene {
         arrow.physicsBody?.contactTestBitMask = PhysicsCategory.Edge | PhysicsCategory.Ground
         arrow.physicsBody?.collisionBitMask = PhysicsCategory.Edge | PhysicsCategory.Ground
         arrow.physicsBody?.fieldBitMask = PhysicsCategory.None
-        arrow.position = startingPosition
-        addChild(arrow)
-        
-        let newVelocity =  (point - startingPosition).normalized() * velocityMultiply
-        arrow.physicsBody!.velocity = CGVector(point: newVelocity)
-        
-        currentProjectile = arrow
+        arrow.position = position
+        return arrow
     }
     
     fileprivate func removeRadialGravity() {
