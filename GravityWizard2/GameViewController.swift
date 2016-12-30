@@ -90,8 +90,11 @@ class GameViewController: UIViewController {
             skView.presentScene(scene, transition: self.sceneTransition())
         }
         
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
         alert.addAction(levelOne)
         alert.addAction(levelTwo)
+        alert.addAction(cancel)
         
         present(alert, animated: true, completion: nil)
     }

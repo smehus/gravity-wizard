@@ -66,15 +66,9 @@ extension Level1 {
 
 extension Level1 {
     override func update(_ currentTime: TimeInterval) {
+        super.update(currentTime)
+        
         updateNodeGravityState(with: wizardNode)
-        
-        if lastUpdateTimeInterval > 0 {
-            deltaTime = currentTime - lastUpdateTimeInterval
-        } else {
-            deltaTime = 0
-        }
-        
-        lastUpdateTimeInterval = currentTime
         
         if let arrow = currentProjectile {
             updateDirection(with: arrow)

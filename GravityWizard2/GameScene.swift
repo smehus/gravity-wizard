@@ -158,6 +158,18 @@ class GameScene: SKScene, Game, LifecycleEmitter {
     }
 }
 
+extension GameScene {
+    override func update(_ currentTime: TimeInterval) {
+        if lastUpdateTimeInterval > 0 {
+            deltaTime = currentTime - lastUpdateTimeInterval
+        } else {
+            deltaTime = 0
+        }
+        
+        lastUpdateTimeInterval = currentTime
+    }
+}
+
 extension GameScene: SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
         let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
