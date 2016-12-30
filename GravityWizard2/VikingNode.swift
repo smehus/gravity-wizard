@@ -82,10 +82,9 @@ extension VikingNode: LifecycleListener {
         let anchor = CGPoint(x: head!.position.x, y: head!.position.y + head!.halfHeight())
         
         let joint = SKPhysicsJointPin.joint(withBodyA: bodyBody, bodyB: headBody, anchor: convert(anchor, to: scene))
-        joint.lowerAngleLimit = 0
-        joint.upperAngleLimit = 0
-        
-//        let joint = SKPhysicsJointFixed.joint(withBodyA: bodyBody, bodyB: headBody, anchor: anchor)
+        joint.shouldEnableLimits = true
+        joint.lowerAngleLimit = -30
+        joint.upperAngleLimit = 30
         neckJoint = joint
         scene.physicsWorld.add(joint)
         
