@@ -10,6 +10,8 @@ import SpriteKit
 import GameplayKit
 
 class GameScene: SKScene, LifecycleEmitter {
+    
+    var currentLevel: Level = .one
 
     /// Scense
     fileprivate var wizardScene: SKScene!
@@ -47,6 +49,13 @@ class GameScene: SKScene, LifecycleEmitter {
     override func didMove(to view: SKView) {
         physicsWorld.contactDelegate = self
         setupNodes()
+    }
+    
+    static func generateGameScene(level: Level) -> GameScene? {
+        let gameScene = SKScene(fileNamed: "Level\(level.rawValue)") as? GameScene
+        gameScene?.currentLevel = level
+        return gameScene
+        
     }
     
     fileprivate func setupNodes() {

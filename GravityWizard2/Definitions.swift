@@ -8,6 +8,11 @@
 
 import Foundation
 
+enum Level: Int {
+    case one = 1
+    case two
+}
+
 enum Direction {
     case left
     case right

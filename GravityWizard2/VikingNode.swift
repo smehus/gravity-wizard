@@ -32,6 +32,7 @@ class VikingNode: SKSpriteNode {
         
         if let joint = neckJoint {
             scene.physicsWorld.remove(joint)
+            head!.physicsBody!.applyImpulse(CGVector(dx: CGFloat.random(min: -50, max: 50), dy: abs(CGFloat.random(min: 0, max: 50))))
         }
         
         var bloodPoint = head!.position
@@ -53,6 +54,10 @@ class VikingNode: SKSpriteNode {
             let wait = SKAction.wait(forDuration: 0.0)
             scene.run(SKAction.repeat(SKAction.sequence([bleedAction, wait]), count: bloodExplosionCount))
         }
+        
+        let diePause = SKAction.wait(forDuration: 2.0)
+        let die = SKAction.removeFromParent()
+        run(SKAction.sequence([diePause, die]))
     }
 }
 
