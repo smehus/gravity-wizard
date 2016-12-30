@@ -21,6 +21,14 @@ protocol Game {
 
 extension Game where Self: SKScene {
     
+    func updateDirection(with sprite: SKSpriteNode) {
+        guard let body = sprite.physicsBody else { return }
+        let shortest = shortestAngleBetween(sprite.zRotation, angle2: body.velocity.angle)
+        let rotateRadiansPerSec = 4.0 * π
+        let amountToRotate = min(rotateRadiansPerSec * CGFloat(deltaTime), abs(shortest))
+        sprite.zRotation += shortest.sign() * amountToRotate
+    }
+    
     func explosion(at point: CGPoint) {
         let explode = particleFactory.explosion(intensity: 0.25 * CGFloat(4 + 1))
         explode.position = point
@@ -48,5 +56,19 @@ extension Game where Self: SKScene {
         } else {
             node.gravityState = .ground
         }
+    }
+    
+    func direction(for point: CGPoint, with node: SKSpriteNode) -> Direction {
+        let nodePosition = convert(node.position, from: node.parent!)
+        
+        if nodePosition.x > point.x {
+            return .right
+        }
+        
+        if nodePosition.x < point.x {
+            return .left
+        }
+        
+        return .right
     }
 }

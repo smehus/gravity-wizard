@@ -72,15 +72,6 @@ class GameScene: SKScene, Game, LifecycleEmitter {
         if let node = BloodNode.generateBloodNode() {
             bloodNode = node
         }
-        
-    }
-    
-    fileprivate func updateDirection(with sprite: SKSpriteNode) {
-        guard let body = sprite.physicsBody else { return }
-        let shortest = shortestAngleBetween(sprite.zRotation, angle2: body.velocity.angle)
-        let rotateRadiansPerSec = 4.0 * π
-        let amountToRotate = min(rotateRadiansPerSec * CGFloat(deltaTime), abs(shortest))
-        sprite.zRotation += shortest.sign() * amountToRotate
     }
 }
 
@@ -132,20 +123,6 @@ extension GameScene {
             trackingArrowVelocity = false
             arrowVelocity = 0
         }
-    }
-    
-    fileprivate func direction(for point: CGPoint, with node: SKSpriteNode) -> Direction {
-        let nodePosition = convert(node.position, from: node.parent!)
-        
-        if nodePosition.x > point.x {
-            return .right
-        }
-        
-        if nodePosition.x < point.x {
-            return .left
-        }
-        
-        return .right
     }
     
     /// Used for Arrow launching like angry birds
