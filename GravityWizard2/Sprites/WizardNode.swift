@@ -8,21 +8,11 @@
 
 import SpriteKit
 
-enum WizardGravityState {
-    case climbing
-    case falling
-    case ground
-    
-    var animationKey: String {
-        return "GravityAnimation"
-    }
-}
-
 class WizardNode: SKSpriteNode, GravityStateTracker {
     
     var isGrounded = true
     
-    var gravityState: WizardGravityState = .ground {
+    var gravityState: GravityState = .ground {
         didSet {
             guard gravityState != oldValue else { return }
             animate(with: gravityState)
@@ -51,7 +41,7 @@ class WizardNode: SKSpriteNode, GravityStateTracker {
         physicsBody!.applyImpulse(jumpVector)
     }
     
-    fileprivate func animate(with state: WizardGravityState) {
+    fileprivate func animate(with state: GravityState) {
         switch state {
         case .climbing:
             runClimbingAnimation()
@@ -71,7 +61,7 @@ class WizardNode: SKSpriteNode, GravityStateTracker {
         }
         
         let fallingAnimation = SKAction.animate(with: textures, timePerFrame: 0.1)
-        run(fallingAnimation, withKey: WizardGravityState.falling.animationKey)
+        run(fallingAnimation, withKey: GravityState.falling.animationKey)
     }
     
     fileprivate func runClimbingAnimation() {

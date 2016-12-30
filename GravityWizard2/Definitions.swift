@@ -8,6 +8,16 @@
 
 import Foundation
 
+enum GravityState {
+    case climbing
+    case falling
+    case ground
+    
+    var animationKey: String {
+        return "GravityAnimation"
+    }
+}
+
 enum Level: Int {
     case one = 1
     case two
@@ -44,13 +54,3 @@ struct PhysicsCategory {
     static let vikingBodyPart: UInt32 = 0x1 << 9
     
 }
-
-//struct PhysicsCategory {
-//    static let None: UInt32              = 0
-//    static let Player: UInt32            = 0b1      // 1
-//    static let PlatformNormal: UInt32    = 0b10     // 2
-//    static let PlatformBreakable: UInt32 = 0b100    // 4
-//    static let CoinNormal: UInt32        = 0b1000   // 8
-//    static let CoinSpecial: UInt32       = 0b10000  // 16
-//    static let Edges: UInt32             = 0b100000 // 32
-//}

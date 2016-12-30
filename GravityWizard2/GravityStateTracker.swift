@@ -9,7 +9,7 @@
 import SpriteKit
 
 protocol GravityStateTracker {
-    var gravityState: WizardGravityState { get set }
+    var gravityState: GravityState { get set }
     var physicsBody: SKPhysicsBody? { get set }
 }
 

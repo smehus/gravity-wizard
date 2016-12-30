@@ -17,7 +17,7 @@ class GameViewController: UIViewController {
         
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
-            if let scene = GameScene.generateGameScene(level: .two) {
+            if let scene = GameScene.generateGameScene(level: .one) {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
                 
@@ -29,12 +29,18 @@ class GameViewController: UIViewController {
             
             view.showsFPS = true
             view.showsNodeCount = true
-            view.showsPhysics = true
+            view.showsPhysics = false
         }
     }
 
     override var shouldAutorotate: Bool {
         return true
+    }
+    
+    override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
+        if event?.subtype == UIEventSubtype.motionShake {
+            showLevelSelector()
+        }
     }
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
@@ -52,5 +58,41 @@ class GameViewController: UIViewController {
 
     override var prefersStatusBarHidden: Bool {
         return true
+    }
+    
+    fileprivate func sceneTransition() -> SKTransition {
+         return SKTransition.doorsOpenHorizontal(withDuration: 2.0)
+    }
+    
+    fileprivate func generateScene(level: Level) -> SKScene? {
+        guard
+            let skView = self.view as? SKView,
+            let scene = GameScene.generateGameScene(level: level),
+            let currentScene = skView.scene
+            else {
+                return nil
+        }
+        
+        scene.scaleMode = currentScene.scaleMode
+        return scene
+    }
+    
+    fileprivate func showLevelSelector() {
+        let alert = UIAlertController(title: "Pick Level", message: nil, preferredStyle: .actionSheet)
+        
+        let levelOne = UIAlertAction(title: "Level One", style: .default) { _ in
+            guard let skView = self.view as? SKView, let scene = self.generateScene(level: .one) else { return }
+            skView.presentScene(scene, transition: self.sceneTransition())
+        }
+        
+        let levelTwo = UIAlertAction(title: "Level Two", style: .default) { _ in
+            guard let skView = self.view as? SKView, let scene = self.generateScene(level: .two) else { return }
+            skView.presentScene(scene, transition: self.sceneTransition())
+        }
+        
+        alert.addAction(levelOne)
+        alert.addAction(levelTwo)
+        
+        present(alert, animated: true, completion: nil)
     }
 }
