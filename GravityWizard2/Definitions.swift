@@ -8,6 +8,13 @@
 
 import Foundation
 
+enum Direction {
+    case left
+    case right
+    case up
+    case down
+}
+
 struct Images {
     static let radialGravity = "deathtex1"
     static let arrow = "arrow"

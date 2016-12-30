@@ -29,6 +29,16 @@ class WizardNode: SKSpriteNode {
         }
     }
     
+    func face(towards direction: Direction) {
+        switch direction {
+        case .left:
+            xScale = -abs(xScale)
+        case .right:
+            xScale = abs(xScale)
+        default: break
+        }
+    }
+    
     func jump(towards point: CGPoint) {
         
         var xValue = 0

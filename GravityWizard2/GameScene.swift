@@ -98,6 +98,10 @@ extension GameScene {
             trackingArrowVelocity = true
             initialTouchPoint = touchPoint
         }
+        
+        if let wizard = wizardNode {
+            wizard.face(towards: direction(for: touchPoint, with: wizard))
+        }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -109,6 +113,10 @@ extension GameScene {
             let diff = initial - touchPoint
             let vel = diff.length() * 2
             arrowVelocity = vel
+        }
+        
+        if let wizard = wizardNode {
+            wizard.face(towards: direction(for: touchPoint, with: wizard))
         }
     }
     
@@ -126,7 +134,20 @@ extension GameScene {
             trackingArrowVelocity = false
             arrowVelocity = 0
         }
+    }
+    
+    fileprivate func direction(for point: CGPoint, with node: SKSpriteNode) -> Direction {
+        let nodePosition = convert(node.position, from: node.parent!)
         
+        if nodePosition.x > point.x {
+            return .right
+        }
+        
+        if nodePosition.x < point.x {
+            return .left
+        }
+        
+        return .right
     }
     
     /// Used for Arrow launching like angry birds
@@ -137,8 +158,7 @@ extension GameScene {
         let arrow = createArrow(at: startingPosition)
         addChild(arrow)
         
-        /// The plus sign is the only difference
-        
+        /// reversed point diff
         let newPoint = startingPosition - point
         let newVelocity = newPoint.normalized() * velocityMultiply
         arrow.physicsBody!.velocity = CGVector(point: newVelocity)
