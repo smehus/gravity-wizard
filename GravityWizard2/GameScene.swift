@@ -9,7 +9,7 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene, LifecycleEmitter {
+class GameScene: SKScene, Game, LifecycleEmitter {
     
     var currentLevel: Level = .one
 
@@ -22,7 +22,7 @@ class GameScene: SKScene, LifecycleEmitter {
     fileprivate var radialMarker: SKSpriteNode?
     fileprivate var breakableRocks: BreakableRocksNode?
     
-    fileprivate var light: SKNode?
+    var light: SKNode?
     
     // Effects
     fileprivate var radialGravity: SKFieldNode?
@@ -33,14 +33,14 @@ class GameScene: SKScene, LifecycleEmitter {
     
     
     /// Trackables
-    fileprivate var lastUpdateTimeInterval: TimeInterval = 0
-    fileprivate var deltaTime: TimeInterval = 0
+    var lastUpdateTimeInterval: TimeInterval = 0
+    var deltaTime: TimeInterval = 0
     fileprivate var trackingArrowVelocity = false
     fileprivate var arrowVelocity: CGFloat = 0
     fileprivate var currentProjectile: SKSpriteNode?
     
     /// Statics
-    fileprivate let particleFactory = ParticleFactory.sharedFactory
+    var particleFactory = ParticleFactory.sharedFactory
     
     /// Touches
     fileprivate var initialTouchPoint: CGPoint?
@@ -73,17 +73,6 @@ class GameScene: SKScene, LifecycleEmitter {
             bloodNode = node
         }
         
-    }
-    
-    fileprivate func updateLightPosition() {
-        guard let wizardNode = wizardNode, let light = light else { return }
-        let target = convert(wizardNode.position, from: wizardNode.parent!)
-        
-        let lerpX = (target.x - light.position.x) * 0.05
-        let lerpY = (target.y - light.position.y) * 0.05
-        
-        light.position.x += lerpX
-        light.position.y += lerpY
     }
     
     fileprivate func updateDirection(with sprite: SKSpriteNode) {
@@ -253,13 +242,6 @@ extension GameScene {
             wizardNode.gravityState = .ground
         }
     }
-    
-    fileprivate func explosion(at point: CGPoint) {
-        let explode = particleFactory.explosion(intensity: 0.25 * CGFloat(4 + 1))
-        explode.position = point
-        explode.run(SKAction.removeFromParentAfterDelay(2.0))
-        addChild(explode)
-    }
 }
 
 extension GameScene {
@@ -280,7 +262,7 @@ extension GameScene {
     }
     
     override func didSimulatePhysics() {
-        updateLightPosition()
+        updateFollowNodePosition(followNode: light, originNode: wizardNode)
     }
 }
 
