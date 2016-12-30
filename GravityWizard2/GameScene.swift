@@ -231,22 +231,11 @@ extension GameScene {
         let wait = SKAction.wait(forDuration: 0.0)
         run(SKAction.repeat(SKAction.sequence([bleedAction, wait]), count: bloodExplosionCount))
     }
-    
-    fileprivate func checkWizardVelocity() {
-        guard let wizardNode = wizardNode else { return }
-        if wizardNode.physicsBody!.velocity.dy > 50 {
-            wizardNode.gravityState = .climbing
-        } else if wizardNode.physicsBody!.velocity.dy < -20 {
-            wizardNode.gravityState = .falling
-        } else {
-            wizardNode.gravityState = .ground
-        }
-    }
 }
 
 extension GameScene {
     override func update(_ currentTime: TimeInterval) {
-        checkWizardVelocity()
+        updateNodeGravityState(with: wizardNode)
         
         if lastUpdateTimeInterval > 0 {
             deltaTime = currentTime - lastUpdateTimeInterval

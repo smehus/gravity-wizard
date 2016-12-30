@@ -44,6 +44,7 @@
 		A5C4BBB61E14A1AD002B0B18 /* Viking.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5C4BBB51E14A1AD002B0B18 /* Viking.sks */; };
 		A5C4BBB81E14C708002B0B18 /* VikingNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C4BBB71E14C708002B0B18 /* VikingNode.swift */; };
 		A5C4BBBD1E16D2F7002B0B18 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C4BBBC1E16D2F7002B0B18 /* Game.swift */; };
+		A5C4BBBF1E16D51A002B0B18 /* GravityStateTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C4BBBE1E16D51A002B0B18 /* GravityStateTracker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +87,7 @@
 		A5C4BBB51E14A1AD002B0B18 /* Viking.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Viking.sks; sourceTree = "<group>"; };
 		A5C4BBB71E14C708002B0B18 /* VikingNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VikingNode.swift; sourceTree = "<group>"; };
 		A5C4BBBC1E16D2F7002B0B18 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		A5C4BBBE1E16D51A002B0B18 /* GravityStateTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GravityStateTracker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 			children = (
 				A55250C71E122DC200EED486 /* Definitions.swift */,
 				A55250C91E122E2600EED486 /* ParticleFactory.swift */,
+				A5C4BBBE1E16D51A002B0B18 /* GravityStateTracker.swift */,
 			);
 			name = Engine;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 				A59FB6A81E0A091400D1C915 /* LifecycleEmitter.swift in Sources */,
 				A59FB6AC1E0A257600D1C915 /* CGSize+Extensions.swift in Sources */,
 				A59FB69B1E0A088A00D1C915 /* SKAction+SpecialEffects.swift in Sources */,
+				A5C4BBBF1E16D51A002B0B18 /* GravityStateTracker.swift in Sources */,
 				A5C4BBBD1E16D2F7002B0B18 /* Game.swift in Sources */,
 				A55250CA1E122E2600EED486 /* ParticleFactory.swift in Sources */,
 				A59FB6A11E0A088A00D1C915 /* Vector3.swift in Sources */,

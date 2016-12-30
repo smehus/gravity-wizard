@@ -18,7 +18,7 @@ enum WizardGravityState {
     }
 }
 
-class WizardNode: SKSpriteNode {
+class WizardNode: SKSpriteNode, GravityStateTracker {
     
     var isGrounded = true
     

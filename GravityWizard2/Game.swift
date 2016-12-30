@@ -38,4 +38,15 @@ extension Game where Self: SKScene {
         light.position.x += lerpX
         light.position.y += lerpY
     }
+    
+    func updateNodeGravityState(with node: GravityStateTracker?) {
+        guard var node = node else { return }
+        if node.physicsBody!.velocity.dy > 50 {
+            node.gravityState = .climbing
+        } else if node.physicsBody!.velocity.dy < -20 {
+            node.gravityState = .falling
+        } else {
+            node.gravityState = .ground
+        }
+    }
 }
