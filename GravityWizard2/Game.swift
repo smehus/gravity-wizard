@@ -19,12 +19,12 @@ protocol Game {
     var particleFactory: ParticleFactory { get set }
     var trackingArrowVelocity: Bool { get set }
     var arrowVelocity: CGFloat { get set }
-    var currentProjectile: SKSpriteNode? { get set }
+    var currentProjectile: SKNode? { get set }
 }
 
 extension Game where Self: SKScene {
     
-    func updateDirection(with sprite: SKSpriteNode) {
+    func updateDirection(with sprite: SKNode) {
         guard let body = sprite.physicsBody else { return }
         let shortest = shortestAngleBetween(sprite.zRotation, angle2: body.velocity.angle)
         let rotateRadiansPerSec = 4.0 * π
@@ -61,7 +61,7 @@ extension Game where Self: SKScene {
         }
     }
     
-    func direction(for point: CGPoint, with node: SKSpriteNode) -> Direction {
+    func direction(for point: CGPoint, with node: SKNode) -> Direction {
         let nodePosition = convert(node.position, from: node.parent!)
         
         if nodePosition.x > point.x {

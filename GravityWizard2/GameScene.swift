@@ -37,7 +37,8 @@ class GameScene: SKScene, Game, LifecycleEmitter {
     var deltaTime: TimeInterval = 0
     var trackingArrowVelocity = false
     var arrowVelocity: CGFloat = 0
-    var currentProjectile: SKSpriteNode?
+    var currentProjectile: SKNode?
+    var currentPojectileType: ProjectileType = .gravity
     
     /// Statics
     var particleFactory = ParticleFactory.sharedFactory
@@ -97,9 +98,10 @@ class GameScene: SKScene, Game, LifecycleEmitter {
         field.falloff = 0
         field.categoryBitMask = PhysicsCategory.RadialGravity
         field.minimumRadius = 2
+        field.isEnabled = false
         
         
-        let marker = SKSpriteNode(imageNamed: Images.radialGravity)
+        let marker = SKSpriteNode(imageNamed: Images.spark)
         marker.position = point
         radialMarker = marker
         
@@ -120,12 +122,58 @@ class GameScene: SKScene, Game, LifecycleEmitter {
         return arrow
     }
     
+    func createGravityProjectile(at position: CGPoint) -> SKNode? {
+        guard
+            let file = SKScene(fileNamed: "GravityProjectile"),
+            let arrow = file.childNode(withName: "root")
+            else {
+            assertionFailure("Missing sprite or file")
+            return nil
+        }
+        
+        arrow.physicsBody = SKPhysicsBody(circleOfRadius: 10)
+        arrow.physicsBody?.affectedByGravity = true
+        arrow.physicsBody?.categoryBitMask = PhysicsCategory.Arrow
+        arrow.physicsBody?.contactTestBitMask = PhysicsCategory.None
+        arrow.physicsBody?.collisionBitMask = PhysicsCategory.None
+        arrow.physicsBody?.fieldBitMask = PhysicsCategory.None
+        arrow.position = convert(position, from: self)
+        arrow.zPosition = 10
+        return arrow
+    }
+    
     func removeRadialGravity() {
         guard let field = radialGravity, let marker = radialMarker else { return }
         self.removeChildren(in: [field, marker])
         radialGravity = nil
         radialMarker = nil
     }
+    
+    func launchProjectile(at point: CGPoint, with velocity: CGFloat, and type: ProjectileType) {
+        switch type {
+        case .arrow:
+            launchArrow(at: point, velocityMultiply: velocity)
+        case .gravity:
+            launchGravityProjectile(at: point, velocityMultiply: velocity)
+        }
+    }
+    
+    /// Used for Arrow launching like angry birds
+    func launchGravityProjectile(at point: CGPoint, velocityMultiply: CGFloat) {
+        guard let wizardNode = wizardNode else { return }
+        let startingPosition = convert(wizardNode.position, from: wizardNode.parent!)
+        
+        guard let arrow = createGravityProjectile(at: position) else { return }
+        arrow.move(toParent: self)
+        
+        /// reversed point diff
+        let newPoint = startingPosition - point
+        let newVelocity = newPoint.normalized() * velocityMultiply
+        arrow.physicsBody!.velocity = CGVector(point: newVelocity)
+        
+        currentProjectile = arrow
+    }
+    
     
     /// Used for Arrow launching like angry birds
     func launchArrow(at point: CGPoint, velocityMultiply: CGFloat) {

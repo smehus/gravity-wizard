@@ -54,10 +54,7 @@ extension Level1 {
         let touchLocation = touch.location(in: self)
         
         if trackingArrowVelocity {
-            // Difference between this point and initial point
-            
-            //            shootArrow(at: touchLocation, velocityMultiply: arrowVelocity)
-            launchArrow(at: touchLocation, velocityMultiply: arrowVelocity)
+            launchProjectile(at: touchLocation, with: arrowVelocity, and: currentPojectileType)
             trackingArrowVelocity = false
             arrowVelocity = 0
         }

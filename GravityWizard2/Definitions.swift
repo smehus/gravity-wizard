@@ -8,6 +8,11 @@
 
 import Foundation
 
+enum ProjectileType {
+    case arrow
+    case gravity
+}
+
 enum GravityState {
     case climbing
     case falling
@@ -34,6 +39,7 @@ struct Images {
     static let radialGravity = "deathtex1"
     static let arrow = "arrow"
     static let arrowBig = "arrow_big"
+    static let spark = "spark"
 }
 
 struct Actions {

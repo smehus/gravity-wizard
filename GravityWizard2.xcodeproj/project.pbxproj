@@ -46,6 +46,8 @@
 		A5C4BBBD1E16D2F7002B0B18 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C4BBBC1E16D2F7002B0B18 /* Game.swift */; };
 		A5C4BBBF1E16D51A002B0B18 /* GravityStateTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C4BBBE1E16D51A002B0B18 /* GravityStateTracker.swift */; };
 		A5C4BBC11E16D8FF002B0B18 /* Level1.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C4BBC01E16D8FF002B0B18 /* Level1.swift */; };
+		A5C4BBC51E18101C002B0B18 /* GravityProjectile.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5C4BBC41E18101C002B0B18 /* GravityProjectile.sks */; };
+		A5C4BBC81E181177002B0B18 /* GravityProjectileTail.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5C4BBC71E181177002B0B18 /* GravityProjectileTail.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +92,8 @@
 		A5C4BBBC1E16D2F7002B0B18 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		A5C4BBBE1E16D51A002B0B18 /* GravityStateTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GravityStateTracker.swift; sourceTree = "<group>"; };
 		A5C4BBC01E16D8FF002B0B18 /* Level1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level1.swift; sourceTree = "<group>"; };
+		A5C4BBC41E18101C002B0B18 /* GravityProjectile.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GravityProjectile.sks; sourceTree = "<group>"; };
+		A5C4BBC71E181177002B0B18 /* GravityProjectileTail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GravityProjectileTail.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,12 +119,14 @@
 		A5868FA51E0A042E00935E3B /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				A5C4BBC61E181163002B0B18 /* Emitters */,
 				A5B58EB81E09DC4900ADC865 /* Level1.sks */,
 				A55250CB1E148BC100EED486 /* Level2.sks */,
 				A5868FA31E0A042A00935E3B /* Wizard.sks */,
 				A59FB6D11E0AD93D00D1C915 /* Blood.sks */,
 				A518235F1E103D6800DDE33A /* BreakableRocks.sks */,
 				A5C4BBB51E14A1AD002B0B18 /* Viking.sks */,
+				A5C4BBC41E18101C002B0B18 /* GravityProjectile.sks */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -214,6 +220,14 @@
 			name = Game;
 			sourceTree = "<group>";
 		};
+		A5C4BBC61E181163002B0B18 /* Emitters */ = {
+			isa = PBXGroup;
+			children = (
+				A5C4BBC71E181177002B0B18 /* GravityProjectileTail.sks */,
+			);
+			name = Emitters;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -281,6 +295,8 @@
 				A55250CC1E148BC100EED486 /* Level2.sks in Resources */,
 				A5B58EC21E09DC4900ADC865 /* Main.storyboard in Resources */,
 				A5B58EB91E09DC4900ADC865 /* Level1.sks in Resources */,
+				A5C4BBC51E18101C002B0B18 /* GravityProjectile.sks in Resources */,
+				A5C4BBC81E181177002B0B18 /* GravityProjectileTail.sks in Resources */,
 				A5B58EC41E09DC4900ADC865 /* Assets.xcassets in Resources */,
 				A5B58EC71E09DC4900ADC865 /* LaunchScreen.storyboard in Resources */,
 			);
