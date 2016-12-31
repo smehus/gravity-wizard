@@ -19,9 +19,7 @@ extension Level1 {
         guard let touch = touches.first else { return }
         let touchPoint = touch.location(in: self)
         
-        if let _ = radialGravity {
-            removeRadialGravity()
-        } else if trackingArrowVelocity == false {
+        if trackingArrowVelocity == false {
             trackingArrowVelocity = true
             initialTouchPoint = touchPoint
         }

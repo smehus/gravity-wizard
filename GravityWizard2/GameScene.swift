@@ -111,28 +111,13 @@ class GameScene: SKScene, Game, LifecycleEmitter {
     }
     
     func createArrow(at position: CGPoint) -> SKSpriteNode {
-        let arrow = SKSpriteNode(imageNamed: Images.arrow)
-        arrow.physicsBody = SKPhysicsBody(circleOfRadius: arrow.texture!.size().width / 2)
-        arrow.physicsBody?.affectedByGravity = true
-        arrow.physicsBody?.categoryBitMask = PhysicsCategory.Arrow
-        arrow.physicsBody?.contactTestBitMask = PhysicsCategory.Edge | PhysicsCategory.Ground
-        arrow.physicsBody?.collisionBitMask = PhysicsCategory.Edge | PhysicsCategory.Ground
-        arrow.physicsBody?.fieldBitMask = PhysicsCategory.None
+        let arrow = ArrowNode()
         arrow.position = position
         return arrow
     }
     
-    func createGravityProjectile(at point: CGPoint) -> SKNode? {
-        
+    func createGravityProjectile(at point: CGPoint) -> GravityProjectile? {
         guard let node = GravityProjectile.generateGravityProjectile() else { return nil }
-        
-        node.physicsBody = SKPhysicsBody(circleOfRadius: 10)
-        node.physicsBody?.affectedByGravity = true
-        node.physicsBody?.categoryBitMask = PhysicsCategory.GravityProjectile
-        node.physicsBody?.contactTestBitMask = PhysicsCategory.None
-        node.physicsBody?.collisionBitMask = PhysicsCategory.None
-        node.physicsBody?.fieldBitMask = PhysicsCategory.None
-        node.zPosition = 10
         node.position = point
         return node
     }
@@ -158,15 +143,17 @@ class GameScene: SKScene, Game, LifecycleEmitter {
         guard let wizardNode = wizardNode else { return }
         let startingPosition = convert(wizardNode.position, from: wizardNode.parent!)
         
-        guard let arrow = createGravityProjectile(at: startingPosition) else { return }
-        arrow.move(toParent: self)
+        guard let projectile = createGravityProjectile(at: startingPosition) else { return }
+        projectile.move(toParent: self)
         
         /// reversed point diff
         let newPoint = startingPosition - point
         let newVelocity = newPoint.normalized() * velocityMultiply
-        arrow.physicsBody!.velocity = CGVector(point: newVelocity)
+        projectile.launch(at: CGVector(point: newVelocity))
         
-        currentProjectile = arrow
+        
+        
+        currentProjectile = projectile
     }
     
     
@@ -236,9 +223,6 @@ extension GameScene: SKPhysicsContactDelegate {
             
             if collision == PhysicsCategory.Arrow | PhysicsCategory.Edge {
                 if let arrow = currentProjectile {
-                    radialGravity = createRadialGravity(at: arrow.position)
-                    
-                    explosion(at: arrow.position)
                     arrow.removeFromParent()
                 }
             }
