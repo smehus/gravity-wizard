@@ -48,6 +48,7 @@
 		A5C4BBC11E16D8FF002B0B18 /* Level1.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C4BBC01E16D8FF002B0B18 /* Level1.swift */; };
 		A5C4BBC51E18101C002B0B18 /* GravityProjectile.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5C4BBC41E18101C002B0B18 /* GravityProjectile.sks */; };
 		A5C4BBC81E181177002B0B18 /* GravityProjectileTail.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5C4BBC71E181177002B0B18 /* GravityProjectileTail.sks */; };
+		A5C4BBCA1E181D24002B0B18 /* GravityProjectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C4BBC91E181D24002B0B18 /* GravityProjectile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +95,7 @@
 		A5C4BBC01E16D8FF002B0B18 /* Level1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level1.swift; sourceTree = "<group>"; };
 		A5C4BBC41E18101C002B0B18 /* GravityProjectile.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GravityProjectile.sks; sourceTree = "<group>"; };
 		A5C4BBC71E181177002B0B18 /* GravityProjectileTail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GravityProjectileTail.sks; sourceTree = "<group>"; };
+		A5C4BBC91E181D24002B0B18 /* GravityProjectile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GravityProjectile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 				A518235D1E0E109400DDE33A /* RockNode.swift */,
 				A51823611E10435D00DDE33A /* BreakableRocksNode.swift */,
 				A5C4BBB71E14C708002B0B18 /* VikingNode.swift */,
+				A5C4BBC91E181D24002B0B18 /* GravityProjectile.swift */,
 			);
 			name = Sprites;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 				A59FB6AA1E0A13FA00D1C915 /* GroundNode.swift in Sources */,
 				A59FB69D1E0A088A00D1C915 /* SKNode+Extensions.swift in Sources */,
 				A51823621E10435D00DDE33A /* BreakableRocksNode.swift in Sources */,
+				A5C4BBCA1E181D24002B0B18 /* GravityProjectile.swift in Sources */,
 				A59FB69F1E0A088A00D1C915 /* SKTEffects.swift in Sources */,
 				A5B58EBF1E09DC4900ADC865 /* GameViewController.swift in Sources */,
 				A59FB6881E0A081B00D1C915 /* WizardNode.swift in Sources */,

@@ -123,23 +123,18 @@ class GameScene: SKScene, Game, LifecycleEmitter {
     }
     
     func createGravityProjectile(at point: CGPoint) -> SKNode? {
-        guard
-            let file = SKScene(fileNamed: "GravityProjectile"),
-            let arrow = file.childNode(withName: "root")
-            else {
-            assertionFailure("Missing sprite or file")
-            return nil
-        }
         
-        arrow.physicsBody = SKPhysicsBody(circleOfRadius: 10)
-        arrow.physicsBody?.affectedByGravity = true
-        arrow.physicsBody?.categoryBitMask = PhysicsCategory.GravityProjectile
-        arrow.physicsBody?.contactTestBitMask = PhysicsCategory.None
-        arrow.physicsBody?.collisionBitMask = PhysicsCategory.None
-        arrow.physicsBody?.fieldBitMask = PhysicsCategory.None
-        arrow.zPosition = 10
-        arrow.position = point
-        return arrow
+        guard let node = GravityProjectile.generateGravityProjectile() else { return nil }
+        
+        node.physicsBody = SKPhysicsBody(circleOfRadius: 10)
+        node.physicsBody?.affectedByGravity = true
+        node.physicsBody?.categoryBitMask = PhysicsCategory.GravityProjectile
+        node.physicsBody?.contactTestBitMask = PhysicsCategory.None
+        node.physicsBody?.collisionBitMask = PhysicsCategory.None
+        node.physicsBody?.fieldBitMask = PhysicsCategory.None
+        node.zPosition = 10
+        node.position = point
+        return node
     }
     
     func removeRadialGravity() {
