@@ -56,7 +56,7 @@ struct PhysicsCategory {
     static let Blood :UInt32 = 0x1 << 6
     static let RadialGravity:  UInt32 = 0x1 << 7
     static let BreakableFormation:  UInt32 = 0x1 << 8
-    
     static let vikingBodyPart: UInt32 = 0x1 << 9
+    static let GravityProjectile: UInt32 = 0x1 << 10
     
 }

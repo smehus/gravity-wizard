@@ -122,7 +122,7 @@ class GameScene: SKScene, Game, LifecycleEmitter {
         return arrow
     }
     
-    func createGravityProjectile(at position: CGPoint) -> SKNode? {
+    func createGravityProjectile(at point: CGPoint) -> SKNode? {
         guard
             let file = SKScene(fileNamed: "GravityProjectile"),
             let arrow = file.childNode(withName: "root")
@@ -133,12 +133,12 @@ class GameScene: SKScene, Game, LifecycleEmitter {
         
         arrow.physicsBody = SKPhysicsBody(circleOfRadius: 10)
         arrow.physicsBody?.affectedByGravity = true
-        arrow.physicsBody?.categoryBitMask = PhysicsCategory.Arrow
+        arrow.physicsBody?.categoryBitMask = PhysicsCategory.GravityProjectile
         arrow.physicsBody?.contactTestBitMask = PhysicsCategory.None
         arrow.physicsBody?.collisionBitMask = PhysicsCategory.None
         arrow.physicsBody?.fieldBitMask = PhysicsCategory.None
-        arrow.position = convert(position, from: self)
         arrow.zPosition = 10
+        arrow.position = point
         return arrow
     }
     
@@ -163,7 +163,7 @@ class GameScene: SKScene, Game, LifecycleEmitter {
         guard let wizardNode = wizardNode else { return }
         let startingPosition = convert(wizardNode.position, from: wizardNode.parent!)
         
-        guard let arrow = createGravityProjectile(at: position) else { return }
+        guard let arrow = createGravityProjectile(at: startingPosition) else { return }
         arrow.move(toParent: self)
         
         /// reversed point diff
