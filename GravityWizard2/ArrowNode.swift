@@ -10,6 +10,8 @@ import SpriteKit
 
 class ArrowNode: SKSpriteNode {
     
+    var isInFlight: Bool = false
+    
     init() {
         let texture = SKTexture(pixelImageNamed: Images.arrow)
         super.init(texture: texture, color: .white,
@@ -31,9 +33,6 @@ class ArrowNode: SKSpriteNode {
 }
 
 extension ArrowNode: InFlightTrackable {
-    var isInFlight: Bool {
-        return false
-    }
     
     func collide() {
         

@@ -19,8 +19,10 @@ extension Level1 {
         guard let touch = touches.first else { return }
         let touchPoint = touch.location(in: self)
         
-        if trackingArrowVelocity == false {
-            trackingArrowVelocity = true
+        if let projectile = currentProjectile as? GravityProjectile, projectile.isInFlight {
+            projectile.createGravityField()
+        } else if trackingProjectileVelocity == false {
+            trackingProjectileVelocity = true
             initialTouchPoint = touchPoint
         }
         
@@ -34,10 +36,10 @@ extension Level1 {
         guard let touch = touches.first else { return }
         let touchPoint = touch.location(in: self)
         
-        if let initial = initialTouchPoint, trackingArrowVelocity {
+        if let initial = initialTouchPoint, trackingProjectileVelocity {
             let diff = initial - touchPoint
             let vel = diff.length() * 2
-            arrowVelocity = vel
+            projectileVelocity = vel
         }
         
         if let wizard = wizardNode {
@@ -51,10 +53,10 @@ extension Level1 {
         guard let touch = touches.first else { return }
         let touchLocation = touch.location(in: self)
         
-        if trackingArrowVelocity {
-            launchProjectile(at: touchLocation, with: arrowVelocity, and: currentPojectileType)
-            trackingArrowVelocity = false
-            arrowVelocity = 0
+        if trackingProjectileVelocity {
+            launchProjectile(at: touchLocation, with: projectileVelocity, and: currentPojectileType)
+            trackingProjectileVelocity = false
+            projectileVelocity = 0
         }
     }
 }
@@ -65,8 +67,8 @@ extension Level1 {
         
         updateNodeGravityState(with: wizardNode)
         
-        if let arrow = currentProjectile {
-            updateDirection(with: arrow)
+        if let projectile = currentProjectile {
+            updateDirection(with: projectile)
         }
     }
     

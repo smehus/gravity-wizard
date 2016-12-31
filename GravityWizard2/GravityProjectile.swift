@@ -9,6 +9,8 @@
 import SpriteKit
 
 class GravityProjectile: SKNode {
+    
+    var isInFlight = false
 
     static func generateGravityProjectile() -> GravityProjectile? {
         guard
@@ -33,11 +35,11 @@ class GravityProjectile: SKNode {
 
 extension GravityProjectile: InFlightTrackable {
     
-    var isInFlight: Bool {
-        return false
+    func collide() {
+        isInFlight = false
     }
     
-    func collide() {
-        
+    func createGravityField() {
+        physicsBody = nil
     }
 }

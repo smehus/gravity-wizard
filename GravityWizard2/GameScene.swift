@@ -35,8 +35,8 @@ class GameScene: SKScene, Game, LifecycleEmitter {
     /// Trackables
     var lastUpdateTimeInterval: TimeInterval = 0
     var deltaTime: TimeInterval = 0
-    var trackingArrowVelocity = false
-    var arrowVelocity: CGFloat = 0
+    var trackingProjectileVelocity = false
+    var projectileVelocity: CGFloat = 0
     var currentProjectile: SKNode?
     var currentPojectileType: ProjectileType = .gravity
     
@@ -110,7 +110,7 @@ class GameScene: SKScene, Game, LifecycleEmitter {
         return field
     }
     
-    func createArrow(at position: CGPoint) -> SKSpriteNode {
+    func createArrow(at position: CGPoint) -> ArrowNode {
         let arrow = ArrowNode()
         arrow.position = position
         return arrow
@@ -168,7 +168,7 @@ class GameScene: SKScene, Game, LifecycleEmitter {
         /// reversed point diff
         let newPoint = startingPosition - point
         let newVelocity = newPoint.normalized() * velocityMultiply
-        arrow.physicsBody!.velocity = CGVector(point: newVelocity)
+        arrow.launch(at: CGVector(point: newVelocity))
         
         currentProjectile = arrow
     }
