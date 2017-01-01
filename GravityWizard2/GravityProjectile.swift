@@ -11,16 +11,21 @@ import SpriteKit
 class GravityProjectile: SKNode {
     
     var isInFlight = false
+    var gravityFieldNode: SKFieldNode?
 
     static func generateGravityProjectile() -> GravityProjectile? {
         guard
             let file = SKScene(fileNamed: "GravityProjectile"),
-            let node = file.childNode(withName: "root") as? GravityProjectile
+            let node = file.childNode(withName: "root") as? GravityProjectile,
+            let gravity = file.childNode(withName: "//gravity-field") as? SKFieldNode
             else {
                 assertionFailure("Missing sprite or file")
                 return nil
         }
         
+        node.gravityFieldNode = gravity
+        node.gravityFieldNode?.categoryBitMask = PhysicsCategory.RadialGravity
+        node.gravityFieldNode?.isEnabled = false
         
         node.physicsBody = SKPhysicsBody(circleOfRadius: 10)
         node.physicsBody?.affectedByGravity = true
@@ -41,5 +46,6 @@ extension GravityProjectile: InFlightTrackable {
     
     func createGravityField() {
         physicsBody = nil
+        gravityFieldNode?.isEnabled = true
     }
 }
