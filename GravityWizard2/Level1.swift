@@ -19,8 +19,14 @@ extension Level1 {
         guard let touch = touches.first else { return }
         let touchPoint = touch.location(in: self)
         
-        if let projectile = currentProjectile as? GravityProjectile, projectile.isInFlight {
-            projectile.createGravityField()
+        if let projectile = currentProjectile as? GravityProjectile {
+            if projectile.isInFlight {
+                projectile.createGravityField()
+            } else {
+                projectile.removeFromParent()
+                currentProjectile = nil
+            }
+            
         } else if trackingProjectileVelocity == false {
             trackingProjectileVelocity = true
             initialTouchPoint = touchPoint

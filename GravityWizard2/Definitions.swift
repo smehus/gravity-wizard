@@ -47,16 +47,30 @@ struct Actions {
 }
 
 struct PhysicsCategory {
-    static let None:  UInt32 = 0
-    static let Wizard: UInt32 = 0x1 << 1 // 01
-    static let Ground: UInt32 = 0x1 << 2 // 010
-    static let Rock:   UInt32 = 0x1 << 3 // 0100
-    static let Edge:  UInt32 = 0x1 << 4 // 01000
-    static let Arrow: UInt32 = 0x1 << 5
-    static let Blood :UInt32 = 0x1 << 6
-    static let RadialGravity:  UInt32 = 0x1 << 7
+    static let None:                UInt32 = 0
+    static let Wizard:              UInt32 = 0x1 << 1 // 01
+    static let Ground:              UInt32 = 0x1 << 2 // 010
+    static let Rock:                UInt32 = 0x1 << 3 // 0100
+    static let Edge:                UInt32 = 0x1 << 4 // 01000
+    static let Arrow:               UInt32 = 0x1 << 5
+    static let Blood:               UInt32 = 0x1 << 6
+    static let RadialGravity:       UInt32 = 0x1 << 7
     static let BreakableFormation:  UInt32 = 0x1 << 8
-    static let vikingBodyPart: UInt32 = 0x1 << 9
-    static let GravityProjectile: UInt32 = 0x1 << 10
+    static let VikingBodyPart:      UInt32 = 0x1 << 9
+    static let GravityProjectile:   UInt32 = 0x1 << 10
     
+}
+
+enum CollisionCombination {
+    case gravityProjectileHitsGround
+    case none
+}
+extension UInt32 {
+    func collisionCombination() -> CollisionCombination {
+        switch self {
+        case PhysicsCategory.GravityProjectile | PhysicsCategory.Ground:
+            return .gravityProjectileHitsGround
+        default: return .none
+        }
+    }
 }

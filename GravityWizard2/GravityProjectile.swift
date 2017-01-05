@@ -8,6 +8,13 @@
 
 import SpriteKit
 
+fileprivate struct Physics {
+    static let collisionBitMask = PhysicsCategory.Ground | PhysicsCategory.Edge | PhysicsCategory.BreakableFormation | PhysicsCategory.Rock | PhysicsCategory.VikingBodyPart
+    static let contactTestBitMask = Physics.collisionBitMask
+    static let categoryBitMask = PhysicsCategory.GravityProjectile
+    static let fieldBitMask = PhysicsCategory.None
+}
+
 class GravityProjectile: SKNode {
     
     var isInFlight = false
@@ -29,10 +36,10 @@ class GravityProjectile: SKNode {
         
         node.physicsBody = SKPhysicsBody(circleOfRadius: 10)
         node.physicsBody?.affectedByGravity = true
-        node.physicsBody?.categoryBitMask = PhysicsCategory.GravityProjectile
-        node.physicsBody?.contactTestBitMask = PhysicsCategory.None
-        node.physicsBody?.collisionBitMask = PhysicsCategory.None
-        node.physicsBody?.fieldBitMask = PhysicsCategory.None
+        node.physicsBody?.categoryBitMask = Physics.categoryBitMask
+        node.physicsBody?.contactTestBitMask = Physics.contactTestBitMask
+        node.physicsBody?.collisionBitMask = Physics.collisionBitMask
+        node.physicsBody?.fieldBitMask = Physics.fieldBitMask
         node.zPosition = 10
         return node
     }
@@ -47,5 +54,6 @@ extension GravityProjectile: InFlightTrackable {
     func createGravityField() {
         physicsBody = nil
         gravityFieldNode?.isEnabled = true
+        isInFlight = false
     }
 }

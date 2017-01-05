@@ -9,7 +9,7 @@
 import SpriteKit
 
 fileprivate struct Collisions {
-    static let mainMasks = PhysicsCategory.Arrow | PhysicsCategory.Rock | PhysicsCategory.Ground | PhysicsCategory.Edge | PhysicsCategory.vikingBodyPart
+    static let mainMasks = PhysicsCategory.Arrow | PhysicsCategory.Rock | PhysicsCategory.Ground | PhysicsCategory.Edge | PhysicsCategory.VikingBodyPart
 }
 
 class VikingNode: SKSpriteNode {
@@ -76,11 +76,11 @@ extension VikingNode: LifecycleListener {
         
         guard let headBody = head?.physicsBody, let bodyBody = body?.physicsBody, let scene = scene else { return }
         
-        headBody.categoryBitMask = PhysicsCategory.vikingBodyPart
+        headBody.categoryBitMask = PhysicsCategory.VikingBodyPart
         headBody.contactTestBitMask = PhysicsCategory.Arrow | PhysicsCategory.Ground | PhysicsCategory.Rock
         headBody.collisionBitMask = Collisions.mainMasks
         
-        bodyBody.categoryBitMask = PhysicsCategory.vikingBodyPart
+        bodyBody.categoryBitMask = PhysicsCategory.VikingBodyPart
         bodyBody.contactTestBitMask = PhysicsCategory.Arrow | PhysicsCategory.Ground | PhysicsCategory.Rock
         bodyBody.collisionBitMask = Collisions.mainMasks
         
