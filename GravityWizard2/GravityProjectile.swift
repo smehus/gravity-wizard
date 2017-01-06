@@ -19,6 +19,14 @@ class GravityProjectile: SKNode {
     
     var isInFlight = false
     var gravityFieldNode: SKFieldNode?
+    
+    var shouldCollideWithLauncher: Bool {
+        if let gravity = gravityFieldNode {
+            return gravity.isEnabled
+        }
+        
+        return false
+    }
 
     static func generateGravityProjectile() -> GravityProjectile? {
         guard
@@ -52,7 +60,7 @@ extension GravityProjectile: InFlightTrackable {
     }
     
     func createGravityField() {
-        physicsBody = nil
+        physicsBody?.isDynamic = true
         gravityFieldNode?.isEnabled = true
         isInFlight = false
     }

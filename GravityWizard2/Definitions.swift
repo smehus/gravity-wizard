@@ -64,6 +64,7 @@ struct PhysicsCategory {
 enum CollisionCombination {
     case wizardHitsGround
     case rockHitsWizard
+    case wizardCollidesWithGravityField
     
     case bloodCollidesWithGround
     
@@ -94,6 +95,8 @@ extension UInt32 {
             return .arrowCollidesWithVikingBodyPart
         case PhysicsCategory.GravityProjectile | PhysicsCategory.Ground:
             return .gravityProjectileHitsGround
+        case PhysicsCategory.Wizard | PhysicsCategory.GravityProjectile:
+            return .wizardCollidesWithGravityField
         default: return .none
         }
     }

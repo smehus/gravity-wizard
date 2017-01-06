@@ -38,7 +38,7 @@ class GameScene: SKScene, Game, LifecycleEmitter {
     var trackingProjectileVelocity = false
     var projectileVelocity: CGFloat = 0
     var currentProjectile: SKNode?
-    var currentPojectileType: ProjectileType = .arrow
+    var currentPojectileType: ProjectileType = .gravity
     
     /// Statics
     var particleFactory = ParticleFactory.sharedFactory
@@ -204,33 +204,40 @@ extension GameScene: SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
         let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
         
-        switch collision.collisionCombination() {
-        case .wizardHitsGround:
+        if collision.collisionCombination() == .wizardHitsGround {
             wizardNodeHitsGround(with: contact)
-            
-        case .rockHitsWizard:
+        }
+        
+        if collision.collisionCombination() == .rockHitsWizard {
             rockHitsWizard(with: contact)
-            
-        case .bloodCollidesWithGround:
+        }
+        
+        if collision.collisionCombination() == .wizardCollidesWithGravityField {
+            wizardCollidesWithGravityField(with: contact)
+        }
+        
+        if collision.collisionCombination() == .bloodCollidesWithGround {
             bloodCollidesWithGround(with: contact)
-            
-        case .arrowCollidesWithEdge:
+        }
+        
+        if collision.collisionCombination() == .arrowCollidesWithEdge {
             arrowCollidesWithEdge(with: contact)
-            
-        case .arrowCollidesWithBreakable:
+        }
+        
+        if collision.collisionCombination() == .arrowCollidesWithBreakable {
             arrowCollidesWithBreakable(with: contact)
-            
-        case .arrowCollidesWithGround:
+        }
+        
+        if collision.collisionCombination() == .arrowCollidesWithGround {
             arrowCollidesWithGround(with: contact)
-            
-        case .arrowCollidesWithVikingBodyPart:
+        }
+        
+        if collision.collisionCombination() == .arrowCollidesWithVikingBodyPart {
             arrowCollidesWithVikingBodyPart(with: contact)
-            
-        case .gravityProjectileHitsGround:
+        }
+        
+        if collision.collisionCombination() == .gravityProjectileHitsGround {
             gravityProjectileHitGround(with: contact)
-            
-        case .none:
-            return
         }
         
     }
@@ -247,6 +254,14 @@ extension GameScene: SKPhysicsContactDelegate {
 
 // MARK: - Collisions
 extension GameScene {
+    
+    fileprivate func wizardCollidesWithGravityField(with contact: SKPhysicsContact) {
+        let gravity = contact.bodyA.categoryBitMask == PhysicsCategory.GravityProjectile ? contact.bodyA.node : contact.bodyB.node
+        guard let field = gravity as? GravityProjectile, field.shouldCollideWithLauncher else { return }
+        
+        field.removeFromParent()
+        currentProjectile = nil
+    }
     
     fileprivate func wizardNodeHitsGround(with contact: SKPhysicsContact) {
         guard let wizardNode = wizardNode else { return }

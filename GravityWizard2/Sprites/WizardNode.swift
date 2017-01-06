@@ -95,7 +95,7 @@ extension WizardNode: LifecycleListener {
         physicsBody = SKPhysicsBody(rectangleOf: newSize)
         physicsBody?.allowsRotation = false
         physicsBody?.categoryBitMask = PhysicsCategory.Wizard
-        physicsBody?.contactTestBitMask = PhysicsCategory.Ground | PhysicsCategory.Rock
+        physicsBody?.contactTestBitMask = PhysicsCategory.Ground | PhysicsCategory.Rock | PhysicsCategory.GravityProjectile
         physicsBody?.collisionBitMask = PhysicsCategory.Ground | PhysicsCategory.Rock | PhysicsCategory.Edge
         physicsBody?.fieldBitMask = PhysicsCategory.RadialGravity
         
