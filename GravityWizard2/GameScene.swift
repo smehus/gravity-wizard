@@ -38,7 +38,7 @@ class GameScene: SKScene, Game, LifecycleEmitter {
     var trackingProjectileVelocity = false
     var projectileVelocity: CGFloat = 0
     var currentProjectile: SKNode?
-    var currentPojectileType: ProjectileType = .gravity
+    var currentPojectileType: ProjectileType = .arrow
     
     /// Statics
     var particleFactory = ParticleFactory.sharedFactory
@@ -204,73 +204,35 @@ extension GameScene: SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
         let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
         
-        if let wizardNode = wizardNode {
+        switch collision.collisionCombination() {
+        case .wizardHitsGround:
+            wizardNodeHitsGround(with: contact)
             
-            // Set if wizard is on ground
-            if collision == PhysicsCategory.Ground | PhysicsCategory.Wizard, !wizardNode.isGrounded {
-                wizardNode.isGrounded = true
-            }
+        case .rockHitsWizard:
+            rockHitsWizard(with: contact)
             
-            // Create blood from rock hitting wizard
-            if collision == PhysicsCategory.Rock | PhysicsCategory.Wizard {
-                createBloodExplosion(with: wizardNode)
-            }
+        case .bloodCollidesWithGround:
+            bloodCollidesWithGround(with: contact)
             
-            // Create blood splatter from blood hitting gournd
-            if collision == PhysicsCategory.Blood | PhysicsCategory.Ground {
-                let node = contact.bodyA.categoryBitMask == PhysicsCategory.Blood ? contact.bodyA.node : contact.bodyB.node
-                
-                if let blood = node as? BloodNode {
-                    blood.hitGround()
-                }
-            }
+        case .arrowCollidesWithEdge:
+            arrowCollidesWithEdge(with: contact)
             
-            // Remove arrow if it hits the edge of the screen?
-            if collision == PhysicsCategory.Arrow | PhysicsCategory.Edge {
-                if let arrow = currentProjectile {
-                    arrow.removeFromParent()
-                }
-            }
+        case .arrowCollidesWithBreakable:
+            arrowCollidesWithBreakable(with: contact)
             
-            // Break apart rock collection when arrow hits it
-            Breakable: if collision == PhysicsCategory.Arrow | PhysicsCategory.BreakableFormation {
-                if let arrow = currentProjectile {
-                    explosion(at: arrow.position)
-                    guard let breakableRocks = breakableRocks else { break Breakable }
-                    breakableRocks.breakRocks()
-                    arrow.removeFromParent()
-                }
-            }
+        case .arrowCollidesWithGround:
+            arrowCollidesWithGround(with: contact)
             
-            // Stick arrow at angle if it hits ground
-            if collision == PhysicsCategory.Arrow | PhysicsCategory.Ground {
-                if let arrow = currentProjectile {
-                    arrow.physicsBody = nil
-                }
-            }
+        case .arrowCollidesWithVikingBodyPart:
+            arrowCollidesWithVikingBodyPart(with: contact)
             
-            // Arrow hits a viking node
-            if collision == PhysicsCategory.Arrow | PhysicsCategory.VikingBodyPart {
-                let bodyPart = contact.bodyA.categoryBitMask == PhysicsCategory.VikingBodyPart ? contact.bodyA.node : contact.bodyB.node
-                
-                if let viking = bodyPart?.parent! as? VikingNode, !viking.isWounded {
-                    viking.arrowHit()
-                }
-            }
+        case .gravityProjectileHitsGround:
+            gravityProjectileHitGround(with: contact)
             
-            // Gravity projectile hits ground
-            if collision == PhysicsCategory.GravityProjectile | PhysicsCategory.Ground {
-                
-            }
-            
-            switch collision.collisionCombination() {
-            case .none:
-                return
-            case .gravityProjectileHitsGround:
-                gravityProjectileHitGround(with: contact)
-            }
-            
+        case .none:
+            return
         }
+        
     }
     
     func didEnd(_ contact: SKPhysicsContact) {
@@ -285,7 +247,57 @@ extension GameScene: SKPhysicsContactDelegate {
 
 // MARK: - Collisions
 extension GameScene {
-    func gravityProjectileHitGround(with contact: SKPhysicsContact) {
+    
+    fileprivate func wizardNodeHitsGround(with contact: SKPhysicsContact) {
+        guard let wizardNode = wizardNode else { return }
+        wizardNode.isGrounded = true
+    }
+    
+    fileprivate func rockHitsWizard(with contact: SKPhysicsContact) {
+        guard let wizardNode = wizardNode else { return }
+        createBloodExplosion(with: wizardNode)
+    }
+    
+    fileprivate func bloodCollidesWithGround(with contact: SKPhysicsContact) {
+        let node = contact.bodyA.categoryBitMask == PhysicsCategory.Blood ? contact.bodyA.node : contact.bodyB.node
         
+        if let blood = node as? BloodNode {
+            blood.hitGround()
+        }
+    }
+    
+    fileprivate func arrowCollidesWithEdge(with contact: SKPhysicsContact) {
+        if let arrow = currentProjectile {
+            arrow.removeFromParent()
+        }
+    }
+    
+    fileprivate func arrowCollidesWithBreakable(with contact: SKPhysicsContact) {
+        if let arrow = currentProjectile {
+            explosion(at: arrow.position)
+            guard let breakableRocks = breakableRocks else { return }
+            breakableRocks.breakRocks()
+            arrow.removeFromParent()
+        }
+    }
+    
+    fileprivate func arrowCollidesWithGround(with contact: SKPhysicsContact) {
+        if let arrow = currentProjectile as? ArrowNode {
+            arrow.physicsBody = nil
+        }
+    }
+    
+    fileprivate func arrowCollidesWithVikingBodyPart(with contact: SKPhysicsContact) {
+        let bodyPart = contact.bodyA.categoryBitMask == PhysicsCategory.VikingBodyPart ? contact.bodyA.node : contact.bodyB.node
+        
+        if let viking = bodyPart?.parent! as? VikingNode, !viking.isWounded {
+            viking.arrowHit()
+        }
+    }
+    
+    fileprivate func gravityProjectileHitGround(with contact: SKPhysicsContact) {
+        if let projectile = currentProjectile as? GravityProjectile, projectile.isInFlight {
+            projectile.createGravityField()
+        }
     }
 }
