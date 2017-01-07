@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A513A5E31E2151A3003CD2C1 /* Level0.sks in Resources */ = {isa = PBXBuildFile; fileRef = A513A5E21E2151A3003CD2C1 /* Level0.sks */; };
+		A513A5E51E2152B2003CD2C1 /* Level0.swift in Sources */ = {isa = PBXBuildFile; fileRef = A513A5E41E2152B2003CD2C1 /* Level0.swift */; };
+		A513A5E71E2152BA003CD2C1 /* Level2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A513A5E61E2152BA003CD2C1 /* Level2.swift */; };
+		A513A5E91E21552F003CD2C1 /* TreasureChestNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A513A5E81E21552F003CD2C1 /* TreasureChestNode.swift */; };
+		A513A5EE1E2159C8003CD2C1 /* LevelCompleteLabel.sks in Resources */ = {isa = PBXBuildFile; fileRef = A513A5ED1E2159C8003CD2C1 /* LevelCompleteLabel.sks */; };
+		A513A5F01E215A78003CD2C1 /* LevelCompleteLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A513A5EF1E215A78003CD2C1 /* LevelCompleteLabel.swift */; };
 		A518235E1E0E109400DDE33A /* RockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A518235D1E0E109400DDE33A /* RockNode.swift */; };
 		A51823601E103D6800DDE33A /* BreakableRocks.sks in Resources */ = {isa = PBXBuildFile; fileRef = A518235F1E103D6800DDE33A /* BreakableRocks.sks */; };
 		A51823621E10435D00DDE33A /* BreakableRocksNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51823611E10435D00DDE33A /* BreakableRocksNode.swift */; };
@@ -52,9 +58,16 @@
 		A5C4BBC51E18101C002B0B18 /* GravityProjectile.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5C4BBC41E18101C002B0B18 /* GravityProjectile.sks */; };
 		A5C4BBC81E181177002B0B18 /* GravityProjectileTail.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5C4BBC71E181177002B0B18 /* GravityProjectileTail.sks */; };
 		A5C4BBCA1E181D24002B0B18 /* GravityProjectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C4BBC91E181D24002B0B18 /* GravityProjectile.swift */; };
+		A5E3150D1E215E8D00D3652C /* GameLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E3150C1E215E8D00D3652C /* GameLevel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A513A5E21E2151A3003CD2C1 /* Level0.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = Level0.sks; path = Scenes/Level0.sks; sourceTree = "<group>"; };
+		A513A5E41E2152B2003CD2C1 /* Level0.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level0.swift; sourceTree = "<group>"; };
+		A513A5E61E2152BA003CD2C1 /* Level2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level2.swift; sourceTree = "<group>"; };
+		A513A5E81E21552F003CD2C1 /* TreasureChestNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TreasureChestNode.swift; sourceTree = "<group>"; };
+		A513A5ED1E2159C8003CD2C1 /* LevelCompleteLabel.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LevelCompleteLabel.sks; sourceTree = "<group>"; };
+		A513A5EF1E215A78003CD2C1 /* LevelCompleteLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelCompleteLabel.swift; sourceTree = "<group>"; };
 		A518235D1E0E109400DDE33A /* RockNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RockNode.swift; path = Sprites/RockNode.swift; sourceTree = "<group>"; };
 		A518235F1E103D6800DDE33A /* BreakableRocks.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BreakableRocks.sks; sourceTree = "<group>"; };
 		A51823611E10435D00DDE33A /* BreakableRocksNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreakableRocksNode.swift; sourceTree = "<group>"; };
@@ -102,6 +115,7 @@
 		A5C4BBC41E18101C002B0B18 /* GravityProjectile.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GravityProjectile.sks; sourceTree = "<group>"; };
 		A5C4BBC71E181177002B0B18 /* GravityProjectileTail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GravityProjectileTail.sks; sourceTree = "<group>"; };
 		A5C4BBC91E181D24002B0B18 /* GravityProjectile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GravityProjectile.swift; sourceTree = "<group>"; };
+		A5E3150C1E215E8D00D3652C /* GameLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLevel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +129,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A513A5EA1E215923003CD2C1 /* Levels */ = {
+			isa = PBXGroup;
+			children = (
+				A513A5E21E2151A3003CD2C1 /* Level0.sks */,
+				A5B58EB81E09DC4900ADC865 /* Level1.sks */,
+				A55250CB1E148BC100EED486 /* Level2.sks */,
+			);
+			name = Levels;
+			sourceTree = "<group>";
+		};
+		A513A5EB1E21592F003CD2C1 /* Sprites */ = {
+			isa = PBXGroup;
+			children = (
+				A5868FA31E0A042A00935E3B /* Wizard.sks */,
+				A59FB6D11E0AD93D00D1C915 /* Blood.sks */,
+				A518235F1E103D6800DDE33A /* BreakableRocks.sks */,
+				A5C4BBB51E14A1AD002B0B18 /* Viking.sks */,
+				A5C4BBC41E18101C002B0B18 /* GravityProjectile.sks */,
+			);
+			name = Sprites;
+			sourceTree = "<group>";
+		};
+		A513A5EC1E21593A003CD2C1 /* Labels */ = {
+			isa = PBXGroup;
+			children = (
+				A513A5ED1E2159C8003CD2C1 /* LevelCompleteLabel.sks */,
+			);
+			name = Labels;
+			sourceTree = "<group>";
+		};
 		A55250C61E122D9400EED486 /* Engine */ = {
 			isa = PBXGroup;
 			children = (
@@ -127,14 +171,10 @@
 		A5868FA51E0A042E00935E3B /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				A513A5EC1E21593A003CD2C1 /* Labels */,
+				A513A5EB1E21592F003CD2C1 /* Sprites */,
+				A513A5EA1E215923003CD2C1 /* Levels */,
 				A5C4BBC61E181163002B0B18 /* Emitters */,
-				A5B58EB81E09DC4900ADC865 /* Level1.sks */,
-				A55250CB1E148BC100EED486 /* Level2.sks */,
-				A5868FA31E0A042A00935E3B /* Wizard.sks */,
-				A59FB6D11E0AD93D00D1C915 /* Blood.sks */,
-				A518235F1E103D6800DDE33A /* BreakableRocks.sks */,
-				A5C4BBB51E14A1AD002B0B18 /* Viking.sks */,
-				A5C4BBC41E18101C002B0B18 /* GravityProjectile.sks */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -150,6 +190,8 @@
 				A5C4BBB71E14C708002B0B18 /* VikingNode.swift */,
 				A5C4BBC91E181D24002B0B18 /* GravityProjectile.swift */,
 				A5AFBA191E1827AD00CE29E9 /* ArrowNode.swift */,
+				A513A5E81E21552F003CD2C1 /* TreasureChestNode.swift */,
+				A513A5EF1E215A78003CD2C1 /* LevelCompleteLabel.swift */,
 			);
 			name = Sprites;
 			sourceTree = "<group>";
@@ -184,6 +226,7 @@
 				A59FB6A51E0A08DF00D1C915 /* GestureInteractive.swift */,
 				A59FB6A71E0A091400D1C915 /* LifecycleEmitter.swift */,
 				A52F29A01E18252F0098B37A /* InFlightTrackable.swift */,
+				A5E3150C1E215E8D00D3652C /* GameLevel.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -227,7 +270,9 @@
 			isa = PBXGroup;
 			children = (
 				A5B58EBC1E09DC4900ADC865 /* GameScene.swift */,
+				A513A5E41E2152B2003CD2C1 /* Level0.swift */,
 				A5C4BBC01E16D8FF002B0B18 /* Level1.swift */,
+				A513A5E61E2152BA003CD2C1 /* Level2.swift */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -309,8 +354,10 @@
 				A5B58EB91E09DC4900ADC865 /* Level1.sks in Resources */,
 				A5C4BBC51E18101C002B0B18 /* GravityProjectile.sks in Resources */,
 				A5C4BBC81E181177002B0B18 /* GravityProjectileTail.sks in Resources */,
+				A513A5E31E2151A3003CD2C1 /* Level0.sks in Resources */,
 				A5B58EC41E09DC4900ADC865 /* Assets.xcassets in Resources */,
 				A5B58EC71E09DC4900ADC865 /* LaunchScreen.storyboard in Resources */,
+				A513A5EE1E2159C8003CD2C1 /* LevelCompleteLabel.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,11 +375,14 @@
 				A5B58EBD1E09DC4900ADC865 /* GameScene.swift in Sources */,
 				A59FB6D41E0AD9D700D1C915 /* BloodNode.swift in Sources */,
 				A59FB6A61E0A08DF00D1C915 /* GestureInteractive.swift in Sources */,
+				A513A5E91E21552F003CD2C1 /* TreasureChestNode.swift in Sources */,
 				A59FB6981E0A088A00D1C915 /* CGVector+Extensions.swift in Sources */,
 				A59FB69E1E0A088A00D1C915 /* SKTAudio.swift in Sources */,
+				A513A5E71E2152BA003CD2C1 /* Level2.swift in Sources */,
 				A59FB6961E0A088A00D1C915 /* CGFloat+Extensions.swift in Sources */,
 				A518235E1E0E109400DDE33A /* RockNode.swift in Sources */,
 				A59FB6AA1E0A13FA00D1C915 /* GroundNode.swift in Sources */,
+				A513A5F01E215A78003CD2C1 /* LevelCompleteLabel.swift in Sources */,
 				A59FB69D1E0A088A00D1C915 /* SKNode+Extensions.swift in Sources */,
 				A51823621E10435D00DDE33A /* BreakableRocksNode.swift in Sources */,
 				A5C4BBCA1E181D24002B0B18 /* GravityProjectile.swift in Sources */,
@@ -351,9 +401,11 @@
 				A5C4BBBF1E16D51A002B0B18 /* GravityStateTracker.swift in Sources */,
 				A5C4BBBD1E16D2F7002B0B18 /* Game.swift in Sources */,
 				A55250CA1E122E2600EED486 /* ParticleFactory.swift in Sources */,
+				A513A5E51E2152B2003CD2C1 /* Level0.swift in Sources */,
 				A59FB6A11E0A088A00D1C915 /* Vector3.swift in Sources */,
 				A5B58EB71E09DC4900ADC865 /* AppDelegate.swift in Sources */,
 				A59FB6A41E0A08C200D1C915 /* LifecycleListener.swift in Sources */,
+				A5E3150D1E215E8D00D3652C /* GameLevel.swift in Sources */,
 				A5AFBA1A1E1827AD00CE29E9 /* ArrowNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

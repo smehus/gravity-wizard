@@ -17,7 +17,7 @@ class GameViewController: UIViewController {
         
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
-            if let scene = GameScene.generateGameScene(level: .one) {
+            if let scene = Level.zero.levelScene() {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
                 
@@ -67,7 +67,7 @@ class GameViewController: UIViewController {
     fileprivate func generateScene(level: Level) -> SKScene? {
         guard
             let skView = self.view as? SKView,
-            let scene = GameScene.generateGameScene(level: level),
+            let scene = level.levelScene(),
             let currentScene = skView.scene
             else {
                 return nil
@@ -79,6 +79,11 @@ class GameViewController: UIViewController {
     
     fileprivate func showLevelSelector() {
         let alert = UIAlertController(title: "Pick Level", message: nil, preferredStyle: .actionSheet)
+        
+        let levelZero = UIAlertAction(title: "Level One", style: .default) { _ in
+            guard let skView = self.view as? SKView, let scene = self.generateScene(level: .zero) else { return }
+            skView.presentScene(scene, transition: self.sceneTransition())
+        }
         
         let levelOne = UIAlertAction(title: "Level One", style: .default) { _ in
             guard let skView = self.view as? SKView, let scene = self.generateScene(level: .one) else { return }
@@ -92,6 +97,7 @@ class GameViewController: UIViewController {
         
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
+        alert.addAction(levelZero)
         alert.addAction(levelOne)
         alert.addAction(levelTwo)
         alert.addAction(cancel)

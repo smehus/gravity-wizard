@@ -9,7 +9,6 @@
 import SpriteKit
 
 protocol Game {
-    var currentLevel: Level { get set }
     var light: SKNode? { get set }
     
     /// Trackables

@@ -6,7 +6,7 @@
 //  Copyright © 2016 scott mehus. All rights reserved.
 //
 
-import Foundation
+import SpriteKit
 
 enum ProjectileType {
     case arrow
@@ -24,8 +24,25 @@ enum GravityState {
 }
 
 enum Level: Int {
-    case one = 1
+    case zero = 0
+    case one
     case two
+    
+    func nextLevel() -> Level? {
+        let nextInt = self.rawValue + 1
+        return Level(rawValue: nextInt)
+    }
+    
+    func levelScene() -> GameScene? {
+        switch self {
+        case .zero:
+            return SKScene(fileNamed: "Level0") as? Level0
+        case .one:
+            return SKScene(fileNamed: "Level1") as? Level1
+        case .two:
+            return SKScene(fileNamed: "Level1") as? Level2
+        }
+    }
 }
 
 enum Direction {
@@ -58,6 +75,7 @@ struct PhysicsCategory {
     static let BreakableFormation:  UInt32 = 0x1 << 8
     static let VikingBodyPart:      UInt32 = 0x1 << 9
     static let GravityProjectile:   UInt32 = 0x1 << 10
+    static let TreasureChest:       UInt32 = 0x1 << 11
     
 }
 
@@ -74,6 +92,8 @@ enum CollisionCombination {
     case arrowCollidesWithBreakable
     case arrowCollidesWithGround
     case arrowCollidesWithVikingBodyPart
+    
+    case wizardCollidesWithChest
     case none
 }
 extension UInt32 {
@@ -97,6 +117,8 @@ extension UInt32 {
             return .gravityProjectileHitsGround
         case PhysicsCategory.Wizard | PhysicsCategory.GravityProjectile:
             return .wizardCollidesWithGravityField
+        case PhysicsCategory.Wizard | PhysicsCategory.TreasureChest:
+            return .wizardCollidesWithChest
         default: return .none
         }
     }

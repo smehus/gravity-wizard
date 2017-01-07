@@ -63,5 +63,8 @@ extension GravityProjectile: InFlightTrackable {
         physicsBody?.isDynamic = true
         gravityFieldNode?.isEnabled = true
         isInFlight = false
+        let remove = SKAction.removeFromParent()
+        let wait = SKAction.wait(forDuration: 0.5)
+        run(SKAction.sequence([wait, remove]))
     }
 }
