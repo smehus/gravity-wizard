@@ -59,6 +59,7 @@
 		A5C4BBC81E181177002B0B18 /* GravityProjectileTail.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5C4BBC71E181177002B0B18 /* GravityProjectileTail.sks */; };
 		A5C4BBCA1E181D24002B0B18 /* GravityProjectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C4BBC91E181D24002B0B18 /* GravityProjectile.swift */; };
 		A5E3150D1E215E8D00D3652C /* GameLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E3150C1E215E8D00D3652C /* GameLevel.swift */; };
+		A5E3150F1E2166F100D3652C /* SKScene+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E3150E1E2166F100D3652C /* SKScene+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -116,6 +117,7 @@
 		A5C4BBC71E181177002B0B18 /* GravityProjectileTail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GravityProjectileTail.sks; sourceTree = "<group>"; };
 		A5C4BBC91E181D24002B0B18 /* GravityProjectile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GravityProjectile.swift; sourceTree = "<group>"; };
 		A5E3150C1E215E8D00D3652C /* GameLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLevel.swift; sourceTree = "<group>"; };
+		A5E3150E1E2166F100D3652C /* SKScene+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKScene+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +215,7 @@
 				A59FB6951E0A088A00D1C915 /* Vector3.swift */,
 				A59FB6AB1E0A257500D1C915 /* CGSize+Extensions.swift */,
 				A5AFBA1B1E1828F200CE29E9 /* SKTexture+Extensions.swift */,
+				A5E3150E1E2166F100D3652C /* SKScene+Extensions.swift */,
 			);
 			path = SKTUtils;
 			sourceTree = "<group>";
@@ -394,6 +397,7 @@
 				A59FB6991E0A088A00D1C915 /* Int+Extensions.swift in Sources */,
 				A59FB6971E0A088A00D1C915 /* CGPoint+Extensions.swift in Sources */,
 				A55250C81E122DC200EED486 /* Definitions.swift in Sources */,
+				A5E3150F1E2166F100D3652C /* SKScene+Extensions.swift in Sources */,
 				A5C4BBB81E14C708002B0B18 /* VikingNode.swift in Sources */,
 				A59FB6A81E0A091400D1C915 /* LifecycleEmitter.swift in Sources */,
 				A59FB6AC1E0A257600D1C915 /* CGSize+Extensions.swift in Sources */,

@@ -372,13 +372,13 @@ extension GameScene {
     }
     
     fileprivate func wizardCollidesWithChest(with contact: SKPhysicsContact) {
-        
+        levelCompleted()
     }
 }
 
 extension GameScene {
     func levelCompleted() {
-        
+
     }
     
     func gameOver() {
