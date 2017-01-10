@@ -18,6 +18,7 @@ class LevelCompleteLabel: SKLabelNode {
                 return nil
         }
         
+        labelNode.zPosition = 0
         return labelNode
     }
 }

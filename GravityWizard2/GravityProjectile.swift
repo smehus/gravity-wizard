@@ -60,11 +60,17 @@ extension GravityProjectile: InFlightTrackable {
     }
     
     func createGravityField() {
-        physicsBody?.isDynamic = true
+        physicsBody?.isDynamic = false
         gravityFieldNode?.isEnabled = true
         isInFlight = false
         let remove = SKAction.removeFromParent()
-        let wait = SKAction.wait(forDuration: 0.5)
+        let wait = SKAction.wait(forDuration: Interval.gravityProjectileLife)
         run(SKAction.sequence([wait, remove]))
+        
+        if let gameScene = scene as? GameScene {
+            run(SKAction.afterDelay(Interval.gravityProjectileLife, runBlock: { 
+                gameScene.currentProjectile =  nil
+            }))
+        }
     }
 }

@@ -8,6 +8,10 @@
 
 import SpriteKit
 
+struct Interval {
+    static let gravityProjectileLife = 0.5
+}
+
 enum ProjectileType {
     case arrow
     case gravity
