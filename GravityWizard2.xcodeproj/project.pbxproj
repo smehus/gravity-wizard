@@ -60,6 +60,8 @@
 		A5C4BBCA1E181D24002B0B18 /* GravityProjectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C4BBC91E181D24002B0B18 /* GravityProjectile.swift */; };
 		A5E3150D1E215E8D00D3652C /* GameLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E3150C1E215E8D00D3652C /* GameLevel.swift */; };
 		A5E3150F1E2166F100D3652C /* SKScene+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E3150E1E2166F100D3652C /* SKScene+Extensions.swift */; };
+		A5E3B73F1E27C030004F32A3 /* WeaponSelector.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5E3B73E1E27C030004F32A3 /* WeaponSelector.sks */; };
+		A5E3B7421E27C230004F32A3 /* WeaponSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E3B7411E27C230004F32A3 /* WeaponSelector.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -118,6 +120,8 @@
 		A5C4BBC91E181D24002B0B18 /* GravityProjectile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GravityProjectile.swift; sourceTree = "<group>"; };
 		A5E3150C1E215E8D00D3652C /* GameLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLevel.swift; sourceTree = "<group>"; };
 		A5E3150E1E2166F100D3652C /* SKScene+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKScene+Extensions.swift"; sourceTree = "<group>"; };
+		A5E3B73E1E27C030004F32A3 /* WeaponSelector.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = WeaponSelector.sks; sourceTree = "<group>"; };
+		A5E3B7411E27C230004F32A3 /* WeaponSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeaponSelector.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				A513A5ED1E2159C8003CD2C1 /* LevelCompleteLabel.sks */,
+				A5E3B73E1E27C030004F32A3 /* WeaponSelector.sks */,
 			);
 			name = Labels;
 			sourceTree = "<group>";
@@ -184,6 +189,7 @@
 		A5868FA61E0A060400935E3B /* Sprites */ = {
 			isa = PBXGroup;
 			children = (
+				A5E3B7401E27C21B004F32A3 /* HUD */,
 				A59FB6871E0A081B00D1C915 /* WizardNode.swift */,
 				A59FB6A91E0A13FA00D1C915 /* GroundNode.swift */,
 				A59FB6D31E0AD9D700D1C915 /* BloodNode.swift */,
@@ -288,6 +294,14 @@
 			name = Emitters;
 			sourceTree = "<group>";
 		};
+		A5E3B7401E27C21B004F32A3 /* HUD */ = {
+			isa = PBXGroup;
+			children = (
+				A5E3B7411E27C230004F32A3 /* WeaponSelector.swift */,
+			);
+			name = HUD;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -352,6 +366,7 @@
 				A5868FA41E0A042A00935E3B /* Wizard.sks in Resources */,
 				A51823601E103D6800DDE33A /* BreakableRocks.sks in Resources */,
 				A5C4BBB61E14A1AD002B0B18 /* Viking.sks in Resources */,
+				A5E3B73F1E27C030004F32A3 /* WeaponSelector.sks in Resources */,
 				A55250CC1E148BC100EED486 /* Level2.sks in Resources */,
 				A5B58EC21E09DC4900ADC865 /* Main.storyboard in Resources */,
 				A5B58EB91E09DC4900ADC865 /* Level1.sks in Resources */,
@@ -405,6 +420,7 @@
 				A5C4BBBF1E16D51A002B0B18 /* GravityStateTracker.swift in Sources */,
 				A5C4BBBD1E16D2F7002B0B18 /* Game.swift in Sources */,
 				A55250CA1E122E2600EED486 /* ParticleFactory.swift in Sources */,
+				A5E3B7421E27C230004F32A3 /* WeaponSelector.swift in Sources */,
 				A513A5E51E2152B2003CD2C1 /* Level0.swift in Sources */,
 				A59FB6A11E0A088A00D1C915 /* Vector3.swift in Sources */,
 				A5B58EB71E09DC4900ADC865 /* AppDelegate.swift in Sources */,
