@@ -44,7 +44,7 @@ enum Level: Int {
         case .one:
             return SKScene(fileNamed: "Level1") as? Level1
         case .two:
-            return SKScene(fileNamed: "Level1") as? Level2
+            return SKScene(fileNamed: "Level2") as? Level2
         }
     }
 }
