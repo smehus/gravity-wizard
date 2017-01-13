@@ -12,12 +12,23 @@ class WeaponSelector: SKNode {
     
     fileprivate var arrowButton: SKSpriteNode?
     fileprivate var gravityButton: SKSpriteNode?
-    let turnOn = SKAction.colorize(with: .white, colorBlendFactor: 1.0, duration: 0.3)
-    let turnOff = SKAction.colorize(withColorBlendFactor: 0.0, duration: 0.3)
+
+    let fadeOff = SKAction.fadeAlpha(to: 0.5, duration: 0.1)
+    let fadeOn = SKAction.fadeAlpha(to: 1.0, duration: 0.1)
+    let bounce = SKAction.scaleX(by: 1.2, y: 1.2, duration: 0.1)
+
+    var turnOn: SKAction {
+        let bounceSequence = SKAction.sequence([bounce, bounce.reversed()])
+        return SKAction.group([bounceSequence, fadeOn])
+    }
+    
+    var turnOff: SKAction {
+        return SKAction.sequence([fadeOff])
+    }
     
     fileprivate func selectedArrow() {
-        arrowButton?.run(turnOn)
         gravityButton?.run(turnOff)
+        arrowButton?.run(turnOn)
         selected(projectile: .arrow)
     }
     
@@ -50,8 +61,8 @@ extension WeaponSelector: LifecycleListener {
         isUserInteractionEnabled = true
         
         guard
-            let arrow = childNode(withName: "//arrow") as? SKSpriteNode,
-            let gravity = childNode(withName: "//gravity") as? SKSpriteNode
+            let arrow = childNode(withName: "arrow") as? SKSpriteNode,
+            let gravity = childNode(withName: "gravity") as? SKSpriteNode
         else {
             assertionFailure("Failed to load button sprites")
             return
@@ -59,5 +70,7 @@ extension WeaponSelector: LifecycleListener {
         
         arrowButton = arrow
         gravityButton = gravity
+        
+        selectedArrow()
     }
 }
