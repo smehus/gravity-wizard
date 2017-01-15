@@ -12,10 +12,10 @@ import GameplayKit
 class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
 
     /// Scense
-    var wizardScene: SKScene!
+    var roseScene: SKScene!
     
     /// Nodes
-    var wizardNode: WizardNode?
+    var rose: RoseNode?
     var bloodNode: BloodNode?
     var radialMarker: SKSpriteNode?
     var breakableRocks: BreakableRocksNode?
@@ -54,8 +54,8 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
         physicsBody?.categoryBitMask = PhysicsCategory.Edge
         emitDidMoveToView()
         
-        wizardScene = SKScene(fileNamed: "Wizard")
-        wizardNode = childNode(withName: "//Wizard") as? WizardNode
+        roseScene = SKScene(fileNamed: "Rose")
+        rose = childNode(withName: "//rose") as? RoseNode
         
         breakableRocks = childNode(withName: "//BreakableRocks") as? BreakableRocksNode
         light = childNode(withName: "FollowLight")
@@ -131,8 +131,8 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
     
     /// Used for Arrow launching like angry birds
     func launchGravityProjectile(at point: CGPoint, velocityMultiply: CGFloat) {
-        guard let wizardNode = wizardNode else { return }
-        let startingPosition = convert(wizardNode.position, from: wizardNode.parent!)
+        guard let rose = rose else { return }
+        let startingPosition = convert(rose.position, from: rose.parent!)
         
         guard let projectile = createGravityProjectile(at: startingPosition) else { return }
         projectile.move(toParent: self)
@@ -150,8 +150,8 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
     
     /// Used for Arrow launching like angry birds
     func launchArrow(at point: CGPoint, velocityMultiply: CGFloat) {
-        guard let wizardNode = wizardNode else { return }
-        let startingPosition = convert(wizardNode.position, from: wizardNode.parent!)
+        guard let rose = rose else { return }
+        let startingPosition = convert(rose.position, from: rose.parent!)
         
         let arrow = createArrow(at: startingPosition)
         addChild(arrow)
@@ -166,8 +166,8 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
     
     /// Used for shooting enemies like a gun
     func shootArrow(at point: CGPoint, velocityMultiply: CGFloat) {
-        guard let wizardNode = wizardNode else { return }
-        let startingPosition = convert(wizardNode.position, from: wizardNode.parent!)
+        guard let rose = rose else { return }
+        let startingPosition = convert(rose.position, from: rose.parent!)
         
         let arrow = createArrow(at: startingPosition)
         addChild(arrow)
@@ -189,7 +189,7 @@ extension GameScene {
         
         lastUpdateTimeInterval = currentTime
         
-        updateNodeGravityState(with: wizardNode)
+        updateNodeGravityState(with: rose)
         
         if let projectile = currentProjectile {
             updateDirection(with: projectile)
@@ -216,7 +216,7 @@ extension GameScene {
             initialTouchPoint = touchPoint
         }
         
-        if let wizard = wizardNode {
+        if let wizard = rose {
             wizard.face(towards: direction(for: touchPoint, with: wizard))
         }
     }
@@ -232,7 +232,7 @@ extension GameScene {
             projectileVelocity = vel
         }
         
-        if let wizard = wizardNode {
+        if let wizard = rose {
             wizard.face(towards: direction(for: touchPoint, with: wizard))
         }
     }
@@ -256,7 +256,7 @@ extension GameScene: SKPhysicsContactDelegate {
         let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
         
         if collision.collisionCombination() == .wizardHitsGround {
-            wizardNodeHitsGround(with: contact)
+            roseHitsGround(with: contact)
         }
         
         if collision.collisionCombination() == .rockHitsWizard {
@@ -294,15 +294,14 @@ extension GameScene: SKPhysicsContactDelegate {
         if collision.collisionCombination() == .wizardCollidesWithChest {
             wizardCollidesWithChest(with: contact)
         }
-        
     }
     
     func didEnd(_ contact: SKPhysicsContact) {
         let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
         
-        WizardGround: if collision == PhysicsCategory.Wizard | PhysicsCategory.Ground {
-            guard let wizardNode = wizardNode else { break WizardGround }
-            wizardNode.isGrounded = false
+        WizardGround: if collision == PhysicsCategory.Hero | PhysicsCategory.Ground {
+            guard let rose = rose else { break WizardGround }
+            rose.isGrounded = false
         }
     }
 }
@@ -318,14 +317,14 @@ extension GameScene {
         currentProjectile = nil
     }
     
-    fileprivate func wizardNodeHitsGround(with contact: SKPhysicsContact) {
-        guard let wizardNode = wizardNode else { return }
-        wizardNode.isGrounded = true
+    fileprivate func roseHitsGround(with contact: SKPhysicsContact) {
+        guard let rose = rose else { return }
+        rose.isGrounded = true
     }
     
     fileprivate func rockHitsWizard(with contact: SKPhysicsContact) {
-        guard let wizardNode = wizardNode else { return }
-        createBloodExplosion(with: wizardNode)
+        guard let rose = rose else { return }
+        createBloodExplosion(with: rose)
     }
     
     fileprivate func bloodCollidesWithGround(with contact: SKPhysicsContact) {

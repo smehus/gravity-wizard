@@ -1,15 +1,15 @@
 //
-//  WizardNode.swift
+//  RoseNode.swift
 //  GravityWizard2
 //
-//  Created by scott mehus on 12/20/16.
-//  Copyright © 2016 scott mehus. All rights reserved.
+//  Created by scott mehus on 1/15/17.
+//  Copyright © 2017 scott mehus. All rights reserved.
 //
 
 import SpriteKit
 
-class WizardNode: SKSpriteNode, GravityStateTracker {
-    
+class RoseNode: SKSpriteNode, GravityStateTracker {
+
     var isGrounded = true
     
     var gravityState: GravityState = .ground {
@@ -53,43 +53,42 @@ class WizardNode: SKSpriteNode, GravityStateTracker {
     }
     
     fileprivate func runFallingAnimation() {
-        removeAction(forKey: gravityState.animationKey)
-        var textures = [SKTexture]()
-        for i in 6...10 {
-            let texture = SKTexture(imageNamed: "Jump (\(i))")
-            textures.append(texture)
-        }
-        
-        let fallingAnimation = SKAction.animate(with: textures, timePerFrame: 0.1)
-        run(fallingAnimation, withKey: GravityState.falling.animationKey)
+//        removeAction(forKey: gravityState.animationKey)
+//        var textures = [SKTexture]()
+//        for i in 6...10 {
+//            let texture = SKTexture(imageNamed: "Jump (\(i))")
+//            textures.append(texture)
+//        }
+//        
+//        let fallingAnimation = SKAction.animate(with: textures, timePerFrame: 0.1)
+//        run(fallingAnimation, withKey: GravityState.falling.animationKey)
     }
     
     fileprivate func runClimbingAnimation() {
-        removeAction(forKey: gravityState.animationKey)
-        var textures = [SKTexture]()
-        for i in 1...5 {
-            let texture = SKTexture(imageNamed: "Jump (\(i))")
-            textures.append(texture)
-        }
-        
-        let jumpAnimation = SKAction.animate(with: textures, timePerFrame: 0.1)
-        run(jumpAnimation, withKey: gravityState.animationKey)
+//        removeAction(forKey: gravityState.animationKey)
+//        var textures = [SKTexture]()
+//        for i in 1...5 {
+//            let texture = SKTexture(imageNamed: "Jump (\(i))")
+//            textures.append(texture)
+//        }
+//        
+//        let jumpAnimation = SKAction.animate(with: textures, timePerFrame: 0.1)
+//        run(jumpAnimation, withKey: gravityState.animationKey)
     }
     
     fileprivate func runIdleState() {
-        removeAction(forKey: gravityState.animationKey)
-        var textures = [SKTexture]()
-        for i in 1...10 {
-            textures.append(SKTexture(imageNamed: "Idle (\(i))"))
-        }
-        
-        let idleAnimation = SKAction.animate(with: textures, timePerFrame: 0.1)
-        run(SKAction.repeatForever(idleAnimation), withKey: gravityState.animationKey)
+//        removeAction(forKey: gravityState.animationKey)
+//        var textures = [SKTexture]()
+//        for i in 1...10 {
+//            textures.append(SKTexture(imageNamed: "Idle (\(i))"))
+//        }
+//        
+//        let idleAnimation = SKAction.animate(with: textures, timePerFrame: 0.1)
+//        run(SKAction.repeatForever(idleAnimation), withKey: gravityState.animationKey)
     }
-    
 }
 
-extension WizardNode: LifecycleListener {
+extension RoseNode: LifecycleListener {
     func didMoveToScene() {
         let newSize = texture!.size()
         physicsBody = SKPhysicsBody(rectangleOf: newSize)

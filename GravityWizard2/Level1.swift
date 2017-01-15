@@ -34,6 +34,6 @@ class Level1: GameScene {
 
 extension Level1 {
     override func didSimulatePhysics() {
-        updateFollowNodePosition(followNode: light, originNode: wizardNode)
+        updateFollowNodePosition(followNode: light, originNode: rose)
     }
 }

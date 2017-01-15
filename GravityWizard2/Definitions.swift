@@ -69,7 +69,7 @@ struct Actions {
 
 struct PhysicsCategory {
     static let None:                UInt32 = 0
-    static let Wizard:              UInt32 = 0x1 << 1 // 01
+    static let Hero:                UInt32 = 0x1 << 1 // 01
     static let Ground:              UInt32 = 0x1 << 2 // 010
     static let Rock:                UInt32 = 0x1 << 3 // 0100
     static let Edge:                UInt32 = 0x1 << 4 // 01000
@@ -103,9 +103,9 @@ enum CollisionCombination {
 extension UInt32 {
     func collisionCombination() -> CollisionCombination {
         switch self {
-        case PhysicsCategory.Ground | PhysicsCategory.Wizard:
+        case PhysicsCategory.Ground | PhysicsCategory.Hero:
             return .wizardHitsGround
-        case PhysicsCategory.Rock | PhysicsCategory.Wizard:
+        case PhysicsCategory.Rock | PhysicsCategory.Hero:
             return .rockHitsWizard
         case PhysicsCategory.Blood | PhysicsCategory.Ground:
             return .bloodCollidesWithGround
@@ -119,9 +119,9 @@ extension UInt32 {
             return .arrowCollidesWithVikingBodyPart
         case PhysicsCategory.GravityProjectile | PhysicsCategory.Ground:
             return .gravityProjectileHitsGround
-        case PhysicsCategory.Wizard | PhysicsCategory.GravityProjectile:
+        case PhysicsCategory.Hero | PhysicsCategory.GravityProjectile:
             return .wizardCollidesWithGravityField
-        case PhysicsCategory.Wizard | PhysicsCategory.TreasureChest:
+        case PhysicsCategory.Hero | PhysicsCategory.TreasureChest:
             return .wizardCollidesWithChest
         default: return .none
         }

@@ -20,6 +20,8 @@
 		A55250C81E122DC200EED486 /* Definitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55250C71E122DC200EED486 /* Definitions.swift */; };
 		A55250CA1E122E2600EED486 /* ParticleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55250C91E122E2600EED486 /* ParticleFactory.swift */; };
 		A55250CC1E148BC100EED486 /* Level2.sks in Resources */ = {isa = PBXBuildFile; fileRef = A55250CB1E148BC100EED486 /* Level2.sks */; };
+		A58149181E2BDA6C0091552E /* Rose.sks in Resources */ = {isa = PBXBuildFile; fileRef = A58149171E2BDA6C0091552E /* Rose.sks */; };
+		A581491A1E2BDAD30091552E /* RoseNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58149191E2BDAD30091552E /* RoseNode.swift */; };
 		A5868FA41E0A042A00935E3B /* Wizard.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5868FA31E0A042A00935E3B /* Wizard.sks */; };
 		A59FB6881E0A081B00D1C915 /* WizardNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59FB6871E0A081B00D1C915 /* WizardNode.swift */; };
 		A59FB6961E0A088A00D1C915 /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59FB68A1E0A088A00D1C915 /* CGFloat+Extensions.swift */; };
@@ -78,6 +80,8 @@
 		A55250C71E122DC200EED486 /* Definitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Definitions.swift; sourceTree = "<group>"; };
 		A55250C91E122E2600EED486 /* ParticleFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticleFactory.swift; sourceTree = "<group>"; };
 		A55250CB1E148BC100EED486 /* Level2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = Level2.sks; path = Scenes/Level2.sks; sourceTree = "<group>"; };
+		A58149171E2BDA6C0091552E /* Rose.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Rose.sks; sourceTree = "<group>"; };
+		A58149191E2BDAD30091552E /* RoseNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoseNode.swift; sourceTree = "<group>"; };
 		A5868FA31E0A042A00935E3B /* Wizard.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = Wizard.sks; path = Scenes/Wizard.sks; sourceTree = "<group>"; };
 		A59FB6871E0A081B00D1C915 /* WizardNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WizardNode.swift; path = Sprites/WizardNode.swift; sourceTree = "<group>"; };
 		A59FB68A1E0A088A00D1C915 /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
@@ -153,6 +157,7 @@
 				A518235F1E103D6800DDE33A /* BreakableRocks.sks */,
 				A5C4BBB51E14A1AD002B0B18 /* Viking.sks */,
 				A5C4BBC41E18101C002B0B18 /* GravityProjectile.sks */,
+				A58149171E2BDA6C0091552E /* Rose.sks */,
 			);
 			name = Sprites;
 			sourceTree = "<group>";
@@ -175,6 +180,37 @@
 			name = Engine;
 			sourceTree = "<group>";
 		};
+		A581491B1E2BDBBA0091552E /* Characters */ = {
+			isa = PBXGroup;
+			children = (
+				A59FB6871E0A081B00D1C915 /* WizardNode.swift */,
+				A5C4BBB71E14C708002B0B18 /* VikingNode.swift */,
+				A58149191E2BDAD30091552E /* RoseNode.swift */,
+			);
+			name = Characters;
+			sourceTree = "<group>";
+		};
+		A581491C1E2BDBC80091552E /* Environment */ = {
+			isa = PBXGroup;
+			children = (
+				A513A5E81E21552F003CD2C1 /* TreasureChestNode.swift */,
+				A59FB6A91E0A13FA00D1C915 /* GroundNode.swift */,
+				A59FB6D31E0AD9D700D1C915 /* BloodNode.swift */,
+				A518235D1E0E109400DDE33A /* RockNode.swift */,
+				A51823611E10435D00DDE33A /* BreakableRocksNode.swift */,
+			);
+			name = Environment;
+			sourceTree = "<group>";
+		};
+		A581491D1E2BDBDE0091552E /* Projectiles */ = {
+			isa = PBXGroup;
+			children = (
+				A5C4BBC91E181D24002B0B18 /* GravityProjectile.swift */,
+				A5AFBA191E1827AD00CE29E9 /* ArrowNode.swift */,
+			);
+			name = Projectiles;
+			sourceTree = "<group>";
+		};
 		A5868FA51E0A042E00935E3B /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
@@ -189,17 +225,10 @@
 		A5868FA61E0A060400935E3B /* Sprites */ = {
 			isa = PBXGroup;
 			children = (
+				A581491D1E2BDBDE0091552E /* Projectiles */,
+				A581491C1E2BDBC80091552E /* Environment */,
+				A581491B1E2BDBBA0091552E /* Characters */,
 				A5E3B7401E27C21B004F32A3 /* HUD */,
-				A59FB6871E0A081B00D1C915 /* WizardNode.swift */,
-				A59FB6A91E0A13FA00D1C915 /* GroundNode.swift */,
-				A59FB6D31E0AD9D700D1C915 /* BloodNode.swift */,
-				A518235D1E0E109400DDE33A /* RockNode.swift */,
-				A51823611E10435D00DDE33A /* BreakableRocksNode.swift */,
-				A5C4BBB71E14C708002B0B18 /* VikingNode.swift */,
-				A5C4BBC91E181D24002B0B18 /* GravityProjectile.swift */,
-				A5AFBA191E1827AD00CE29E9 /* ArrowNode.swift */,
-				A513A5E81E21552F003CD2C1 /* TreasureChestNode.swift */,
-				A513A5EF1E215A78003CD2C1 /* LevelCompleteLabel.swift */,
 			);
 			name = Sprites;
 			sourceTree = "<group>";
@@ -297,6 +326,7 @@
 		A5E3B7401E27C21B004F32A3 /* HUD */ = {
 			isa = PBXGroup;
 			children = (
+				A513A5EF1E215A78003CD2C1 /* LevelCompleteLabel.swift */,
 				A5E3B7411E27C230004F32A3 /* WeaponSelector.swift */,
 			);
 			name = HUD;
@@ -365,6 +395,7 @@
 				A59FB6D21E0AD93D00D1C915 /* Blood.sks in Resources */,
 				A5868FA41E0A042A00935E3B /* Wizard.sks in Resources */,
 				A51823601E103D6800DDE33A /* BreakableRocks.sks in Resources */,
+				A58149181E2BDA6C0091552E /* Rose.sks in Resources */,
 				A5C4BBB61E14A1AD002B0B18 /* Viking.sks in Resources */,
 				A5E3B73F1E27C030004F32A3 /* WeaponSelector.sks in Resources */,
 				A55250CC1E148BC100EED486 /* Level2.sks in Resources */,
@@ -412,6 +443,7 @@
 				A59FB6991E0A088A00D1C915 /* Int+Extensions.swift in Sources */,
 				A59FB6971E0A088A00D1C915 /* CGPoint+Extensions.swift in Sources */,
 				A55250C81E122DC200EED486 /* Definitions.swift in Sources */,
+				A581491A1E2BDAD30091552E /* RoseNode.swift in Sources */,
 				A5E3150F1E2166F100D3652C /* SKScene+Extensions.swift in Sources */,
 				A5C4BBB81E14C708002B0B18 /* VikingNode.swift in Sources */,
 				A59FB6A81E0A091400D1C915 /* LifecycleEmitter.swift in Sources */,

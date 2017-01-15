@@ -39,8 +39,8 @@ extension Game where Self: SKScene {
     }
     
     func updateFollowNodePosition(followNode: SKNode?, originNode: SKNode?) {
-        guard let wizardNode = originNode, let light = followNode else { return }
-        let target = convert(wizardNode.position, from: wizardNode.parent!)
+        guard let heroNode = originNode, let light = followNode else { return }
+        let target = convert(heroNode.position, from: heroNode.parent!)
         
         let lerpX = (target.x - light.position.x) * 0.05
         let lerpY = (target.y - light.position.y) * 0.05
