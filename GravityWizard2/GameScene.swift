@@ -29,6 +29,8 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
     /// Constants
     let bloodExplosionCount = 5
     
+    let cameraNode = SKCameraNode()
+    
     
     /// Trackables
     var lastUpdateTimeInterval: TimeInterval = 0
@@ -47,9 +49,15 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
     override func didMove(to view: SKView) {
         physicsWorld.contactDelegate = self
         setupNodes()
+        setupCamera()
+        setupWeaponSelector()
     }
     
     func setupNodes() {
+        
+        addChild(cameraNode)
+        camera = cameraNode
+        
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         physicsBody?.categoryBitMask = PhysicsCategory.Edge
         emitDidMoveToView()
@@ -63,6 +71,25 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
         if let node = BloodNode.generateBloodNode() {
             bloodNode = node
         }
+    }
+    
+    fileprivate func setupCamera() {
+        guard let camera = camera, let _ = view, let rose = rose else { return }
+        let playerConstraint = SKConstraint.distance(SKRange(constantValue: 0), to: rose)
+        camera.constraints = [playerConstraint]
+    }
+    
+    fileprivate func setupWeaponSelector() {
+        guard let camera = camera, let selector = WeaponSelector.generateWeaponSelector() else { return }
+        var calculatedHeight = size.height / 2
+        calculatedHeight -= selector.halfHeight
+        var calculatedWidth = size.width / 2
+        calculatedWidth -= selector.halfWidth
+        let startingCorner = CGPoint(x: -calculatedWidth, y: calculatedHeight)
+        
+        selector.position = convert(startingCorner, from: camera)
+        selector.move(toParent: camera)
+        
     }
     
     func createBloodExplosion(with sprite: SKSpriteNode) {

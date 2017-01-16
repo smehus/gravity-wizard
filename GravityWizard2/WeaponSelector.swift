@@ -16,6 +16,37 @@ class WeaponSelector: SKNode {
     let fadeOff = SKAction.fadeAlpha(to: 0.5, duration: 0.1)
     let fadeOn = SKAction.fadeAlpha(to: 1.0, duration: 0.1)
     let bounce = SKAction.scaleX(by: 1.2, y: 1.2, duration: 0.1)
+    
+    var halfWidth: CGFloat {
+        guard let arrow = arrowButton, let gravity = gravityButton else { return 100 }
+        let total = arrow.size.width + gravity.size.width
+        return total / 2
+    }
+    
+    var halfHeight: CGFloat {
+        guard let arrow = arrowButton else { return 100 }
+        let total = arrow.size.height
+        return total / 2
+    }
+    
+    static func generateWeaponSelector() -> WeaponSelector? {
+        guard
+            let file = SKScene(fileNamed: "WeaponSelector"),
+            let node = file.childNode(withName: "container") as? WeaponSelector,
+            let arrow = file.childNode(withName: "//arrow") as? SKSpriteNode,
+            let gravity = file.childNode(withName: "//gravity") as? SKSpriteNode
+            else {
+                assertionFailure("Failed to load button sprites")
+                return nil
+        }
+        
+        node.isUserInteractionEnabled = true
+        node.arrowButton = arrow
+        node.gravityButton = gravity
+        node.selectedArrow()
+        
+        return node
+    }
 
     var turnOn: SKAction {
         let bounceSequence = SKAction.sequence([bounce, bounce.reversed()])
@@ -40,7 +71,6 @@ class WeaponSelector: SKNode {
     
     fileprivate func selected(projectile: ProjectileType) {
         guard let scene = scene as? GameScene else {
-            assertionFailure("Failed to cast scene")
             return
         }
         
