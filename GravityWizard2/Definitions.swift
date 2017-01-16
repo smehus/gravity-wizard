@@ -84,9 +84,9 @@ struct PhysicsCategory {
 }
 
 enum CollisionCombination {
-    case wizardHitsGround
+    case heroHitsGround
     case rockHitsWizard
-    case wizardCollidesWithGravityField
+    case heroCollidesWithGravityField
     
     case bloodCollidesWithGround
     
@@ -97,14 +97,14 @@ enum CollisionCombination {
     case arrowCollidesWithGround
     case arrowCollidesWithVikingBodyPart
     
-    case wizardCollidesWithChest
+    case heroCollidesWithChest
     case none
 }
 extension UInt32 {
     func collisionCombination() -> CollisionCombination {
         switch self {
         case PhysicsCategory.Ground | PhysicsCategory.Hero:
-            return .wizardHitsGround
+            return .heroHitsGround
         case PhysicsCategory.Rock | PhysicsCategory.Hero:
             return .rockHitsWizard
         case PhysicsCategory.Blood | PhysicsCategory.Ground:
@@ -120,9 +120,9 @@ extension UInt32 {
         case PhysicsCategory.GravityProjectile | PhysicsCategory.Ground:
             return .gravityProjectileHitsGround
         case PhysicsCategory.Hero | PhysicsCategory.GravityProjectile:
-            return .wizardCollidesWithGravityField
+            return .heroCollidesWithGravityField
         case PhysicsCategory.Hero | PhysicsCategory.TreasureChest:
-            return .wizardCollidesWithChest
+            return .heroCollidesWithChest
         default: return .none
         }
     }

@@ -255,7 +255,7 @@ extension GameScene: SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
         let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
         
-        if collision.collisionCombination() == .wizardHitsGround {
+        if collision.collisionCombination() == .heroHitsGround {
             roseHitsGround(with: contact)
         }
         
@@ -263,7 +263,7 @@ extension GameScene: SKPhysicsContactDelegate {
             rockHitsWizard(with: contact)
         }
         
-        if collision.collisionCombination() == .wizardCollidesWithGravityField {
+        if collision.collisionCombination() == .heroCollidesWithGravityField {
             wizardCollidesWithGravityField(with: contact)
         }
         
@@ -291,7 +291,7 @@ extension GameScene: SKPhysicsContactDelegate {
             gravityProjectileHitGround(with: contact)
         }
         
-        if collision.collisionCombination() == .wizardCollidesWithChest {
+        if collision.collisionCombination() == .heroCollidesWithChest {
             wizardCollidesWithChest(with: contact)
         }
     }
