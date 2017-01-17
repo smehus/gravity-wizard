@@ -90,6 +90,7 @@ class RoseNode: SKSpriteNode, GravityStateTracker {
 
 extension RoseNode: LifecycleListener {
     func didMoveToScene() {
+//        texture?.filteringMode = .nearest
         let newSize = texture!.size()
         physicsBody = SKPhysicsBody(rectangleOf: newSize)
         physicsBody?.allowsRotation = false
