@@ -74,9 +74,22 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
     }
     
     fileprivate func setupCamera() {
-        guard let camera = camera, let _ = view, let rose = rose else { return }
+        guard let camera = camera, let view = view, let rose = rose else { return }
         let playerConstraint = SKConstraint.distance(SKRange(constantValue: 0), to: rose)
-        camera.constraints = [playerConstraint]
+        
+        
+        let xInset = frame.size.width/2 * camera.xScale
+        let yInset = frame.size.height/2 * camera.yScale
+        
+        let constraintRect = frame.insetBy(dx: xInset, dy: yInset)
+        
+        let xRange = SKRange(lowerLimit: constraintRect.minX, upperLimit: constraintRect.maxX)
+        let yRange = SKRange(lowerLimit: constraintRect.minY, upperLimit: constraintRect.maxY)
+        
+        let edgeConstraint = SKConstraint.positionX(xRange, y: yRange)
+        edgeConstraint.referenceNode = self
+        
+        camera.constraints = [playerConstraint, edgeConstraint]
     }
     
     fileprivate func setupWeaponSelector() {
