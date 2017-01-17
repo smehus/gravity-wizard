@@ -74,7 +74,10 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
     }
     
     fileprivate func setupCamera() {
-        guard let camera = camera, let view = view, let rose = rose else { return }
+        
+        guard let camera = camera, let rose = rose else { return }
+        camera.xScale = 0.5
+        camera.yScale = 0.5
         let playerConstraint = SKConstraint.distance(SKRange(constantValue: 0), to: rose)
         
         
