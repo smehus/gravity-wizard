@@ -163,15 +163,53 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
         radialMarker = nil
     }
     
-    func launchProjectile(at point: CGPoint, with velocity: CGFloat, and type: ProjectileType) {
+    // Point is the touches ended point
+    func launchProjectile(at initialPoint: CGPoint, endPoint: CGPoint, velocity: CGFloat, and type: ProjectileType) {
         switch type {
         case .arrow:
-            launchArrow(at: point, velocityMultiply: velocity)
+            launchNormalizedArrowProjectile(with: initialPoint, endPoint: endPoint, velocityMultiply: velocity)
         case .gravity:
-            launchGravityProjectile(at: point, velocityMultiply: velocity)
+            launchNormalizedGravityProjectile(with: initialPoint, endPoint: endPoint, velocityMultiply: velocity)
         }
     }
+}
+
+
+// MARK: - Launches projectiles relative to touch down point and touches end point. Calculate velocity based on those two points and then applied to projectile with new starting position.
+extension GameScene {
+    fileprivate func launchNormalizedGravityProjectile(with initialPoint: CGPoint, endPoint: CGPoint, velocityMultiply: CGFloat) {
+        guard let rose = rose else { return }
+        let startingPosition = convert(rose.position, from: rose.parent!)
+        
+        guard let projectile = createGravityProjectile(at: startingPosition) else { return }
+        projectile.move(toParent: self)
+        
+        let newPoint = initialPoint - endPoint
+        let newVelocity = newPoint.normalized() * velocityMultiply
+        projectile.launch(at: CGVector(point: newVelocity))
+        
+        currentProjectile = projectile
+    }
     
+    fileprivate func launchNormalizedArrowProjectile(with initialPoint: CGPoint, endPoint: CGPoint, velocityMultiply: CGFloat) {
+        guard let rose = rose else { return }
+        let startingPosition = convert(rose.position, from: rose.parent!)
+        
+        let arrow = createArrow(at: startingPosition)
+        addChild(arrow)
+        
+        /// reversed point diff
+        let newPoint = initialPoint - endPoint
+        let newVelocity = newPoint.normalized() * velocityMultiply
+        arrow.launch(at: CGVector(point: newVelocity))
+        
+        currentProjectile = arrow
+    }
+}
+
+
+// MARK: - Launches projectiles like angry birds
+extension GameScene {
     /// Used for Arrow launching like angry birds
     func launchGravityProjectile(at point: CGPoint, velocityMultiply: CGFloat) {
         guard let rose = rose else { return }
@@ -206,7 +244,11 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
         
         currentProjectile = arrow
     }
-    
+}
+
+
+// MARK: - Sets velocity based on initial touch
+extension GameScene {
     /// Used for shooting enemies like a gun
     func shootArrow(at point: CGPoint, velocityMultiply: CGFloat) {
         guard let rose = rose else { return }
@@ -220,6 +262,7 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
         
         currentProjectile = arrow
     }
+    
 }
 
 extension GameScene {
@@ -287,7 +330,8 @@ extension GameScene {
         let touchLocation = touch.location(in: self)
         
         if trackingProjectileVelocity {
-            launchProjectile(at: touchLocation, with: projectileVelocity, and: currentPojectileType)
+            guard let initial = initialTouchPoint else { return }
+            launchProjectile(at: initial, endPoint: touchLocation, velocity: projectileVelocity, and: currentPojectileType)
             trackingProjectileVelocity = false
             projectileVelocity = 0
         }
