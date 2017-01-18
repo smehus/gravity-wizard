@@ -80,7 +80,7 @@ class GameViewController: UIViewController {
     fileprivate func showLevelSelector() {
         let alert = UIAlertController(title: "Pick Level", message: nil, preferredStyle: .actionSheet)
         
-        let levelZero = UIAlertAction(title: "Level One", style: .default) { _ in
+        let levelZero = UIAlertAction(title: "Level Zero", style: .default) { _ in
             guard let skView = self.view as? SKView, let scene = self.generateScene(level: .zero) else { return }
             skView.presentScene(scene, transition: self.sceneTransition())
         }
