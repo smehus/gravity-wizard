@@ -60,6 +60,19 @@ extension Game where Self: SKScene {
         }
     }
     
+    func direction(forStartingPoint startPoint: CGPoint, currentPoint: CGPoint) -> Direction {
+        
+        if startPoint.x > currentPoint.x {
+            return .right
+        }
+        
+        if startPoint.x < currentPoint.x {
+            return .left
+        }
+        
+        return .right
+    }
+    
     func direction(for point: CGPoint, with node: SKNode) -> Direction {
         let nodePosition = convert(node.position, from: node.parent!)
         

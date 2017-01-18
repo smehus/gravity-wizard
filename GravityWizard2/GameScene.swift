@@ -301,10 +301,6 @@ extension GameScene {
             trackingProjectileVelocity = true
             initialTouchPoint = touchPoint
         }
-        
-        if let wizard = rose {
-            wizard.face(towards: direction(for: touchPoint, with: wizard))
-        }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -318,8 +314,8 @@ extension GameScene {
             projectileVelocity = vel
         }
         
-        if let wizard = rose {
-            wizard.face(towards: direction(for: touchPoint, with: wizard))
+        if let wizard = rose, let initial = initialTouchPoint {
+            wizard.face(towards: direction(forStartingPoint: initial, currentPoint: touchPoint))
         }
     }
     
