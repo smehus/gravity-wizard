@@ -49,6 +49,10 @@ extension Game where Self: SKScene {
         light.position.y += lerpY
     }
     
+    func updateSpriteVelocityAnimation() {
+        
+    }
+    
     func updateNodeGravityState(with node: GravityStateTracker?) {
         guard var node = node else { return }
         if node.physicsBody!.velocity.dy > 50 {

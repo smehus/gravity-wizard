@@ -49,6 +49,7 @@ class WizardNode: SKSpriteNode, GravityStateTracker {
             runFallingAnimation()
         case .ground:
             runIdleState()
+        default: break
         }
     }
     

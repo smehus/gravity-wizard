@@ -21,6 +21,7 @@ enum GravityState {
     case climbing
     case falling
     case ground
+    case pull
     
     var animationKey: String {
         return "GravityAnimation"
@@ -61,6 +62,8 @@ struct Images {
     static let arrow = "arrow"
     static let arrowBig = "arrow_big"
     static let spark = "spark"
+    static let rosePulled = "rose-pulled"
+    static let roseIdle = "rose-full-small"
 }
 
 struct Actions {

@@ -275,7 +275,9 @@ extension GameScene {
         
         lastUpdateTimeInterval = currentTime
         
-        updateNodeGravityState(with: rose)
+        if let rose = rose {
+            rose.update(withDelta: deltaTime)
+        }
         
         if let projectile = currentProjectile {
             updateDirection(with: projectile)

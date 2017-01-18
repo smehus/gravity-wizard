@@ -11,6 +11,7 @@ import SpriteKit
 class RoseNode: SKSpriteNode, GravityStateTracker {
 
     var isGrounded = true
+    var previousVelocity: CGVector?
     
     var gravityState: GravityState = .ground {
         didSet {
@@ -43,48 +44,64 @@ class RoseNode: SKSpriteNode, GravityStateTracker {
     
     fileprivate func animate(with state: GravityState) {
         switch state {
-        case .climbing:
-            runClimbingAnimation()
         case .falling:
             runFallingAnimation()
         case .ground:
-            runIdleState()
+            runIdleAnimation()
+        case .pull:
+            runPullAnimation()
+        default: return
         }
     }
     
     fileprivate func runFallingAnimation() {
-//        removeAction(forKey: gravityState.animationKey)
-//        var textures = [SKTexture]()
-//        for i in 6...10 {
-//            let texture = SKTexture(imageNamed: "Jump (\(i))")
-//            textures.append(texture)
-//        }
-//        
-//        let fallingAnimation = SKAction.animate(with: textures, timePerFrame: 0.1)
-//        run(fallingAnimation, withKey: GravityState.falling.animationKey)
+        removeAction(forKey: gravityState.animationKey)
+        let textureImage = SKTexture(imageNamed: Images.roseIdle)
+        let textures = [textureImage]
+        
+        let pullAnimation = SKAction.animate(with: textures, timePerFrame: 0.1)
+        run(pullAnimation, withKey: gravityState.animationKey)
     }
     
-    fileprivate func runClimbingAnimation() {
-//        removeAction(forKey: gravityState.animationKey)
-//        var textures = [SKTexture]()
-//        for i in 1...5 {
-//            let texture = SKTexture(imageNamed: "Jump (\(i))")
-//            textures.append(texture)
-//        }
-//        
-//        let jumpAnimation = SKAction.animate(with: textures, timePerFrame: 0.1)
-//        run(jumpAnimation, withKey: gravityState.animationKey)
+    fileprivate func runIdleAnimation() {
+        removeAction(forKey: gravityState.animationKey)
+        let textureImage = SKTexture(imageNamed: Images.roseIdle)
+        let textures = [textureImage]
+        
+        let pullAnimation = SKAction.animate(with: textures, timePerFrame: 0.1)
+        run(pullAnimation, withKey: gravityState.animationKey)
+
     }
     
-    fileprivate func runIdleState() {
-//        removeAction(forKey: gravityState.animationKey)
-//        var textures = [SKTexture]()
-//        for i in 1...10 {
-//            textures.append(SKTexture(imageNamed: "Idle (\(i))"))
-//        }
-//        
-//        let idleAnimation = SKAction.animate(with: textures, timePerFrame: 0.1)
-//        run(SKAction.repeatForever(idleAnimation), withKey: gravityState.animationKey)
+    fileprivate func runPullAnimation() {
+        removeAction(forKey: gravityState.animationKey)
+        let textureImage = SKTexture(imageNamed: Images.rosePulled)
+        let textures = [textureImage]
+
+        let pullAnimation = SKAction.animate(with: textures, timePerFrame: 0.1)
+        run(pullAnimation, withKey: gravityState.animationKey)
+    }
+
+    fileprivate func calculateState(withDelta deltaTime: Double) {
+        guard let body = physicsBody else { return }
+        if body.velocity.dy < -20 {
+            gravityState = .falling
+        } else if body.velocity.dy > 30 || body.velocity.dx > 20 || body.velocity.dx < -20 {
+            updateDirection(withDelta: deltaTime)
+            gravityState = .pull
+        } else {
+            gravityState = .ground
+            zRotation = 0
+        }
+    }
+}
+
+extension RoseNode: GameLoopListener {
+    func update(withDelta deltaTime: Double) {
+        guard let body = physicsBody else { return }
+        guard previousVelocity != body.velocity else { return }
+        previousVelocity = body.velocity
+        calculateState(withDelta: deltaTime)
     }
 }
 

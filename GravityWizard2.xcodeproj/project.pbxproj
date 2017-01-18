@@ -24,6 +24,7 @@
 		A581491A1E2BDAD30091552E /* RoseNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58149191E2BDAD30091552E /* RoseNode.swift */; };
 		A5868FA41E0A042A00935E3B /* Wizard.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5868FA31E0A042A00935E3B /* Wizard.sks */; };
 		A5899B041E2EFD940044971F /* Floor.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5899B031E2EFD940044971F /* Floor.sks */; };
+		A5899B061E2FA6290044971F /* GameLoopListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5899B051E2FA6290044971F /* GameLoopListener.swift */; };
 		A59FB6881E0A081B00D1C915 /* WizardNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59FB6871E0A081B00D1C915 /* WizardNode.swift */; };
 		A59FB6961E0A088A00D1C915 /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59FB68A1E0A088A00D1C915 /* CGFloat+Extensions.swift */; };
 		A59FB6971E0A088A00D1C915 /* CGPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59FB68B1E0A088A00D1C915 /* CGPoint+Extensions.swift */; };
@@ -85,6 +86,7 @@
 		A58149191E2BDAD30091552E /* RoseNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoseNode.swift; sourceTree = "<group>"; };
 		A5868FA31E0A042A00935E3B /* Wizard.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = Wizard.sks; path = Scenes/Wizard.sks; sourceTree = "<group>"; };
 		A5899B031E2EFD940044971F /* Floor.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Floor.sks; sourceTree = "<group>"; };
+		A5899B051E2FA6290044971F /* GameLoopListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLoopListener.swift; sourceTree = "<group>"; };
 		A59FB6871E0A081B00D1C915 /* WizardNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WizardNode.swift; path = Sprites/WizardNode.swift; sourceTree = "<group>"; };
 		A59FB68A1E0A088A00D1C915 /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
 		A59FB68B1E0A088A00D1C915 /* CGPoint+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extensions.swift"; sourceTree = "<group>"; };
@@ -284,6 +286,7 @@
 				A59FB6A71E0A091400D1C915 /* LifecycleEmitter.swift */,
 				A52F29A01E18252F0098B37A /* InFlightTrackable.swift */,
 				A5E3150C1E215E8D00D3652C /* GameLevel.swift */,
+				A5899B051E2FA6290044971F /* GameLoopListener.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -445,6 +448,7 @@
 				A59FB6D41E0AD9D700D1C915 /* BloodNode.swift in Sources */,
 				A59FB6A61E0A08DF00D1C915 /* GestureInteractive.swift in Sources */,
 				A513A5E91E21552F003CD2C1 /* TreasureChestNode.swift in Sources */,
+				A5899B061E2FA6290044971F /* GameLoopListener.swift in Sources */,
 				A59FB6981E0A088A00D1C915 /* CGVector+Extensions.swift in Sources */,
 				A59FB69E1E0A088A00D1C915 /* SKTAudio.swift in Sources */,
 				A513A5E71E2152BA003CD2C1 /* Level2.swift in Sources */,
