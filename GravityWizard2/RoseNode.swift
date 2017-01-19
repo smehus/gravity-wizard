@@ -16,16 +16,16 @@ class RoseNode: SKSpriteNode, GravityStateTracker {
     var gravityState: GravityState = .ground {
         didSet {
             guard gravityState != oldValue else { return }
-            animate(with: gravityState)
+//            animate(with: gravityState)
         }
     }
     
     func face(towards direction: Direction) {
         switch direction {
         case .left:
-            xScale = -abs(xScale)
+            xScale = -1.0
         case .right:
-            xScale = abs(xScale)
+            xScale = 1.0
         default: break
         }
     }
@@ -86,7 +86,7 @@ class RoseNode: SKSpriteNode, GravityStateTracker {
         guard let body = physicsBody else { return }
         if body.velocity.dy < -20 {
             gravityState = .falling
-        } else if body.velocity.dy > 30 || body.velocity.dx > 20 || body.velocity.dx < -20 {
+        } else if body.velocity.dy > 50 || body.velocity.dx > 20 || body.velocity.dx < -20 {
             updateDirection(withDelta: deltaTime)
             gravityState = .pull
         } else {
@@ -107,7 +107,7 @@ extension RoseNode: GameLoopListener {
 
 extension RoseNode: LifecycleListener {
     func didMoveToScene() {
-//        texture?.filteringMode = .nearest
+        xScale = 1.0
         let newSize = texture!.size()
         physicsBody = SKPhysicsBody(rectangleOf: newSize)
         physicsBody?.allowsRotation = false
