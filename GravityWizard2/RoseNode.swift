@@ -16,7 +16,7 @@ class RoseNode: SKSpriteNode, GravityStateTracker {
     var gravityState: GravityState = .ground {
         didSet {
             guard gravityState != oldValue else { return }
-//            animate(with: gravityState)
+            animate(with: gravityState)
         }
     }
     
