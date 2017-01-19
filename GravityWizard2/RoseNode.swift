@@ -87,7 +87,21 @@ class RoseNode: SKSpriteNode, GravityStateTracker {
         if body.velocity.dy < -20 {
             gravityState = .falling
         } else if body.velocity.dy > 50 || body.velocity.dx > 20 || body.velocity.dx < -20 {
-            updateDirection(withDelta: deltaTime)
+            
+            
+            if body.velocity.dx > 0 {
+                face(towards: .right)
+                let angle = body.velocity.angle
+                let action = SKAction.rotate(toAngle: angle, duration: 0.2, shortestUnitArc: true)
+                run(action)
+            } else if body.velocity.dx < 0 {
+                face(towards: .left)
+                let df = body.velocity.angle.radiansToDegrees() + 180
+                let angle = df.degreesToRadians()
+                let action = SKAction.rotate(toAngle: angle, duration: 0.2, shortestUnitArc: true)
+                run(action)
+            }
+            
             gravityState = .pull
         } else {
             gravityState = .ground
