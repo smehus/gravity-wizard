@@ -56,7 +56,7 @@ class RoseNode: SKSpriteNode, GravityStateTracker {
     
     fileprivate func runFallingAnimation() {
         removeAction(forKey: gravityState.animationKey)
-        let textureImage = SKTexture(imageNamed: Images.roseIdle)
+        let textureImage = SKTexture(imageNamed: Images.roseFalling)
         let textures = [textureImage]
         
         let pullAnimation = SKAction.animate(with: textures, timePerFrame: 0.1)

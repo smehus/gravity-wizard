@@ -64,6 +64,7 @@ struct Images {
     static let spark = "spark"
     static let rosePulled = "rose-pulled"
     static let roseIdle = "rose-full-small"
+    static let roseFalling = "rose-falling"
 }
 
 struct Actions {
