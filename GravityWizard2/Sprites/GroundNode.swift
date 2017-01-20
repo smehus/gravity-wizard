@@ -18,6 +18,7 @@ extension GroundNode: LifecycleListener {
         let textureHeight = texture.size().height / 2
         let body = SKPhysicsBody(texture: texture, size: CGSize(width: texture.size().width, height: textureHeight))
         body.isDynamic = false
+        body.restitution = 0.0
         body.affectedByGravity = false
         body.categoryBitMask = PhysicsCategory.Ground
         physicsBody = body

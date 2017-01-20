@@ -74,20 +74,17 @@ class RoseNode: SKSpriteNode, GravityStateTracker {
     
     fileprivate func runFallingAnimation() {
         guard let body = physicsBody else { return }
-        body.contactTestBitMask = PhysicsDefinitions.ContactTest.full
         removeAction(forKey: gravityState.animationKey)
         let textureImage = SKTexture(imageNamed: Images.roseFalling)
         let textures = [textureImage]
         
         let pullAnimation = SKAction.animate(with: textures, timePerFrame: 0.1)
-        var angle: CGFloat = 0
         
-        let rotateAction = SKAction.rotate(toAngle: angle, duration: 0.2, shortestUnitArc: true)
+        let rotateAction = SKAction.rotate(toAngle: 0, duration: 0.2, shortestUnitArc: true)
         run(SKAction.group([pullAnimation, rotateAction]), withKey: gravityState.animationKey)
     }
     
     fileprivate func runIdleAnimation() {
-        physicsBody?.contactTestBitMask = PhysicsDefinitions.ContactTest.noGround
         removeAction(forKey: gravityState.animationKey)
         let textureImage = SKTexture(imageNamed: Images.roseIdle)
         let textures = [textureImage]
@@ -98,7 +95,6 @@ class RoseNode: SKSpriteNode, GravityStateTracker {
     }
     
     fileprivate func runPullAnimation() {
-        physicsBody?.contactTestBitMask = PhysicsDefinitions.ContactTest.full
         removeAction(forKey: gravityState.animationKey)
         let textureImage = SKTexture(imageNamed: Images.rosePulled)
         let textures = [textureImage]

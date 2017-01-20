@@ -403,7 +403,7 @@ extension GameScene {
     }
     
     fileprivate func roseHitsGround(with contact: SKPhysicsContact) {
-        guard let rose = rose else { return }
+        guard let rose = rose, rose.gravityState == .falling else { return }
         rose.hardLanding()
     }
     
