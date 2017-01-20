@@ -8,6 +8,13 @@
 
 import SpriteKit
 
+fileprivate struct PhysicsDefinitions {
+    struct ContactTest {
+        static let full = PhysicsCategory.Ground | PhysicsCategory.Rock | PhysicsCategory.GravityProjectile
+        static let noGround = PhysicsCategory.Rock | PhysicsCategory.GravityProjectile
+    }
+}
+
 class RoseNode: SKSpriteNode, GravityStateTracker {
 
     var isGrounded = true
@@ -42,12 +49,23 @@ class RoseNode: SKSpriteNode, GravityStateTracker {
         physicsBody!.applyImpulse(jumpVector)
     }
     
+    func hardLanding() {
+        guard gravityState == .falling else { return }
+        gravityState = .landing
+        physicsBody?.velocity = CGVector.zero
+        
+        let landAction = SKAction.animate(with: [SKTexture(imageNamed: Images.roseHardLanding)], timePerFrame: 0.2)
+        let wait = SKAction.afterDelay(0.5, runBlock: runIdleAnimation)
+        run(SKAction.sequence([landAction, wait]))
+    }
+    
     fileprivate func animate(with state: GravityState) {
+        guard gravityState != .landing else { return }
         switch state {
         case .falling:
             runFallingAnimation()
-        case .ground:
-            runIdleAnimation()
+        case .ground: break
+//            runIdleAnimation()
         case .pull:
             runPullAnimation()
         default: return
@@ -55,15 +73,21 @@ class RoseNode: SKSpriteNode, GravityStateTracker {
     }
     
     fileprivate func runFallingAnimation() {
+        guard let body = physicsBody else { return }
+        body.contactTestBitMask = PhysicsDefinitions.ContactTest.full
         removeAction(forKey: gravityState.animationKey)
         let textureImage = SKTexture(imageNamed: Images.roseFalling)
         let textures = [textureImage]
         
         let pullAnimation = SKAction.animate(with: textures, timePerFrame: 0.1)
-        run(pullAnimation, withKey: gravityState.animationKey)
+        var angle: CGFloat = 0
+        
+        let rotateAction = SKAction.rotate(toAngle: angle, duration: 0.2, shortestUnitArc: true)
+        run(SKAction.group([pullAnimation, rotateAction]), withKey: gravityState.animationKey)
     }
     
     fileprivate func runIdleAnimation() {
+        physicsBody?.contactTestBitMask = PhysicsDefinitions.ContactTest.noGround
         removeAction(forKey: gravityState.animationKey)
         let textureImage = SKTexture(imageNamed: Images.roseIdle)
         let textures = [textureImage]
@@ -74,6 +98,7 @@ class RoseNode: SKSpriteNode, GravityStateTracker {
     }
     
     fileprivate func runPullAnimation() {
+        physicsBody?.contactTestBitMask = PhysicsDefinitions.ContactTest.full
         removeAction(forKey: gravityState.animationKey)
         let textureImage = SKTexture(imageNamed: Images.rosePulled)
         let textures = [textureImage]
@@ -86,7 +111,7 @@ class RoseNode: SKSpriteNode, GravityStateTracker {
         guard let body = physicsBody else { return }
         if body.velocity.dy < -20 {
             gravityState = .falling
-        } else if body.velocity.dy > 50 || body.velocity.dx > 20 || body.velocity.dx < -20 {
+        } else if body.velocity.dy > 50 || body.velocity.dx > 50 || body.velocity.dx < -50 {
             
             
             if body.velocity.dx > 0 {
@@ -122,13 +147,21 @@ extension RoseNode: GameLoopListener {
 extension RoseNode: LifecycleListener {
     func didMoveToScene() {
         xScale = 1.0
+        setPhysicsBody()
+    }
+}
+
+extension RoseNode {
+    fileprivate func setPhysicsBody() {
         let newSize = texture!.size()
         physicsBody = SKPhysicsBody(rectangleOf: newSize)
         physicsBody?.allowsRotation = false
         physicsBody?.categoryBitMask = PhysicsCategory.Hero
-        physicsBody?.contactTestBitMask = PhysicsCategory.Ground | PhysicsCategory.Rock | PhysicsCategory.GravityProjectile
+        physicsBody?.contactTestBitMask = PhysicsDefinitions.ContactTest.full
         physicsBody?.collisionBitMask = PhysicsCategory.Ground | PhysicsCategory.Rock | PhysicsCategory.Edge
         physicsBody?.fieldBitMask = PhysicsCategory.RadialGravity
-        
+        physicsBody?.restitution = 0.0
+        physicsBody?.density = 20.0
+        physicsBody?.friction = 1.0
     }
 }
