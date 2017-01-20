@@ -43,7 +43,7 @@ class WeaponSelector: SKNode {
         node.isUserInteractionEnabled = true
         node.arrowButton = arrow
         node.gravityButton = gravity
-        node.selectedArrow()
+        node.selectedGravity()
         
         return node
     }
