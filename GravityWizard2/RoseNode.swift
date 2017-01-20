@@ -154,7 +154,7 @@ extension RoseNode {
         physicsBody?.collisionBitMask = PhysicsCategory.Ground | PhysicsCategory.Rock | PhysicsCategory.Edge
         physicsBody?.fieldBitMask = PhysicsCategory.RadialGravity
         physicsBody?.restitution = 0.0
-        physicsBody?.density = 20.0
+        physicsBody?.density = 1.0
         physicsBody?.friction = 1.0
     }
 }

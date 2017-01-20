@@ -9,7 +9,7 @@
 import SpriteKit
 
 struct Interval {
-    static let gravityProjectileLife = 0.5
+    static let gravityProjectileLife = 0.8
 }
 
 enum ProjectileType {

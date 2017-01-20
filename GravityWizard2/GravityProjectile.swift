@@ -41,6 +41,7 @@ class GravityProjectile: SKNode {
         node.gravityFieldNode = gravity
         node.gravityFieldNode?.categoryBitMask = PhysicsCategory.RadialGravity
         node.gravityFieldNode?.isEnabled = false
+        node.gravityFieldNode?.strength = 20
         
         node.physicsBody = SKPhysicsBody(circleOfRadius: 10)
         node.physicsBody?.affectedByGravity = true
