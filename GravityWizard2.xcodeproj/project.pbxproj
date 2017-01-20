@@ -20,6 +20,8 @@
 		A55250C81E122DC200EED486 /* Definitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55250C71E122DC200EED486 /* Definitions.swift */; };
 		A55250CA1E122E2600EED486 /* ParticleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55250C91E122E2600EED486 /* ParticleFactory.swift */; };
 		A55250CC1E148BC100EED486 /* Level2.sks in Resources */ = {isa = PBXBuildFile; fileRef = A55250CB1E148BC100EED486 /* Level2.sks */; };
+		A55D63711E324947007145C3 /* Platform2.sks in Resources */ = {isa = PBXBuildFile; fileRef = A55D63701E324947007145C3 /* Platform2.sks */; };
+		A55D63741E32496D007145C3 /* PlatformNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55D63731E32496D007145C3 /* PlatformNode.swift */; };
 		A58149181E2BDA6C0091552E /* Rose.sks in Resources */ = {isa = PBXBuildFile; fileRef = A58149171E2BDA6C0091552E /* Rose.sks */; };
 		A581491A1E2BDAD30091552E /* RoseNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58149191E2BDAD30091552E /* RoseNode.swift */; };
 		A5868FA41E0A042A00935E3B /* Wizard.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5868FA31E0A042A00935E3B /* Wizard.sks */; };
@@ -82,6 +84,8 @@
 		A55250C71E122DC200EED486 /* Definitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Definitions.swift; sourceTree = "<group>"; };
 		A55250C91E122E2600EED486 /* ParticleFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticleFactory.swift; sourceTree = "<group>"; };
 		A55250CB1E148BC100EED486 /* Level2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = Level2.sks; path = Scenes/Level2.sks; sourceTree = "<group>"; };
+		A55D63701E324947007145C3 /* Platform2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Platform2.sks; sourceTree = "<group>"; };
+		A55D63731E32496D007145C3 /* PlatformNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformNode.swift; sourceTree = "<group>"; };
 		A58149171E2BDA6C0091552E /* Rose.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Rose.sks; sourceTree = "<group>"; };
 		A58149191E2BDAD30091552E /* RoseNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoseNode.swift; sourceTree = "<group>"; };
 		A5868FA31E0A042A00935E3B /* Wizard.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = Wizard.sks; path = Scenes/Wizard.sks; sourceTree = "<group>"; };
@@ -198,6 +202,7 @@
 				A59FB6D31E0AD9D700D1C915 /* BloodNode.swift */,
 				A518235D1E0E109400DDE33A /* RockNode.swift */,
 				A51823611E10435D00DDE33A /* BreakableRocksNode.swift */,
+				A55D63731E32496D007145C3 /* PlatformNode.swift */,
 			);
 			name = Environment;
 			sourceTree = "<group>";
@@ -250,6 +255,7 @@
 				A59FB6D11E0AD93D00D1C915 /* Blood.sks */,
 				A518235F1E103D6800DDE33A /* BreakableRocks.sks */,
 				A5C4BBC41E18101C002B0B18 /* GravityProjectile.sks */,
+				A55D63701E324947007145C3 /* Platform2.sks */,
 			);
 			name = World;
 			sourceTree = "<group>";
@@ -417,6 +423,7 @@
 				A59FB6D21E0AD93D00D1C915 /* Blood.sks in Resources */,
 				A5868FA41E0A042A00935E3B /* Wizard.sks in Resources */,
 				A51823601E103D6800DDE33A /* BreakableRocks.sks in Resources */,
+				A55D63711E324947007145C3 /* Platform2.sks in Resources */,
 				A58149181E2BDA6C0091552E /* Rose.sks in Resources */,
 				A5C4BBB61E14A1AD002B0B18 /* Viking.sks in Resources */,
 				A5E3B73F1E27C030004F32A3 /* WeaponSelector.sks in Resources */,
@@ -452,6 +459,7 @@
 				A59FB6981E0A088A00D1C915 /* CGVector+Extensions.swift in Sources */,
 				A59FB69E1E0A088A00D1C915 /* SKTAudio.swift in Sources */,
 				A513A5E71E2152BA003CD2C1 /* Level2.swift in Sources */,
+				A55D63741E32496D007145C3 /* PlatformNode.swift in Sources */,
 				A59FB6961E0A088A00D1C915 /* CGFloat+Extensions.swift in Sources */,
 				A518235E1E0E109400DDE33A /* RockNode.swift in Sources */,
 				A59FB6AA1E0A13FA00D1C915 /* GroundNode.swift in Sources */,

@@ -64,8 +64,6 @@ class RoseNode: SKSpriteNode, GravityStateTracker {
         switch state {
         case .falling:
             runFallingAnimation()
-        case .ground: break
-//            runIdleAnimation()
         case .pull:
             runPullAnimation()
         default: return
@@ -73,7 +71,6 @@ class RoseNode: SKSpriteNode, GravityStateTracker {
     }
     
     fileprivate func runFallingAnimation() {
-        guard let body = physicsBody else { return }
         removeAction(forKey: gravityState.animationKey)
         let textureImage = SKTexture(imageNamed: Images.roseFalling)
         let textures = [textureImage]
