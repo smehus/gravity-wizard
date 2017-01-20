@@ -15,6 +15,7 @@ struct Interval {
 enum ProjectileType {
     case arrow
     case gravity
+    case walk
 }
 
 enum GravityState {

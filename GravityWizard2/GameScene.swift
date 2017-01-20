@@ -170,6 +170,7 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
             launchNormalizedArrowProjectile(with: initialPoint, endPoint: endPoint, velocityMultiply: velocity)
         case .gravity:
             launchNormalizedGravityProjectile(with: initialPoint, endPoint: endPoint, velocityMultiply: velocity)
+        default: return
         }
     }
 }
@@ -286,11 +287,7 @@ extension GameScene {
 }
 
 extension GameScene {
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        guard let touch = touches.first else { return }
-        let touchPoint = touch.location(in: self)
-        
+    fileprivate func prepareProjectile(withTouch touchPoint: CGPoint) {
         if let projectile = currentProjectile as? GravityProjectile {
             if projectile.isInFlight {
                 projectile.createGravityField()
@@ -302,6 +299,21 @@ extension GameScene {
         } else if trackingProjectileVelocity == false {
             trackingProjectileVelocity = true
             initialTouchPoint = touchPoint
+        }
+    }
+}
+
+extension GameScene {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        guard let touch = touches.first else { return }
+        let touchPoint = touch.location(in: self)
+        
+        switch currentPojectileType {
+        case .arrow, .gravity:
+            prepareProjectile(withTouch: touchPoint)
+        case .walk:
+            break
         }
     }
     
