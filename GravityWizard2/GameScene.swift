@@ -336,8 +336,7 @@ extension GameScene {
             prepareProjectile(withTouch: touchPoint)
         case .walk:
             guard let rose = rose else { return }
-            rose.walk(towardsPoint: touchPoint)
-            rose.face(towards: direction(for: touchPoint, with: rose))
+            rose.walk(towards: direction(for: touchPoint, with: rose))
         }
     }
     
