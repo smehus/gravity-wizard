@@ -38,7 +38,7 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
     var trackingProjectileVelocity = false
     var projectileVelocity: CGFloat = 0
     var currentProjectile: SKNode?
-    var currentPojectileType: ActionType = .gravity
+    var currentActionType: ActionType = .gravity
     
     /// Statics
     var particleFactory = ParticleFactory.sharedFactory
@@ -97,9 +97,9 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
     
     fileprivate func setupWeaponSelector() {
         guard let camera = camera, let selector = WeaponSelector.generateWeaponSelector() else { return }
-        var calculatedHeight = size.height / 2
+        let calculatedHeight = size.height / 2
 //        calculatedHeight -= selector.halfHeight
-        var calculatedWidth = size.width / 2
+        let calculatedWidth = size.width / 2
 //        calculatedWidth -= selector.halfWidth
         let startingCorner = CGPoint(x: -calculatedWidth, y: calculatedHeight)
         
@@ -301,6 +301,23 @@ extension GameScene {
             initialTouchPoint = touchPoint
         }
     }
+    
+    fileprivate func updateProjectile(withTouch touchPoint: CGPoint) {
+        if let initial = initialTouchPoint, trackingProjectileVelocity {
+            let diff = initial - touchPoint
+            let vel = diff.length() * 2
+            projectileVelocity = vel
+        }
+    }
+    
+    fileprivate func executeProjectile(withTouch touchPoint: CGPoint) {
+        if trackingProjectileVelocity {
+            guard let initial = initialTouchPoint else { return }
+            launchProjectile(at: initial, endPoint: touchPoint, velocity: projectileVelocity, and: currentActionType)
+            trackingProjectileVelocity = false
+            projectileVelocity = 0
+        }
+    }
 }
 
 extension GameScene {
@@ -309,7 +326,7 @@ extension GameScene {
         guard let touch = touches.first else { return }
         let touchPoint = touch.location(in: self)
         
-        switch currentPojectileType {
+        switch currentActionType {
         case .arrow, .gravity:
             prepareProjectile(withTouch: touchPoint)
         case .walk:
@@ -322,12 +339,12 @@ extension GameScene {
         guard let touch = touches.first else { return }
         let touchPoint = touch.location(in: self)
         
-        if let initial = initialTouchPoint, trackingProjectileVelocity {
-            let diff = initial - touchPoint
-            let vel = diff.length() * 2
-            projectileVelocity = vel
+        switch currentActionType {
+        case .arrow, .gravity:
+            updateProjectile(withTouch: touchPoint)
+        case .walk: break
         }
-        
+    
         if let wizard = rose, let initial = initialTouchPoint {
             wizard.face(towards: direction(forStartingPoint: initial, currentPoint: touchPoint))
         }
@@ -335,15 +352,13 @@ extension GameScene {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
-        
         guard let touch = touches.first else { return }
-        let touchLocation = touch.location(in: self)
+        let touchPoint = touch.location(in: self)
         
-        if trackingProjectileVelocity {
-            guard let initial = initialTouchPoint else { return }
-            launchProjectile(at: initial, endPoint: touchLocation, velocity: projectileVelocity, and: currentPojectileType)
-            trackingProjectileVelocity = false
-            projectileVelocity = 0
+        switch currentActionType {
+        case .gravity, .arrow:
+            executeProjectile(withTouch: touchPoint)
+        case .walk: break
         }
     }
 }

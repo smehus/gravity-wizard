@@ -89,7 +89,7 @@ class WeaponSelector: SKNode {
             return
         }
         
-        scene.currentPojectileType = action
+        scene.currentActionType = action
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
