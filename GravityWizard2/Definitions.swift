@@ -12,7 +12,7 @@ struct Interval {
     static let gravityProjectileLife = 0.8
 }
 
-enum ProjectileType {
+enum ActionType {
     case arrow
     case gravity
     case walk
@@ -68,6 +68,11 @@ struct Images {
     static let roseIdle = "rose-full-small"
     static let roseFalling = "rose-falling"
     static let roseHardLanding = "rose-hard-land"
+    static let walkingIcon = "walking-icon"
+    
+    struct Literals {
+        static let walkingIcon = #imageLiteral(resourceName: "walking-icon")
+    }
 }
 
 struct Actions {

@@ -38,7 +38,7 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
     var trackingProjectileVelocity = false
     var projectileVelocity: CGFloat = 0
     var currentProjectile: SKNode?
-    var currentPojectileType: ProjectileType = .gravity
+    var currentPojectileType: ActionType = .gravity
     
     /// Statics
     var particleFactory = ParticleFactory.sharedFactory
@@ -98,9 +98,9 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
     fileprivate func setupWeaponSelector() {
         guard let camera = camera, let selector = WeaponSelector.generateWeaponSelector() else { return }
         var calculatedHeight = size.height / 2
-        calculatedHeight -= selector.halfHeight
+//        calculatedHeight -= selector.halfHeight
         var calculatedWidth = size.width / 2
-        calculatedWidth -= selector.halfWidth
+//        calculatedWidth -= selector.halfWidth
         let startingCorner = CGPoint(x: -calculatedWidth, y: calculatedHeight)
         
         selector.position = convert(startingCorner, from: camera)
@@ -164,7 +164,7 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
     }
     
     // Point is the touches ended point
-    func launchProjectile(at initialPoint: CGPoint, endPoint: CGPoint, velocity: CGFloat, and type: ProjectileType) {
+    func launchProjectile(at initialPoint: CGPoint, endPoint: CGPoint, velocity: CGFloat, and type: ActionType) {
         switch type {
         case .arrow:
             launchNormalizedArrowProjectile(with: initialPoint, endPoint: endPoint, velocityMultiply: velocity)

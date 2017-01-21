@@ -12,10 +12,14 @@ class WeaponSelector: SKNode {
     
     fileprivate var arrowButton: SKSpriteNode?
     fileprivate var gravityButton: SKSpriteNode?
+    fileprivate var walkingButton: SKSpriteNode?
 
     let fadeOff = SKAction.fadeAlpha(to: 0.5, duration: 0.1)
     let fadeOn = SKAction.fadeAlpha(to: 1.0, duration: 0.1)
     let bounce = SKAction.scaleX(by: 1.2, y: 1.2, duration: 0.1)
+    
+    /// Constants
+    fileprivate let buttonWidth: CGFloat = 200
     
     var halfWidth: CGFloat {
         guard let arrow = arrowButton, let gravity = gravityButton else { return 100 }
@@ -34,8 +38,9 @@ class WeaponSelector: SKNode {
             let file = SKScene(fileNamed: "WeaponSelector"),
             let node = file.childNode(withName: "container") as? WeaponSelector,
             let arrow = file.childNode(withName: "//arrow") as? SKSpriteNode,
-            let gravity = file.childNode(withName: "//gravity") as? SKSpriteNode
-            else {
+            let gravity = file.childNode(withName: "//gravity") as? SKSpriteNode,
+            let walking = file.childNode(withName: "//walking") as? SKSpriteNode
+        else {
                 assertionFailure("Failed to load button sprites")
                 return nil
         }
@@ -43,6 +48,7 @@ class WeaponSelector: SKNode {
         node.isUserInteractionEnabled = true
         node.arrowButton = arrow
         node.gravityButton = gravity
+        node.walkingButton = walking
         node.selectedGravity()
         
         return node
@@ -59,22 +65,31 @@ class WeaponSelector: SKNode {
     
     fileprivate func selectedArrow() {
         gravityButton?.run(turnOff)
+        walkingButton?.run(turnOff)
         arrowButton?.run(turnOn)
-        selected(projectile: .arrow)
+        selected(action: .arrow)
     }
     
     fileprivate func selectedGravity() {
         arrowButton?.run(turnOff)
+        walkingButton?.run(turnOff)
         gravityButton?.run(turnOn)
-        selected(projectile: .gravity)
+        selected(action: .gravity)
     }
     
-    fileprivate func selected(projectile: ProjectileType) {
+    fileprivate func selectedWalking() {
+        arrowButton?.run(turnOff)
+        gravityButton?.run(turnOff)
+        walkingButton?.run(turnOn)
+        selected(action: .walk)
+    }
+    
+    fileprivate func selected(action: ActionType) {
         guard let scene = scene as? GameScene else {
             return
         }
         
-        scene.currentPojectileType = projectile
+        scene.currentPojectileType = action
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -82,7 +97,14 @@ class WeaponSelector: SKNode {
         
         guard let touch = touches.first else { return }
         let touchPoint = touch.location(in: self)
-        touchPoint.x < 0 ? selectedArrow() : selectedGravity()
+
+        if touchPoint.x < buttonWidth {
+            selectedArrow()
+        } else if touchPoint.x > buttonWidth, touchPoint.x < buttonWidth*2 {
+            selectedGravity()
+        } else {
+            selectedWalking()
+        }
     }
 }
 
