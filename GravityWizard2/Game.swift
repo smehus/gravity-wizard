@@ -81,11 +81,11 @@ extension Game where Self: SKScene {
         let nodePosition = convert(node.position, from: node.parent!)
         
         if nodePosition.x > point.x {
-            return .right
+            return .left
         }
         
         if nodePosition.x < point.x {
-            return .left
+            return .right
         }
         
         return .right

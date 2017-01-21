@@ -57,6 +57,16 @@ enum Direction {
     case right
     case up
     case down
+    
+    var walkingXVector: CGFloat {
+        switch self {
+        case .left:
+            return -70
+        case .right:
+            return 70
+        default: return 0
+        }
+    }
 }
 
 struct Images {

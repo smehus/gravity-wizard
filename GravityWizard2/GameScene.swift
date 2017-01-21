@@ -308,6 +308,11 @@ extension GameScene {
             let vel = diff.length() * 2
             projectileVelocity = vel
         }
+        
+        
+        if let wizard = rose, let initial = initialTouchPoint {
+            wizard.face(towards: direction(forStartingPoint: initial, currentPoint: touchPoint))
+        }
     }
     
     fileprivate func executeProjectile(withTouch touchPoint: CGPoint) {
@@ -330,7 +335,9 @@ extension GameScene {
         case .arrow, .gravity:
             prepareProjectile(withTouch: touchPoint)
         case .walk:
-            break
+            guard let rose = rose else { return }
+            rose.walk(towardsPoint: touchPoint)
+            rose.face(towards: direction(for: touchPoint, with: rose))
         }
     }
     
@@ -344,10 +351,6 @@ extension GameScene {
             updateProjectile(withTouch: touchPoint)
         case .walk: break
         }
-    
-        if let wizard = rose, let initial = initialTouchPoint {
-            wizard.face(towards: direction(forStartingPoint: initial, currentPoint: touchPoint))
-        }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -358,7 +361,9 @@ extension GameScene {
         switch currentActionType {
         case .gravity, .arrow:
             executeProjectile(withTouch: touchPoint)
-        case .walk: break
+        case .walk:
+            guard let rose = rose else { return }
+            rose.stop()
         }
     }
 }

@@ -13,6 +13,10 @@ fileprivate struct PhysicsDefinitions {
         static let full = PhysicsCategory.Ground | PhysicsCategory.Rock | PhysicsCategory.GravityProjectile
         static let noGround = PhysicsCategory.Rock | PhysicsCategory.GravityProjectile
     }
+    
+    struct ActionKeys {
+        static let walkAction = "WalkAction"
+    }
 }
 
 class RoseNode: SKSpriteNode, GravityStateTracker {
@@ -57,6 +61,23 @@ class RoseNode: SKSpriteNode, GravityStateTracker {
         let landAction = SKAction.animate(with: [SKTexture(imageNamed: Images.roseHardLanding)], timePerFrame: 0.2)
         let wait = SKAction.afterDelay(0.5, runBlock: runIdleAnimation)
         run(SKAction.sequence([landAction, wait]))
+    }
+    
+    func walk(towardsPoint point: CGPoint) {
+        let localPoint = convert(point, to: self)
+        var direction: Direction
+        if localPoint.x < position.x {
+            direction = .left
+        } else {
+            direction = .right
+        }
+        
+        let walkAction = SKAction.moveBy(x: direction.walkingXVector, y: 0, duration: 0.2)
+        run(SKAction.repeatForever(walkAction), withKey: PhysicsDefinitions.ActionKeys.walkAction)
+    }
+    
+    func stop() {
+        removeAction(forKey: PhysicsDefinitions.ActionKeys.walkAction)
     }
     
     fileprivate func animate(with state: GravityState) {
