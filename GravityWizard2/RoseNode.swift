@@ -65,8 +65,8 @@ class RoseNode: SKSpriteNode, GravityStateTracker {
     
     func walk(towards direction: Direction) {
         face(towards: direction)
-        let walkAction = SKAction.moveBy(x: direction.walkingXVector, y: 0, duration: 0.2)
-        run(SKAction.repeatForever(walkAction), withKey: PhysicsDefinitions.ActionKeys.walkAction)
+        let walkAction = SKAction.repeatForever(SKAction.moveBy(x: direction.walkingXVector, y: 0, duration: 0.2))
+        run(SKAction.group([walkAction,  walkingAnimation()]), withKey: PhysicsDefinitions.ActionKeys.walkAction)
     }
     
     func stop() {
@@ -82,6 +82,15 @@ class RoseNode: SKSpriteNode, GravityStateTracker {
             runPullAnimation()
         default: return
         }
+    }
+    
+    fileprivate func walkingAnimation() -> SKAction {
+        var textures = [SKTexture]()
+        for _ in 0...1 {
+            textures.append(SKTexture(imageNamed: ""))
+        }
+        
+        return SKAction.animate(with: textures, timePerFrame: 0.2)
     }
     
     fileprivate func runFallingAnimation() {
