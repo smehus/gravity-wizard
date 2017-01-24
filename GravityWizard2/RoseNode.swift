@@ -87,10 +87,12 @@ class RoseNode: SKSpriteNode, GravityStateTracker {
     
     fileprivate func walkingAnimation() -> SKAction {
         var textures = [SKTexture]()
-        for i in 1...4 {
-            textures.append(SKTexture(imageNamed: "rose-walking-\(i)"))
-        }
-        
+//        for i in 1...4 {
+//            textures.append(SKTexture(imageNamed: "rose-walking-\(i)"))
+//        }
+//
+        textures.append(SKTexture(image: #imageLiteral(resourceName: "rose-walking-1")))
+        textures.append(SKTexture(image: #imageLiteral(resourceName: "rose-walking-3")))
         return SKAction.repeatForever(SKAction.animate(with: textures, timePerFrame: 0.2, resize: false, restore: true))
     }
     
