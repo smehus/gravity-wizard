@@ -75,7 +75,7 @@ struct Images {
     static let arrowBig = "arrow_big"
     static let spark = "spark"
     static let rosePulled = "rose-pulled"
-    static let roseIdle = "rose-full-small"
+    static let roseIdle = "rose-idle"
     static let roseFalling = "rose-falling"
     static let roseHardLanding = "rose-hard-land"
     static let walkingIcon = "walking-icon"

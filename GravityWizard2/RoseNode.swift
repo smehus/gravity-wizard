@@ -87,12 +87,10 @@ class RoseNode: SKSpriteNode, GravityStateTracker {
     
     fileprivate func walkingAnimation() -> SKAction {
         var textures = [SKTexture]()
-//        for i in 1...4 {
-//            textures.append(SKTexture(imageNamed: "rose-walking-\(i)"))
-//        }
-//
-        textures.append(SKTexture(image: #imageLiteral(resourceName: "rose-walking-1")))
-        textures.append(SKTexture(image: #imageLiteral(resourceName: "rose-walking-3")))
+        for i in 0...5 {
+            textures.append(SKTexture(imageNamed: "rose-walking-\(i)"))
+        }
+
         return SKAction.repeatForever(SKAction.animate(with: textures, timePerFrame: 0.2, resize: false, restore: true))
     }
     
@@ -172,8 +170,9 @@ extension RoseNode: LifecycleListener {
 
 extension RoseNode {
     fileprivate func setPhysicsBody() {
-        let newSize = texture!.size()
-        physicsBody = SKPhysicsBody(rectangleOf: newSize)
+        let image = #imageLiteral(resourceName: "rose-physics-texture")
+        let newtext = SKTexture(image: image)
+        physicsBody = SKPhysicsBody(texture: newtext, size: newtext.size())
         physicsBody?.allowsRotation = false
         physicsBody?.categoryBitMask = PhysicsCategory.Hero
         physicsBody?.contactTestBitMask = PhysicsDefinitions.ContactTest.full
