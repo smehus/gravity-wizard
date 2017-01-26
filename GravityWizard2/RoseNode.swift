@@ -65,7 +65,7 @@ class RoseNode: SKSpriteNode, GravityStateTracker {
     
     func walk(towards direction: Direction) {
         face(towards: direction)
-        let walkAction = SKAction.repeatForever(SKAction.moveBy(x: direction.walkingXVector, y: 0, duration: 0.2))
+        let walkAction = SKAction.repeatForever(SKAction.moveBy(x: direction.walkingXVector, y: 0, duration: 0.1))
         run(SKAction.group([walkAction,  walkingAnimation()]), withKey: PhysicsDefinitions.ActionKeys.walkAction)
     }
     

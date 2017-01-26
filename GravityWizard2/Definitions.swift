@@ -61,9 +61,9 @@ enum Direction {
     var walkingXVector: CGFloat {
         switch self {
         case .left:
-            return -70
+            return -60
         case .right:
-            return 70
+            return 60
         default: return 0
         }
     }
