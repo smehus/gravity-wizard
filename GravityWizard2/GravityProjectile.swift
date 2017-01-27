@@ -61,7 +61,9 @@ extension GravityProjectile: InFlightTrackable {
     }
     
     func createGravityField() {
-        physicsBody?.isDynamic = false
+        guard let body = physicsBody else { assertionFailure(); return }
+        body.isDynamic = false
+        body.mass = body.mass / 2
         gravityFieldNode?.isEnabled = true
         isInFlight = false
         let remove = SKAction.removeFromParent()

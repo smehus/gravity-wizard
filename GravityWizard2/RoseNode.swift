@@ -8,21 +8,66 @@
 
 import SpriteKit
 
-fileprivate struct PhysicsDefinitions {
-    struct ContactTest {
-        static let full = PhysicsCategory.Ground | PhysicsCategory.Rock | PhysicsCategory.GravityProjectile
-        static let noGround = PhysicsCategory.Rock | PhysicsCategory.GravityProjectile
+fileprivate struct Definitions {
+    struct Physics {
+        struct ContactTest {
+            static let full = PhysicsCategory.Ground | PhysicsCategory.Rock | PhysicsCategory.GravityProjectile
+            static let noGround = PhysicsCategory.Rock | PhysicsCategory.GravityProjectile
+        }
     }
-    
+
     struct ActionKeys {
+        static let idleAction = "IdleAction"
         static let walkAction = "WalkAction"
+        static let pullAction = "PullAction"
+        static let fallAction = "FallAction"
+        static let hardLandAction = "HardLandAction"
     }
 }
 
-class RoseNode: SKSpriteNode, GravityStateTracker {
+fileprivate enum Texture {
+    case hardLand
+    case pull
+    case idle
+    case falling
+    case walk
+    
+    var animationKey: String {
+        switch self {
+        case .hardLand: return Definitions.ActionKeys.hardLandAction
+        case .pull: return Definitions.ActionKeys.pullAction
+        case .idle: return Definitions.ActionKeys.idleAction
+        case .falling: return Definitions.ActionKeys.fallAction
+        case .walk: return Definitions.ActionKeys.walkAction
+        }
+    }
+    
+    func texture() -> [SKTexture] {
+        switch self {
+        case .hardLand:
+            return [SKTexture(image: #imageLiteral(resourceName: "rose-hard-land"))]
+        case .pull:
+            return [SKTexture(image: #imageLiteral(resourceName: "rose-pulled"))]
+        case .idle:
+            return [SKTexture(image: #imageLiteral(resourceName: "rose-idle"))]
+        case .falling:
+            return [SKTexture(image: #imageLiteral(resourceName: "rose-falling"))]
+        case .walk:
+            var textures = [SKTexture]()
+            for i in 0...5 {
+                textures.append(SKTexture(imageNamed: "rose-walking-\(i)"))
+            }
+            
+            return textures
+        }
+    }
+}
 
+final class RoseNode: SKSpriteNode, GravityStateTracker {
+    
     var isGrounded = true
     var previousVelocity: CGVector?
+    fileprivate var lastAssignedTexture: Texture?
     
     var gravityState: GravityState = .ground {
         didSet {
@@ -66,11 +111,11 @@ class RoseNode: SKSpriteNode, GravityStateTracker {
     func walk(towards direction: Direction) {
         face(towards: direction)
         let walkAction = SKAction.repeatForever(SKAction.moveBy(x: direction.walkingXVector, y: 0, duration: 0.1))
-        run(SKAction.group([walkAction,  walkingAnimation()]), withKey: PhysicsDefinitions.ActionKeys.walkAction)
+        run(SKAction.group([walkAction,  walkingAnimation()]), withKey: Definitions.ActionKeys.walkAction)
     }
     
     func stop() {
-        removeAction(forKey: PhysicsDefinitions.ActionKeys.walkAction)
+        removeAction(forKey: Definitions.ActionKeys.walkAction)
         
     }
     
@@ -85,43 +130,34 @@ class RoseNode: SKSpriteNode, GravityStateTracker {
         }
     }
     
-    fileprivate func walkingAnimation() -> SKAction {
-        var textures = [SKTexture]()
-        for i in 0...5 {
-            textures.append(SKTexture(imageNamed: "rose-walking-\(i)"))
+    fileprivate func animationTextures(for texture: Texture) -> [SKTexture] {
+        if let lastTexture = lastAssignedTexture {
+            removeAction(forKey: lastTexture.animationKey)
         }
-
-        return SKAction.repeatForever(SKAction.animate(with: textures, timePerFrame: 0.2, resize: false, restore: true))
+        
+        lastAssignedTexture = texture
+        return texture.texture()
+    }
+    
+    fileprivate func walkingAnimation() -> SKAction {
+        return SKAction.repeatForever(SKAction.animate(with: animationTextures(for: .walk), timePerFrame: 0.2, resize: false, restore: true))
     }
     
     fileprivate func runFallingAnimation() {
-        removeAction(forKey: gravityState.animationKey)
-        let textureImage = SKTexture(imageNamed: Images.roseFalling)
-        let textures = [textureImage]
-        
-        let pullAnimation = SKAction.animate(with: textures, timePerFrame: 0.1)
-        
+        let pullAnimation = SKAction.animate(with: animationTextures(for: .falling), timePerFrame: 0.1)
         let rotateAction = SKAction.rotate(toAngle: 0, duration: 0.2, shortestUnitArc: true)
-        run(SKAction.group([pullAnimation, rotateAction]), withKey: gravityState.animationKey)
+        run(SKAction.group([pullAnimation, rotateAction]), withKey: Texture.falling.animationKey)
     }
     
     fileprivate func runIdleAnimation() {
-        removeAction(forKey: gravityState.animationKey)
-        let textureImage = SKTexture(imageNamed: Images.roseIdle)
-        let textures = [textureImage]
-        
-        let pullAnimation = SKAction.animate(with: textures, timePerFrame: 0.1)
-        run(pullAnimation, withKey: gravityState.animationKey)
+        let pullAnimation = SKAction.animate(with: animationTextures(for: .idle), timePerFrame: 0.1)
+        run(pullAnimation, withKey: Texture.idle.animationKey)
 
     }
     
     fileprivate func runPullAnimation() {
-        removeAction(forKey: gravityState.animationKey)
-        let textureImage = SKTexture(imageNamed: Images.rosePulled)
-        let textures = [textureImage]
-
-        let pullAnimation = SKAction.animate(with: textures, timePerFrame: 0.1)
-        run(pullAnimation, withKey: gravityState.animationKey)
+        let pullAnimation = SKAction.animate(with: animationTextures(for: .pull), timePerFrame: 0.1)
+        run(pullAnimation, withKey: Texture.pull.animationKey)
     }
 
     fileprivate func calculateState(withDelta deltaTime: Double) {
@@ -146,6 +182,13 @@ class RoseNode: SKSpriteNode, GravityStateTracker {
             
             gravityState = .pull
         } else {
+            if let lastTexture = lastAssignedTexture {
+                if case .pull = lastTexture {
+                    removeAction(forKey: lastTexture.animationKey)
+                    runIdleAnimation()
+                }
+            }
+            
             gravityState = .ground
             zRotation = 0
         }
@@ -175,7 +218,7 @@ extension RoseNode {
         physicsBody = SKPhysicsBody(texture: newtext, size: newtext.size())
         physicsBody?.allowsRotation = false
         physicsBody?.categoryBitMask = PhysicsCategory.Hero
-        physicsBody?.contactTestBitMask = PhysicsDefinitions.ContactTest.full
+        physicsBody?.contactTestBitMask = Definitions.Physics.ContactTest.full
         physicsBody?.collisionBitMask = PhysicsCategory.Ground | PhysicsCategory.Rock | PhysicsCategory.Edge
         physicsBody?.fieldBitMask = PhysicsCategory.RadialGravity
         physicsBody?.restitution = 0.0
