@@ -204,7 +204,7 @@ extension GameScene {
         
         let arcPath = CGMutablePath()
         arcPath.move(to: startingPosition)
-        arcPath.addLines(between: [startingPosition, endPoint])
+        arcPath.addLines(between: [startingPosition, newVelocity])
         
         if let _ = trajectoryNode {
             trajectoryNode?.removeFromParent()
@@ -358,6 +358,7 @@ extension GameScene {
     }
     
     fileprivate func executeProjectile(withTouch touchPoint: CGPoint) {
+        trajectoryNode?.removeFromParent()
         if trackingProjectileVelocity {
             guard let initial = initialTouchPoint else { return }
             launchProjectile(at: initial, endPoint: touchPoint, velocity: projectileVelocity, and: currentActionType)
