@@ -46,6 +46,8 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
     /// Touches
     var initialTouchPoint: CGPoint?
     
+    var trajectoryNode: SKShapeNode?
+    
     override func didMove(to view: SKView) {
         physicsWorld.contactDelegate = self
         setupNodes()
@@ -192,6 +194,28 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
     }
 }
 
+extension GameScene {
+    fileprivate func updateTrajectoryIndicator(with initialPoint: CGPoint, endPoint: CGPoint, velocityMultiply: CGFloat) {
+        guard let rose = rose else { return }
+        let startingPosition = convert(rose.position, from: rose.parent!)
+        
+        let newPoint = initialPoint - endPoint
+        let newVelocity = newPoint.normalized() * velocityMultiply
+        
+        let arcPath = CGMutablePath()
+        arcPath.move(to: startingPosition)
+        arcPath.addLines(between: [startingPosition, endPoint])
+        
+        if let _ = trajectoryNode {
+            trajectoryNode?.removeFromParent()
+        }
+        
+        let newTrajectory = SKShapeNode(path: arcPath)
+        addChild(newTrajectory)
+        trajectoryNode = newTrajectory
+        
+    }
+}
 
 // MARK: - Launches projectiles relative to touch down point and touches end point. Calculate velocity based on those two points and then applied to projectile with new starting position.
 extension GameScene {
@@ -324,6 +348,7 @@ extension GameScene {
             let diff = initial - touchPoint
             let vel = diff.length() * 2
             projectileVelocity = vel
+            updateTrajectoryIndicator(with: initial, endPoint: touchPoint, velocityMultiply: vel)
         }
         
         
