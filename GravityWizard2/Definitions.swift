@@ -69,6 +69,15 @@ enum Direction {
     }
 }
 
+
+enum Scenes: String {
+    case rose = "Rose"
+    
+    func scene() -> SKScene? {
+        return SKScene(fileNamed: self.rawValue)
+    }
+}
+
 struct Images {
     static let radialGravity = "deathtex1"
     static let arrow = "arrow"
@@ -102,6 +111,7 @@ struct PhysicsCategory {
     static let VikingBodyPart:      UInt32 = 0x1 << 9
     static let GravityProjectile:   UInt32 = 0x1 << 10
     static let TreasureChest:       UInt32 = 0x1 << 11
+    static let HeroContactBorder:   UInt32 = 0x1 << 12
     
 }
 
@@ -141,7 +151,7 @@ extension UInt32 {
             return .arrowCollidesWithVikingBodyPart
         case PhysicsCategory.GravityProjectile | PhysicsCategory.Ground:
             return .gravityProjectileHitsGround
-        case PhysicsCategory.Hero | PhysicsCategory.GravityProjectile:
+        case PhysicsCategory.HeroContactBorder | PhysicsCategory.GravityProjectile:
             return .heroCollidesWithGravityField
         case PhysicsCategory.Hero | PhysicsCategory.TreasureChest:
             return .heroCollidesWithChest

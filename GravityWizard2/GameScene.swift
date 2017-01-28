@@ -50,6 +50,7 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
         physicsWorld.contactDelegate = self
         setupNodes()
         setupCamera()
+        setupHeroContactBorder()
         setupWeaponSelector()
     }
     
@@ -93,6 +94,22 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
         edgeConstraint.referenceNode = self
         
         camera.constraints = [playerConstraint, edgeConstraint]
+    }
+    
+    fileprivate func setupHeroContactBorder() {
+        guard let rose = rose else { assertionFailure("SETUP HERO CONTACT BORDER - MISSING ROSE"); return }
+        let borderNode = SKSpriteNode(color: .clear, size: CGSize(width: rose.size.height / 2, height: rose.size.height / 2))
+        let borderBody = SKPhysicsBody(circleOfRadius: borderNode.size.height / 2)
+    
+        let constraint = SKConstraint.distance(SKRange(constantValue: 0), to: rose)
+        borderNode.constraints = [constraint]
+        borderBody.categoryBitMask = PhysicsCategory.HeroContactBorder
+        borderBody.affectedByGravity = false
+        borderBody.contactTestBitMask = PhysicsCategory.GravityProjectile
+        borderBody.collisionBitMask = PhysicsCategory.None
+        borderBody.fieldBitMask = PhysicsCategory.None
+        borderNode.physicsBody = borderBody
+        addChild(borderNode)
     }
     
     fileprivate func setupWeaponSelector() {
