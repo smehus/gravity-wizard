@@ -203,8 +203,7 @@ extension GameScene {
         let newVelocity = newPoint.normalized() * velocityMultiply
         
         let arcPath = CGMutablePath()
-        arcPath.move(to: startingPosition)
-        arcPath.addLines(between: [startingPosition, newVelocity])
+        arcPath.addLines(between: [startingPosition, startingPosition + newVelocity])
         
         if let _ = trajectoryNode {
             trajectoryNode?.removeFromParent()
