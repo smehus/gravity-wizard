@@ -173,6 +173,10 @@ public func * (point: CGPoint, scalar: CGFloat) -> CGPoint {
   return CGPoint(x: point.x * scalar, y: point.y * scalar)
 }
 
+public func + (left: CGPoint, right: CGFloat) -> CGPoint {
+    return CGPoint(x: left.x + right, y: left.y + right)
+}
+
 /**
  * Multiplies the x and y fields of a CGPoint with the same scalar value.
  */

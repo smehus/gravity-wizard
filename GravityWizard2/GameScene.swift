@@ -200,10 +200,13 @@ extension GameScene {
         let startingPosition = convert(rose.position, from: rose.parent!)
         
         let newPoint = initialPoint - endPoint
-        let newVelocity = newPoint.normalized() * velocityMultiply
+        let newVelocity = newPoint.normalized() * velocityMultiply/3
         
         let arcPath = CGMutablePath()
-        arcPath.addLines(between: [startingPosition, startingPosition + newVelocity])
+        arcPath.move(to: startingPosition)
+//        arcPath.addLines(between: [startingPosition, startingPosition + newVelocity])
+        
+        arcPath.addCurve(to: startingPosition + newVelocity, control1: startingPosition + CGFloat(20), control2: startingPosition + CGFloat(40))
         
         if let _ = trajectoryNode {
             trajectoryNode?.removeFromParent()
