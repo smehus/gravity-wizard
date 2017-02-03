@@ -174,7 +174,11 @@ public func * (point: CGPoint, scalar: CGFloat) -> CGPoint {
 }
 
 public func + (left: CGPoint, right: CGFloat) -> CGPoint {
-    return CGPoint(x: left.x + right, y: left.y + right)
+    return CGPoint(x: left.x, y: left.y + right)
+}
+
+public func - (left: CGPoint, right: CGFloat) -> CGPoint {
+    return CGPoint(x: left.x - right, y: left.y - right)
 }
 
 /**

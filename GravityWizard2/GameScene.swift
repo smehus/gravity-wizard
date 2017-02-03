@@ -198,15 +198,15 @@ extension GameScene {
     fileprivate func updateTrajectoryIndicator(with initialPoint: CGPoint, endPoint: CGPoint, velocityMultiply: CGFloat) {
         guard let rose = rose else { return }
         let startingPosition = convert(rose.position, from: rose.parent!)
-        
         let newPoint = initialPoint - endPoint
         let newVelocity = newPoint.normalized() * velocityMultiply/3
+        let endPathPoint = startingPosition + newVelocity
         
         let arcPath = CGMutablePath()
         arcPath.move(to: startingPosition)
-//        arcPath.addLines(between: [startingPosition, startingPosition + newVelocity])
         
-        arcPath.addCurve(to: startingPosition + newVelocity, control1: startingPosition + CGFloat(20), control2: startingPosition + CGFloat(40))
+        let length = newPoint.length()
+        arcPath.addCurve(to: startingPosition + newVelocity, control1: startingPosition + length/4, control2: endPathPoint + length/4)
         
         if let _ = trajectoryNode {
             trajectoryNode?.removeFromParent()
