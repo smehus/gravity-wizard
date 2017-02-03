@@ -228,8 +228,8 @@ extension GameScene {
         guard let projectile = createGravityProjectile(at: startingPosition) else { return }
         projectile.move(toParent: self)
         
-        let newPoint = initialPoint - endPoint
-        let newVelocity = newPoint.normalized() * velocityMultiply
+        var newPoint = initialPoint - endPoint
+        let newVelocity = newPoint.offset(dx: 0, dy: newPoint.y * 2).normalized() * velocityMultiply
         projectile.launch(at: CGVector(point: newVelocity))
         
         currentProjectile = projectile
