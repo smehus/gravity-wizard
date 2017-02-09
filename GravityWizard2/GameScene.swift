@@ -229,7 +229,7 @@ extension GameScene {
         projectile.move(toParent: self)
         
         var newPoint = initialPoint - endPoint
-        let newVelocity = newPoint.offset(dx: 0, dy: newPoint.y * 2).normalized() * velocityMultiply
+        let newVelocity = newPoint.offset(dx: 0, dy: newPoint.y * 1.5).normalized() * velocityMultiply
         projectile.launch(at: CGVector(point: newVelocity))
         
         currentProjectile = projectile

@@ -22,6 +22,7 @@
 		A55250CC1E148BC100EED486 /* Level2.sks in Resources */ = {isa = PBXBuildFile; fileRef = A55250CB1E148BC100EED486 /* Level2.sks */; };
 		A55D63711E324947007145C3 /* Platform2.sks in Resources */ = {isa = PBXBuildFile; fileRef = A55D63701E324947007145C3 /* Platform2.sks */; };
 		A55D63741E32496D007145C3 /* PlatformNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55D63731E32496D007145C3 /* PlatformNode.swift */; };
+		A57A26B81E4CA9FA0071C4D9 /* MossyWall.sks in Resources */ = {isa = PBXBuildFile; fileRef = A57A26B71E4CA9FA0071C4D9 /* MossyWall.sks */; };
 		A58149181E2BDA6C0091552E /* Rose.sks in Resources */ = {isa = PBXBuildFile; fileRef = A58149171E2BDA6C0091552E /* Rose.sks */; };
 		A581491A1E2BDAD30091552E /* RoseNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58149191E2BDAD30091552E /* RoseNode.swift */; };
 		A5868FA41E0A042A00935E3B /* Wizard.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5868FA31E0A042A00935E3B /* Wizard.sks */; };
@@ -86,6 +87,7 @@
 		A55250CB1E148BC100EED486 /* Level2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = Level2.sks; path = Scenes/Level2.sks; sourceTree = "<group>"; };
 		A55D63701E324947007145C3 /* Platform2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Platform2.sks; sourceTree = "<group>"; };
 		A55D63731E32496D007145C3 /* PlatformNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformNode.swift; sourceTree = "<group>"; };
+		A57A26B71E4CA9FA0071C4D9 /* MossyWall.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MossyWall.sks; sourceTree = "<group>"; };
 		A58149171E2BDA6C0091552E /* Rose.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Rose.sks; sourceTree = "<group>"; };
 		A58149191E2BDAD30091552E /* RoseNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoseNode.swift; sourceTree = "<group>"; };
 		A5868FA31E0A042A00935E3B /* Wizard.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = Wizard.sks; path = Scenes/Wizard.sks; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 				A518235F1E103D6800DDE33A /* BreakableRocks.sks */,
 				A5C4BBC41E18101C002B0B18 /* GravityProjectile.sks */,
 				A55D63701E324947007145C3 /* Platform2.sks */,
+				A57A26B71E4CA9FA0071C4D9 /* MossyWall.sks */,
 			);
 			name = World;
 			sourceTree = "<group>";
@@ -423,6 +426,7 @@
 				A59FB6D21E0AD93D00D1C915 /* Blood.sks in Resources */,
 				A5868FA41E0A042A00935E3B /* Wizard.sks in Resources */,
 				A51823601E103D6800DDE33A /* BreakableRocks.sks in Resources */,
+				A57A26B81E4CA9FA0071C4D9 /* MossyWall.sks in Resources */,
 				A55D63711E324947007145C3 /* Platform2.sks in Resources */,
 				A58149181E2BDA6C0091552E /* Rose.sks in Resources */,
 				A5C4BBB61E14A1AD002B0B18 /* Viking.sks in Resources */,
