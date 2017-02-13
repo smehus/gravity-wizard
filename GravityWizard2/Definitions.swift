@@ -112,7 +112,7 @@ struct PhysicsCategory {
     static let BreakableFormation:  UInt32 = 0x1 << 8
     static let VikingBodyPart:      UInt32 = 0x1 << 9
     static let GravityProjectile:   UInt32 = 0x1 << 10
-    static let TreasureChest:       UInt32 = 0x1 << 11
+    static let LevelComplete:       UInt32 = 0x1 << 11
     static let HeroContactBorder:   UInt32 = 0x1 << 12
     
 }
@@ -155,7 +155,7 @@ extension UInt32 {
             return .gravityProjectileHitsGround
         case PhysicsCategory.HeroContactBorder | PhysicsCategory.GravityProjectile:
             return .heroCollidesWithGravityField
-        case PhysicsCategory.Hero | PhysicsCategory.TreasureChest:
+        case PhysicsCategory.Hero | PhysicsCategory.LevelComplete:
             return .heroCollidesWithChest
         default: return .none
         }

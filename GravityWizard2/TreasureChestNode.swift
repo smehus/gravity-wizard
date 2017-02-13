@@ -14,7 +14,7 @@ class TreasureChestNode: SKSpriteNode {
 
 extension TreasureChestNode: LifecycleListener {
     func didMoveToScene() {
-        physicsBody?.categoryBitMask = PhysicsCategory.TreasureChest
+        physicsBody?.categoryBitMask = PhysicsCategory.LevelComplete
         physicsBody?.contactTestBitMask = PhysicsCategory.Hero
         physicsBody?.collisionBitMask = PhysicsCategory.None
         physicsBody?.fieldBitMask = PhysicsCategory.None
