@@ -48,12 +48,19 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
     
     var trajectoryNode: SKShapeNode?
     
+    var cameraSize: CGSize? {
+        guard let camera = camera else { return nil }
+        let xValue = size.width * camera.xScale
+        let yValue = size.height * camera.yScale
+        return CGSize(width: xValue, height: yValue)
+    }
+    
     override func didMove(to view: SKView) {
         physicsWorld.contactDelegate = self
         setupNodes()
         setupCamera()
         setupHeroContactBorder()
-        setupWeaponSelector()
+        setupHUDElements()
     }
     
     func setupNodes() {
@@ -114,6 +121,11 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
         addChild(borderNode)
     }
     
+    fileprivate func setupHUDElements() {
+        setupWeaponSelector()
+        setupRewindButton()
+    }
+    
     fileprivate func setupWeaponSelector() {
         guard let camera = camera, let selector = WeaponSelector.generateWeaponSelector() else { return }
         let calculatedHeight = size.height / 2
@@ -125,6 +137,18 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
         selector.position = convert(startingCorner, from: camera)
         selector.move(toParent: camera)
         
+    }
+    
+    fileprivate func setupRewindButton() {
+        guard let camera = camera, let camSize = cameraSize else { return }
+        
+        let rewind = RewindSelector()
+        let xValue = (camSize.width / 2) - rewind.calculatedSize.width/2
+        let yValue = (camSize.height / 2) - rewind.calculatedSize.height/2
+        let newPoint = CGPoint(x: xValue, y: yValue)
+        rewind.position = convert(newPoint, to: camera)
+        print("\(rewind.calculatedSize)")
+        camera.addChild(rewind)
     }
     
     func createBloodExplosion(with sprite: SKSpriteNode) {

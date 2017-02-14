@@ -89,8 +89,10 @@ struct Images {
     static let roseHardLanding = "rose-hard-land"
     static let walkingIcon = "walking-icon"
     static let wallGround = "wall-ground"
+    static let rewindButton = "rewind-button"
     
     struct Literals {
+        static let rewindButton = #imageLiteral(resourceName: "rewind-button")
         static let walkingIcon = #imageLiteral(resourceName: "walking-icon")
         static let wallGround = #imageLiteral(resourceName: "wall-ground")
     }

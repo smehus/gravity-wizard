@@ -24,6 +24,7 @@
 		A55D63741E32496D007145C3 /* PlatformNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55D63731E32496D007145C3 /* PlatformNode.swift */; };
 		A57A26B81E4CA9FA0071C4D9 /* MossyWall.sks in Resources */ = {isa = PBXBuildFile; fileRef = A57A26B71E4CA9FA0071C4D9 /* MossyWall.sks */; };
 		A57D1E9E1E4F73AF00C41985 /* MossyWall.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57D1E9D1E4F73AF00C41985 /* MossyWall.swift */; };
+		A5808E681E5331CD007D3945 /* RewindSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5808E671E5331CD007D3945 /* RewindSelector.swift */; };
 		A58149181E2BDA6C0091552E /* Rose.sks in Resources */ = {isa = PBXBuildFile; fileRef = A58149171E2BDA6C0091552E /* Rose.sks */; };
 		A581491A1E2BDAD30091552E /* RoseNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58149191E2BDAD30091552E /* RoseNode.swift */; };
 		A5868FA41E0A042A00935E3B /* Wizard.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5868FA31E0A042A00935E3B /* Wizard.sks */; };
@@ -90,6 +91,7 @@
 		A55D63731E32496D007145C3 /* PlatformNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformNode.swift; sourceTree = "<group>"; };
 		A57A26B71E4CA9FA0071C4D9 /* MossyWall.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MossyWall.sks; sourceTree = "<group>"; };
 		A57D1E9D1E4F73AF00C41985 /* MossyWall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MossyWall.swift; sourceTree = "<group>"; };
+		A5808E671E5331CD007D3945 /* RewindSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewindSelector.swift; sourceTree = "<group>"; };
 		A58149171E2BDA6C0091552E /* Rose.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Rose.sks; sourceTree = "<group>"; };
 		A58149191E2BDAD30091552E /* RoseNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoseNode.swift; sourceTree = "<group>"; };
 		A5868FA31E0A042A00935E3B /* Wizard.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = Wizard.sks; path = Scenes/Wizard.sks; sourceTree = "<group>"; };
@@ -362,6 +364,7 @@
 			children = (
 				A513A5EF1E215A78003CD2C1 /* LevelCompleteLabel.swift */,
 				A5E3B7411E27C230004F32A3 /* WeaponSelector.swift */,
+				A5808E671E5331CD007D3945 /* RewindSelector.swift */,
 			);
 			name = HUD;
 			sourceTree = "<group>";
@@ -463,6 +466,7 @@
 				A59FB6A61E0A08DF00D1C915 /* GestureInteractive.swift in Sources */,
 				A513A5E91E21552F003CD2C1 /* TreasureChestNode.swift in Sources */,
 				A5899B061E2FA6290044971F /* GameLoopListener.swift in Sources */,
+				A5808E681E5331CD007D3945 /* RewindSelector.swift in Sources */,
 				A59FB6981E0A088A00D1C915 /* CGVector+Extensions.swift in Sources */,
 				A59FB69E1E0A088A00D1C915 /* SKTAudio.swift in Sources */,
 				A513A5E71E2152BA003CD2C1 /* Level2.swift in Sources */,
