@@ -11,7 +11,7 @@ import SpriteKit
 
 fileprivate struct Names {
     static let flatWall = "flat-wall"
-    static let baseWall = "base-well"
+    static let baseWall = "base-wall"
     static let complexWall = "complex-wall"
 }
 
