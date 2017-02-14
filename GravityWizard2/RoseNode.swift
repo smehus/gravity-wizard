@@ -67,6 +67,8 @@ final class RoseNode: SKSpriteNode, GravityStateTracker {
     
     var isGrounded = true
     var previousVelocity: CGVector?
+    var startingPosition: CGPoint?
+    
     fileprivate var lastAssignedTexture: Texture?
     
     var gravityState: GravityState = .ground {

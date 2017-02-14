@@ -9,6 +9,10 @@
 import Foundation
 import SpriteKit
 
+protocol HeroResetProtocol {
+    func resetPosition()
+}
+
 final class RewindSelector: SKSpriteNode {
 
     let Texture_Multiplier: CGFloat = 0.5
@@ -18,8 +22,8 @@ final class RewindSelector: SKSpriteNode {
         return texture.size() * Texture_Multiplier
     }
     
-    var parentGameScene: GameScene? {
-        return scene as? GameScene
+    var parentGameScene: HeroResetProtocol? {
+        return scene as? HeroResetProtocol
     }
     
     init() {
@@ -39,7 +43,8 @@ final class RewindSelector: SKSpriteNode {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
-        guard let touch = touches.first, let gameScene = parentGameScene else { return }
+        guard let _ = touches.first, let gameScene = parentGameScene else { return }
+        gameScene.resetPosition()
         
     }
 }

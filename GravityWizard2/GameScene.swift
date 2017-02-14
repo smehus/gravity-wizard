@@ -74,13 +74,18 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
         
         roseScene = SKScene(fileNamed: "Rose")
         rose = childNode(withName: "//rose") as? RoseNode
-        
+        setHeroStartingPosition()
         breakableRocks = childNode(withName: "//BreakableRocks") as? BreakableRocksNode
         light = childNode(withName: "FollowLight")
         
         if let node = BloodNode.generateBloodNode() {
             bloodNode = node
         }
+    }
+    
+    fileprivate func setHeroStartingPosition() {
+        guard let rose = rose else { return }
+        rose.startingPosition = rose.position
     }
     
     fileprivate func setupCamera() {
@@ -557,6 +562,14 @@ extension GameScene {
     
     fileprivate func wizardCollidesWithChest(with contact: SKPhysicsContact) {
         levelCompleted()
+    }
+}
+
+extension GameScene: HeroResetProtocol {
+    func resetPosition() {
+        guard let rose = rose, let pos = rose.startingPosition else { return }
+        let resetAction = SKAction.move(to: pos, duration: 0.5)
+        rose.run(resetAction)
     }
 }
 
