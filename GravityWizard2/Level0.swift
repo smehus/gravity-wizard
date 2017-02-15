@@ -15,9 +15,10 @@ class Level0: GameScene {
     }
     
     override func levelCompleted() {
-        guard let successLevel = LevelCompleteLabel.createLabel(), let scene = scene else { return }
-        successLevel.position = scene.zeroAnchoredCenter()
-        successLevel.move(toParent: scene)
+        guard let successLevel = LevelCompleteLabel.createLabel(), let camera = camera else { return }
+        successLevel.position = convert(successLevel.position, from: camera)
+        successLevel.scaleAsPoint = CGPoint(x: 2.0, y: 2.0)
+        successLevel.move(toParent: camera)
         
         let presentScene = SKAction.afterDelay(2.0) {
             guard let nextLevel = self.currentLevel.nextLevel()?.levelScene() else { return }
