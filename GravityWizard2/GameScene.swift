@@ -481,7 +481,7 @@ extension GameScene: SKPhysicsContactDelegate {
             gravityProjectileHitGround(with: contact)
         }
         
-        if collision.collisionCombination() == .heroCollidesWithChest {
+        if collision.collisionCombination() == .heroCollidesWithLevelComplete {
             wizardCollidesWithChest(with: contact)
         }
     }

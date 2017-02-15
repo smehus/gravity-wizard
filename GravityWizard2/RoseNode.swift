@@ -11,7 +11,7 @@ import SpriteKit
 fileprivate struct Definitions {
     struct Physics {
         struct ContactTest {
-            static let full = PhysicsCategory.Ground | PhysicsCategory.Rock | PhysicsCategory.GravityProjectile
+            static let full = PhysicsCategory.Ground | PhysicsCategory.Rock | PhysicsCategory.GravityProjectile | PhysicsCategory.LevelComplete
             static let noGround = PhysicsCategory.Rock | PhysicsCategory.GravityProjectile
         }
     }

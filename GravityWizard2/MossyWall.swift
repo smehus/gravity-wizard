@@ -49,6 +49,8 @@ final class MossyWall: SKSpriteNode {
     
     fileprivate func addPhysics(forLevelComplete node: SKSpriteNode) {
         node.physicsBody?.categoryBitMask = Physics.levelComplete
+        node.physicsBody?.collisionBitMask = PhysicsCategory.None
+        node.physicsBody?.contactTestBitMask = PhysicsCategory.Hero
     }
     
     fileprivate func addPhysics(forComplexWall node: SKSpriteNode) {

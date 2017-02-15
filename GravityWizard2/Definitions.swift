@@ -133,7 +133,7 @@ enum CollisionCombination {
     case arrowCollidesWithGround
     case arrowCollidesWithVikingBodyPart
     
-    case heroCollidesWithChest
+    case heroCollidesWithLevelComplete
     case none
 }
 extension UInt32 {
@@ -158,7 +158,7 @@ extension UInt32 {
         case PhysicsCategory.HeroContactBorder | PhysicsCategory.GravityProjectile:
             return .heroCollidesWithGravityField
         case PhysicsCategory.Hero | PhysicsCategory.LevelComplete:
-            return .heroCollidesWithChest
+            return .heroCollidesWithLevelComplete
         default: return .none
         }
     }
