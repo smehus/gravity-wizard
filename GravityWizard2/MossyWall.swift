@@ -13,6 +13,7 @@ fileprivate struct Names {
     static let flatWall = "flat-wall"
     static let baseWall = "base-wall"
     static let complexWall = "complex-wall"
+    static let levelComplete = "level-complete"
 }
 
 fileprivate struct Physics {
@@ -26,22 +27,28 @@ final class MossyWall: SKSpriteNode {
     fileprivate func setupNodes() {
         
         enumerateChildNodes(withName: Names.flatWall) { [weak self] node, stop in
-            guard let strongSelf = self else { return }
             guard let wall = node as? SKSpriteNode else { return }
-            strongSelf.addPhysics(forFlatWall: wall)
+            self?.addPhysics(forFlatWall: wall)
         }
 
         enumerateChildNodes(withName: Names.baseWall) { [weak self] node, stop in
-            guard let strongSelf = self else { return }
             guard let node = node as? SKSpriteNode else { return }
-            strongSelf.addPhysics(forComplexWall: node)
+            self?.addPhysics(forComplexWall: node)
         }
         
         enumerateChildNodes(withName: Names.complexWall) { [weak self] node, stop in
-            guard let strongSelf = self else { return }
             guard let node = node as? SKSpriteNode else { return }
-            strongSelf.addPhysics(forComplexWall: node)
+            self?.addPhysics(forComplexWall: node)
         }
+        
+        enumerateChildNodes(withName: Names.levelComplete) { [weak self] node, stop in
+            guard let node = node as? SKSpriteNode else { return }
+            self?.addPhysics(forLevelComplete: node)
+        }
+    }
+    
+    fileprivate func addPhysics(forLevelComplete node: SKSpriteNode) {
+        node.physicsBody?.categoryBitMask = Physics.levelComplete
     }
     
     fileprivate func addPhysics(forComplexWall node: SKSpriteNode) {
