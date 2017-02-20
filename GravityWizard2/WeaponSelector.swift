@@ -8,11 +8,31 @@
 
 import SpriteKit
 
-class WeaponSelector: SKNode {
+extension ActionType {
+    static func action(for point: CGFloat, sectionWidth: CGFloat) -> ActionType? {
+        let normalized = Int(point / sectionWidth)
+        
+        switch normalized {
+        case 0:
+            return .arrow
+        case 1:
+            return .gravity
+        case 2:
+            return .walk
+        case 3:
+            return .spring
+        default:
+            return nil
+        }
+    }
+}
+
+final class WeaponSelector: SKNode {
     
     fileprivate var arrowButton: SKSpriteNode?
     fileprivate var gravityButton: SKSpriteNode?
     fileprivate var walkingButton: SKSpriteNode?
+    fileprivate var springButton: SKSpriteNode?
 
     let fadeOff = SKAction.fadeAlpha(to: 0.5, duration: 0.1)
     let fadeOn = SKAction.fadeAlpha(to: 1.0, duration: 0.1)
@@ -39,7 +59,8 @@ class WeaponSelector: SKNode {
             let node = file.childNode(withName: "container") as? WeaponSelector,
             let arrow = file.childNode(withName: "//arrow") as? SKSpriteNode,
             let gravity = file.childNode(withName: "//gravity") as? SKSpriteNode,
-            let walking = file.childNode(withName: "//walking") as? SKSpriteNode
+            let walking = file.childNode(withName: "//walking") as? SKSpriteNode,
+            let spring = file.childNode(withName: "//spring") as? SKSpriteNode
         else {
                 assertionFailure("Failed to load button sprites")
                 return nil
@@ -49,6 +70,7 @@ class WeaponSelector: SKNode {
         node.arrowButton = arrow
         node.gravityButton = gravity
         node.walkingButton = walking
+        node.springButton = spring
         node.selectedGravity()
         
         return node
@@ -66,6 +88,7 @@ class WeaponSelector: SKNode {
     fileprivate func selectedArrow() {
         gravityButton?.run(turnOff)
         walkingButton?.run(turnOff)
+        springButton?.run(turnOff)
         arrowButton?.run(turnOn)
         selected(action: .arrow)
     }
@@ -73,6 +96,7 @@ class WeaponSelector: SKNode {
     fileprivate func selectedGravity() {
         arrowButton?.run(turnOff)
         walkingButton?.run(turnOff)
+        springButton?.run(turnOff)
         gravityButton?.run(turnOn)
         selected(action: .gravity)
     }
@@ -80,8 +104,17 @@ class WeaponSelector: SKNode {
     fileprivate func selectedWalking() {
         arrowButton?.run(turnOff)
         gravityButton?.run(turnOff)
+        springButton?.run(turnOff)
         walkingButton?.run(turnOn)
         selected(action: .walk)
+    }
+    
+    fileprivate func selectedSpring() {
+        arrowButton?.run(turnOff)
+        gravityButton?.run(turnOff)
+        walkingButton?.run(turnOff)
+        springButton?.run(turnOn)
+        selected(action: .spring)
     }
     
     fileprivate func selected(action: ActionType) {
@@ -97,13 +130,17 @@ class WeaponSelector: SKNode {
         
         guard let touch = touches.first else { return }
         let touchPoint = touch.location(in: self)
-
-        if touchPoint.x < buttonWidth {
+        
+        guard let type = ActionType.action(for: touchPoint.x, sectionWidth: buttonWidth) else { return }
+        switch type {
+        case .arrow:
             selectedArrow()
-        } else if touchPoint.x > buttonWidth, touchPoint.x < buttonWidth*2 {
+        case .gravity:
             selectedGravity()
-        } else {
+        case .walk:
             selectedWalking()
+        case .spring:
+            selectedSpring()
         }
     }
 }
