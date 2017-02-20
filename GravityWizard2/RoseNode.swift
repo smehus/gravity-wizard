@@ -65,7 +65,17 @@ fileprivate enum Texture {
 
 final class RoseNode: SKSpriteNode, GravityStateTracker {
     
-    var isGrounded = true
+    struct Constants {
+        static let MAX_JUMP_COUNT = 2
+    }
+    
+    var isGrounded = true {
+        didSet {
+            jumpCount = 0
+        }
+    }
+    
+    var jumpCount = 0
     var previousVelocity: CGVector?
     var startingPosition: CGPoint?
     
@@ -88,16 +98,14 @@ final class RoseNode: SKSpriteNode, GravityStateTracker {
         }
     }
     
-    func jump(towards point: CGPoint) {
+    func jump(towards vector: CGVector) {
+        guard jumpCount <= Constants.MAX_JUMP_COUNT else { return }
+        jumpCount += 1
         
-        var xValue = 0
-        if point.x > position.x {
-            xValue = 50
-        } else {
-            xValue = -50
-        }
-        let jumpVector = CGVector(dx: xValue, dy: 1200)
-        physicsBody!.applyImpulse(jumpVector)
+//        physicsBody!.applyImpulse(vector)
+        let jump = SKAction.applyImpulse(vector, duration: 0.3)
+        jump.timingMode = .easeOut
+        run(jump)
     }
     
     func hardLanding() {

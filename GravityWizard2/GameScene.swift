@@ -262,9 +262,10 @@ extension GameScene {
         var newPoint = initialPoint - endPoint
         let newVelocity = newPoint.offset(dx: 0, dy: newPoint.y * 1.5).normalized() * velocityMultiply
         let vector = CGVector(dx: 0, dy: 150)
-        let action = SKAction.applyImpulse(vector, duration: 0.3)
-        action.timingMode = .easeOut
-        rose.run(action)
+//        let action = SKAction.applyImpulse(vector, duration: 0.3)
+//        action.timingMode = .easeOut
+//        rose.run(action)
+        rose.jump(towards: vector)
     }
     
     fileprivate func launchNormalizedGravityProjectile(with initialPoint: CGPoint, endPoint: CGPoint, velocityMultiply: CGFloat) {
