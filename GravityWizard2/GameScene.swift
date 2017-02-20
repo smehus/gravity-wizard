@@ -40,7 +40,7 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
     var trackingProjectileVelocity = false
     var projectileVelocity: CGFloat = 0
     var currentProjectile: SKNode?
-    var currentActionType: ActionType = .gravity
+    var currentActionType: ActionType = .spring
     
     /// Statics
     var particleFactory = ParticleFactory.sharedFactory
@@ -220,6 +220,8 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
             launchNormalizedArrowProjectile(with: initialPoint, endPoint: endPoint, velocityMultiply: velocity)
         case .gravity:
             launchNormalizedGravityProjectile(with: initialPoint, endPoint: endPoint, velocityMultiply: velocity)
+        case .spring:
+            springHero(with: initialPoint, endPoint: endPoint, velocityMultiply: velocity)
         default: return
         }
     }
@@ -253,8 +255,16 @@ extension GameScene {
 // MARK: - Launches projectiles relative to touch down point and touches end point. Calculate velocity based on those two points and then applied to projectile with new starting position.
 extension GameScene {
     
-    fileprivate func launchHeroWithSpring(with initialPoint: CGPoint, endPoint: CGPoint, velocityMultiplier: CGFloat) {
-        
+    fileprivate func springHero(with initialPoint: CGPoint, endPoint: CGPoint, velocityMultiply: CGFloat) {
+        guard let rose = rose, let roseParent = rose.parent else { return }
+        let rosePosition = convert(rose.position, from: roseParent)
+     
+        var newPoint = initialPoint - endPoint
+        let newVelocity = newPoint.offset(dx: 0, dy: newPoint.y * 1.5).normalized() * velocityMultiply
+        let vector = CGVector(dx: 0, dy: 150)
+        let action = SKAction.applyImpulse(vector, duration: 0.3)
+        action.timingMode = .easeOut
+        rose.run(action)
     }
     
     fileprivate func launchNormalizedGravityProjectile(with initialPoint: CGPoint, endPoint: CGPoint, velocityMultiply: CGFloat) {
@@ -412,12 +422,8 @@ extension GameScene {
         guard let touch = touches.first else { return }
         let touchPoint = touch.location(in: self)
         
-        if let hero = rose, !hero.isGrounded {
-            return
-        }
-        
         switch currentActionType {
-        case .arrow, .gravity:
+        case .arrow, .gravity, .spring:
             prepareProjectile(withTouch: touchPoint)
         case .walk:
             guard let rose = rose else { return }
@@ -432,7 +438,7 @@ extension GameScene {
         let touchPoint = touch.location(in: self)
         
         switch currentActionType {
-        case .arrow, .gravity:
+        case .arrow, .gravity, .spring:
             updateProjectile(withTouch: touchPoint)
         case .walk: break
         case .spring: break
@@ -445,7 +451,7 @@ extension GameScene {
         let touchPoint = touch.location(in: self)
         
         switch currentActionType {
-        case .gravity, .arrow:
+        case .gravity, .arrow, .spring:
             executeProjectile(withTouch: touchPoint)
         case .walk:
             guard let rose = rose else { return }
