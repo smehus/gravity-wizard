@@ -261,10 +261,7 @@ extension GameScene {
      
         var newPoint = initialPoint - endPoint
         let newVelocity = newPoint.offset(dx: 0, dy: newPoint.y * 1.5).normalized() * velocityMultiply
-        let vector = CGVector(dx: 0, dy: 150)
-//        let action = SKAction.applyImpulse(vector, duration: 0.3)
-//        action.timingMode = .easeOut
-//        rose.run(action)
+        let vector = CGVector(point: newVelocity)
         rose.jump(towards: vector)
     }
     

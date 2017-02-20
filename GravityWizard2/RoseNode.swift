@@ -69,12 +69,7 @@ final class RoseNode: SKSpriteNode, GravityStateTracker {
         static let MAX_JUMP_COUNT = 2
     }
     
-    var isGrounded = true {
-        didSet {
-            jumpCount = 0
-        }
-    }
-    
+    var isGrounded = true
     var jumpCount = 0
     var previousVelocity: CGVector?
     var startingPosition: CGPoint?
@@ -101,16 +96,13 @@ final class RoseNode: SKSpriteNode, GravityStateTracker {
     func jump(towards vector: CGVector) {
         guard jumpCount <= Constants.MAX_JUMP_COUNT else { return }
         jumpCount += 1
-        
-//        physicsBody!.applyImpulse(vector)
-        let jump = SKAction.applyImpulse(vector, duration: 0.3)
-        jump.timingMode = .easeOut
-        run(jump)
+        physicsBody?.velocity = vector
     }
     
     func hardLanding() {
         guard gravityState == .falling else { return }
         isGrounded = true
+        jumpCount = 0
         gravityState = .landing
         physicsBody?.velocity = CGVector.zero
         
