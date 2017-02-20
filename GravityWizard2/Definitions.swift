@@ -16,6 +16,7 @@ enum ActionType {
     case arrow
     case gravity
     case walk
+    case spring
 }
 
 enum GravityState {

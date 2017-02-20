@@ -9,6 +9,8 @@
 import SpriteKit
 import GameplayKit
 
+fileprivate let GRAVITY_VEL: CGFloat = 1.7
+
 class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
 
     /// Scense
@@ -377,7 +379,7 @@ extension GameScene {
     fileprivate func updateProjectile(withTouch touchPoint: CGPoint) {
         if let initial = initialTouchPoint, trackingProjectileVelocity {
             let diff = initial - touchPoint
-            let vel = diff.length() * 2
+            let vel = diff.length() * GRAVITY_VEL
             projectileVelocity = vel
             updateTrajectoryIndicator(with: initial, endPoint: touchPoint, velocityMultiply: vel)
         }
@@ -411,6 +413,7 @@ extension GameScene {
         case .walk:
             guard let rose = rose else { return }
             rose.walk(towards: direction(for: touchPoint, with: rose))
+        case .spring: break
         }
     }
     
@@ -423,6 +426,7 @@ extension GameScene {
         case .arrow, .gravity:
             updateProjectile(withTouch: touchPoint)
         case .walk: break
+        case .spring: break
         }
     }
     
@@ -437,6 +441,7 @@ extension GameScene {
         case .walk:
             guard let rose = rose else { return }
             rose.stop()
+        case .spring: break
         }
     }
 }
