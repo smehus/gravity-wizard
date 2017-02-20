@@ -102,6 +102,7 @@ final class RoseNode: SKSpriteNode, GravityStateTracker {
     
     func hardLanding() {
         guard gravityState == .falling else { return }
+        isGrounded = true
         gravityState = .landing
         physicsBody?.velocity = CGVector.zero
         

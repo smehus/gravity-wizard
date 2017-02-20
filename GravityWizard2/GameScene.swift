@@ -252,6 +252,11 @@ extension GameScene {
 
 // MARK: - Launches projectiles relative to touch down point and touches end point. Calculate velocity based on those two points and then applied to projectile with new starting position.
 extension GameScene {
+    
+    fileprivate func launchHeroWithSpring(with initialPoint: CGPoint, endPoint: CGPoint, velocityMultiplier: CGFloat) {
+        
+    }
+    
     fileprivate func launchNormalizedGravityProjectile(with initialPoint: CGPoint, endPoint: CGPoint, velocityMultiply: CGFloat) {
         guard let rose = rose else { return }
         let startingPosition = convert(rose.position, from: rose.parent!)
@@ -406,6 +411,10 @@ extension GameScene {
         super.touchesBegan(touches, with: event)
         guard let touch = touches.first else { return }
         let touchPoint = touch.location(in: self)
+        
+        if let hero = rose, !hero.isGrounded {
+            return
+        }
         
         switch currentActionType {
         case .arrow, .gravity:
