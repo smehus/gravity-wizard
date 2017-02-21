@@ -21,6 +21,7 @@ extension PlatformNode: LifecycleListener {
             body.restitution = 0.0
             body.affectedByGravity = false
             body.categoryBitMask = PhysicsCategory.Ground
+            sprite.lightingBitMask = LightingMask.defaultMask
             sprite.physicsBody = body
         }
     }

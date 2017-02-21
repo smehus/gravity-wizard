@@ -45,19 +45,21 @@ fileprivate enum Texture {
     func texture() -> [SKTexture] {
         switch self {
         case .hardLand:
-            return [SKTexture(image: #imageLiteral(resourceName: "rose-hard-land"))]
+            return [SKTexture(image: #imageLiteral(resourceName: "alienPink_duck"))]
         case .pull:
-            return [SKTexture(image: #imageLiteral(resourceName: "rose-pulled"))]
+            return [SKTexture(image: #imageLiteral(resourceName: "alienPink_swim2"))]
         case .idle:
-            return [SKTexture(image: #imageLiteral(resourceName: "rose-idle"))]
+            return [SKTexture(image: #imageLiteral(resourceName: "alienPink_stand"))]
         case .falling:
-            return [SKTexture(image: #imageLiteral(resourceName: "rose-falling"))]
+            return [SKTexture(image: #imageLiteral(resourceName: "alienPink_jump"))]
         case .walk:
             var textures = [SKTexture]()
-            for i in 0...5 {
-                textures.append(SKTexture(imageNamed: "rose-walking-\(i)"))
-            }
-            
+//            for i in 1...11 {
+//                textures.append(SKTexture(imageNamed: "p3_walk\(i)"))
+//            }
+//
+            textures.append(SKTexture(image: #imageLiteral(resourceName: "alienPink_walk1")))
+            textures.append(SKTexture(image: #imageLiteral(resourceName: "alienPink_walk2")))
             return textures
         }
     }
@@ -106,7 +108,7 @@ final class RoseNode: SKSpriteNode, GravityStateTracker {
         gravityState = .landing
         physicsBody?.velocity = CGVector.zero
         
-        let landAction = SKAction.animate(with: [SKTexture(imageNamed: Images.roseHardLanding)], timePerFrame: 0.2)
+        let landAction = SKAction.animate(with: animationTextures(for: .hardLand), timePerFrame: 0.2)
         let wait = SKAction.afterDelay(0.5, runBlock: runIdleAnimation)
         run(SKAction.sequence([landAction, wait]))
     }
@@ -143,7 +145,7 @@ final class RoseNode: SKSpriteNode, GravityStateTracker {
     }
     
     fileprivate func walkingAnimation() -> SKAction {
-        return SKAction.repeatForever(SKAction.animate(with: animationTextures(for: .walk), timePerFrame: 0.2, resize: false, restore: true))
+        return SKAction.repeatForever(SKAction.animate(with: animationTextures(for: .walk), timePerFrame: 0.3, resize: false, restore: true))
     }
     
     fileprivate func runFallingAnimation() {
@@ -216,9 +218,12 @@ extension RoseNode: LifecycleListener {
 
 extension RoseNode {
     fileprivate func setPhysicsBody() {
-        let image = #imageLiteral(resourceName: "rose-physics-texture")
-        let newtext = SKTexture(image: image)
-        physicsBody = SKPhysicsBody(texture: newtext, size: newtext.size())
+        guard let text = texture else {
+            assertionFailure()
+            return
+        }
+        
+        physicsBody = SKPhysicsBody(texture: text, size: text.size())
         physicsBody?.allowsRotation = false
         physicsBody?.categoryBitMask = PhysicsCategory.Hero
         physicsBody?.contactTestBitMask = Definitions.Physics.ContactTest.full

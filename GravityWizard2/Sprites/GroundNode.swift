@@ -20,6 +20,6 @@ extension GroundNode: LifecycleListener {
         body.affectedByGravity = false
         body.categoryBitMask = PhysicsCategory.Ground
         physicsBody = body
-        
+        lightingBitMask = LightingMask.defaultMask
     }
 }

@@ -62,9 +62,9 @@ enum Direction {
     var walkingXVector: CGFloat {
         switch self {
         case .left:
-            return -60
+            return -20
         case .right:
-            return 60
+            return 20
         default: return 0
         }
     }
@@ -118,6 +118,10 @@ struct PhysicsCategory {
     static let LevelComplete:       UInt32 = 0x1 << 11
     static let HeroContactBorder:   UInt32 = 0x1 << 12
     
+}
+
+struct LightingMask {
+    static let defaultMask: UInt32 = 1
 }
 
 enum CollisionCombination {
