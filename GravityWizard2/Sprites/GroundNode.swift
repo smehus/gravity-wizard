@@ -14,9 +14,7 @@ class GroundNode: SKSpriteNode {
 
 extension GroundNode: LifecycleListener {
     func didMoveToScene() {
-        guard let texture = texture else { return }
-        let textureHeight = texture.size().height
-        let body = SKPhysicsBody(texture: texture, size: CGSize(width: texture.size().width, height: textureHeight))
+        guard let body = physicsBody else { return }
         body.isDynamic = false
         body.restitution = 0.0
         body.affectedByGravity = false
