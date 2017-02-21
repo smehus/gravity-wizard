@@ -8,21 +8,20 @@
 
 import SpriteKit
 
-class PlatformNode: SKSpriteNode {
+class PlatformNode: SKNode {
     
 }
 
 extension PlatformNode: LifecycleListener {
     func didMoveToScene() {
-        guard let texture = texture else { return }
-        let textureHeight = texture.size().height
-        let body = SKPhysicsBody(texture: texture, size: CGSize(width: texture.size().width, height: textureHeight))
-        body.isDynamic = false
-        body.restitution = 0.0
-        body.affectedByGravity = false
-        body.categoryBitMask = PhysicsCategory.Ground
-        physicsBody = body
-        
+        enumerateChildNodes(withName: "tile") { (tile, stop) in
+            guard let sprite = tile as? SKSpriteNode, let text = sprite.texture else { return }
+            let body = SKPhysicsBody(rectangleOf: text.size())
+            body.isDynamic = false
+            body.restitution = 0.0
+            body.affectedByGravity = false
+            body.categoryBitMask = PhysicsCategory.Ground
+            sprite.physicsBody = body
+        }
     }
 }
-
