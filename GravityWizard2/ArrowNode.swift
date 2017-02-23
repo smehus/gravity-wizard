@@ -13,12 +13,12 @@ class ArrowNode: SKSpriteNode {
     var isInFlight: Bool = false
     
     init() {
-        let texture = SKTexture(pixelImageNamed: Images.arrow)
+        let texture = SKTexture(pixelImageNamed: Images.arrow_small)
         super.init(texture: texture, color: .white,
                    size: texture.size())
         name = "Arrow"
         
-        physicsBody = SKPhysicsBody(circleOfRadius: texture.size().width / 2)
+        physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: texture.size().width/2, height: texture.size().height/2))
         physicsBody?.affectedByGravity = true
         physicsBody?.categoryBitMask = PhysicsCategory.Arrow
         physicsBody?.contactTestBitMask = PhysicsCategory.Edge | PhysicsCategory.Ground

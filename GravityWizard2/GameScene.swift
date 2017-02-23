@@ -280,10 +280,10 @@ extension GameScene {
     }
     
     fileprivate func launchNormalizedArrowProjectile(with initialPoint: CGPoint, endPoint: CGPoint, velocityMultiply: CGFloat) {
-        guard let rose = rose else { return }
-        let startingPosition = convert(rose.position, from: rose.parent!)
+        guard let rose = rose, let halfHeight = rose.halfSpriteHeight else { return }
+        var startingPosition = convert(rose.position, from: rose.parent!)
         
-        let arrow = createArrow(at: startingPosition)
+        let arrow = createArrow(at: startingPosition.offset(dx: 0, dy: halfHeight))
         addChild(arrow)
         
         /// reversed point diff

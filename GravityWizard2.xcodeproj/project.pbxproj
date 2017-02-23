@@ -71,6 +71,7 @@
 		A5E3150F1E2166F100D3652C /* SKScene+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E3150E1E2166F100D3652C /* SKScene+Extensions.swift */; };
 		A5E3B73F1E27C030004F32A3 /* WeaponSelector.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5E3B73E1E27C030004F32A3 /* WeaponSelector.sks */; };
 		A5E3B7421E27C230004F32A3 /* WeaponSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E3B7411E27C230004F32A3 /* WeaponSelector.swift */; };
+		A5EE58CD1E5F1BB700D3D25B /* SKSpriteNode+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EE58CC1E5F1BB700D3D25B /* SKSpriteNode+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -140,6 +141,7 @@
 		A5E3150E1E2166F100D3652C /* SKScene+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKScene+Extensions.swift"; sourceTree = "<group>"; };
 		A5E3B73E1E27C030004F32A3 /* WeaponSelector.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = WeaponSelector.sks; sourceTree = "<group>"; };
 		A5E3B7411E27C230004F32A3 /* WeaponSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeaponSelector.swift; sourceTree = "<group>"; };
+		A5EE58CC1E5F1BB700D3D25B /* SKSpriteNode+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKSpriteNode+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,6 +288,7 @@
 				A59FB6AB1E0A257500D1C915 /* CGSize+Extensions.swift */,
 				A5AFBA1B1E1828F200CE29E9 /* SKTexture+Extensions.swift */,
 				A5E3150E1E2166F100D3652C /* SKScene+Extensions.swift */,
+				A5EE58CC1E5F1BB700D3D25B /* SKSpriteNode+Extensions.swift */,
 			);
 			path = SKTUtils;
 			sourceTree = "<group>";
@@ -468,6 +471,7 @@
 				A5899B061E2FA6290044971F /* GameLoopListener.swift in Sources */,
 				A5808E681E5331CD007D3945 /* RewindSelector.swift in Sources */,
 				A59FB6981E0A088A00D1C915 /* CGVector+Extensions.swift in Sources */,
+				A5EE58CD1E5F1BB700D3D25B /* SKSpriteNode+Extensions.swift in Sources */,
 				A59FB69E1E0A088A00D1C915 /* SKTAudio.swift in Sources */,
 				A513A5E71E2152BA003CD2C1 /* Level2.swift in Sources */,
 				A55D63741E32496D007145C3 /* PlatformNode.swift in Sources */,

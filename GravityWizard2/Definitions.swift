@@ -81,8 +81,8 @@ enum Scenes: String {
 
 struct Images {
     static let radialGravity = "deathtex1"
-    static let arrow = "arrow"
-    static let arrowBig = "arrow_big"
+    static let arrow_small = "arrow_right_small"
+    static let arrow = "arrow_right"
     static let spark = "spark"
     static let rosePulled = "rose-pulled"
     static let roseIdle = "rose-idle"
