@@ -134,16 +134,18 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
     }
     
     fileprivate func setupWeaponSelector() {
-        guard let camera = camera, let selector = WeaponSelector.generateWeaponSelector() else { return }
-        let calculatedHeight = size.height / 2
-//        calculatedHeight -= selector.halfHeight
-        let calculatedWidth = size.width / 2
-//        calculatedWidth -= selector.halfWidth
-        let startingCorner = CGPoint(x: -calculatedWidth, y: calculatedHeight)
-        
-        selector.position = convert(startingCorner, from: camera)
-        selector.move(toParent: camera)
-        
+        guard
+            let camera = camera,
+            let selector = WeaponSelector.generateWeaponSelector(),
+            let camSize = cameraSize
+        else {
+            return
+        }
+
+        let newPoint = CGPoint(x: -(camSize.width / 2), y: (camSize.height / 2))
+        selector.removeFromParent()
+        selector.position = convert(newPoint, to: camera)
+        camera.addChild(selector)
     }
     
     fileprivate func setupRewindButton() {
@@ -154,7 +156,6 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
         let yValue = (camSize.height / 2) - rewind.calculatedSize.height/2
         let newPoint = CGPoint(x: xValue, y: yValue)
         rewind.position = convert(newPoint, to: camera)
-        print("\(rewind.calculatedSize)")
         camera.addChild(rewind)
     }
     
