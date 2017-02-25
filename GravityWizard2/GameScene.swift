@@ -143,9 +143,8 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
         }
 
         let newPoint = CGPoint(x: -(camSize.width / 2), y: (camSize.height / 2))
-        selector.removeFromParent()
-        selector.position = convert(newPoint, to: camera)
-        camera.addChild(selector)
+        selector.position = camera.convert(newPoint, to: selector.parent!)
+        selector.move(toParent: camera)
     }
     
     fileprivate func setupRewindButton() {
