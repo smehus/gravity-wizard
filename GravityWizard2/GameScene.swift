@@ -52,9 +52,19 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
     
     var cameraSize: CGSize? {
         guard let camera = camera else { return nil }
+        let maxAspectRatio: CGFloat = 16.0/9.0
+        let playableHeight = size.width / maxAspectRatio
+        
+        let calculatedHeight = (UIDevice.current.userInterfaceIdiom == .pad) ? size.height : playableHeight
         let xValue = size.width * camera.xScale
-        let yValue = size.height * camera.yScale
+        let yValue = calculatedHeight * camera.yScale
         return CGSize(width: xValue, height: yValue)
+    }
+    
+    var playableHeight: CGFloat {
+        let maxAspectRatio: CGFloat = 16.0/9.0
+        let playableHeight = size.width / maxAspectRatio
+        return (UIDevice.current.userInterfaceIdiom == .pad) ? size.height : playableHeight
     }
     
     override func didMove(to view: SKView) {
@@ -99,7 +109,7 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
         
         
         let xInset = frame.size.width/2 * camera.xScale
-        let yInset = frame.size.height/2 * camera.yScale
+        let yInset = playableHeight/2 * camera.yScale
         
         let constraintRect = frame.insetBy(dx: xInset, dy: yInset)
         
