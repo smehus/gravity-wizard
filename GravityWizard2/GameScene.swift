@@ -50,23 +50,6 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
     
     var trajectoryNode: SKShapeNode?
     
-    var cameraSize: CGSize? {
-        guard let camera = camera else { return nil }
-        let maxAspectRatio: CGFloat = 16.0/9.0
-        let playableHeight = size.width / maxAspectRatio
-        
-        let calculatedHeight = (UIDevice.current.userInterfaceIdiom == .pad) ? size.height : playableHeight
-        let xValue = size.width * camera.xScale
-        let yValue = calculatedHeight * camera.yScale
-        return CGSize(width: xValue, height: yValue)
-    }
-    
-    var playableHeight: CGFloat {
-        let maxAspectRatio: CGFloat = 16.0/9.0
-        let playableHeight = size.width / maxAspectRatio
-        return isIpad() ? size.height : playableHeight
-    }
-    
     override func didMove(to view: SKView) {
         physicsWorld.contactDelegate = self
         setupNodes()
@@ -100,26 +83,39 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
         rose.startingPosition = rose.position
     }
     
+    
+    /// Creates an edge constraint for the camera - so it does not scroll of screen content (black / gray area)
+    fileprivate func cameraEdgeConstraint(with cx: CGFloat, cy: CGFloat) -> SKConstraint {
+        let xInset = frame.size.width/2 * cx
+        let yInset = playableHeight/2 * cy
+        let constraintRect = frame.insetBy(dx: xInset, dy: yInset)
+        let xRange = SKRange(lowerLimit: constraintRect.minX, upperLimit: constraintRect.maxX)
+        let yRange = SKRange(lowerLimit: constraintRect.minY, upperLimit: constraintRect.maxY)
+        let edgeConstraint = SKConstraint.positionX(xRange, y: yRange)
+        edgeConstraint.referenceNode = self
+        return edgeConstraint
+    }
+    
     fileprivate func setupCamera() {
         
         guard let camera = camera, let rose = rose else { return }
         camera.xScale = isIpad() ? 1.0 : 0.5
         camera.yScale = isIpad() ? 1.0 : 0.5
+g
         let playerConstraint = SKConstraint.distance(SKRange(constantValue: 0), to: rose)
+        camera.constraints = [playerConstraint, self.cameraEdgeConstraint(with: camera.yScale, cy: camera.xScale)]
         
+// this works but selectors are kinda fucked
         
-        let xInset = frame.size.width/2 * camera.xScale
-        let yInset = playableHeight/2 * camera.yScale
-        
-        let constraintRect = frame.insetBy(dx: xInset, dy: yInset)
-        
-        let xRange = SKRange(lowerLimit: constraintRect.minX, upperLimit: constraintRect.maxX)
-        let yRange = SKRange(lowerLimit: constraintRect.minY, upperLimit: constraintRect.maxY)
-        
-        let edgeConstraint = SKConstraint.positionX(xRange, y: yRange)
-        edgeConstraint.referenceNode = self
-        
-        camera.constraints = [playerConstraint, edgeConstraint]
+//        if !isIpad() {
+//            let zoomAction = SKAction.scale(to: 0.5, duration: 3.0)
+//            let scaleAction = SKAction.customAction(withDuration: 3.0) { _ in
+//                let playerConstraint = SKConstraint.distance(SKRange(constantValue: 0), to: rose)
+//                camera.constraints = [playerConstraint, self.cameraEdgeConstraint(with: camera.xScale, cy: camera.yScale)]
+//            }
+//            
+//            camera.run(SKAction.group([zoomAction, scaleAction]))
+//        }
     }
     
     fileprivate func setupHeroContactBorder() {

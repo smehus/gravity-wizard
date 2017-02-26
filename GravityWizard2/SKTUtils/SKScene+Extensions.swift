@@ -14,4 +14,27 @@ extension SKScene {
         let height = size.height / 2
         return CGPoint(x: position.x + width, y: position.y + height)
     }
+    
+    var playableHeight: CGFloat {
+        let maxAspectRatio: CGFloat = 16.0/9.0
+        let playableHeight = size.width / maxAspectRatio
+        return isIpad() ? size.height : playableHeight
+    }
+    
+    var sceneMidPoint: CGPoint {
+        let width = size.width / 2
+        let height = size.height / 2
+        return CGPoint(x: width, y: height)
+    }
+    
+    var cameraSize: CGSize? {
+        guard let camera = camera else { return nil }
+        let maxAspectRatio: CGFloat = 16.0/9.0
+        let playableHeight = size.width / maxAspectRatio
+        
+        let calculatedHeight = (UIDevice.current.userInterfaceIdiom == .pad) ? size.height : playableHeight
+        let xValue = size.width * camera.xScale
+        let yValue = calculatedHeight * camera.yScale
+        return CGSize(width: xValue, height: yValue)
+    }
 }
