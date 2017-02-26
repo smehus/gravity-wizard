@@ -64,7 +64,7 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
     var playableHeight: CGFloat {
         let maxAspectRatio: CGFloat = 16.0/9.0
         let playableHeight = size.width / maxAspectRatio
-        return (UIDevice.current.userInterfaceIdiom == .pad) ? size.height : playableHeight
+        return isIpad() ? size.height : playableHeight
     }
     
     override func didMove(to view: SKView) {
