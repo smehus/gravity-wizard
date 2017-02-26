@@ -26,22 +26,22 @@ final class MossyWall: SKSpriteNode {
     
     fileprivate func setupNodes() {
         
-        enumerateChildNodes(withName: Names.flatWall) { [weak self] node, stop in
+        enumerateChildNodes(withName: "//\(Names.flatWall)") { [weak self] node, stop in
             guard let wall = node as? SKSpriteNode else { return }
             self?.addPhysics(forFlatWall: wall)
         }
 
-        enumerateChildNodes(withName: Names.baseWall) { [weak self] node, stop in
+        enumerateChildNodes(withName: "//\(Names.baseWall)") { [weak self] node, stop in
             guard let node = node as? SKSpriteNode else { return }
             self?.addPhysics(forComplexWall: node)
         }
         
-        enumerateChildNodes(withName: Names.complexWall) { [weak self] node, stop in
+        enumerateChildNodes(withName: "\\\(Names.complexWall)") { [weak self] node, stop in
             guard let node = node as? SKSpriteNode else { return }
             self?.addPhysics(forComplexWall: node)
         }
         
-        enumerateChildNodes(withName: Names.levelComplete) { [weak self] node, stop in
+        enumerateChildNodes(withName: "//\(Names.levelComplete)") { [weak self] node, stop in
             guard let node = node as? SKSpriteNode else { return }
             self?.addPhysics(forLevelComplete: node)
         }
