@@ -17,6 +17,8 @@
 		A51823601E103D6800DDE33A /* BreakableRocks.sks in Resources */ = {isa = PBXBuildFile; fileRef = A518235F1E103D6800DDE33A /* BreakableRocks.sks */; };
 		A51823621E10435D00DDE33A /* BreakableRocksNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51823611E10435D00DDE33A /* BreakableRocksNode.swift */; };
 		A52F29A11E18252F0098B37A /* InFlightTrackable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52F29A01E18252F0098B37A /* InFlightTrackable.swift */; };
+		A53A0F731E65AF8D00761D88 /* LavaSection.sks in Resources */ = {isa = PBXBuildFile; fileRef = A53A0F721E65AF8D00761D88 /* LavaSection.sks */; };
+		A53A0F751E65B0F800761D88 /* LavaSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A0F741E65B0F800761D88 /* LavaSection.swift */; };
 		A55250C81E122DC200EED486 /* Definitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55250C71E122DC200EED486 /* Definitions.swift */; };
 		A55250CA1E122E2600EED486 /* ParticleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55250C91E122E2600EED486 /* ParticleFactory.swift */; };
 		A55250CC1E148BC100EED486 /* Level2.sks in Resources */ = {isa = PBXBuildFile; fileRef = A55250CB1E148BC100EED486 /* Level2.sks */; };
@@ -85,6 +87,8 @@
 		A518235F1E103D6800DDE33A /* BreakableRocks.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BreakableRocks.sks; sourceTree = "<group>"; };
 		A51823611E10435D00DDE33A /* BreakableRocksNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreakableRocksNode.swift; sourceTree = "<group>"; };
 		A52F29A01E18252F0098B37A /* InFlightTrackable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InFlightTrackable.swift; sourceTree = "<group>"; };
+		A53A0F721E65AF8D00761D88 /* LavaSection.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LavaSection.sks; sourceTree = "<group>"; };
+		A53A0F741E65B0F800761D88 /* LavaSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LavaSection.swift; sourceTree = "<group>"; };
 		A55250C71E122DC200EED486 /* Definitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Definitions.swift; sourceTree = "<group>"; };
 		A55250C91E122E2600EED486 /* ParticleFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticleFactory.swift; sourceTree = "<group>"; };
 		A55250CB1E148BC100EED486 /* Level2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = Level2.sks; path = Scenes/Level2.sks; sourceTree = "<group>"; };
@@ -212,6 +216,7 @@
 				A51823611E10435D00DDE33A /* BreakableRocksNode.swift */,
 				A55D63731E32496D007145C3 /* PlatformNode.swift */,
 				A57D1E9D1E4F73AF00C41985 /* MossyWall.swift */,
+				A53A0F741E65B0F800761D88 /* LavaSection.swift */,
 			);
 			name = Environment;
 			sourceTree = "<group>";
@@ -266,6 +271,7 @@
 				A5C4BBC41E18101C002B0B18 /* GravityProjectile.sks */,
 				A55D63701E324947007145C3 /* Platform2.sks */,
 				A57A26B71E4CA9FA0071C4D9 /* MossyWall.sks */,
+				A53A0F721E65AF8D00761D88 /* LavaSection.sks */,
 			);
 			name = World;
 			sourceTree = "<group>";
@@ -448,6 +454,7 @@
 				A5C4BBC81E181177002B0B18 /* GravityProjectileTail.sks in Resources */,
 				A513A5E31E2151A3003CD2C1 /* Level0.sks in Resources */,
 				A5B58EC41E09DC4900ADC865 /* Assets.xcassets in Resources */,
+				A53A0F731E65AF8D00761D88 /* LavaSection.sks in Resources */,
 				A5B58EC71E09DC4900ADC865 /* LaunchScreen.storyboard in Resources */,
 				A513A5EE1E2159C8003CD2C1 /* LevelCompleteLabel.sks in Resources */,
 			);
@@ -465,6 +472,7 @@
 				A59FB6A01E0A088A00D1C915 /* SKTTimingFunctions.swift in Sources */,
 				A59FB69A1E0A088A00D1C915 /* SKAction+Extensions.swift in Sources */,
 				A5B58EBD1E09DC4900ADC865 /* GameScene.swift in Sources */,
+				A53A0F751E65B0F800761D88 /* LavaSection.swift in Sources */,
 				A59FB6D41E0AD9D700D1C915 /* BloodNode.swift in Sources */,
 				A59FB6A61E0A08DF00D1C915 /* GestureInteractive.swift in Sources */,
 				A513A5E91E21552F003CD2C1 /* TreasureChestNode.swift in Sources */,
