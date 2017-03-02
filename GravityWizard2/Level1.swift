@@ -9,6 +9,18 @@
 import SpriteKit
 import GameplayKit
 
+fileprivate struct Names {
+    static let levelComplete = "level-complete"
+}
+
+fileprivate struct Physics {
+    struct LevelComplete {
+        static let categoryBitMask = PhysicsCategory.LevelComplete
+        static let collisionBitMask = PhysicsCategory.None
+        static let contactTest = PhysicsCategory.Hero
+    }
+}
+
 class Level1: GameScene {
 
     var currentLevel: Level {
@@ -29,6 +41,25 @@ class Level1: GameScene {
         }
         
         run(presentScene)
+    }
+    
+    override func setupNodes() {
+        super.setupNodes()
+        setupLevelCompleteNode()
+    }
+    
+    fileprivate func setupLevelCompleteNode() {
+        guard
+            let completeNode = childNode(withName: "//\(Names.levelComplete)"),
+            let completeBody = completeNode.physicsBody
+        else {
+            assertionFailure("Level 1 - Missing level complete node")
+            return
+        }
+        
+        completeBody.categoryBitMask = Physics.LevelComplete.categoryBitMask
+        completeBody.collisionBitMask = Physics.LevelComplete.collisionBitMask
+        completeBody.contactTestBitMask = Physics.LevelComplete.contactTest
     }
 }
 
