@@ -83,8 +83,8 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
     }
     
     
-    /// Creates an edge constraint for the camera - so it does not scroll of screen content (black / gray area)
-    fileprivate func cameraEdgeConstraint(with cx: CGFloat, cy: CGFloat) -> SKConstraint {
+    /// Creates an edge constraint for the camera - so it does not scroll off screen content (black / gray area)
+    func cameraEdgeConstraint(with cx: CGFloat, cy: CGFloat) -> SKConstraint {
         let xInset = frame.size.width/2 * cx
         let yInset = playableHeight/2 * cy
         let constraintRect = frame.insetBy(dx: xInset, dy: yInset)
@@ -104,8 +104,6 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
         
         let playerConstraint = SKConstraint.distance(SKRange(constantValue: 0), to: rose)
         camera.constraints = [playerConstraint, self.cameraEdgeConstraint(with: camera.yScale, cy: camera.xScale)]
-        
-// this works but selectors are kinda fucked
         
         if !isIpad() {
             let zoomAction = SKAction.scale(to: 0.5, duration: 3.0)

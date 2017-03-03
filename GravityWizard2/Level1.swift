@@ -44,14 +44,31 @@ class Level1: GameScene {
         run(presentScene)
     }
     
+    func runZoomOutAction() {
+        guard
+            let rose = rose,
+            let camera = camera,
+            !isIpad()
+        else {
+                return
+        }
+        
+        let zoomAction = SKAction.scale(to: 1.0, duration: 2.0)
+        let scaleAction = SKAction.customAction(withDuration: 2.0) { _ in
+            let playerConstraint = SKConstraint.distance(SKRange(constantValue: 0), to: rose)
+            camera.constraints = [playerConstraint, self.cameraEdgeConstraint(with: camera.xScale, cy: camera.yScale)]
+        }
+        
+        camera.run(SKAction.group([zoomAction, scaleAction]))
+    }
+    
     override func gameOver() {
         guard let gameOverLabel = LevelCompleteLabel.createLabel(with: "Game Over"), let camera = camera else { return }
         gameOverLabel.position = convert(gameOverLabel.position, from: camera)
         gameOverLabel.scaleAsPoint = CGPoint(x: 2.0, y: 2.0)
         gameOverLabel.move(toParent: camera)
         
-        let scaleCamera = SKAction.scale(to: 1.0, duration: 2.0)
-        camera.run(scaleCamera)
+        runZoomOutAction()
         
         let presentScene = SKAction.afterDelay(2.0) {
             guard let reloadLevel = self.currentLevel.levelScene() else {
