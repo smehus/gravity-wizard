@@ -55,7 +55,6 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
         setupNodes()
         setupCamera()
         setupHeroContactBorder()
-        setupHUDElements()
     }
     
     func setupNodes() {
@@ -99,24 +98,26 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
     fileprivate func setupCamera() {
         
         guard let camera = camera, let rose = rose else { return }
-        camera.xScale = isIpad() ? 1.0 : 0.5
-        camera.yScale = isIpad() ? 1.0 : 0.5
-//        camera.position = sceneMidPoint
+        camera.xScale = 1.0
+        camera.yScale = 1.0
+        camera.position = sceneMidPoint
         
         let playerConstraint = SKConstraint.distance(SKRange(constantValue: 0), to: rose)
         camera.constraints = [playerConstraint, self.cameraEdgeConstraint(with: camera.yScale, cy: camera.xScale)]
         
 // this works but selectors are kinda fucked
         
-//        if !isIpad() {
-//            let zoomAction = SKAction.scale(to: 0.5, duration: 3.0)
-//            let scaleAction = SKAction.customAction(withDuration: 3.0) { _ in
-//                let playerConstraint = SKConstraint.distance(SKRange(constantValue: 0), to: rose)
-//                camera.constraints = [playerConstraint, self.cameraEdgeConstraint(with: camera.xScale, cy: camera.yScale)]
-//            }
-//            
-//            camera.run(SKAction.group([zoomAction, scaleAction]))
-//        }
+        if !isIpad() {
+            let zoomAction = SKAction.scale(to: 0.5, duration: 3.0)
+            let scaleAction = SKAction.customAction(withDuration: 3.0) { _ in
+                let playerConstraint = SKConstraint.distance(SKRange(constantValue: 0), to: rose)
+                camera.constraints = [playerConstraint, self.cameraEdgeConstraint(with: camera.xScale, cy: camera.yScale)]
+            }
+            
+            camera.run(SKAction.group([zoomAction, scaleAction]), completion: { [weak self] _ in
+                self?.setupHUDElements()
+            })
+        }
     }
     
     fileprivate func setupHeroContactBorder() {
@@ -137,7 +138,7 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
     
     fileprivate func setupHUDElements() {
         setupWeaponSelector()
-        setupRewindButton()
+//        setupRewindButton()
     }
     
     fileprivate func setupWeaponSelector() {
@@ -153,7 +154,10 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
         let y = isIpad() ? camSize.height/2 : camSize.height
         let newPoint = CGPoint(x: x, y: y)
         selector.position = camera.convert(newPoint, to: selector.parent!)
+        selector.alpha = 0.0
         selector.move(toParent: camera)
+        let fadeAction = SKAction.fadeIn(withDuration: 0.5)
+        selector.run(fadeAction)
     }
     
     fileprivate func setupRewindButton() {

@@ -50,6 +50,9 @@ class Level1: GameScene {
         gameOverLabel.scaleAsPoint = CGPoint(x: 2.0, y: 2.0)
         gameOverLabel.move(toParent: camera)
         
+        let scaleCamera = SKAction.scale(to: 1.0, duration: 2.0)
+        camera.run(scaleCamera)
+        
         let presentScene = SKAction.afterDelay(2.0) {
             guard let reloadLevel = self.currentLevel.levelScene() else {
                 assertionFailure("Failed to load level scene on game over")

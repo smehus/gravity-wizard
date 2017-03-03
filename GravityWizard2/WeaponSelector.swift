@@ -71,7 +71,7 @@ final class WeaponSelector: SKNode {
         node.gravityButton = gravity
         node.walkingButton = walking
         node.springButton = spring
-        node.selectedGravity()
+        node.selectedSpring()
         node.zPosition = 100
         return node
     }
