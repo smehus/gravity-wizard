@@ -8,12 +8,36 @@
 
 import SpriteKit
 
+fileprivate struct Names {
+    static let lava = "lava"
+}
+
+fileprivate struct Physics {
+    static let category = PhysicsCategory.Lava
+    static let contactTest = PhysicsCategory.Hero
+    static let collision = PhysicsCategory.None
+}
+
 final class LavaSection: SKSpriteNode {
     
+    fileprivate func setupNodes() {
+        enumerateChildNodes(withName: "//\(Names.lava)") { [weak self] node, _ in
+            guard let body = node.physicsBody else { return }
+            self?.update(physicsBody: body)
+        }
+    }
+    
+    fileprivate func update(physicsBody: SKPhysicsBody) {
+        physicsBody.categoryBitMask = Physics.category
+        physicsBody.contactTestBitMask = Physics.contactTest
+        physicsBody.collisionBitMask = Physics.collision
+        physicsBody.isDynamic = false
+        physicsBody.affectedByGravity = false
+    }
 }
 
 extension LavaSection: LifecycleListener {
     func didMoveToScene() {
-        
+        setupNodes()
     }
 }

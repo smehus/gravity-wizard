@@ -10,7 +10,7 @@ import SpriteKit
 
 class LevelCompleteLabel: SKLabelNode {
     
-    static func createLabel() -> SKLabelNode? {
+    static func createLabel(with text: String? = nil) -> SKLabelNode? {
         guard
             let scene = SKScene(fileNamed: String(describing: LevelCompleteLabel.self)),
             let labelNode = scene.childNode(withName: "label") as? SKLabelNode
@@ -18,7 +18,10 @@ class LevelCompleteLabel: SKLabelNode {
                 return nil
         }
         
-        labelNode.zPosition = 0
+        labelNode.zPosition = 20
+        if let text = text {
+            labelNode.text = text
+        }
         return labelNode
     }
 }

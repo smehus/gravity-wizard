@@ -117,7 +117,7 @@ struct PhysicsCategory {
     static let GravityProjectile:   UInt32 = 0x1 << 10
     static let LevelComplete:       UInt32 = 0x1 << 11
     static let HeroContactBorder:   UInt32 = 0x1 << 12
-    
+    static let Lava:                UInt32 = 0x1 << 13
 }
 
 struct LightingMask {
@@ -139,6 +139,8 @@ enum CollisionCombination {
     case arrowCollidesWithVikingBodyPart
     
     case heroCollidesWithLevelComplete
+    case heroCollidesWithLava
+    
     case none
 }
 extension UInt32 {
@@ -164,6 +166,8 @@ extension UInt32 {
             return .heroCollidesWithGravityField
         case PhysicsCategory.Hero | PhysicsCategory.LevelComplete:
             return .heroCollidesWithLevelComplete
+        case PhysicsCategory.Hero | PhysicsCategory.Lava:
+            return .heroCollidesWithLava
         default: return .none
         }
     }

@@ -477,11 +477,11 @@ extension GameScene: SKPhysicsContactDelegate {
         }
         
         if collision.collisionCombination() == .rockHitsWizard {
-            rockHitsWizard(with: contact)
+            rockHitsHero(with: contact)
         }
         
         if collision.collisionCombination() == .heroCollidesWithGravityField {
-            wizardCollidesWithGravityField(with: contact)
+            heroCollidesWithGravityField(with: contact)
         }
         
         if collision.collisionCombination() == .bloodCollidesWithGround {
@@ -509,7 +509,11 @@ extension GameScene: SKPhysicsContactDelegate {
         }
         
         if collision.collisionCombination() == .heroCollidesWithLevelComplete {
-            wizardCollidesWithChest(with: contact)
+            heroCollidesWithLevelComplete(with: contact)
+        }
+        
+        if collision.collisionCombination() == .heroCollidesWithLava {
+            heroCollidesWithLava(with: contact)
         }
     }
     
@@ -526,7 +530,7 @@ extension GameScene: SKPhysicsContactDelegate {
 // MARK: - Collisions
 extension GameScene {
     
-    fileprivate func wizardCollidesWithGravityField(with contact: SKPhysicsContact) {
+    fileprivate func heroCollidesWithGravityField(with contact: SKPhysicsContact) {
         let gravity = contact.bodyA.categoryBitMask == PhysicsCategory.GravityProjectile ? contact.bodyA.node : contact.bodyB.node
         guard let field = gravity as? GravityProjectile, field.shouldCollideWithLauncher else { return }
         
@@ -539,7 +543,11 @@ extension GameScene {
         rose.hardLanding()
     }
     
-    fileprivate func rockHitsWizard(with contact: SKPhysicsContact) {
+    fileprivate func heroCollidesWithLava(with contact: SKPhysicsContact) {
+        gameOver()
+    }
+    
+    fileprivate func rockHitsHero(with contact: SKPhysicsContact) {
         guard let rose = rose else { return }
         createBloodExplosion(with: rose)
     }
@@ -587,7 +595,7 @@ extension GameScene {
         }
     }
     
-    fileprivate func wizardCollidesWithChest(with contact: SKPhysicsContact) {
+    fileprivate func heroCollidesWithLevelComplete(with contact: SKPhysicsContact) {
         levelCompleted()
     }
 }
@@ -601,11 +609,6 @@ extension GameScene: HeroResetProtocol {
 }
 
 extension GameScene {
-    func levelCompleted() {
-
-    }
-    
-    func gameOver() {
-        
-    }
+    func levelCompleted() {}
+    func gameOver() {}
 }

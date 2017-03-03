@@ -28,15 +28,36 @@ class Level1: GameScene {
     }
     
     override func levelCompleted() {
-        guard let successLevel = LevelCompleteLabel.createLabel(), let scene = scene else { return }
-        successLevel.position = scene.zeroAnchoredCenter()
-        successLevel.move(toParent: scene)
+        guard let successLevel = LevelCompleteLabel.createLabel(), let camera = camera else { return }
+        successLevel.position = convert(successLevel.position, from: camera)
+        successLevel.scaleAsPoint = CGPoint(x: 2.0, y: 2.0)
+        successLevel.move(toParent: camera)
         
         let presentScene = SKAction.afterDelay(2.0) {
             guard let nextLevel = self.currentLevel.nextLevel()?.levelScene() else { return }
             nextLevel.scaleMode = self.scaleMode
             let transition = SKTransition.doorsOpenHorizontal(withDuration: 1.0)
             self.view?.presentScene(nextLevel, transition: transition)
+            
+        }
+        
+        run(presentScene)
+    }
+    
+    override func gameOver() {
+        guard let gameOverLabel = LevelCompleteLabel.createLabel(with: "Game Over"), let camera = camera else { return }
+        gameOverLabel.position = convert(gameOverLabel.position, from: camera)
+        gameOverLabel.scaleAsPoint = CGPoint(x: 2.0, y: 2.0)
+        gameOverLabel.move(toParent: camera)
+        
+        let presentScene = SKAction.afterDelay(2.0) {
+            guard let reloadLevel = self.currentLevel.levelScene() else {
+                assertionFailure("Failed to load level scene on game over")
+                return
+            }
+            reloadLevel.scaleMode = self.scaleMode
+            let transition = SKTransition.doorsOpenHorizontal(withDuration: 1.0)
+            self.view?.presentScene(reloadLevel, transition: transition)
             
         }
         
