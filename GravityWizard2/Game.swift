@@ -42,8 +42,8 @@ extension Game where Self: SKScene {
         guard let heroNode = originNode, let light = followNode else { return }
         let target = convert(heroNode.position, from: heroNode.parent!)
         
-        let lerpX = (target.x - light.position.x) * 0.05
-        let lerpY = (target.y - light.position.y) * 0.05
+        let lerpX = (target.x - light.position.x) * 0.08
+        let lerpY = (target.y - light.position.y) * 0.08
         
         light.position.x += lerpX
         light.position.y += lerpY
