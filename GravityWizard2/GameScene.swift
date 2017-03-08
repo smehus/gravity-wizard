@@ -22,8 +22,6 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
     var radialMarker: SKSpriteNode?
     var breakableRocks: BreakableRocksNode?
     
-    var light: SKNode?
-    
     // Effects
     var radialGravity: SKFieldNode?
     
@@ -70,7 +68,6 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
         rose = childNode(withName: "//rose") as? RoseNode
         setHeroStartingPosition()
         breakableRocks = childNode(withName: "//BreakableRocks") as? BreakableRocksNode
-        light = childNode(withName: "FollowLight")
         
         if let node = BloodNode.generateBloodNode() {
             bloodNode = node

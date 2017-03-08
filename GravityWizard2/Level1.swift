@@ -27,6 +27,8 @@ class Level1: GameScene {
         return .one
     }
     
+    fileprivate var light: SKNode?
+    
     override func levelCompleted() {
         guard let successLevel = LevelCompleteLabel.createLabel(), let camera = camera else { return }
         successLevel.position = convert(successLevel.position, from: camera)
@@ -69,6 +71,10 @@ class Level1: GameScene {
     override func setupNodes() {
         super.setupNodes()
         setupLevelCompleteNode()
+    }
+    
+    fileprivate func setupLightAnimation() {
+        light = childNode(withName: "FollowLight")
     }
     
     fileprivate func setupLevelCompleteNode() {

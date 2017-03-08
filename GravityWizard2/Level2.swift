@@ -30,10 +30,3 @@ class Level2: GameScene {
         run(presentScene)
     }
 }
-
-extension Level2 {
-    
-    override func didSimulatePhysics() {
-        updateFollowNodePosition(followNode: light, originNode: rose)
-    }
-}

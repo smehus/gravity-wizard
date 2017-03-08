@@ -9,7 +9,6 @@
 import SpriteKit
 
 protocol Game {
-    var light: SKNode? { get set }
     
     /// Trackables
     var lastUpdateTimeInterval: TimeInterval { get set }
