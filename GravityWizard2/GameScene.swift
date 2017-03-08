@@ -29,8 +29,9 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
     /// Constants
     let bloodExplosionCount = 5
     
-    let cameraNode = SKCameraNode()
     
+    /// Camera
+    let cameraNode = SKCameraNode()
     
     /// Trackables
     var lastUpdateTimeInterval: TimeInterval = 0
@@ -39,6 +40,7 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
     var projectileVelocity: CGFloat = 0
     var currentProjectile: SKNode?
     var currentActionType: ActionType = .spring
+    var isRunningStartingAnimation = false
     
     /// Statics
     var particleFactory = ParticleFactory.sharedFactory
@@ -136,7 +138,9 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
         let playerConstraint = SKConstraint.distance(SKRange(constantValue: 0), to: rose)
         camera.constraints = [playerConstraint, self.cameraEdgeConstraint(with: camera.yScale, cy: camera.xScale)]
         
+        isRunningStartingAnimation = true
         runZoomInAction { [weak self] _ in
+            self?.isRunningStartingAnimation = false
             self?.setupHUDElements()
         }
     }

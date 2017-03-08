@@ -27,7 +27,9 @@ class Level1: GameScene {
         return .one
     }
     
+    /// Sprites
     fileprivate var light: SKNode?
+    fileprivate var levelComplete: SKNode?
     
     override func levelCompleted() {
         guard let successLevel = LevelCompleteLabel.createLabel(), let camera = camera else { return }
@@ -71,10 +73,23 @@ class Level1: GameScene {
     override func setupNodes() {
         super.setupNodes()
         setupLevelCompleteNode()
+        setupLightAnimation()
     }
     
     fileprivate func setupLightAnimation() {
         light = childNode(withName: "FollowLight")
+        
+        guard
+            let rose = rose,
+            let complete = levelComplete
+        else {
+            assertionFailure("Failed to load rose")
+            return
+        }
+        light?.position = complete.position
+        let finalPosition = convert(rose.position, from: rose.parent!)
+        let action = SKAction.move(to: finalPosition, duration: 2.0)
+        light?.run(action)
     }
     
     fileprivate func setupLevelCompleteNode() {
@@ -89,11 +104,14 @@ class Level1: GameScene {
         completeBody.categoryBitMask = Physics.LevelComplete.categoryBitMask
         completeBody.collisionBitMask = Physics.LevelComplete.collisionBitMask
         completeBody.contactTestBitMask = Physics.LevelComplete.contactTest
+        levelComplete = completeNode
     }
 }
 
 extension Level1 {
     override func didSimulatePhysics() {
-        updateFollowNodePosition(followNode: light, originNode: rose)
+        if !isRunningStartingAnimation {
+            updateFollowNodePosition(followNode: light, originNode: rose)
+        }
     }
 }
