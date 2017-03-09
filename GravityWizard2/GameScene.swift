@@ -117,20 +117,14 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
     func runZoomInAction(with completion: @escaping () -> Void) {
          guard let camera = camera, let rose = rose else { return }
         if !isIpad() {
-//            let zoomAction = SKAction.scale(to: 0.5, duration: 3.0)
-//            let scaleAction = SKAction.customAction(withDuration: 3.0) { _ in
-//                let playerConstraint = SKConstraint.distance(SKRange(constantValue: 0), to: rose)
-//                camera.constraints = [playerConstraint, self.cameraEdgeConstraint(with: camera.xScale, cy: camera.yScale)]
-//            }
-//            
-//            camera.run(SKAction.group([zoomAction, scaleAction]), completion: completion)
-            
             let zoomAction = SKAction.scale(to: 0.5, duration: 3.0)
-            let xInset = frame.size.width/2 * 0.5
-            let yInset = frame.size.height/2 * 0.5
-            
-            let move = SKAction.move(to: CGPoint(x: xInset, y: yInset), duration: 3.0)
-            camera.run(SKAction.group([zoomAction, move]), completion: completion)
+            let scaleAction = SKAction.customAction(withDuration: 3.0) { _ in
+                camera.constraints = [self.cameraEdgeConstraint(with: camera.xScale, cy: camera.yScale)]
+            }
+
+            let move = SKAction.move(to: rose.position, duration: 3.0)
+            camera.run(SKAction.group([zoomAction, scaleAction, move]), completion: completion)
+        
         } else {
             completion()
         }
@@ -144,6 +138,11 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
         
         isRunningStartingAnimation = true
         runZoomInAction { [weak self] _ in
+            guard let strongSelf = self else { return }
+            
+            let playerConstraint = SKConstraint.distance(SKRange(constantValue: 0), to: rose)
+            camera.constraints = [playerConstraint, strongSelf.cameraEdgeConstraint(with: camera.xScale, cy: camera.yScale)]
+            
             self?.isRunningStartingAnimation = false
             self?.setupHUDElements()
         }
