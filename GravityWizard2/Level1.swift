@@ -32,6 +32,7 @@ class Level1: GameScene {
     fileprivate var levelComplete: SKNode?
     
     override func levelCompleted() {
+        isPaused = true
         guard let successLevel = LevelCompleteLabel.createLabel(), let camera = camera else { return }
         successLevel.position = convert(successLevel.position, from: camera)
         successLevel.scaleAsPoint = CGPoint(x: 2.0, y: 2.0)

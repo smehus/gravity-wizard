@@ -15,7 +15,11 @@ class Level0: GameScene {
     }
     
     override func levelCompleted() {
-        guard let successLevel = LevelCompleteLabel.createLabel(), let camera = camera else { return }
+        isPaused = true
+        guard let successLevel = LevelCompleteLabel.createLabel(), let camera = camera else {
+            assertionFailure("Failed to create level complete lable")
+            return
+        }
         successLevel.position = convert(successLevel.position, from: camera)
         successLevel.scaleAsPoint = CGPoint(x: 2.0, y: 2.0)
         successLevel.move(toParent: camera)

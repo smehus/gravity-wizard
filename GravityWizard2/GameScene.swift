@@ -122,7 +122,7 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
                 camera.constraints = [self.cameraEdgeConstraint(with: camera.xScale, cy: camera.yScale)]
             }
 
-            let move = SKAction.move(to: rose.position, duration: 3.0)
+            let move = SKAction.move(to: convert(rose.position, from: rose.parent!), duration: 3.0)
             camera.run(SKAction.group([zoomAction, scaleAction, move]), completion: completion)
         
         } else {
