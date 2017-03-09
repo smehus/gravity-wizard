@@ -135,9 +135,6 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
         camera.yScale = 1.0
         camera.position = sceneMidPoint
         
-        let playerConstraint = SKConstraint.distance(SKRange(constantValue: 0), to: rose)
-        camera.constraints = [playerConstraint, self.cameraEdgeConstraint(with: camera.yScale, cy: camera.xScale)]
-        
         isRunningStartingAnimation = true
         runZoomInAction { [weak self] _ in
             self?.isRunningStartingAnimation = false
