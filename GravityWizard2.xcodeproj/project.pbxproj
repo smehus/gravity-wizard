@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A50DBCE61E72DB5C002DC44E /* StonePlatform.sks in Resources */ = {isa = PBXBuildFile; fileRef = A50DBCE51E72DB5C002DC44E /* StonePlatform.sks */; };
+		A50DBCE81E72DD12002DC44E /* StonePlatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50DBCE71E72DD12002DC44E /* StonePlatform.swift */; };
 		A513A5E31E2151A3003CD2C1 /* Level0.sks in Resources */ = {isa = PBXBuildFile; fileRef = A513A5E21E2151A3003CD2C1 /* Level0.sks */; };
 		A513A5E51E2152B2003CD2C1 /* Level0.swift in Sources */ = {isa = PBXBuildFile; fileRef = A513A5E41E2152B2003CD2C1 /* Level0.swift */; };
 		A513A5E71E2152BA003CD2C1 /* Level2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A513A5E61E2152BA003CD2C1 /* Level2.swift */; };
@@ -78,6 +80,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A50DBCE51E72DB5C002DC44E /* StonePlatform.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StonePlatform.sks; sourceTree = "<group>"; };
+		A50DBCE71E72DD12002DC44E /* StonePlatform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StonePlatform.swift; sourceTree = "<group>"; };
 		A513A5E21E2151A3003CD2C1 /* Level0.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = Level0.sks; path = Scenes/Level0.sks; sourceTree = "<group>"; };
 		A513A5E41E2152B2003CD2C1 /* Level0.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level0.swift; sourceTree = "<group>"; };
 		A513A5E61E2152BA003CD2C1 /* Level2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level2.swift; sourceTree = "<group>"; };
@@ -219,6 +223,7 @@
 				A55D63731E32496D007145C3 /* PlatformNode.swift */,
 				A57D1E9D1E4F73AF00C41985 /* MossyWall.swift */,
 				A53A0F741E65B0F800761D88 /* LavaSection.swift */,
+				A50DBCE71E72DD12002DC44E /* StonePlatform.swift */,
 			);
 			name = Environment;
 			sourceTree = "<group>";
@@ -274,6 +279,7 @@
 				A55D63701E324947007145C3 /* Platform2.sks */,
 				A57A26B71E4CA9FA0071C4D9 /* MossyWall.sks */,
 				A53A0F721E65AF8D00761D88 /* LavaSection.sks */,
+				A50DBCE51E72DB5C002DC44E /* StonePlatform.sks */,
 			);
 			name = World;
 			sourceTree = "<group>";
@@ -447,6 +453,7 @@
 				A57A26B81E4CA9FA0071C4D9 /* MossyWall.sks in Resources */,
 				A55D63711E324947007145C3 /* Platform2.sks in Resources */,
 				A58149181E2BDA6C0091552E /* Rose.sks in Resources */,
+				A50DBCE61E72DB5C002DC44E /* StonePlatform.sks in Resources */,
 				A5C4BBB61E14A1AD002B0B18 /* Viking.sks in Resources */,
 				A5E3B73F1E27C030004F32A3 /* WeaponSelector.sks in Resources */,
 				A55250CC1E148BC100EED486 /* Level2.sks in Resources */,
@@ -510,6 +517,7 @@
 				A59FB69B1E0A088A00D1C915 /* SKAction+SpecialEffects.swift in Sources */,
 				A5C4BBBF1E16D51A002B0B18 /* GravityStateTracker.swift in Sources */,
 				A5C4BBBD1E16D2F7002B0B18 /* Game.swift in Sources */,
+				A50DBCE81E72DD12002DC44E /* StonePlatform.swift in Sources */,
 				A55250CA1E122E2600EED486 /* ParticleFactory.swift in Sources */,
 				A57D1E9E1E4F73AF00C41985 /* MossyWall.swift in Sources */,
 				A5E3B7421E27C230004F32A3 /* WeaponSelector.swift in Sources */,
