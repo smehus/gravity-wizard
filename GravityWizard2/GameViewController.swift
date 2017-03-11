@@ -17,7 +17,7 @@ class GameViewController: UIViewController {
         
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
-            if let scene = Level.zero.levelScene() {
+            if let scene = Level.two.levelScene() {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
                 
@@ -96,7 +96,7 @@ class GameViewController: UIViewController {
         alert.addAction(levelOne)
         alert.addAction(levelTwo)
         alert.addAction(cancel)
-        
+        alert.popoverPresentationController?.sourceView = view
         present(alert, animated: true, completion: nil)
     }
 }

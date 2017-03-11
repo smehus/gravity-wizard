@@ -8,12 +8,39 @@
 
 import SpriteKit
 
+fileprivate struct Names {
+    static let movingPlatform = "MovingPlatform"
+}
+
 class Level2: GameScene {
     
     var currentLevel: Level {
         return .two
     }
     
+    fileprivate var movingPlatform: SKNode?
+    
+    override func setupNodes() {
+        super.setupNodes()
+        setupPlatform()
+    }
+    
+    fileprivate func setupPlatform() {
+        guard let platform = childNode(withName: "//\(Names.movingPlatform)") else {
+            assertionFailure("Failed to find moving platform node")
+            return
+        }
+        
+        movingPlatform = platform
+        
+        let firstMoveAction = SKAction.moveBy(x: -500, y: 0, duration: 2.5)
+        let repeatableMoveAction = SKAction.moveBy(x: 1000, y: 0, duration: 5.0)
+        let repeatGroup = SKAction.sequence([repeatableMoveAction, repeatableMoveAction.reversed()])
+        movingPlatform?.run(SKAction.sequence([firstMoveAction, SKAction.repeatForever(repeatGroup)]))
+    }
+}
+
+extension Level2 {
     override func levelCompleted() {
         guard let successLevel = LevelCompleteLabel.createLabel(), let scene = scene else { return }
         successLevel.position = scene.zeroAnchoredCenter()
@@ -24,6 +51,28 @@ class Level2: GameScene {
             nextLevel.scaleMode = self.scaleMode
             let transition = SKTransition.doorsOpenHorizontal(withDuration: 1.0)
             self.view?.presentScene(nextLevel, transition: transition)
+            
+        }
+        
+        run(presentScene)
+    }
+    
+    override func gameOver() {
+        guard let gameOverLabel = LevelCompleteLabel.createLabel(with: "Game Over"), let camera = camera else { return }
+        gameOverLabel.position = convert(gameOverLabel.position, from: camera)
+        gameOverLabel.scaleAsPoint = CGPoint(x: 2.0, y: 2.0)
+        gameOverLabel.move(toParent: camera)
+        
+        runZoomOutAction()
+        
+        let presentScene = SKAction.afterDelay(2.0) {
+            guard let reloadLevel = self.currentLevel.levelScene() else {
+                assertionFailure("Failed to load level scene on game over")
+                return
+            }
+            reloadLevel.scaleMode = self.scaleMode
+            let transition = SKTransition.doorsOpenHorizontal(withDuration: 1.0)
+            self.view?.presentScene(reloadLevel, transition: transition)
             
         }
         
