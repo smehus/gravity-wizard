@@ -179,7 +179,7 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
         }
 
         let x = isIpad() ? -camSize.width/2 : -camSize.width
-        let y = isIpad() ? camSize.height/2 : camSize.height
+        let y = isIpad() ? 0 : camSize.height
         let newPoint = CGPoint(x: x, y: y)
         selector.position = camera.convert(newPoint, to: selector.parent!)
         selector.alpha = 0.0
