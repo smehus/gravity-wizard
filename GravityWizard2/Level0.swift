@@ -15,7 +15,6 @@ class Level0: GameScene {
     }
     
     override func levelCompleted() {
-        isPaused = true
         guard let successLevel = LevelCompleteLabel.createLabel(), let camera = camera else {
             assertionFailure("Failed to create level complete lable")
             return
@@ -25,6 +24,7 @@ class Level0: GameScene {
         successLevel.move(toParent: camera)
         
         let presentScene = SKAction.afterDelay(2.0) {
+            
             guard let nextLevel = self.currentLevel.nextLevel()?.levelScene() else { return }
             nextLevel.scaleMode = self.scaleMode
             let transition = SKTransition.doorsOpenHorizontal(withDuration: 1.0)
