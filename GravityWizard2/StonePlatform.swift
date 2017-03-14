@@ -21,7 +21,7 @@ final class StonePlatform: SKNode {
     
     fileprivate func setupAnchorBody() {
         guard let node = childNode(withName: Names.anchor) else {
-            assertionFailure("Failed to find anchor")
+//            assertionFailure("Failed to find anchor")
             return
         }
         
@@ -29,22 +29,34 @@ final class StonePlatform: SKNode {
     }
     
     fileprivate func setupTileBodies() {
-        enumerateChildNodes(withName: "//\(Names.tile)") { [weak self] node, _ in
+        var bodies: [SKPhysicsBody] = []
+        enumerateChildNodes(withName: "//\(Names.tile)") { node, _ in
             guard
                 let sprite = node as? SKSpriteNode,
-                let text = sprite.texture
+                let body = sprite.physicsBody
             else {
                 assertionFailure("Failed to cast tile as sprite node")
                 return
             }
             
-            let body = SKPhysicsBody(rectangleOf: text.size())
-            
+            sprite.physicsBody?.categoryBitMask = PhysicsCategory.Ground
+            bodies.append(body)
         }
+        
+        guard !bodies.isEmpty else {
+            assertionFailure("Tile bodies array is empty")
+            return
+        }
+        
+        setupContainerBody(with: bodies)
     }
     
-    fileprivate func setupContainerBody(with node: SKNode) {
-        
+    fileprivate func setupContainerBody(with bodies: [SKPhysicsBody]) {
+        physicsBody = SKPhysicsBody(bodies: bodies)
+        physicsBody?.affectedByGravity = false
+        if let body = physicsBody {
+            body.velocity = CGVector(dx: -40, dy: 0)
+        }
     }
 }
 

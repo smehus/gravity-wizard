@@ -32,11 +32,7 @@ class Level2: GameScene {
         }
         
         movingPlatform = platform
-        
-        let firstMoveAction = SKAction.moveBy(x: -500, y: 0, duration: 2.5)
-        let repeatableMoveAction = SKAction.moveBy(x: 1000, y: 0, duration: 5.0)
-        let repeatGroup = SKAction.sequence([repeatableMoveAction, repeatableMoveAction.reversed()])
-        movingPlatform?.run(SKAction.sequence([firstMoveAction, SKAction.repeatForever(repeatGroup)]))
+
     }
 }
 
