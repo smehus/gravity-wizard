@@ -9,7 +9,7 @@
 import SpriteKit
 
 fileprivate struct Names {
-    static let movingPlatform = "MovingPlatform"
+    static let movingPlatform = "MovingPlatformContainer"
 }
 
 class Level2: GameScene {
@@ -29,12 +29,12 @@ class Level2: GameScene {
         guard
             let platform = childNode(withName: "//\(Names.movingPlatform)") as? StonePlatform
         else {
-            assertionFailure("Failed to find moving platform scene")
+            assertionFailure("Failed to find moving platform node")
             return
         }
           
         movingPlatform = platform
-        movingPlatform?.startAnimating(with: 500, repeating: 1000)
+        movingPlatform?.startAnimating(with: 250, repeating: 500)
     }
 }
 

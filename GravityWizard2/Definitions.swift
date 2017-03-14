@@ -118,6 +118,9 @@ struct PhysicsCategory {
     static let LevelComplete:       UInt32 = 0x1 << 11
     static let HeroContactBorder:   UInt32 = 0x1 << 12
     static let Lava:                UInt32 = 0x1 << 13
+    
+    /// Used for moving platforms with physics bodies
+    static let travelatorBase:      UInt32 = 0x1 << 14
 }
 
 struct LightingMask {
