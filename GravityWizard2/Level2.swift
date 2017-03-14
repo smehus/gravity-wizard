@@ -18,7 +18,7 @@ class Level2: GameScene {
         return .two
     }
     
-    fileprivate var movingPlatform: SKNode?
+    fileprivate var movingPlatform: StonePlatform?
     
     override func setupNodes() {
         super.setupNodes()
@@ -26,13 +26,15 @@ class Level2: GameScene {
     }
     
     fileprivate func setupPlatform() {
-        guard let platform = childNode(withName: "//\(Names.movingPlatform)") else {
-            assertionFailure("Failed to find moving platform node")
+        guard
+            let platform = childNode(withName: "//\(Names.movingPlatform)") as? StonePlatform
+        else {
+            assertionFailure("Failed to find moving platform scene")
             return
         }
-        
+          
         movingPlatform = platform
-
+        movingPlatform?.startAnimating(with: 500, repeating: 1000)
     }
 }
 

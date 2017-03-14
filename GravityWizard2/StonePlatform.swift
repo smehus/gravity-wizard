@@ -17,15 +17,12 @@ fileprivate struct Names {
 
 final class StonePlatform: SKNode {
     
-    fileprivate var anchor: SKNode?
-    
-    fileprivate func setupAnchorBody() {
-        guard let node = childNode(withName: Names.anchor) else {
-//            assertionFailure("Failed to find anchor")
-            return
-        }
+    func startAnimating(with initial: CGFloat, repeating: CGFloat) {
         
-        anchor = node
+        let initialAction = SKAction.moveBy(x: -initial, y: 0, duration: 1.5)
+        let moveAction = SKAction.moveBy(x: repeating, y: 0, duration: 3.0)
+        let repeatingAction = SKAction.repeatForever(SKAction.sequence([moveAction, moveAction.reversed()]))
+        run(SKAction.sequence([initialAction, repeatingAction]))
     }
     
     fileprivate func setupTileBodies() {
@@ -54,15 +51,12 @@ final class StonePlatform: SKNode {
     fileprivate func setupContainerBody(with bodies: [SKPhysicsBody]) {
         physicsBody = SKPhysicsBody(bodies: bodies)
         physicsBody?.affectedByGravity = false
-        if let body = physicsBody {
-            body.velocity = CGVector(dx: -40, dy: 0)
-        }
+        physicsBody?.allowsRotation = false
     }
 }
 
 extension StonePlatform: LifecycleListener {
     func didMoveToScene() {
-        setupAnchorBody()
         setupTileBodies()
     }
 }
