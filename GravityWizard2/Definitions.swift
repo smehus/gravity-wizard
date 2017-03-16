@@ -121,6 +121,7 @@ struct PhysicsCategory {
     
     /// Used for moving platforms with physics bodies
     static let travelatorBase:      UInt32 = 0x1 << 14
+    static let travelatorPlatform:  UInt32 = 0x1 << 15
 }
 
 struct LightingMask {
@@ -143,6 +144,8 @@ enum CollisionCombination {
     
     case heroCollidesWithLevelComplete
     case heroCollidesWithLava
+    
+    case travelatorCollidesWithLimits
     
     case none
 }
@@ -171,6 +174,8 @@ extension UInt32 {
             return .heroCollidesWithLevelComplete
         case PhysicsCategory.Hero | PhysicsCategory.Lava:
             return .heroCollidesWithLava
+        case PhysicsCategory.travelatorPlatform | PhysicsCategory.travelatorBase:
+            return .none
         default: return .none
         }
     }

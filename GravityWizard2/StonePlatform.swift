@@ -10,59 +10,72 @@ import Foundation
 import SpriteKit
 
 fileprivate struct Names {
-    static let tile = "tile"
     static let movingPlatform = "MovingPlatform"
     static let platformBase = "PlatformBase"
-
 }
 
 final class StonePlatform: SKNode {
-    
+
+    /// Nodes
     fileprivate var movingPlatform: SKNode?
     fileprivate var platformBase: SKNode?
+
+    /// Factors
+    fileprivate var initialPoint: CGPoint?
+    fileprivate var moveAmount = 100
     
-    func startAnimating(with initial: CGFloat, repeating: CGFloat) {
-        
-        let initialAction = SKAction.moveBy(x: -initial, y: 0, duration: 1.5)
-        let moveAction = SKAction.moveBy(x: repeating, y: 0, duration: 3.0)
-        let repeatingAction = SKAction.repeatForever(SKAction.sequence([moveAction, moveAction.reversed()]))
-        movingPlatform?.run(SKAction.sequence([initialAction, repeatingAction]))
-    }
     
-    fileprivate func setupTileBodies() {
-        var bodies: [SKPhysicsBody] = []
-        enumerateChildNodes(withName: "//\(Names.tile)") { node, _ in
-            guard
-                let sprite = node as? SKSpriteNode,
-                let body = sprite.physicsBody
-            else {
-                assertionFailure("Failed to cast tile as sprite node")
-                return
-            }
-            
-            sprite.physicsBody?.categoryBitMask = PhysicsCategory.Ground
-            bodies.append(body)
-        }
-        
-        guard !bodies.isEmpty else {
-            assertionFailure("Tile bodies array is empty")
+    
+    func animate(with offset: CGFloat) {
+        guard let platform = movingPlatform, let body = platform.physicsBody, let point = initialPoint else {
+            assertionFailure("Moving Platform is nil in animation method")
             return
         }
+
+        // Moving Right
+        if body.velocity.dx > 0 {
+            if platform.position.x >= (point.x + offset) {
+                // Platform has moved past right limit - turn around
+                body.velocity = CGVector(dx: -moveAmount, dy: 0)
+                return
+            } else {
+                // Platfor is within the limits - keep going
+                body.velocity = CGVector(dx: moveAmount, dy: 0)
+                return
+            }
+        }
         
-        setupContainerBody(with: bodies)
+        // Moving Left
+        else if body.velocity.dx < 0 {
+            if platform.position.x <= (point.x - offset) {
+                // Platform is less than left limit - turn around
+                body.velocity = CGVector(dx: moveAmount, dy: 0)
+                return
+            } else {
+                // Platform is within the limits - keep going
+                body.velocity = CGVector(dx: -moveAmount, dy: 0)
+                return
+            }
+        }
+        
     }
     
-    fileprivate func setupContainerBody(with bodies: [SKPhysicsBody]) {
-        guard let platform = childNode(withName: Names.movingPlatform) else {
+    fileprivate func setupPlatform() {
+        guard
+            let platform = childNode(withName: "//\(Names.movingPlatform)"),
+            let _ = platform.physicsBody
+        else {
             assertionFailure("Failed to find moving platform")
             return
         }
-        
-        platform.physicsBody = SKPhysicsBody(bodies: bodies)
+    
         platform.physicsBody?.categoryBitMask = PhysicsCategory.Ground
         platform.physicsBody?.affectedByGravity = false
         platform.physicsBody?.allowsRotation = false
         movingPlatform = platform
+        initialPoint = platform.position
+        
+        movingPlatform?.physicsBody?.velocity = CGVector(dx: moveAmount, dy: 0)
     }
     
     fileprivate func setupBaseBody() {
@@ -82,6 +95,6 @@ final class StonePlatform: SKNode {
 extension StonePlatform: LifecycleListener {
     func didMoveToScene() {
         setupBaseBody()
-        setupTileBodies()
+        setupPlatform()
     }
 }

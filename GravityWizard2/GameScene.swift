@@ -57,6 +57,11 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
         setupHeroContactBorder()
     }
     
+    
+    // MARK: - Sublcass Methods
+
+    func update(subClassWith currentTime: TimeInterval) { }
+    
     func setupNodes() {
         
         addChild(cameraNode)
@@ -266,8 +271,12 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
         default: return
         }
     }
+    
+    
 }
 
+
+// MARK: - Trajectory Extension
 extension GameScene {
     fileprivate func updateTrajectoryIndicator(with initialPoint: CGPoint, endPoint: CGPoint, velocityMultiply: CGFloat) {
         guard let rose = rose else { return }
@@ -394,6 +403,8 @@ extension GameScene {
     
 }
 
+
+// MARK: - Update
 extension GameScene {
     override func update(_ currentTime: TimeInterval) {
         if lastUpdateTimeInterval > 0 {
@@ -411,6 +422,8 @@ extension GameScene {
         if let projectile = currentProjectile {
             updateDirection(with: projectile)
         }
+        
+        update(subClassWith: currentTime)
     }
 }
 

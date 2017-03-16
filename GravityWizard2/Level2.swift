@@ -25,6 +25,10 @@ class Level2: GameScene {
         setupPlatform()
     }
     
+    override func update(subClassWith currentTime: TimeInterval) {
+        movingPlatform?.animate(with: 100)
+    }
+    
     fileprivate func setupPlatform() {
         guard
             let platform = childNode(withName: "//\(Names.movingPlatform)") as? StonePlatform
@@ -34,7 +38,6 @@ class Level2: GameScene {
         }
           
         movingPlatform = platform
-        movingPlatform?.startAnimating(with: 250, repeating: 500)
     }
 }
 
