@@ -57,7 +57,6 @@ final class StonePlatform: SKNode {
                 return
             }
         }
-        
     }
     
     fileprivate func setupPlatform() {

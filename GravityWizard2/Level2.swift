@@ -12,6 +12,10 @@ fileprivate struct Names {
     static let movingPlatform = "MovingPlatformContainer"
 }
 
+fileprivate struct Constants {
+    static let platformVelocityX: CGFloat = 300
+}
+
 class Level2: GameScene {
     
     var currentLevel: Level {
@@ -26,7 +30,7 @@ class Level2: GameScene {
     }
     
     override func update(subClassWith currentTime: TimeInterval) {
-        movingPlatform?.animate(with: 100)
+        movingPlatform?.animate(with: Constants.platformVelocityX)
     }
     
     fileprivate func setupPlatform() {
