@@ -118,6 +118,7 @@ struct PhysicsCategory {
     static let LevelComplete:       UInt32 = 0x1 << 11
     static let HeroContactBorder:   UInt32 = 0x1 << 12
     static let Lava:                UInt32 = 0x1 << 13
+    static let destructible:        UInt32 = 0x1 << 14
     
     /// Used for moving platforms with physics bodies
     static let travelatorBase:      UInt32 = 0x1 << 14
@@ -141,6 +142,7 @@ enum CollisionCombination {
     case arrowCollidesWithBreakable
     case arrowCollidesWithGround
     case arrowCollidesWithVikingBodyPart
+    case arrowCollidesWithDesctructible
     
     case heroCollidesWithLevelComplete
     case heroCollidesWithLava
@@ -166,6 +168,8 @@ extension UInt32 {
             return .arrowCollidesWithGround
         case PhysicsCategory.Arrow | PhysicsCategory.VikingBodyPart:
             return .arrowCollidesWithVikingBodyPart
+        case PhysicsCategory.Arrow | PhysicsCategory.destructible:
+            return .arrowCollidesWithDesctructible
         case PhysicsCategory.GravityProjectile | PhysicsCategory.Ground:
             return .gravityProjectileHitsGround
         case PhysicsCategory.HeroContactBorder | PhysicsCategory.GravityProjectile:

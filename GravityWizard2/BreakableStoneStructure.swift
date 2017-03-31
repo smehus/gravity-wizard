@@ -11,6 +11,10 @@ import SpriteKit
 
 final class BreakableStoneStructure: SKNode {
     
+    fileprivate struct Names {
+        static let breakable = "breakable"
+    }
+    
     fileprivate func setupBreakables() {
         
     }
