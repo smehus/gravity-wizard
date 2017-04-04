@@ -8,7 +8,14 @@
 
 import SpriteKit
 
-class ArrowNode: SKSpriteNode {
+final class ArrowNode: SKSpriteNode {
+    
+    struct Physics {
+        static let category = PhysicsCategory.Arrow
+        static let contact = PhysicsCategory.Edge | PhysicsCategory.Ground
+        static let collision = PhysicsCategory.Edge | PhysicsCategory.Ground | PhysicsCategory.destructible
+        static let field = PhysicsCategory.None
+    }
     
     var isInFlight: Bool = false
     
@@ -20,10 +27,10 @@ class ArrowNode: SKSpriteNode {
         
         physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: texture.size().width/2, height: texture.size().height/2))
         physicsBody?.affectedByGravity = true
-        physicsBody?.categoryBitMask = PhysicsCategory.Arrow
-        physicsBody?.contactTestBitMask = PhysicsCategory.Edge | PhysicsCategory.Ground
-        physicsBody?.collisionBitMask = PhysicsCategory.Edge | PhysicsCategory.Ground
-        physicsBody?.fieldBitMask = PhysicsCategory.None
+        physicsBody?.categoryBitMask = Physics.category
+        physicsBody?.contactTestBitMask = Physics.contact
+        physicsBody?.collisionBitMask = Physics.collision
+        physicsBody?.fieldBitMask = Physics.field
         
     }
     

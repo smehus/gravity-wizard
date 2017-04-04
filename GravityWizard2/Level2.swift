@@ -10,6 +10,7 @@ import SpriteKit
 
 fileprivate struct Names {
     static let movingPlatform = "MovingPlatformContainer"
+    static let breakableStoneStructure = "BreakableStoneStructure"
 }
 
 fileprivate struct Constants {
@@ -23,14 +24,27 @@ class Level2: GameScene {
     }
     
     fileprivate var movingPlatform: StonePlatform?
+    fileprivate var destructableStoneStructure: BreakableStoneStructure?
     
     override func setupNodes() {
         super.setupNodes()
         setupPlatform()
+        setupBreakableStoneStructure()
     }
     
     override func update(subClassWith currentTime: TimeInterval) {
         movingPlatform?.animate(with: Constants.platformVelocityX)
+    }
+    
+    fileprivate func setupBreakableStoneStructure() {
+        guard
+            let structure = childNode(withName: "//\(Names.breakableStoneStructure)") as? BreakableStoneStructure
+        else {
+            assertionFailure("Failed to get stone structure")
+            return
+        }
+        
+        destructableStoneStructure = structure
     }
     
     fileprivate func setupPlatform() {
@@ -42,6 +56,25 @@ class Level2: GameScene {
         }
           
         movingPlatform = platform
+    }
+}
+
+extension Level2 {
+    override func collisionDidBegin(with contact: SKPhysicsContact) {
+        super.collisionDidBegin(with: contact)
+        let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
+        
+        if collision.collisionCombination() == .arrowCollidesWithDesctructible {
+            
+        }
+    }
+    
+    fileprivate func arrowCollidesWithDesctructable(with contact: SKPhysicsContact) {
+        guard let desctructable = contact.bodyA.categoryBitMask == PhysicsCategory.destructible ? contact.bodyA.node : contact.bodyB.node else {
+            return
+        }
+        
+        
     }
 }
 

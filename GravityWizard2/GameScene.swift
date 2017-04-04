@@ -515,6 +515,10 @@ extension GameScene {
 
 extension GameScene: SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
+        collisionDidBegin(with: contact)
+    }
+    
+    func collisionDidBegin(with contact: SKPhysicsContact) {
         let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
         
         if collision.collisionCombination() == .heroHitsGround {
