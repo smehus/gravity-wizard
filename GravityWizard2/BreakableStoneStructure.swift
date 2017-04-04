@@ -15,8 +15,22 @@ final class BreakableStoneStructure: SKNode {
         static let breakable = "breakable"
     }
     
+    fileprivate struct Physics {
+        static let category = PhysicsCategory.destructible
+    }
+    
     fileprivate func setupBreakables() {
-        
+        enumerateChildNodes(withName: Names.breakable) { [weak self] (node, stop) in
+            guard let body = node.physicsBody else { return }
+            self?.setup(withBody: body)
+        }
+    }
+    
+    fileprivate func setup(withBody body: SKPhysicsBody) {
+        body.affectedByGravity = true
+        body.isDynamic = true
+        body.pinned = false
+        body.categoryBitMask = Physics.category
     }
 }
 
