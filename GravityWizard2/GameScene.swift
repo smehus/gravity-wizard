@@ -9,7 +9,7 @@
 import SpriteKit
 import GameplayKit
 
-fileprivate let GRAVITY_VEL: CGFloat = isIpad() ? 0.75 : 1.5
+fileprivate let GRAVITY_VEL: CGFloat = isIpad() ? 0.9 : 1.5
 
 class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
 

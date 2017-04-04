@@ -9,13 +9,41 @@
 import Foundation
 import SpriteKit
 
-final class DesctructibleStone: SKSpriteNode {
+fileprivate enum Texture: Int {
+    case assembled = 0
+    case weakened
+    case broken
     
-    fileprivate struct Physics {
+    func next() -> Texture {
+        guard let texture = Texture(rawValue: rawValue + 1) else {
+            return .assembled
+        }
+        
+        return texture
+    }
+    
+    func textureImage() -> SKTexture {
+        return SKTexture(imageNamed: "\(Local.Images.stoneBaseString)\(rawValue)")
+    }
+}
+
+fileprivate struct Local {
+    struct Images {
+        static let stoneBaseString = "breakable-stone-block-"
+    }
+    
+    struct Physics {
         static let category = PhysicsCategory.destructible
         static let contact = PhysicsCategory.Arrow
         static let collision = PhysicsCategory.Arrow | PhysicsCategory.Ground | PhysicsCategory.Hero
     }
+}
+
+final class DesctructibleStone: SKSpriteNode {
+    
+    fileprivate var hitCount = 0
+    fileprivate var currentTexture: Texture = .assembled
+    
     
     func setupPhysicsBody() {
         guard let body = physicsBody else {
@@ -26,8 +54,25 @@ final class DesctructibleStone: SKSpriteNode {
         body.affectedByGravity = false
         body.isDynamic = false
         body.pinned = false
-        body.categoryBitMask = Physics.category
-        body.contactTestBitMask = Physics.contact
-        body.collisionBitMask  = Physics.collision
+        body.categoryBitMask = Local.Physics.category
+        body.contactTestBitMask = Local.Physics.contact
+        body.collisionBitMask  = Local.Physics.collision
+    }
+    
+    func hit() {
+        if currentTexture == .broken {
+            destroy()
+        } else {
+            currentTexture = currentTexture.next()
+            let animation = SKAction.animate(with: [currentTexture.textureImage()], timePerFrame: 0.3)
+            run(animation)
+        }
+    }
+    
+    fileprivate func destroy() {
+        physicsBody?.isDynamic = true
+        physicsBody?.affectedByGravity = true
+        let removeAction = SKAction.removeFromParentAfterDelay(2.0)
+        run(removeAction)
     }
 }

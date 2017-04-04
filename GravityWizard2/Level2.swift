@@ -65,16 +65,19 @@ extension Level2 {
         let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
         
         if collision.collisionCombination() == .arrowCollidesWithDesctructible {
-            
+            arrowCollidesWithDesctructable(with: contact)
         }
     }
     
     fileprivate func arrowCollidesWithDesctructable(with contact: SKPhysicsContact) {
-        guard let desctructable = contact.bodyA.categoryBitMask == PhysicsCategory.destructible ? contact.bodyA.node : contact.bodyB.node else {
+        guard
+            let node = contact.bodyA.categoryBitMask == PhysicsCategory.destructible ? contact.bodyA.node : contact.bodyB.node,
+            let desctructible = node as? DesctructibleStone
+        else {
             return
         }
         
-        
+        desctructible.hit()
     }
 }
 
