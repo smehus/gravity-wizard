@@ -123,6 +123,8 @@ struct PhysicsCategory {
     /// Used for moving platforms with physics bodies
     static let travelatorBase:      UInt32 = 0x1 << 14
     static let travelatorPlatform:  UInt32 = 0x1 << 15
+    
+    static let brokenRockParts:     UInt32 = 0x1 << 16
 }
 
 struct LightingMask {

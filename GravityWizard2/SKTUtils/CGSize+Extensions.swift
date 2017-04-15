@@ -15,6 +15,12 @@ func *(size: CGSize, multiplier: CGFloat) -> CGSize {
     return CGSize(width: width, height: height)
 }
 
+func /(size: CGSize, multiplier: CGFloat) -> CGSize {
+    let width = size.width / multiplier
+    let height = size.height / multiplier
+    return CGSize(width: width, height: height)
+}
+
 extension CGSize {
     public mutating func offset(dx: CGFloat, dy: CGFloat) -> CGSize {
         width += dx

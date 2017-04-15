@@ -70,9 +70,11 @@ final class DesctructibleStone: SKSpriteNode {
     }
     
     fileprivate func destroy() {
-        physicsBody?.isDynamic = true
-        physicsBody?.affectedByGravity = true
-        let removeAction = SKAction.removeFromParentAfterDelay(2.0)
+        if let stoneParent = parent as? BreakableStoneStructure {
+            stoneParent.createExplosion(at: position)
+        }
+
+        let removeAction = SKAction.removeFromParent()
         run(removeAction)
     }
 }

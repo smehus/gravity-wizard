@@ -16,7 +16,7 @@ final class BreakableStoneStructure: SKNode {
     }
     
     fileprivate func setupBreakables() {
-        enumerateChildNodes(withName: Names.breakable) { [weak self] (node, stop) in
+        enumerateChildNodes(withName: Names.breakable) { (node, stop) in
             guard
                 let stone = node as? DesctructibleStone
             else {
@@ -24,6 +24,28 @@ final class BreakableStoneStructure: SKNode {
             }
             
             stone.setupPhysicsBody()
+        }
+    }
+    
+    func createExplosion(at pos: CGPoint) {
+        guard let gameScene = scene else { return }
+        let text = SKTexture(image: #imageLiteral(resourceName: "round-rock"))
+        for _ in 0...4 {
+            let rockNode = SKSpriteNode(texture: text, size: text.size() / 2)
+            let rockBody = SKPhysicsBody(circleOfRadius: text.size().width / 4)
+            rockBody.categoryBitMask = PhysicsCategory.brokenRockParts
+            rockBody.collisionBitMask = PhysicsCategory.Edge | PhysicsCategory.Ground
+            rockBody.affectedByGravity = true
+            rockBody.isDynamic = true
+            rockBody.allowsRotation = true
+            
+            rockBody.density = 0.5
+            rockNode.physicsBody = rockBody
+            
+            rockNode.position = convert(pos, to: gameScene)
+            gameScene.addChild(rockNode)
+            let vect = CGVector(dx: CGFloat.random(min: -50, max: 50), dy: 0)
+            rockNode.physicsBody?.applyForce(vect)
         }
     }
 }

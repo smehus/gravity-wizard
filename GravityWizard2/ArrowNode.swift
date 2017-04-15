@@ -31,7 +31,7 @@ final class ArrowNode: SKSpriteNode {
         physicsBody?.contactTestBitMask = Physics.contact
         physicsBody?.collisionBitMask = Physics.collision
         physicsBody?.fieldBitMask = Physics.field
-        
+        zPosition = 30
     }
     
     required init?(coder aDecoder: NSCoder) {
