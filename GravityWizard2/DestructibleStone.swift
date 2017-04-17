@@ -71,10 +71,24 @@ final class DesctructibleStone: SKSpriteNode {
     
     fileprivate func destroy() {
         if let stoneParent = parent as? BreakableStoneStructure {
-            stoneParent.createExplosion(at: position)
+            let main = SKTexture(image: #imageLiteral(resourceName: "rock-shard"))
+            let animText = createSmokeTextures()
+            stoneParent.createExplosion(at: position, mainTexture: main, animationTextures: animText)
         }
 
         let removeAction = SKAction.removeFromParent()
         run(removeAction)
+    }
+    
+    fileprivate func createSmokeTextures() -> [SKTexture] {
+        var animationTextures: [SKTexture] = []
+        
+        for i in 0...24 {
+            let name = "whitePuff\(i)"
+            let text = SKTexture(imageNamed: name)
+            animationTextures.append(text)
+        }
+        
+        return animationTextures
     }
 }
