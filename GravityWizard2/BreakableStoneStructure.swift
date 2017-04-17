@@ -44,8 +44,10 @@ final class BreakableStoneStructure: SKNode {
             
             rockNode.position = convert(pos, to: gameScene)
             gameScene.addChild(rockNode)
-            let vect = CGVector(dx: CGFloat.random(min: -50, max: 50), dy: 0)
-            rockNode.physicsBody?.applyForce(vect)
+            let vect = CGVector(dx: CGFloat.random(min: -500, max: 500), dy: CGFloat.random(min: 0, max: 500))
+//            rockNode.physicsBody?.velocity = vect
+            let impulseVect = CGVector(dx: CGFloat.random(min: -5, max: 5), dy: CGFloat.random(min: 0, max: 10))
+            rockNode.physicsBody?.applyImpulse(impulseVect)
         }
     }
 }
