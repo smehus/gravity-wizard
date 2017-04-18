@@ -9,13 +9,13 @@
 import Foundation
 import SpriteKit
 
-fileprivate enum Texture: Int {
+enum DestructibleTexture: Int {
     case assembled = 0
     case weakened
     case broken
     
-    func next() -> Texture {
-        guard let texture = Texture(rawValue: rawValue + 1) else {
+    func next() -> DestructibleTexture {
+        guard let texture = DestructibleTexture(rawValue: rawValue + 1) else {
             return .assembled
         }
         
@@ -42,7 +42,7 @@ fileprivate struct Local {
 final class DesctructibleStone: SKSpriteNode {
     
     fileprivate var hitCount = 0
-    fileprivate var currentTexture: Texture = .assembled
+    var currentTexture: DestructibleTexture = .assembled
     
     
     func setupPhysicsBody() {

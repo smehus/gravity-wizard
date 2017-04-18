@@ -74,12 +74,19 @@ extension Level2 {
             let node = contact.bodyA.categoryBitMask == PhysicsCategory.destructible ? contact.bodyA.node : contact.bodyB.node,
             let arrowNode = contact.bodyA.categoryBitMask == PhysicsCategory.arrow ? contact.bodyA.node : contact.bodyB.node,
             let arrow = arrowNode as? ArrowNode,
-            let desctructible = node as? DesctructibleStone
+            let arrowBody = arrow.physicsBody,
+            let destructible = node as? DesctructibleStone,
+            let destructibleBody = destructible.physicsBody
         else {
             return
         }
         
-        desctructible.hit()
+        if destructible.currentTexture != .broken {
+            let joint = SKPhysicsJointFixed.joint(withBodyA: arrowBody, bodyB: destructibleBody, anchor: contact.contactPoint)
+            physicsWorld.add(joint)
+        }
+        
+        destructible.hit()
     }
 }
 
