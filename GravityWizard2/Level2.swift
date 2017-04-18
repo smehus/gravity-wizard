@@ -72,6 +72,8 @@ extension Level2 {
     fileprivate func arrowCollidesWithDesctructable(with contact: SKPhysicsContact) {
         guard
             let node = contact.bodyA.categoryBitMask == PhysicsCategory.destructible ? contact.bodyA.node : contact.bodyB.node,
+            let arrowNode = contact.bodyA.categoryBitMask == PhysicsCategory.arrow ? contact.bodyA.node : contact.bodyB.node,
+            let arrow = arrowNode as? ArrowNode,
             let desctructible = node as? DesctructibleStone
         else {
             return

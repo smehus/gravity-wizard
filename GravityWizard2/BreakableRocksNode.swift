@@ -33,7 +33,7 @@ extension BreakableRocksNode: LifecycleListener {
         
         physicsBody = SKPhysicsBody(bodies: bodies)
         physicsBody?.categoryBitMask = PhysicsCategory.BreakableFormation
-        physicsBody?.contactTestBitMask = PhysicsCategory.Arrow
+        physicsBody?.contactTestBitMask = PhysicsCategory.arrow
         physicsBody?.isDynamic = false
         physicsBody?.affectedByGravity = false
     }

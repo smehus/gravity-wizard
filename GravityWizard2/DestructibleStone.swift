@@ -34,8 +34,8 @@ fileprivate struct Local {
     
     struct Physics {
         static let category = PhysicsCategory.destructible
-        static let contact = PhysicsCategory.Arrow
-        static let collision = PhysicsCategory.Arrow | PhysicsCategory.Ground | PhysicsCategory.Hero
+        static let contact = PhysicsCategory.arrow
+        static let collision = PhysicsCategory.arrow | PhysicsCategory.Ground | PhysicsCategory.Hero
     }
 }
 

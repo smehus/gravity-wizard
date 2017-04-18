@@ -19,7 +19,7 @@ fileprivate struct Names {
 fileprivate struct Physics {
     static let defaultCategory = PhysicsCategory.Ground
     static let levelComplete = PhysicsCategory.LevelComplete
-    static let collision = PhysicsCategory.Arrow | PhysicsCategory.Blood | PhysicsCategory.Rock | PhysicsCategory.Hero
+    static let collision = PhysicsCategory.arrow | PhysicsCategory.Blood | PhysicsCategory.Rock | PhysicsCategory.Hero
 }
 
 final class MossyWall: SKSpriteNode {

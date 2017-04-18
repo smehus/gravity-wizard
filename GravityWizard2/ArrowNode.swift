@@ -11,7 +11,7 @@ import SpriteKit
 final class ArrowNode: SKSpriteNode {
     
     struct Physics {
-        static let category = PhysicsCategory.Arrow
+        static let category = PhysicsCategory.arrow
         static let contact = PhysicsCategory.Edge | PhysicsCategory.Ground
         static let collision = PhysicsCategory.Edge | PhysicsCategory.Ground | PhysicsCategory.destructible
         static let field = PhysicsCategory.None

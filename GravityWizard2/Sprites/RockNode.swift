@@ -16,7 +16,7 @@ extension RockNode: LifecycleListener {
     func didMoveToScene() {
         physicsBody?.isDynamic = false
         physicsBody?.categoryBitMask = PhysicsCategory.Rock
-        physicsBody?.contactTestBitMask = PhysicsCategory.Hero | PhysicsCategory.Arrow | PhysicsCategory.Ground
+        physicsBody?.contactTestBitMask = PhysicsCategory.Hero | PhysicsCategory.arrow | PhysicsCategory.Ground
         physicsBody?.collisionBitMask = PhysicsCategory.Hero | PhysicsCategory.Ground | PhysicsCategory.Edge | PhysicsCategory.Rock
         physicsBody?.fieldBitMask = PhysicsCategory.None
         

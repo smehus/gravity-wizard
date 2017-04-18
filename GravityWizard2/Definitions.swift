@@ -109,7 +109,7 @@ struct PhysicsCategory {
     static let Ground:              UInt32 = 0x1 << 2 // 010
     static let Rock:                UInt32 = 0x1 << 3 // 0100
     static let Edge:                UInt32 = 0x1 << 4 // 01000
-    static let Arrow:               UInt32 = 0x1 << 5
+    static let arrow:               UInt32 = 0x1 << 5
     static let Blood:               UInt32 = 0x1 << 6
     static let RadialGravity:       UInt32 = 0x1 << 7
     static let BreakableFormation:  UInt32 = 0x1 << 8
@@ -162,15 +162,15 @@ extension UInt32 {
             return .rockHitsWizard
         case PhysicsCategory.Blood | PhysicsCategory.Ground:
             return .bloodCollidesWithGround
-        case PhysicsCategory.Arrow | PhysicsCategory.Edge:
+        case PhysicsCategory.arrow | PhysicsCategory.Edge:
             return .arrowCollidesWithEdge
-        case PhysicsCategory.Arrow | PhysicsCategory.BreakableFormation :
+        case PhysicsCategory.arrow | PhysicsCategory.BreakableFormation :
             return .arrowCollidesWithBreakable
-        case PhysicsCategory.Arrow | PhysicsCategory.Ground :
+        case PhysicsCategory.arrow | PhysicsCategory.Ground :
             return .arrowCollidesWithGround
-        case PhysicsCategory.Arrow | PhysicsCategory.VikingBodyPart:
+        case PhysicsCategory.arrow | PhysicsCategory.VikingBodyPart:
             return .arrowCollidesWithVikingBodyPart
-        case PhysicsCategory.Arrow | PhysicsCategory.destructible:
+        case PhysicsCategory.arrow | PhysicsCategory.destructible:
             return .arrowCollidesWithDesctructible
         case PhysicsCategory.GravityProjectile | PhysicsCategory.Ground:
             return .gravityProjectileHitsGround

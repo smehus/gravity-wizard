@@ -521,21 +521,13 @@ extension GameScene: SKPhysicsContactDelegate {
     func collisionDidBegin(with contact: SKPhysicsContact) {
         let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
         
-        if collision.collisionCombination() == .heroHitsGround {
-            roseHitsGround(with: contact)
-        }
-        
-        if collision.collisionCombination() == .rockHitsWizard {
-            rockHitsHero(with: contact)
-        }
-        
-        if collision.collisionCombination() == .heroCollidesWithGravityField {
-            heroCollidesWithGravityField(with: contact)
-        }
-        
         if collision.collisionCombination() == .bloodCollidesWithGround {
             bloodCollidesWithGround(with: contact)
         }
+        
+        
+        
+        // Arrow 
         
         if collision.collisionCombination() == .arrowCollidesWithEdge {
             arrowCollidesWithEdge(with: contact)
@@ -553,9 +545,16 @@ extension GameScene: SKPhysicsContactDelegate {
             arrowCollidesWithVikingBodyPart(with: contact)
         }
         
+        
+        
+        // Gravity Projectile
         if collision.collisionCombination() == .gravityProjectileHitsGround {
             gravityProjectileHitGround(with: contact)
         }
+        
+        
+        
+        // Hero
         
         if collision.collisionCombination() == .heroCollidesWithLevelComplete {
             heroCollidesWithLevelComplete(with: contact)
@@ -563,6 +562,18 @@ extension GameScene: SKPhysicsContactDelegate {
         
         if collision.collisionCombination() == .heroCollidesWithLava {
             heroCollidesWithLava(with: contact)
+        }
+        
+        if collision.collisionCombination() == .heroHitsGround {
+            roseHitsGround(with: contact)
+        }
+        
+        if collision.collisionCombination() == .rockHitsWizard {
+            rockHitsHero(with: contact)
+        }
+        
+        if collision.collisionCombination() == .heroCollidesWithGravityField {
+            heroCollidesWithGravityField(with: contact)
         }
     }
     
@@ -608,9 +619,10 @@ extension GameScene {
             blood.hitGround()
         }
     }
-    
+    // TODO: If second arrow is launched while first arrow is still in air - the first arrow will be removed
     fileprivate func arrowCollidesWithEdge(with contact: SKPhysicsContact) {
-        if let arrow = currentProjectile {
+        let node = contact.bodyA.categoryBitMask == PhysicsCategory.arrow ? contact.bodyA.node : contact.bodyB.node
+        if let arrow = node {
             arrow.removeFromParent()
         }
     }
@@ -625,7 +637,8 @@ extension GameScene {
     }
     
     fileprivate func arrowCollidesWithGround(with contact: SKPhysicsContact) {
-        if let arrow = currentProjectile as? ArrowNode {
+        let node = contact.bodyA.categoryBitMask == PhysicsCategory.arrow ? contact.bodyA.node : contact.bodyB.node
+        if let arrow = node as? ArrowNode {
             arrow.physicsBody = nil
         }
     }
