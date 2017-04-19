@@ -113,7 +113,7 @@ struct PhysicsCategory {
     static let Blood:               UInt32 = 0x1 << 6
     static let RadialGravity:       UInt32 = 0x1 << 7
     static let BreakableFormation:  UInt32 = 0x1 << 8
-    static let VikingBodyPart:      UInt32 = 0x1 << 9
+    static let enemy:               UInt32 = 0x1 << 9
     static let GravityProjectile:   UInt32 = 0x1 << 10
     static let LevelComplete:       UInt32 = 0x1 << 11
     static let HeroContactBorder:   UInt32 = 0x1 << 12
@@ -143,7 +143,7 @@ enum CollisionCombination {
     case arrowCollidesWithEdge
     case arrowCollidesWithBreakable
     case arrowCollidesWithGround
-    case arrowCollidesWithVikingBodyPart
+    case arrowCollidesWithEnemy
     case arrowCollidesWithDesctructible
     
     case heroCollidesWithLevelComplete
@@ -168,8 +168,8 @@ extension UInt32 {
             return .arrowCollidesWithBreakable
         case PhysicsCategory.arrow | PhysicsCategory.Ground :
             return .arrowCollidesWithGround
-        case PhysicsCategory.arrow | PhysicsCategory.VikingBodyPart:
-            return .arrowCollidesWithVikingBodyPart
+        case PhysicsCategory.arrow | PhysicsCategory.enemy:
+            return .arrowCollidesWithEnemy
         case PhysicsCategory.arrow | PhysicsCategory.destructible:
             return .arrowCollidesWithDesctructible
         case PhysicsCategory.GravityProjectile | PhysicsCategory.Ground:

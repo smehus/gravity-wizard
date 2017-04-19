@@ -541,8 +541,8 @@ extension GameScene: SKPhysicsContactDelegate {
             arrowCollidesWithGround(with: contact)
         }
         
-        if collision.collisionCombination() == .arrowCollidesWithVikingBodyPart {
-            arrowCollidesWithVikingBodyPart(with: contact)
+        if collision.collisionCombination() == .arrowCollidesWithEnemy {
+            arrowCollidesWithEnemy(with: contact)
         }
         
         
@@ -643,12 +643,9 @@ extension GameScene {
         }
     }
     
-    fileprivate func arrowCollidesWithVikingBodyPart(with contact: SKPhysicsContact) {
-        let bodyPart = contact.bodyA.categoryBitMask == PhysicsCategory.VikingBodyPart ? contact.bodyA.node : contact.bodyB.node
+    fileprivate func arrowCollidesWithEnemy(with contact: SKPhysicsContact) {
+        let bodyPart = contact.bodyA.categoryBitMask == PhysicsCategory.enemy ? contact.bodyA.node : contact.bodyB.node
         
-        if let viking = bodyPart?.parent! as? VikingNode, !viking.isWounded {
-            viking.arrowHit()
-        }
     }
     
     fileprivate func gravityProjectileHitGround(with contact: SKPhysicsContact) {

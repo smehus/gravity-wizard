@@ -9,7 +9,7 @@
 import SpriteKit
 
 fileprivate struct Physics {
-    static let collisionBitMask = PhysicsCategory.Ground | PhysicsCategory.Edge | PhysicsCategory.BreakableFormation | PhysicsCategory.Rock | PhysicsCategory.VikingBodyPart
+    static let collisionBitMask = PhysicsCategory.Ground | PhysicsCategory.Edge | PhysicsCategory.BreakableFormation | PhysicsCategory.Rock | PhysicsCategory.enemy
     static let contactTestBitMask = Physics.collisionBitMask
     static let categoryBitMask = PhysicsCategory.GravityProjectile
     static let fieldBitMask = PhysicsCategory.None

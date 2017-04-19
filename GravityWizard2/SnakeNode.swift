@@ -8,6 +8,10 @@
 
 import SpriteKit
 
+fileprivate struct Physics {
+    
+}
+
 final class SnakeNode: SKSpriteNode {
     
     fileprivate func setup() {
