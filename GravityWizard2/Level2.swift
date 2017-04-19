@@ -67,6 +67,21 @@ extension Level2 {
         if collision.collisionCombination() == .arrowCollidesWithDesctructible {
             arrowCollidesWithDesctructable(with: contact)
         }
+        
+        if collision.collisionCombination() == .arrowCollidesWithEnemy {
+            arrowCollidesWithEnemy(with: contact)
+        }
+        
+    }
+    
+    fileprivate func arrowCollidesWithEnemy(with contact: SKPhysicsContact) {
+        let enemyNode = contact.bodyA.categoryBitMask == PhysicsCategory.enemy ? contact.bodyA.node : contact.bodyB.node
+        guard let enemy = enemyNode as? Enemy else {
+            assertionFailure("Failed to cast collision node to Enemy type")
+            return
+        }
+        
+        enemy.hitWithArrow()
     }
     
     fileprivate func arrowCollidesWithDesctructable(with contact: SKPhysicsContact) {

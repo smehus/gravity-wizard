@@ -541,11 +541,6 @@ extension GameScene: SKPhysicsContactDelegate {
             arrowCollidesWithGround(with: contact)
         }
         
-        if collision.collisionCombination() == .arrowCollidesWithEnemy {
-            arrowCollidesWithEnemy(with: contact)
-        }
-        
-        
         
         // Gravity Projectile
         if collision.collisionCombination() == .gravityProjectileHitsGround {
@@ -641,11 +636,6 @@ extension GameScene {
         if let arrow = node as? ArrowNode {
             arrow.physicsBody = nil
         }
-    }
-    
-    fileprivate func arrowCollidesWithEnemy(with contact: SKPhysicsContact) {
-        let bodyPart = contact.bodyA.categoryBitMask == PhysicsCategory.enemy ? contact.bodyA.node : contact.bodyB.node
-        
     }
     
     fileprivate func gravityProjectileHitGround(with contact: SKPhysicsContact) {
