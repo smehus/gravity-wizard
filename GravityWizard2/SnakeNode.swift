@@ -20,6 +20,8 @@ fileprivate enum SnakeTexture: Int {
     case dead
     case ghost
     
+    static let animationKey = "snake_wiggle_animation"
+    
     func texture() -> SKTexture {
         switch self {
         case .live:
@@ -50,6 +52,13 @@ final class SnakeNode: SKSpriteNode {
         body.isDynamic = false
         body.affectedByGravity = false
         lightingBitMask = 1
+        
+        startAnimation()
+    }
+    
+    fileprivate func startAnimation() {
+        let animation = SKAction.animate(with: [SnakeTexture.liveAlt.texture(), SnakeTexture.live.texture()], timePerFrame: 0.3)
+        run(SKAction.repeatForever(animation), withKey: SnakeTexture.animationKey)
     }
 }
 
@@ -62,14 +71,17 @@ extension SnakeNode: Enemy {
         let wait = SKAction.wait(forDuration: 1.0)
         
         let ghostTextureAction = SKAction.setTexture(SnakeTexture.ghost.texture())
-        let floatAnimation = SKAction.moveBy(x: 0, y: 50, duration: 0.5)
-        let opaqueAnimation = SKAction.fadeAlpha(by: 0.5, duration: 0.5)
+        let floatAnimation = SKAction.moveBy(x: 0, y: 50, duration: 1.0)
+        let opaqueAnimation = SKAction.fadeAlpha(by: 0.2, duration: 0.1)
         
         let fadeOutAnimation = SKAction.fadeOut(withDuration: 0.5)
-        let removeAction = SKAction.removeFromParent()
+        let removeFromParentAction = SKAction.removeFromParent()
         
         let animateGhostAction = SKAction.group([ghostTextureAction, floatAnimation, opaqueAnimation])
-        let actionSequence = SKAction.sequence([deadTextureAction, wait, animateGhostAction, fadeOutAnimation, removeAction])
+        let actionSequence = SKAction.sequence([deadTextureAction, wait, animateGhostAction, fadeOutAnimation, removeFromParentAction])
+        
+        
+        removeAction(forKey: SnakeTexture.animationKey)
         run(actionSequence)
     }
 }
