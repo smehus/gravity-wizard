@@ -18,7 +18,7 @@ extension GameLoopListener where Self: SKSpriteNode {
     func updateDirection(withDelta deltaTime: Double) {
         guard let body = physicsBody else { return }
         guard body.velocity.dx > 0 else { return }
-        let direction: Direction = xScale > 0 ? .right : .left
+//        let direction: Direction = xScale > 0 ? .right : .left
         let angle = body.velocity.angle
         let shortest = shortestAngleBetween(zRotation, angle2: angle)
         let rotateRadiansPerSec = 4.0 * π

@@ -6,10 +6,8 @@
 //  Copyright © 2017 scott mehus. All rights reserved.
 //
 
-import Foundation
+import SpriteKit
 
 protocol Enemy {
-    
     func hitWithArrow()
-    
 }

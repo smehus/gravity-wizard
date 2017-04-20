@@ -306,8 +306,7 @@ extension GameScene {
 extension GameScene {
     
     fileprivate func springHero(with initialPoint: CGPoint, endPoint: CGPoint, velocityMultiply: CGFloat) {
-        guard let rose = rose, let roseParent = rose.parent else { return }
-        let rosePosition = convert(rose.position, from: roseParent)
+        guard let rose = rose, let _ = rose.parent else { return }
      
         var newPoint = initialPoint - endPoint
         let newVelocity = newPoint.offset(dx: 0, dy: newPoint.y * 1.5).normalized() * velocityMultiply

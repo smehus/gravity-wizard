@@ -76,11 +76,13 @@ extension Level2 {
     
     fileprivate func arrowCollidesWithEnemy(with contact: SKPhysicsContact) {
         let enemyNode = contact.bodyA.categoryBitMask == PhysicsCategory.enemy ? contact.bodyA.node : contact.bodyB.node
+        let arrowNode = contact.bodyA.categoryBitMask == PhysicsCategory.arrow ? contact.bodyA.node : contact.bodyB.node
         guard let enemy = enemyNode as? Enemy else {
             assertionFailure("Failed to cast collision node to Enemy type")
             return
         }
         
+        createFixedJoint(with: arrowNode, nodeB: enemyNode, position: contact.contactPoint)
         enemy.hitWithArrow()
     }
     
@@ -102,6 +104,16 @@ extension Level2 {
         }
         
         destructible.hit()
+    }
+    
+    fileprivate func createFixedJoint(with nodeA: SKNode?, nodeB: SKNode?, position: CGPoint) {
+        guard let bodyA = nodeA?.physicsBody, let bodyB = nodeB?.physicsBody else {
+            assertionFailure("Create Static Joint called with nil nodes")
+            return
+        }
+        
+        let joint = SKPhysicsJointFixed.joint(withBodyA: bodyA, bodyB: bodyB, anchor: position)
+        physicsWorld.add(joint)
     }
 }
 
