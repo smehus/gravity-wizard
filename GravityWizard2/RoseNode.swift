@@ -14,6 +14,8 @@ fileprivate struct Definitions {
             static let full = PhysicsCategory.Ground | PhysicsCategory.Rock | PhysicsCategory.GravityProjectile | PhysicsCategory.LevelComplete
             static let noGround = PhysicsCategory.Rock | PhysicsCategory.GravityProjectile
         }
+        
+        static let collision = PhysicsCategory.Ground | PhysicsCategory.Rock | PhysicsCategory.Edge | PhysicsCategory.destructible
     }
 
     struct ActionKeys {
@@ -227,7 +229,7 @@ extension RoseNode {
         physicsBody?.allowsRotation = false
         physicsBody?.categoryBitMask = PhysicsCategory.Hero
         physicsBody?.contactTestBitMask = Definitions.Physics.ContactTest.full
-        physicsBody?.collisionBitMask = PhysicsCategory.Ground | PhysicsCategory.Rock | PhysicsCategory.Edge
+        physicsBody?.collisionBitMask = Definitions.Physics.collision
         physicsBody?.fieldBitMask = PhysicsCategory.RadialGravity
         physicsBody?.restitution = 0.0
         physicsBody?.friction = 1.0
