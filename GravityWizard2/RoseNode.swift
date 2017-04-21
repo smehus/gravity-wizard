@@ -11,11 +11,10 @@ import SpriteKit
 fileprivate struct Definitions {
     struct Physics {
         struct ContactTest {
-            static let full = PhysicsCategory.Ground | PhysicsCategory.Rock | PhysicsCategory.GravityProjectile | PhysicsCategory.LevelComplete
-            static let noGround = PhysicsCategory.Rock | PhysicsCategory.GravityProjectile
+            static let full = PhysicsCategory.Ground | PhysicsCategory.Rock | PhysicsCategory.GravityProjectile | PhysicsCategory.LevelComplete | PhysicsCategory.enemy
         }
         
-        static let collision = PhysicsCategory.Ground | PhysicsCategory.Rock | PhysicsCategory.Edge | PhysicsCategory.destructible
+        static let collision = PhysicsCategory.Ground | PhysicsCategory.Rock | PhysicsCategory.Edge | PhysicsCategory.destructible | PhysicsCategory.enemy
     }
 
     struct ActionKeys {
@@ -56,10 +55,6 @@ fileprivate enum Texture {
             return [SKTexture(image: #imageLiteral(resourceName: "alienPink_jump"))]
         case .walk:
             var textures = [SKTexture]()
-//            for i in 1...11 {
-//                textures.append(SKTexture(imageNamed: "p3_walk\(i)"))
-//            }
-//
             textures.append(SKTexture(image: #imageLiteral(resourceName: "alienPink_walk1")))
             textures.append(SKTexture(image: #imageLiteral(resourceName: "alienPink_walk2")))
             return textures
@@ -67,7 +62,7 @@ fileprivate enum Texture {
     }
 }
 
-fileprivate enum Health: Int {
+enum Health: Int {
     case full
     case threeQuarters
     case half
@@ -83,6 +78,10 @@ fileprivate enum Health: Int {
         
         self = health
     }
+    
+    func texture() -> SKTexture {
+        return SKTexture()
+    }
 }
 
 final class RoseNode: SKSpriteNode, GravityStateTracker {
@@ -95,8 +94,11 @@ final class RoseNode: SKSpriteNode, GravityStateTracker {
     var jumpCount = 0
     var previousVelocity: CGVector?
     var startingPosition: CGPoint?
-    
-    
+    var currentHealth: Health = .full {
+        didSet {
+            
+        }
+    }
     
     fileprivate var lastAssignedTexture: Texture?
     
@@ -146,6 +148,15 @@ final class RoseNode: SKSpriteNode, GravityStateTracker {
     }
     
     func attacked() {
+        currentHealth.lowerHealth()
+        switch currentHealth {
+        case .dead:
+            die()
+        default: break
+        }
+    }
+    
+    fileprivate func die() {
         
     }
     

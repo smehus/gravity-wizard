@@ -558,16 +558,20 @@ extension GameScene: SKPhysicsContactDelegate {
             heroCollidesWithLava(with: contact)
         }
         
-        if collision.collisionCombination() == .heroHitsGround {
+        if collision.collisionCombination() == .HeroCollidesWithGround {
             roseHitsGround(with: contact)
         }
         
-        if collision.collisionCombination() == .rockHitsWizard {
+        if collision.collisionCombination() == .heroCollidesWithStone {
             rockHitsHero(with: contact)
         }
         
         if collision.collisionCombination() == .heroCollidesWithGravityField {
             heroCollidesWithGravityField(with: contact)
+        }
+        
+        if collision.collisionCombination() == .heroCollidesWithEnemy {
+            heroCollidesWithEnemy(with: contact)
         }
     }
     
@@ -599,6 +603,16 @@ extension GameScene {
     
     fileprivate func heroCollidesWithLava(with contact: SKPhysicsContact) {
         gameOver()
+    }
+    
+    fileprivate func heroCollidesWithEnemy(with contact: SKPhysicsContact) {
+        let heroNode = contact.bodyA.categoryBitMask == PhysicsCategory.Hero ? contact.bodyA.node : contact.bodyB.node
+        guard let rose = heroNode as? RoseNode else {
+            assertionFailure("Hero collides with enemy: failed to cast to rose")
+            return
+        }
+        
+        rose.attacked()
     }
     
     fileprivate func rockHitsHero(with contact: SKPhysicsContact) {

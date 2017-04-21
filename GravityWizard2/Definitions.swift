@@ -132,10 +132,6 @@ struct LightingMask {
 }
 
 enum CollisionCombination {
-    case heroHitsGround
-    case rockHitsWizard
-    case heroCollidesWithGravityField
-    
     case bloodCollidesWithGround
     
     case gravityProjectileHitsGround
@@ -148,6 +144,10 @@ enum CollisionCombination {
     
     case heroCollidesWithLevelComplete
     case heroCollidesWithLava
+    case heroCollidesWithGravityField
+    case HeroCollidesWithGround
+    case heroCollidesWithStone
+    case heroCollidesWithEnemy
     
     case travelatorCollidesWithLimits
     
@@ -156,12 +156,22 @@ enum CollisionCombination {
 extension UInt32 {
     func collisionCombination() -> CollisionCombination {
         switch self {
+            
+            // HERO
         case PhysicsCategory.Ground | PhysicsCategory.Hero:
-            return .heroHitsGround
+            return .HeroCollidesWithGround
         case PhysicsCategory.Rock | PhysicsCategory.Hero:
-            return .rockHitsWizard
-        case PhysicsCategory.Blood | PhysicsCategory.Ground:
-            return .bloodCollidesWithGround
+            return .heroCollidesWithStone
+        case PhysicsCategory.Hero | PhysicsCategory.Lava:
+            return .heroCollidesWithLava
+        case PhysicsCategory.Hero | PhysicsCategory.LevelComplete:
+            return .heroCollidesWithLevelComplete
+        case PhysicsCategory.HeroContactBorder | PhysicsCategory.GravityProjectile:
+            return .heroCollidesWithGravityField
+        case PhysicsCategory.Hero | PhysicsCategory.enemy:
+            return .heroCollidesWithEnemy
+            
+            // ARROW
         case PhysicsCategory.arrow | PhysicsCategory.Edge:
             return .arrowCollidesWithEdge
         case PhysicsCategory.arrow | PhysicsCategory.BreakableFormation :
@@ -172,14 +182,12 @@ extension UInt32 {
             return .arrowCollidesWithEnemy
         case PhysicsCategory.arrow | PhysicsCategory.destructible:
             return .arrowCollidesWithDesctructible
+            
+            // MISC
         case PhysicsCategory.GravityProjectile | PhysicsCategory.Ground:
             return .gravityProjectileHitsGround
-        case PhysicsCategory.HeroContactBorder | PhysicsCategory.GravityProjectile:
-            return .heroCollidesWithGravityField
-        case PhysicsCategory.Hero | PhysicsCategory.LevelComplete:
-            return .heroCollidesWithLevelComplete
-        case PhysicsCategory.Hero | PhysicsCategory.Lava:
-            return .heroCollidesWithLava
+        case PhysicsCategory.Blood | PhysicsCategory.Ground:
+            return .bloodCollidesWithGround
         case PhysicsCategory.travelatorPlatform | PhysicsCategory.travelatorBase:
             return .none
         default: return .none
