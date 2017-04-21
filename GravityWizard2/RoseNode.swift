@@ -67,6 +67,24 @@ fileprivate enum Texture {
     }
 }
 
+fileprivate enum Health: Int {
+    case full
+    case threeQuarters
+    case half
+    case quarter
+    case dead
+    
+    mutating func lowerHealth() {
+        let nextInt = rawValue + 1
+        guard let health = Health(rawValue: nextInt) else {
+            self = .dead
+            return
+        }
+        
+        self = health
+    }
+}
+
 final class RoseNode: SKSpriteNode, GravityStateTracker {
     
     struct Constants {
@@ -77,6 +95,8 @@ final class RoseNode: SKSpriteNode, GravityStateTracker {
     var jumpCount = 0
     var previousVelocity: CGVector?
     var startingPosition: CGPoint?
+    
+    
     
     fileprivate var lastAssignedTexture: Texture?
     
@@ -123,6 +143,9 @@ final class RoseNode: SKSpriteNode, GravityStateTracker {
     
     func stop() {
         removeAction(forKey: Definitions.ActionKeys.walkAction)
+    }
+    
+    func attacked() {
         
     }
     
