@@ -12,6 +12,7 @@ fileprivate struct Definitions {
     struct Physics {
         struct ContactTest {
             static let full = PhysicsCategory.Ground | PhysicsCategory.Rock | PhysicsCategory.GravityProjectile | PhysicsCategory.LevelComplete | PhysicsCategory.enemy
+            static let immune = PhysicsCategory.Ground | PhysicsCategory.Rock | PhysicsCategory.GravityProjectile | PhysicsCategory.LevelComplete
         }
         
         static let collision = PhysicsCategory.Ground | PhysicsCategory.Rock | PhysicsCategory.Edge | PhysicsCategory.destructible | PhysicsCategory.enemy
@@ -148,16 +149,37 @@ final class RoseNode: SKSpriteNode, GravityStateTracker {
     }
     
     func attacked() {
+        guard currentHealth != .dead else {
+            return
+        }
+        
+        physicsBody?.contactTestBitMask = Definitions.Physics.ContactTest.immune
+        
         currentHealth.lowerHealth()
         switch currentHealth {
         case .dead:
             die()
-        default: break
+        case .full, .threeQuarters, .half, .quarter:
+            runAttackedAnimation()
+        }
+    }
+    
+    fileprivate func runAttackedAnimation() {
+        let colorize = SKAction.colorize(with: .white, colorBlendFactor: 1.0, duration: 0.3)
+        let flash = SKAction.sequence([colorize, colorize.reversed()])
+        let flashAnimation = SKAction.repeat(flash, count: 5)
+        run(flashAnimation) { 
+            self.physicsBody?.contactTestBitMask = Definitions.Physics.ContactTest.full
         }
     }
     
     fileprivate func die() {
+        guard let gameScene = scene as? GameScene else {
+            assertionFailure("Failed to retrieve game scene on rose death")
+            return
+        }
         
+        gameScene.gameOver()
     }
     
     fileprivate func animate(with state: GravityState) {

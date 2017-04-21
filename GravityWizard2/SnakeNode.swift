@@ -10,7 +10,7 @@ import SpriteKit
 
 fileprivate struct Physics {
     static let category = PhysicsCategory.enemy
-    static let contact = PhysicsCategory.arrow | PhysicsCategory.Hero
+    static let contact = PhysicsCategory.arrow 
     static let collision = PhysicsCategory.None
 }
 
