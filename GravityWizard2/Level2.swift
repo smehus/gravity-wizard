@@ -106,9 +106,10 @@ extension Level2 {
 
 extension Level2 {
     override func levelCompleted() {
-        guard let successLevel = LevelCompleteLabel.createLabel(), let scene = scene else { return }
-        successLevel.position = scene.zeroAnchoredCenter()
-        successLevel.move(toParent: scene)
+        guard let successLevel = LevelCompleteLabel.createLabel(), let camera = camera else { return }
+        successLevel.move(toParent: camera)
+        successLevel.position = CGPoint.zero
+        
         
         let presentScene = SKAction.afterDelay(2.0) {
             guard let nextLevel = self.currentLevel.nextLevel()?.levelScene() else { return }
@@ -120,11 +121,11 @@ extension Level2 {
         
         run(presentScene)
     }
-    
+    g
     override func gameOver() {
         guard let gameOverLabel = LevelCompleteLabel.createLabel(with: "Game Over"), let camera = camera else { return }
         gameOverLabel.move(toParent: camera)
-        gameOverLabel.position = CGPoint(x: 0, y: 0)
+        gameOverLabel.position = CGPoint.zero
         
         runZoomOutAction()
         let presentScene = SKAction.afterDelay(2.0) {

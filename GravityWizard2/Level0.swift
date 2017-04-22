@@ -19,9 +19,8 @@ class Level0: GameScene {
             assertionFailure("Failed to create level complete lable")
             return
         }
-        successLevel.position = convert(successLevel.position, from: camera)
-        successLevel.scaleAsPoint = CGPoint(x: 2.0, y: 2.0)
         successLevel.move(toParent: camera)
+        successLevel.position = CGPoint.zero
         
         let presentScene = SKAction.afterDelay(2.0) {
             

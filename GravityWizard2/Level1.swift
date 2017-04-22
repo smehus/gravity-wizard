@@ -33,9 +33,8 @@ class Level1: GameScene {
     
     override func levelCompleted() {
         guard let successLevel = LevelCompleteLabel.createLabel(), let camera = camera else { return }
-        successLevel.position = convert(successLevel.position, from: camera)
-        successLevel.scaleAsPoint = CGPoint(x: 2.0, y: 2.0)
         successLevel.move(toParent: camera)
+        successLevel.position = CGPoint.zero
         
         let presentScene = SKAction.afterDelay(2.0) {
             guard let nextLevel = self.currentLevel.nextLevel()?.levelScene() else { return }
@@ -50,9 +49,8 @@ class Level1: GameScene {
     
     override func gameOver() {
         guard let gameOverLabel = LevelCompleteLabel.createLabel(with: "Game Over"), let camera = camera else { return }
-        gameOverLabel.position = convert(gameOverLabel.position, from: camera)
-        gameOverLabel.scaleAsPoint = CGPoint(x: 2.0, y: 2.0)
         gameOverLabel.move(toParent: camera)
+        gameOverLabel.position = CGPoint.zero
         
         runZoomOutAction()
         
