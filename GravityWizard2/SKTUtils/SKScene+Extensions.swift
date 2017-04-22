@@ -37,4 +37,14 @@ extension SKScene {
         let yValue = calculatedHeight * camera.yScale
         return CGSize(width: xValue, height: yValue)
     }
+    
+    func createFixedJoint(with nodeA: SKNode?, nodeB: SKNode?, position: CGPoint) {
+        guard let bodyA = nodeA?.physicsBody, let bodyB = nodeB?.physicsBody else {
+            assertionFailure("Create fixed joint called with nil nodes")
+            return
+        }
+        
+        let joint = SKPhysicsJointFixed.joint(withBodyA: bodyA, bodyB: bodyB, anchor: position)
+        physicsWorld.add(joint)
+    }
 }

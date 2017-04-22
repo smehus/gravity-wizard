@@ -91,29 +91,16 @@ extension Level2 {
             let node = contact.bodyA.categoryBitMask == PhysicsCategory.destructible ? contact.bodyA.node : contact.bodyB.node,
             let arrowNode = contact.bodyA.categoryBitMask == PhysicsCategory.arrow ? contact.bodyA.node : contact.bodyB.node,
             let arrow = arrowNode as? ArrowNode,
-            let arrowBody = arrow.physicsBody,
-            let destructible = node as? DesctructibleStone,
-            let destructibleBody = destructible.physicsBody
+            let destructible = node as? DesctructibleStone
         else {
             return
         }
         
         if destructible.currentTexture != .broken {
-            let joint = SKPhysicsJointFixed.joint(withBodyA: arrowBody, bodyB: destructibleBody, anchor: contact.contactPoint)
-            physicsWorld.add(joint)
+            createFixedJoint(with: arrow, nodeB: destructible, position: contact.contactPoint)
         }
         
         destructible.hit()
-    }
-    
-    fileprivate func createFixedJoint(with nodeA: SKNode?, nodeB: SKNode?, position: CGPoint) {
-        guard let bodyA = nodeA?.physicsBody, let bodyB = nodeB?.physicsBody else {
-            assertionFailure("Create Static Joint called with nil nodes")
-            return
-        }
-        
-        let joint = SKPhysicsJointFixed.joint(withBodyA: bodyA, bodyB: bodyB, anchor: position)
-        physicsWorld.add(joint)
     }
 }
 
@@ -136,12 +123,10 @@ extension Level2 {
     
     override func gameOver() {
         guard let gameOverLabel = LevelCompleteLabel.createLabel(with: "Game Over"), let camera = camera else { return }
-        gameOverLabel.position = convert(gameOverLabel.position, from: camera)
-        gameOverLabel.scaleAsPoint = CGPoint(x: 2.0, y: 2.0)
         gameOverLabel.move(toParent: camera)
+        gameOverLabel.position = CGPoint(x: 0, y: 0)
         
         runZoomOutAction()
-        
         let presentScene = SKAction.afterDelay(2.0) {
             guard let reloadLevel = self.currentLevel.levelScene() else {
                 assertionFailure("Failed to load level scene on game over")
