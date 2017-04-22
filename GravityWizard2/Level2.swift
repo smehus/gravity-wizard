@@ -121,7 +121,7 @@ extension Level2 {
         
         run(presentScene)
     }
-    g
+    
     override func gameOver() {
         guard let gameOverLabel = LevelCompleteLabel.createLabel(with: "Game Over"), let camera = camera else { return }
         gameOverLabel.move(toParent: camera)
