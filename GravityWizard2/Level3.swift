@@ -10,4 +10,28 @@ import SpriteKit
 
 final class Level3: GameScene {
     
+    var currentLevel: Level {
+        return .three
+    }
+    
+    override func setupNodes() {
+        super.setupNodes()
+    }
+    
+    override func update(subClassWith currentTime: TimeInterval) {
+        
+    }
+    
+    override func collisionDidBegin(with contact: SKPhysicsContact) {
+        super.collisionDidBegin(with: contact)
+    }
+    
+    override func levelCompleted() {
+        
+    }
+    
+    override func gameOver() {
+        
+    }
+    
 }
