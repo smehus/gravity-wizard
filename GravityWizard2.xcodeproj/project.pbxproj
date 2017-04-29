@@ -38,6 +38,8 @@
 		A5868FA41E0A042A00935E3B /* Wizard.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5868FA31E0A042A00935E3B /* Wizard.sks */; };
 		A5899B041E2EFD940044971F /* Floor.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5899B031E2EFD940044971F /* Floor.sks */; };
 		A5899B061E2FA6290044971F /* GameLoopListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5899B051E2FA6290044971F /* GameLoopListener.swift */; };
+		A59EF8F91EB51719003B5036 /* Level3.sks in Resources */ = {isa = PBXBuildFile; fileRef = A59EF8F81EB51719003B5036 /* Level3.sks */; };
+		A59EF8FB1EB5172D003B5036 /* Level3.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59EF8FA1EB5172D003B5036 /* Level3.swift */; };
 		A59FB6881E0A081B00D1C915 /* WizardNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59FB6871E0A081B00D1C915 /* WizardNode.swift */; };
 		A59FB6961E0A088A00D1C915 /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59FB68A1E0A088A00D1C915 /* CGFloat+Extensions.swift */; };
 		A59FB6971E0A088A00D1C915 /* CGPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59FB68B1E0A088A00D1C915 /* CGPoint+Extensions.swift */; };
@@ -118,6 +120,8 @@
 		A5868FA31E0A042A00935E3B /* Wizard.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = Wizard.sks; path = Scenes/Wizard.sks; sourceTree = "<group>"; };
 		A5899B031E2EFD940044971F /* Floor.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Floor.sks; sourceTree = "<group>"; };
 		A5899B051E2FA6290044971F /* GameLoopListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLoopListener.swift; sourceTree = "<group>"; };
+		A59EF8F81EB51719003B5036 /* Level3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level3.sks; sourceTree = "<group>"; };
+		A59EF8FA1EB5172D003B5036 /* Level3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level3.swift; sourceTree = "<group>"; };
 		A59FB6871E0A081B00D1C915 /* WizardNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WizardNode.swift; path = Sprites/WizardNode.swift; sourceTree = "<group>"; };
 		A59FB68A1E0A088A00D1C915 /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
 		A59FB68B1E0A088A00D1C915 /* CGPoint+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extensions.swift"; sourceTree = "<group>"; };
@@ -185,6 +189,7 @@
 				A513A5E21E2151A3003CD2C1 /* Level0.sks */,
 				A5B58EB81E09DC4900ADC865 /* Level1.sks */,
 				A55250CB1E148BC100EED486 /* Level2.sks */,
+				A59EF8F81EB51719003B5036 /* Level3.sks */,
 			);
 			name = Levels;
 			sourceTree = "<group>";
@@ -393,6 +398,7 @@
 				A513A5E41E2152B2003CD2C1 /* Level0.swift */,
 				A5C4BBC01E16D8FF002B0B18 /* Level1.swift */,
 				A513A5E61E2152BA003CD2C1 /* Level2.swift */,
+				A59EF8FA1EB5172D003B5036 /* Level3.swift */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -488,6 +494,7 @@
 				A5E3B73F1E27C030004F32A3 /* WeaponSelector.sks in Resources */,
 				A55250CC1E148BC100EED486 /* Level2.sks in Resources */,
 				A5B58EC21E09DC4900ADC865 /* Main.storyboard in Resources */,
+				A59EF8F91EB51719003B5036 /* Level3.sks in Resources */,
 				A5B58EB91E09DC4900ADC865 /* Level1.sks in Resources */,
 				A53A0F771E65B1E700761D88 /* LavaParticle.sks in Resources */,
 				A561F0961E8E73BA0028132F /* BreakableStones1.sks in Resources */,
@@ -549,6 +556,7 @@
 				A5E3150F1E2166F100D3652C /* SKScene+Extensions.swift in Sources */,
 				A5C4BBB81E14C708002B0B18 /* VikingNode.swift in Sources */,
 				A59FB6A81E0A091400D1C915 /* LifecycleEmitter.swift in Sources */,
+				A59EF8FB1EB5172D003B5036 /* Level3.swift in Sources */,
 				A59FB6AC1E0A257600D1C915 /* CGSize+Extensions.swift in Sources */,
 				A59FB69B1E0A088A00D1C915 /* SKAction+SpecialEffects.swift in Sources */,
 				A5C4BBBF1E16D51A002B0B18 /* GravityStateTracker.swift in Sources */,

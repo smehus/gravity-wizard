@@ -17,7 +17,7 @@ fileprivate struct Constants {
     static let platformVelocityX: CGFloat = 300
 }
 
-class Level2: GameScene {
+final class Level2: GameScene {
     
     var currentLevel: Level {
         return .two
