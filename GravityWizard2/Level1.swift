@@ -27,6 +27,10 @@ class Level1: GameScene {
         return .one
     }
     
+    override var shouldAddScenePhysicsEdge: Bool {
+        return true
+    }
+    
     /// Sprites
     fileprivate var light: SKNode?
     fileprivate var levelComplete: SKNode?

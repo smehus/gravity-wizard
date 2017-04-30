@@ -14,6 +14,10 @@ class Level0: GameScene {
         return .zero
     }
     
+    override var shouldAddScenePhysicsEdge: Bool {
+        return true
+    }
+    
     override func levelCompleted() {
         guard let successLevel = LevelCompleteLabel.createLabel(), let camera = camera else {
             assertionFailure("Failed to create level complete lable")

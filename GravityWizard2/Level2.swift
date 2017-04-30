@@ -23,6 +23,10 @@ final class Level2: GameScene {
         return .two
     }
     
+    override var shouldAddScenePhysicsEdge: Bool {
+        return true
+    }
+    
     fileprivate var movingPlatform: StonePlatform?
     fileprivate var destructableStoneStructure: BreakableStoneStructure?
     

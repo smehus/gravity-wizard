@@ -14,6 +14,10 @@ final class Level3: GameScene {
         return .three
     }
     
+    override var shouldAddScenePhysicsEdge: Bool {
+        return false
+    }
+    
     override func setupNodes() {
         super.setupNodes()
     }

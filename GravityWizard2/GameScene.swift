@@ -11,7 +11,16 @@ import GameplayKit
 
 fileprivate let GRAVITY_VEL: CGFloat = isIpad() ? 0.9 : 1.5
 
-class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
+protocol SceneEdgeDecider {
+    var shouldAddScenePhysicsEdge: Bool { get }
+}
+
+class GameScene: SKScene, Game, LifecycleEmitter, GameLevel, SceneEdgeDecider {
+    
+    var shouldAddScenePhysicsEdge: Bool {
+        assertionFailure("Should always implement 'SceneEdgeDecider' in subclasses")
+        return false
+    }
 
     /// Scense
     var roseScene: SKScene!
@@ -67,8 +76,11 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
         addChild(cameraNode)
         camera = cameraNode
         
-        physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
-        physicsBody?.categoryBitMask = PhysicsCategory.Edge
+        if shouldAddScenePhysicsEdge {
+            physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
+            physicsBody?.categoryBitMask = PhysicsCategory.Edge
+        }
+
         emitDidMoveToView()
         
         roseScene = SKScene(fileNamed: "Rose")
@@ -146,7 +158,7 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
             guard let strongSelf = self else { return }
             
             let playerConstraint = SKConstraint.distance(SKRange(constantValue: 0), to: rose)
-            camera.constraints = [playerConstraint /*, strongSelf.cameraEdgeConstraint(with: camera.xScale, cy: camera.yScale)*/]
+            camera.constraints = [playerConstraint, strongSelf.cameraEdgeConstraint(with: camera.xScale, cy: camera.yScale)]
             
             self?.isRunningStartingAnimation = false
             self?.setupHUDElements()
