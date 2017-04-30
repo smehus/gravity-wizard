@@ -146,7 +146,7 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel {
             guard let strongSelf = self else { return }
             
             let playerConstraint = SKConstraint.distance(SKRange(constantValue: 0), to: rose)
-            camera.constraints = [playerConstraint, strongSelf.cameraEdgeConstraint(with: camera.xScale, cy: camera.yScale)]
+            camera.constraints = [playerConstraint /*, strongSelf.cameraEdgeConstraint(with: camera.xScale, cy: camera.yScale)*/]
             
             self?.isRunningStartingAnimation = false
             self?.setupHUDElements()
