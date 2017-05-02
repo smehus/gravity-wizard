@@ -8,7 +8,15 @@
 
 import SpriteKit
 
+fileprivate struct NodeNames {
+    static let foreground = "//Foreground"
+}
+
 final class Level3: GameScene {
+    
+    /// Container nodes
+    fileprivate var background: SKNode?
+    fileprivate var foreground: SKNode?
     
     var currentLevel: Level {
         return .three
@@ -20,10 +28,21 @@ final class Level3: GameScene {
     
     override func setupNodes() {
         super.setupNodes()
+        
+        guard
+            let foregroundNode = childNode(withName: NodeNames.foreground)
+        else {
+            assertionFailure("Level 3: Failed obtain child nodes from scene")
+            return
+        }
+        
+        foreground = foregroundNode
     }
     
-    override func update(subClassWith currentTime: TimeInterval) {
+    override func update(subClassWith currentTime: TimeInterval, delta: TimeInterval) {
         
+        
+        updateHeroForSceneWrapping()
     }
     
     override func collisionDidBegin(with contact: SKPhysicsContact) {
@@ -37,5 +56,14 @@ final class Level3: GameScene {
     override func gameOver() {
         
     }
-    
+}
+
+extension Level3: HeroSceneWrappingProtocol {
+    func updateHeroForSceneWrapping() {
+        guard let hero = rose, let foreground = self.foreground else { return }
+        let heroPosition = convert(hero.position, from: foreground)
+        if (heroPosition.x + hero.size.width) < 0 {
+            hero.position = hero.position.offset(dx: scene!.size.width, dy: 0)
+        }
+    }
 }

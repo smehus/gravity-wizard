@@ -69,7 +69,7 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel, SceneEdgeDecider {
     
     // MARK: - Sublcass Methods
 
-    func update(subClassWith currentTime: TimeInterval) { }
+    func update(subClassWith currentTime: TimeInterval, delta: TimeInterval) { }
     
     func setupNodes() {
         
@@ -434,7 +434,7 @@ extension GameScene {
             updateDirection(with: projectile)
         }
         
-        update(subClassWith: currentTime)
+        update(subClassWith: currentTime, delta: deltaTime)
     }
 }
 
