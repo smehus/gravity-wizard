@@ -23,6 +23,7 @@
 		A53A0F731E65AF8D00761D88 /* LavaSection.sks in Resources */ = {isa = PBXBuildFile; fileRef = A53A0F721E65AF8D00761D88 /* LavaSection.sks */; };
 		A53A0F751E65B0F800761D88 /* LavaSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A0F741E65B0F800761D88 /* LavaSection.swift */; };
 		A53A0F771E65B1E700761D88 /* LavaParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = A53A0F761E65B1E700761D88 /* LavaParticle.sks */; };
+		A54D04D21EC3434D00AC23E6 /* BreakableStones2.sks in Resources */ = {isa = PBXBuildFile; fileRef = A54D04D11EC3434D00AC23E6 /* BreakableStones2.sks */; };
 		A55097D41EB8B36A00FC7F36 /* HeroBehaviorProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55097D31EB8B36A00FC7F36 /* HeroBehaviorProtocols.swift */; };
 		A55250C81E122DC200EED486 /* Definitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55250C71E122DC200EED486 /* Definitions.swift */; };
 		A55250CA1E122E2600EED486 /* ParticleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55250C91E122E2600EED486 /* ParticleFactory.swift */; };
@@ -106,6 +107,7 @@
 		A53A0F721E65AF8D00761D88 /* LavaSection.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LavaSection.sks; sourceTree = "<group>"; };
 		A53A0F741E65B0F800761D88 /* LavaSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LavaSection.swift; sourceTree = "<group>"; };
 		A53A0F761E65B1E700761D88 /* LavaParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LavaParticle.sks; sourceTree = "<group>"; };
+		A54D04D11EC3434D00AC23E6 /* BreakableStones2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BreakableStones2.sks; sourceTree = "<group>"; };
 		A55097D31EB8B36A00FC7F36 /* HeroBehaviorProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroBehaviorProtocols.swift; sourceTree = "<group>"; };
 		A55250C71E122DC200EED486 /* Definitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Definitions.swift; sourceTree = "<group>"; };
 		A55250C91E122E2600EED486 /* ParticleFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticleFactory.swift; sourceTree = "<group>"; };
@@ -306,6 +308,7 @@
 				A53A0F721E65AF8D00761D88 /* LavaSection.sks */,
 				A50DBCE51E72DB5C002DC44E /* StonePlatform.sks */,
 				A561F0951E8E73BA0028132F /* BreakableStones1.sks */,
+				A54D04D11EC3434D00AC23E6 /* BreakableStones2.sks */,
 			);
 			name = World;
 			sourceTree = "<group>";
@@ -508,6 +511,7 @@
 				A5B58EC41E09DC4900ADC865 /* Assets.xcassets in Resources */,
 				A53A0F731E65AF8D00761D88 /* LavaSection.sks in Resources */,
 				A5B58EC71E09DC4900ADC865 /* LaunchScreen.storyboard in Resources */,
+				A54D04D21EC3434D00AC23E6 /* BreakableStones2.sks in Resources */,
 				A513A5EE1E2159C8003CD2C1 /* LevelCompleteLabel.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

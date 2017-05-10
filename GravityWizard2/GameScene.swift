@@ -558,6 +558,13 @@ extension GameScene: SKPhysicsContactDelegate {
             gravityProjectileHitGround(with: contact)
         }
         
+        if collision.collisionCombination() == .arrowCollidesWithDesctructible {
+            arrowCollidesWithDesctructable(with: contact)
+        }
+        
+        if collision.collisionCombination() == .arrowCollidesWithEnemy {
+            arrowCollidesWithEnemy(with: contact)
+        }
         
         
         // Hero
@@ -661,6 +668,35 @@ extension GameScene {
         if let arrow = node as? ArrowNode {
             arrow.physicsBody = nil
         }
+    }
+    
+    fileprivate func arrowCollidesWithEnemy(with contact: SKPhysicsContact) {
+        let enemyNode = contact.bodyA.categoryBitMask == PhysicsCategory.enemy ? contact.bodyA.node : contact.bodyB.node
+        let arrowNode = contact.bodyA.categoryBitMask == PhysicsCategory.arrow ? contact.bodyA.node : contact.bodyB.node
+        guard let enemy = enemyNode as? Enemy else {
+            assertionFailure("Failed to cast collision node to Enemy type")
+            return
+        }
+        
+        createFixedJoint(with: arrowNode, nodeB: enemyNode, position: contact.contactPoint)
+        enemy.hitWithArrow()
+    }
+    
+    fileprivate func arrowCollidesWithDesctructable(with contact: SKPhysicsContact) {
+        guard
+            let node = contact.bodyA.categoryBitMask == PhysicsCategory.destructible ? contact.bodyA.node : contact.bodyB.node,
+            let arrowNode = contact.bodyA.categoryBitMask == PhysicsCategory.arrow ? contact.bodyA.node : contact.bodyB.node,
+            let arrow = arrowNode as? ArrowNode,
+            let destructible = node as? DesctructibleStone
+            else {
+                return
+        }
+        
+        if destructible.currentTexture != .broken {
+            createFixedJoint(with: arrow, nodeB: destructible, position: contact.contactPoint)
+        }
+        
+        destructible.hit()
     }
     
     fileprivate func gravityProjectileHitGround(with contact: SKPhysicsContact) {
