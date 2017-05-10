@@ -552,12 +552,6 @@ extension GameScene: SKPhysicsContactDelegate {
             arrowCollidesWithGround(with: contact)
         }
         
-        
-        // Gravity Projectile
-        if collision.collisionCombination() == .gravityProjectileHitsGround {
-            gravityProjectileHitGround(with: contact)
-        }
-        
         if collision.collisionCombination() == .arrowCollidesWithDesctructible {
             arrowCollidesWithDesctructable(with: contact)
         }
@@ -566,6 +560,11 @@ extension GameScene: SKPhysicsContactDelegate {
             arrowCollidesWithEnemy(with: contact)
         }
         
+        
+        // Gravity Projectile
+        if collision.collisionCombination() == .gravityProjectileHitsGround {
+            gravityProjectileHitGround(with: contact)
+        }
         
         // Hero
         
