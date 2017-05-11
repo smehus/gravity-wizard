@@ -62,8 +62,8 @@ final class Level3: GameScene {
 
 extension Level3: HeroSceneWrappingProtocol {
     func updateHeroForSceneWrapping() {
-        guard let hero = rose, let foreground = self.foreground else { return }
-        let heroPosition = convert(hero.position, from: foreground)
+        guard let hero = rose else { return }
+        let heroPosition = convert(hero.position, from: hero.parent!)
         if (heroPosition.x + hero.size.width) < 0 {
             hero.position = hero.position.offset(dx: scene!.size.width, dy: 0)
         } else if heroPosition.x > scene!.size.width {
