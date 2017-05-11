@@ -39,9 +39,11 @@ final class Level3: GameScene {
         foreground = foregroundNode
     }
     
-    override func update(subClassWith currentTime: TimeInterval, delta: TimeInterval) {
+    override func update(levelWith currentTime: TimeInterval, delta: TimeInterval) {
         
-        
+    }
+    
+    override func didSimulatePhysicsForLevel() {
         updateHeroForSceneWrapping()
     }
     

@@ -36,7 +36,7 @@ final class Level2: GameScene {
         setupBreakableStoneStructure()
     }
     
-    override func update(subClassWith currentTime: TimeInterval, delta: TimeInterval) {
+    override func update(levelWith currentTime: TimeInterval, delta: TimeInterval) {
         movingPlatform?.animate(with: Constants.platformVelocityX)
     }
     

@@ -69,7 +69,8 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel, SceneEdgeDecider {
     
     // MARK: - Sublcass Methods
 
-    func update(subClassWith currentTime: TimeInterval, delta: TimeInterval) { }
+    func update(levelWith currentTime: TimeInterval, delta: TimeInterval) { }
+    func didSimulatePhysicsForLevel() { }
     
     func setupNodes() {
         
@@ -415,7 +416,7 @@ extension GameScene {
 }
 
 
-// MARK: - Update
+// MARK: - Life Cycle
 extension GameScene {
     override func update(_ currentTime: TimeInterval) {
         if lastUpdateTimeInterval > 0 {
@@ -434,7 +435,11 @@ extension GameScene {
             updateDirection(with: projectile)
         }
         
-        update(subClassWith: currentTime, delta: deltaTime)
+        update(levelWith: currentTime, delta: deltaTime)
+    }
+    
+    override func didSimulatePhysics() {
+        didSimulatePhysicsForLevel()
     }
 }
 
