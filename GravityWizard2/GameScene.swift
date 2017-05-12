@@ -12,15 +12,42 @@ import GameplayKit
 fileprivate let GRAVITY_VEL: CGFloat = isIpad() ? 0.9 : 1.5
 
 protocol SceneEdgeDecider {
+
+    /// Decides if the scene edges shoudl have a physics body
     var shouldAddScenePhysicsEdge: Bool { get }
+    
+    /// Decides how far the camera should follow the node past the scene edges
+    var xConstraintMultiplier: CGFloat { get }
+    var yConstraintMultiplier: CGFloat { get }
 }
 
+// TODO: Use protocol extensions and find a way to override in sublcass
+//extension SceneEdgeDecider where Self: SKScene {
+//    var yConstraintMultiplier: CGFloat {
+//        return 1
+//    }
+//    
+//    var xConstraintMultiplier: CGFloat {
+//        return 1
+//    }
+//}
+
 class GameScene: SKScene, Game, LifecycleEmitter, GameLevel, SceneEdgeDecider {
+    
+    // MARK: - SceneEdgeDecider
     
     var shouldAddScenePhysicsEdge: Bool {
         assertionFailure("Should always implement 'SceneEdgeDecider' in subclasses")
         return false
     }
+    var yConstraintMultiplier: CGFloat {
+        return 1
+    }
+    
+    var xConstraintMultiplier: CGFloat {
+        return 1
+    }
+    
 
     /// Scense
     var roseScene: SKScene!
@@ -105,8 +132,10 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel, SceneEdgeDecider {
         let xInset = frame.size.width/2 * cx
         let yInset = playableHeight/2 * cy
         let constraintRect = frame.insetBy(dx: xInset, dy: yInset)
-        let xRange = SKRange(lowerLimit: constraintRect.minX, upperLimit: constraintRect.maxX)
-        let yRange = SKRange(lowerLimit: constraintRect.minY, upperLimit: constraintRect.maxY)
+        
+        /// These multlipliers decide if the camera should follow past the top off the scene and past the right of the scene
+        let xRange = SKRange(lowerLimit: constraintRect.minX, upperLimit: constraintRect.maxX * xConstraintMultiplier)
+        let yRange = SKRange(lowerLimit: constraintRect.minY, upperLimit: constraintRect.maxY * yConstraintMultiplier)
         let edgeConstraint = SKConstraint.positionX(xRange, y: yRange)
         edgeConstraint.referenceNode = self
         return edgeConstraint

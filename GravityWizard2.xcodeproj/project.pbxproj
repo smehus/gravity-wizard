@@ -74,6 +74,7 @@
 		A5B5BC941EA6351600F92F8A /* Snake.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5B5BC931EA6351600F92F8A /* Snake.sks */; };
 		A5B5BC961EA6371600F92F8A /* SnakeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B5BC951EA6371600F92F8A /* SnakeNode.swift */; };
 		A5B5BC991EA7872300F92F8A /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B5BC981EA7872300F92F8A /* Enemy.swift */; };
+		A5BF10B71EC5E802005042D8 /* ForegroundLayer2.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5BF10B61EC5E802005042D8 /* ForegroundLayer2.sks */; };
 		A5C4BBB61E14A1AD002B0B18 /* Viking.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5C4BBB51E14A1AD002B0B18 /* Viking.sks */; };
 		A5C4BBB81E14C708002B0B18 /* VikingNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C4BBB71E14C708002B0B18 /* VikingNode.swift */; };
 		A5C4BBBD1E16D2F7002B0B18 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C4BBBC1E16D2F7002B0B18 /* Game.swift */; };
@@ -160,6 +161,7 @@
 		A5B5BC931EA6351600F92F8A /* Snake.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Snake.sks; sourceTree = "<group>"; };
 		A5B5BC951EA6371600F92F8A /* SnakeNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeNode.swift; sourceTree = "<group>"; };
 		A5B5BC981EA7872300F92F8A /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
+		A5BF10B61EC5E802005042D8 /* ForegroundLayer2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ForegroundLayer2.sks; sourceTree = "<group>"; };
 		A5C4BBB51E14A1AD002B0B18 /* Viking.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Viking.sks; sourceTree = "<group>"; };
 		A5C4BBB71E14C708002B0B18 /* VikingNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VikingNode.swift; sourceTree = "<group>"; };
 		A5C4BBBC1E16D2F7002B0B18 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
@@ -190,10 +192,10 @@
 		A513A5EA1E215923003CD2C1 /* Levels */ = {
 			isa = PBXGroup;
 			children = (
+				A5BF10B51EC5E7CD005042D8 /* Level3 */,
 				A513A5E21E2151A3003CD2C1 /* Level0.sks */,
 				A5B58EB81E09DC4900ADC865 /* Level1.sks */,
 				A55250CB1E148BC100EED486 /* Level2.sks */,
-				A59EF8F81EB51719003B5036 /* Level3.sks */,
 			);
 			name = Levels;
 			sourceTree = "<group>";
@@ -397,6 +399,15 @@
 			name = Enemies;
 			sourceTree = "<group>";
 		};
+		A5BF10B51EC5E7CD005042D8 /* Level3 */ = {
+			isa = PBXGroup;
+			children = (
+				A59EF8F81EB51719003B5036 /* Level3.sks */,
+				A5BF10B61EC5E802005042D8 /* ForegroundLayer2.sks */,
+			);
+			name = Level3;
+			sourceTree = "<group>";
+		};
 		A5C4BBBB1E16D2E2002B0B18 /* Game */ = {
 			isa = PBXGroup;
 			children = (
@@ -513,6 +524,7 @@
 				A5B58EC71E09DC4900ADC865 /* LaunchScreen.storyboard in Resources */,
 				A54D04D21EC3434D00AC23E6 /* BreakableStones2.sks in Resources */,
 				A513A5EE1E2159C8003CD2C1 /* LevelCompleteLabel.sks in Resources */,
+				A5BF10B71EC5E802005042D8 /* ForegroundLayer2.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

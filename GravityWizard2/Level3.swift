@@ -18,13 +18,24 @@ final class Level3: GameScene {
     fileprivate var background: SKNode?
     fileprivate var foreground: SKNode?
     
+    // MARK: - Game Protocol
+    
     var currentLevel: Level {
         return .three
     }
     
+    
+    // MARK: - SceneEdgeDecider Protocol
+    
     override var shouldAddScenePhysicsEdge: Bool {
         return false
     }
+    
+    override var yConstraintMultiplier: CGFloat {
+        return 3
+    }
+    
+    // MARK: - GameScene overrides
     
     override func setupNodes() {
         super.setupNodes()
