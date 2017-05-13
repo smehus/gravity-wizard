@@ -22,6 +22,7 @@ protocol SceneEdgeDecider {
 }
 
 // TODO: Use protocol extensions and find a way to override in sublcass
+// FIXME: ARRRRGGGGGGGGGGGGGG - Next time only use protocols and not inheritance
 //extension SceneEdgeDecider where Self: SKScene {
 //    var yConstraintMultiplier: CGFloat {
 //        return 1
