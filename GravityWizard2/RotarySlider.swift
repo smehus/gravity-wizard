@@ -62,9 +62,6 @@ final class RotarySlider: SKNode {
         
         rotary = rotaryNode
         anchor = anchorNode
-        
-        attachPhysics()
-        setupJoint()
     }
 
     fileprivate func attachPhysics() {
@@ -94,12 +91,22 @@ final class RotarySlider: SKNode {
     }
     
     fileprivate func setupJoint() {
+        guard
+            let rotaryBody = rotary?.physicsBody,
+            let anchorBody = anchor?.physicsBody
+        else {
+            assertionFailure("Failed to resolve rotary physics bodies for joint")
+            return
+        }
         
+//        let joint = SKPhysicsJointSliding.joint(withBodyA: rotaryBody, bodyB: anchorBody, anchor: <#T##CGPoint#>, axis: <#T##CGVector#>)
     }
 }
 
 extension RotarySlider: LifecycleListener {
     func didMoveToScene() {
         resolveNodes()
+        attachPhysics()
+        setupJoint()
     }
 }
