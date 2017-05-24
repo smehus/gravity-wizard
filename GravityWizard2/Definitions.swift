@@ -130,6 +130,8 @@ struct PhysicsCategory {
     static let travelatorPlatform:  UInt32 = 0x1 << 16
     
     static let brokenRockParts:     UInt32 = 0x1 << 17
+    
+    static let indesctructibleObstacle: UInt32 = 0x1 << 18
 }
 
 struct LightingMask {

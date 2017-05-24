@@ -13,8 +13,18 @@ fileprivate struct Names {
     static let anchor = "anchor"
 }
 
-fileprivate struct Physics {
+fileprivate enum Physics {
+    case rotary
+    case anchor
     
+    var categoryBitMask: UInt32 {
+        switch self {
+        case .rotary:
+            return PhysicsCategory.indesctructibleObstacle
+        case .anchor:
+            return PhysicsCategory.indesctructibleObstacle
+        }
+    }
 }
 
 final class RotarySlider: SKNode {
@@ -35,9 +45,28 @@ final class RotarySlider: SKNode {
         anchor = anchorNode
         
         attachPhysics()
+        setupJoint()
     }
 
     fileprivate func attachPhysics() {
+        guard
+            let rotaryBody = rotary?.physicsBody,
+            let anchorBody = anchor?.physicsBody
+        else {
+            assertionFailure("Rotary nodes missing physics bodies")
+            return
+        }
+        
+        // Rotary Physics
+        
+        rotaryBody.categoryBitMask = Physics.rotary.categoryBitMask
+        
+        // Anchor Physics
+        
+        anchorBody.categoryBitMask = Physics.anchor.categoryBitMask
+    }
+    
+    fileprivate func setupJoint() {
         
     }
 }
