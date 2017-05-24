@@ -561,10 +561,10 @@ extension GameScene {
 
 extension GameScene: SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
-        collisionDidBegin(with: contact)
+        contactDidBegin(with: contact)
     }
     
-    func collisionDidBegin(with contact: SKPhysicsContact) {
+    func contactDidBegin(with contact: SKPhysicsContact) {
         let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
         
         if collision.collisionCombination() == .bloodCollidesWithGround {
@@ -624,6 +624,10 @@ extension GameScene: SKPhysicsContactDelegate {
         }
         
         if collision.collisionCombination() == .heroCollidesWithEnemy {
+            heroCollidesWithEnemy(with: contact)
+        }
+        
+        if collision.collisionCombination() == .heroCollidesWithObstacle {
             heroCollidesWithEnemy(with: contact)
         }
     }

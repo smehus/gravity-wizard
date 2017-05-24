@@ -58,8 +58,8 @@ final class Level3: GameScene {
         updateHeroForSceneWrapping()
     }
     
-    override func collisionDidBegin(with contact: SKPhysicsContact) {
-        super.collisionDidBegin(with: contact)
+    override func contactDidBegin(with contact: SKPhysicsContact) {
+        super.contactDidBegin(with: contact)
     }
     
     override func levelCompleted() {

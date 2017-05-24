@@ -22,9 +22,28 @@ fileprivate enum Physics {
         case .rotary:
             return PhysicsCategory.indesctructibleObstacle
         case .anchor:
-            return PhysicsCategory.indesctructibleObstacle
+            return PhysicsCategory.travelatorBase
         }
     }
+    
+    var contactTestBitMask: UInt32 {
+        switch self {
+        case .rotary:
+            return PhysicsCategory.Hero
+        case .anchor:
+            return PhysicsCategory.None
+        }
+    }
+    
+    var collisionBitMask: UInt32 {
+        switch self {
+        case .rotary:
+            return PhysicsCategory.Hero
+        case .anchor:
+            return PhysicsCategory.None
+        }
+    }
+    
 }
 
 final class RotarySlider: SKNode {
@@ -60,10 +79,18 @@ final class RotarySlider: SKNode {
         // Rotary Physics
         
         rotaryBody.categoryBitMask = Physics.rotary.categoryBitMask
+        rotaryBody.contactTestBitMask = Physics.rotary.contactTestBitMask
+        rotaryBody.collisionBitMask = Physics.rotary.collisionBitMask
+        rotaryBody.isDynamic = false
+        rotaryBody.affectedByGravity = false
         
         // Anchor Physics
         
         anchorBody.categoryBitMask = Physics.anchor.categoryBitMask
+        anchorBody.contactTestBitMask = Physics.anchor.contactTestBitMask
+        anchorBody.collisionBitMask = Physics.anchor.collisionBitMask
+        anchorBody.isDynamic = false
+        anchorBody.affectedByGravity = false
     }
     
     fileprivate func setupJoint() {

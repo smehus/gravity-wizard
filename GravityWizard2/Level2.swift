@@ -64,8 +64,8 @@ final class Level2: GameScene {
 }
 
 extension Level2 {
-    override func collisionDidBegin(with contact: SKPhysicsContact) {
-        super.collisionDidBegin(with: contact)
+    override func contactDidBegin(with contact: SKPhysicsContact) {
+        super.contactDidBegin(with: contact)
      
         
     }

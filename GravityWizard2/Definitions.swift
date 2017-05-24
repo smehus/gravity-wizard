@@ -155,6 +155,7 @@ enum CollisionCombination {
     case HeroCollidesWithGround
     case heroCollidesWithStone
     case heroCollidesWithEnemy
+    case heroCollidesWithObstacle
     
     case travelatorCollidesWithLimits
     
@@ -177,6 +178,8 @@ extension UInt32 {
             return .heroCollidesWithGravityField
         case PhysicsCategory.Hero | PhysicsCategory.enemy:
             return .heroCollidesWithEnemy
+        case PhysicsCategory.Hero | PhysicsCategory.indesctructibleObstacle:
+            return .heroCollidesWithObstacle
             
             // ARROW
         case PhysicsCategory.arrow | PhysicsCategory.Edge:
