@@ -92,14 +92,21 @@ final class RotarySlider: SKNode {
     
     fileprivate func setupJoint() {
         guard
+            let rotaryNode = rotary,
+            let anchorNode = anchor,
             let rotaryBody = rotary?.physicsBody,
-            let anchorBody = anchor?.physicsBody
+            let anchorBody = anchor?.physicsBody,
+            let scene = scene as? GameScene
         else {
             assertionFailure("Failed to resolve rotary physics bodies for joint")
             return
         }
         
-//        let joint = SKPhysicsJointSliding.joint(withBodyA: rotaryBody, bodyB: anchorBody, anchor: <#T##CGPoint#>, axis: <#T##CGVector#>)
+        let joint = SKPhysicsJointSliding.joint(withBodyA: rotaryBody, bodyB: anchorBody, anchor: rotaryNode.position, axis: CGVector(dx: 1, dy: 0))
+        joint.lowerDistanceLimit = 0
+        joint.upperDistanceLimit = anchorNode.size.width
+        joint.shouldEnableLimits = true
+        scene.physicsWorld.add(joint)
     }
 }
 
