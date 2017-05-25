@@ -13,6 +13,8 @@ fileprivate struct Names {
     static let anchor = "anchor"
 }
 
+let ANIMATION_DURATION = 2.0
+
 fileprivate enum Physics {
     case rotary
     case anchor
@@ -108,6 +110,30 @@ final class RotarySlider: SKNode {
         joint.shouldEnableLimits = true
         scene.physicsWorld.add(joint)
     }
+    
+    fileprivate func startAnimation() {
+        guard
+            let rotaryNode = rotary,
+            let bar = anchor
+        else {
+            assertionFailure("Missing rotary sprite in animation functions")
+            return
+        }
+        
+        let initialMoveVector = CGVector(dx: -bar.size.width/2, dy: 0)
+        let initialMoveAction = SKAction.move(by: initialMoveVector, duration: ANIMATION_DURATION/2)
+        
+        let repeatedVector = CGVector(dx: bar.size.width, dy: 0)
+        let repeatedMoveAction = SKAction.move(by: repeatedVector, duration: ANIMATION_DURATION)
+        let repeatAction = SKAction.repeatForever(SKAction.sequence([repeatedMoveAction, repeatedMoveAction.reversed()]))
+        let finalMoveAction = SKAction.sequence([initialMoveAction, repeatAction])
+        
+        let spinAction = SKAction.rotate(byAngle: 360, duration: ANIMATION_DURATION)
+        let spinRepeatAction = SKAction.repeatForever(spinAction)
+        
+        let finalAction = SKAction.group([spinRepeatAction, finalMoveAction])
+        rotaryNode.run(finalAction)
+    }
 }
 
 extension RotarySlider: LifecycleListener {
@@ -115,5 +141,6 @@ extension RotarySlider: LifecycleListener {
         resolveNodes()
         attachPhysics()
         setupJoint()
+        startAnimation()
     }
 }
