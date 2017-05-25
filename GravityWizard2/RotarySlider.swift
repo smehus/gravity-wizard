@@ -48,10 +48,40 @@ fileprivate enum Physics {
     
 }
 
+fileprivate enum RotaryOrientation {
+    case horizontal
+    case vertical
+    
+    /// Axis of the joint attached to rotary wheel
+    var jointAxis: CGVector {
+        switch self {
+        case .horizontal:
+            return CGVector(dx: 1, dy: 0)
+        case .vertical:
+            return CGVector(dx: 0, dy: 1)
+        }
+    }
+    
+    
+    /// Upper limit of the slider joint for rotary wheel
+    ///
+    /// - Parameter node: Node constant - width / height defines limit
+    /// - Returns: Float
+    func jointUpperDistanceLimit(with node: SKSpriteNode) -> CGFloat {
+        switch self {
+        case .horizontal:
+            return node.size.width
+        case .vertical:
+            return node.size.height
+        }
+    }
+}
+
 final class RotarySlider: SKNode {
     
     fileprivate var rotary: SKSpriteNode?
     fileprivate var anchor: SKSpriteNode?
+    fileprivate var orientation: RotaryOrientation = .horizontal
     
     fileprivate func resolveNodes() {
         guard
@@ -64,6 +94,8 @@ final class RotarySlider: SKNode {
         
         rotary = rotaryNode
         anchor = anchorNode
+        
+        orientation = (anchorNode.size.width > anchorNode.size.height) ? .horizontal : .vertical
     }
 
     fileprivate func attachPhysics() {
@@ -104,9 +136,9 @@ final class RotarySlider: SKNode {
             return
         }
         
-        let joint = SKPhysicsJointSliding.joint(withBodyA: rotaryBody, bodyB: anchorBody, anchor: rotaryNode.position, axis: CGVector(dx: 1, dy: 0))
+        let joint = SKPhysicsJointSliding.joint(withBodyA: rotaryBody, bodyB: anchorBody, anchor: rotaryNode.position, axis: orientation.jointAxis)
         joint.lowerDistanceLimit = 0
-        joint.upperDistanceLimit = anchorNode.size.width
+        joint.upperDistanceLimit = orientation.jointUpperDistanceLimit(with: anchorNode)
         joint.shouldEnableLimits = true
         scene.physicsWorld.add(joint)
     }
