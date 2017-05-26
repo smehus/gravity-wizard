@@ -112,8 +112,8 @@ final class RotarySlider: SKNode {
         rotaryBody.categoryBitMask = Physics.rotary.categoryBitMask
         rotaryBody.contactTestBitMask = Physics.rotary.contactTestBitMask
         rotaryBody.collisionBitMask = Physics.rotary.collisionBitMask
-        rotaryBody.isDynamic = false
-        rotaryBody.affectedByGravity = false
+        rotaryBody.isDynamic = orientation == .horizontal ? false : true
+        rotaryBody.affectedByGravity = orientation == .horizontal ? false : true
         
         // Anchor Physics
         
@@ -177,10 +177,24 @@ final class RotarySlider: SKNode {
                 return
         }
         
-        let impulse = CGVector(dx: 0, dy: 300)
-        let action = SKAction.applyImpulse(impulse, duration: 0.5)
-        rotaryNode.run(action)
+        let impulse = CGVector(dx: 0, dy: 1000)
+        let impulseAction = SKAction.applyImpulse(impulse, duration: 0.3)
+        let wait = SKAction.wait(forDuration: 5.0)
+        let impulseSequence = SKAction.sequence([wait, impulseAction])
+        let impulseRepeat = SKAction.repeatForever(impulseSequence)
+        
+        let spinAction = SKAction.rotate(byAngle: 360, duration: ANIMATION_DURATION)
+        let spinRepeatAction = SKAction.repeatForever(spinAction)
+        
+        rotaryNode.run(SKAction.group([impulseRepeat, spinRepeatAction]))
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        
+        startVerticalAnimation()
+    }
+
 }
 
 extension RotarySlider: LifecycleListener {
@@ -192,8 +206,8 @@ extension RotarySlider: LifecycleListener {
         case .horizontal:
             startHorizontalAnimation()
         case .vertical:
+            isUserInteractionEnabled = true
             startVerticalAnimation()
         }
-        
     }
 }
