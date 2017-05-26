@@ -143,7 +143,7 @@ final class RotarySlider: SKNode {
         scene.physicsWorld.add(joint)
     }
     
-    fileprivate func startAnimation() {
+    fileprivate func startHorizontalAnimation() {
         guard
             let rotaryNode = rotary,
             let bar = anchor
@@ -166,6 +166,21 @@ final class RotarySlider: SKNode {
         let finalAction = SKAction.group([spinRepeatAction, finalMoveAction])
         rotaryNode.run(finalAction)
     }
+    
+    fileprivate func startVerticalAnimation() {
+        guard
+            let rotaryNode = rotary,
+            let _ = rotaryNode.physicsBody,
+            let _ = anchor
+            else {
+                assertionFailure("Missing rotary sprite in animation functions")
+                return
+        }
+        
+        let impulse = CGVector(dx: 0, dy: 300)
+        let action = SKAction.applyImpulse(impulse, duration: 0.5)
+        rotaryNode.run(action)
+    }
 }
 
 extension RotarySlider: LifecycleListener {
@@ -173,6 +188,12 @@ extension RotarySlider: LifecycleListener {
         resolveNodes()
         attachPhysics()
         setupJoint()
-        startAnimation()
+        switch orientation {
+        case .horizontal:
+            startHorizontalAnimation()
+        case .vertical:
+            startVerticalAnimation()
+        }
+        
     }
 }
