@@ -101,9 +101,10 @@ final class RotarySlider: SKNode {
 
     fileprivate func attachPhysics() {
         guard
-            let rotaryBody = rotary?.physicsBody
+            let rotaryBody = rotary?.physicsBody,
+            let anchorBody = anchor?.physicsBody
         else {
-            assertionFailure("Rotary nodes missing physics bodies")
+            conditionFailure(with: "Rotary nodes missing physics bodies")
             return
         }
         
@@ -112,9 +113,33 @@ final class RotarySlider: SKNode {
         rotaryBody.categoryBitMask = Physics.rotary.categoryBitMask
         rotaryBody.contactTestBitMask = Physics.rotary.contactTestBitMask
         rotaryBody.collisionBitMask = Physics.rotary.collisionBitMask
-        rotaryBody.isDynamic = false
+        rotaryBody.isDynamic = true
         rotaryBody.affectedByGravity = false
         
+        anchorBody.categoryBitMask = Physics.anchor.categoryBitMask
+        anchorBody.contactTestBitMask = Physics.anchor.contactTestBitMask
+        anchorBody.collisionBitMask = Physics.anchor.collisionBitMask
+        anchorBody.isDynamic = false
+        anchorBody.affectedByGravity = false
+    }
+    
+    fileprivate func setupJoint() {
+        guard
+            let point = rotary?.position,
+            let bodyA = anchor?.physicsBody,
+            let bodyB = rotary?.physicsBody,
+            let gameScene = scene as? GameScene
+        else {
+            conditionFailure(with: "Setup Joint: failed to unwrapp sprites")
+            return
+        }
+        
+        let joint = SKPhysicsJointSliding.joint(withBodyA: bodyA, bodyB: bodyB, anchor: point, axis: orientation.jointAxis)
+        joint.lowerDistanceLimit = 0
+        joint.upperDistanceLimit = 50
+        joint.shouldEnableLimits = true
+        
+        gameScene.add(joint: joint)
     }
     
     fileprivate func startHorizontalAnimation() {
@@ -189,12 +214,13 @@ extension RotarySlider: LifecycleListener {
     func didMoveToScene() {
         resolveNodes()
         attachPhysics()
+        setupJoint()
         isUserInteractionEnabled = true
         switch orientation {
-        case .horizontal:
-            startHorizontalAnimation()
-        case .vertical:
-            startVerticalAnimation()
+        case .horizontal: break
+//            startHorizontalAnimation()
+        case .vertical: break
+//            startVerticalAnimation()
         }
     }
 }
@@ -218,8 +244,8 @@ extension RotarySlider: Obstacle {
             conditionFailure(with: "Failed to resolve rotary in collision")
             return
         }
-        
-        let action = SKAction.moveBy(x: 0, y: 100.0, duration: 0.1)
-        rotaryNode.run(SKAction.repeat(SKAction.sequence([action, action.reversed()]), count: 2))
+//        
+//        let action = SKAction.moveBy(x: 0, y: 100.0, duration: 0.1)
+//        rotaryNode.run(SKAction.repeat(SKAction.sequence([action, action.reversed()]), count: 2))
     }
 }
