@@ -141,12 +141,13 @@ final class RotarySlider: SKNode {
             return
         }
         
+        
         let rotaryPosition = gameScene.convert(rotary.position, from: rotary.parent!)
         let anchorPosition = gameScene.convert(anchor.position, from: anchor.parent!)
         
+        rotaryBody.mass = 0.5
         let joint = SKPhysicsJointSpring.joint(withBodyA: rotaryBody, bodyB: anchorBody, anchorA: rotaryPosition, anchorB: anchorPosition)
-        joint.damping = 1.0
-        joint.frequency = 2.0
+        joint.frequency = 9.0
         gameScene.add(joint: joint)
     }
     
