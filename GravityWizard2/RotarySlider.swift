@@ -101,8 +101,7 @@ final class RotarySlider: SKNode {
 
     fileprivate func attachPhysics() {
         guard
-            let rotaryBody = rotary?.physicsBody,
-            let anchorBody = anchor?.physicsBody
+            let rotaryBody = rotary?.physicsBody
         else {
             assertionFailure("Rotary nodes missing physics bodies")
             return
@@ -116,33 +115,6 @@ final class RotarySlider: SKNode {
         rotaryBody.isDynamic = false
         rotaryBody.affectedByGravity = false
         
-        // Anchor Physics
-        
-        anchorBody.categoryBitMask = Physics.anchor.categoryBitMask
-        anchorBody.contactTestBitMask = Physics.anchor.contactTestBitMask
-        anchorBody.collisionBitMask = Physics.anchor.collisionBitMask
-        anchorBody.isDynamic = false
-        anchorBody.affectedByGravity = false
-    }
-    
-    fileprivate func setupJoint() {
-        guard
-            let rotaryNode = rotary,
-            let _ = anchor,
-            let rotaryBody = rotary?.physicsBody,
-            let anchorBody = anchor?.physicsBody,
-            let scene = scene as? GameScene
-        else {
-            conditionFailure(with: "Failed to resolve rotary physics bodies for joint")
-            return
-        }
-        
-        let jointPosition = scene.convert(rotaryNode.position, from: rotaryNode.parent!)
-        let joint = SKPhysicsJointSliding.joint(withBodyA: anchorBody, bodyB: rotaryBody, anchor: jointPosition, axis: orientation.jointAxis)
-        joint.shouldEnableLimits = true
-        joint.lowerDistanceLimit = 0
-        joint.upperDistanceLimit = 40
-        scene.add(joint: joint)
     }
     
     fileprivate func startHorizontalAnimation() {
@@ -173,46 +145,45 @@ final class RotarySlider: SKNode {
         guard
             let rotaryNode = rotary,
             let _ = rotaryNode.physicsBody,
-            let bar = anchor
+            let bar = anchor,
+            let gameScene = scene as? GameScene
             else {
                 conditionFailure(with: "Missing rotary sprite in animation functions")
                 return
         }
         
-        // ROTARY ANIMATION
+
+        /// Initial x value vector / action
+        let initialXMoveVector = CGVector(dx: -gameScene.frame.size.width/2, dy: 0)
+        let initialXAction = SKAction.move(by: initialXMoveVector, duration: LONG_ANIMATION_DURATION/2)
+        
+        /// Repeated x value vector / action
+        let xMoveVector = CGVector(dx: gameScene.frame.size.width, dy: 0)
+        let xMoveAction = SKAction.move(by: xMoveVector, duration: LONG_ANIMATION_DURATION)
+        let xMoveSequence = SKAction.repeatForever(SKAction.sequence([xMoveAction, xMoveAction.reversed()]))
+        
+        
+        /// Initial move action + repeated move action
+        let fullXSequence = SKAction.sequence([initialXAction, xMoveSequence])
+    
 
         /// Move up and down
         let moveVector = CGVector(dx: 0, dy: -bar.size.height)
-        let moveAction = SKAction.move(by: moveVector, duration: ANIMATION_DURATION)
-        let moveSequence = SKAction.repeatForever(SKAction.sequence([moveAction, moveAction.reversed()]))
+        let moveAction = SKAction.move(by: moveVector, duration: ANIMATION_DURATION * 0.75)
+        let yMoveSequence = SKAction.repeatForever(SKAction.sequence([moveAction, moveAction.reversed()]))
+    
+        
+        let fullMoveGroup = SKAction.group([yMoveSequence, fullXSequence])
+        
 
         /// Spin the rotary
         let spinAction = SKAction.rotate(byAngle: 360, duration: LONG_ANIMATION_DURATION)
         let spinRepeatAction = SKAction.repeatForever(spinAction)
         
-//        rotaryNode.run(SKAction.group([moveSequence, spinRepeatAction]))
-        
-        guard let gameScene = scene as? GameScene else {
-            conditionFailure(with: "Failed to resolve scene as game scene")
-            return
-        }
-        
-        // BAR ANIMATION
+        rotaryNode.run(SKAction.group([fullMoveGroup, spinRepeatAction]))
         
         
-        /// Initial move action
-        let initialMoveVector = CGVector(dx: -gameScene.frame.size.width/2, dy: 0)
-        let initialAction = SKAction.move(by: initialMoveVector, duration: LONG_ANIMATION_DURATION/2)
-        
-        
-        /// Repeated move action
-        let barMoveVector = CGVector(dx: gameScene.frame.size.width, dy: 0)
-        let barMoveAction = SKAction.move(by: barMoveVector, duration: LONG_ANIMATION_DURATION)
-        
-        let repeatedBarAction = SKAction.repeatForever(SKAction.sequence([barMoveAction, barMoveAction.reversed()]))
-        let finalRunnableAction = SKAction.sequence([initialAction, repeatedBarAction])
-        
-        bar.run(finalRunnableAction)
+        bar.run(fullXSequence)
     }
 }
 
@@ -220,7 +191,7 @@ extension RotarySlider: LifecycleListener {
     func didMoveToScene() {
         resolveNodes()
         attachPhysics()
-        setupJoint()
+        
         switch orientation {
         case .horizontal:
             startHorizontalAnimation()
