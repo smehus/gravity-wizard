@@ -145,8 +145,8 @@ final class RotarySlider: SKNode {
         let anchorPosition = gameScene.convert(anchor.position, from: anchor.parent!)
         
         let joint = SKPhysicsJointSpring.joint(withBodyA: rotaryBody, bodyB: anchorBody, anchorA: rotaryPosition, anchorB: anchorPosition)
-        joint.damping = 0.0
-        joint.frequency = 1.0
+        joint.damping = 1.0
+        joint.frequency = 2.0
         gameScene.add(joint: joint)
     }
     
@@ -225,10 +225,10 @@ extension RotarySlider: LifecycleListener {
         setupSpringJoint()
         
         switch orientation {
-        case .horizontal: break
-//            startHorizontalAnimation()
-        case .vertical: break
-//            startVerticalAnimation()
+        case .horizontal:
+            startHorizontalAnimation()
+        case .vertical:
+            startVerticalAnimation()
         }
     }
 }
