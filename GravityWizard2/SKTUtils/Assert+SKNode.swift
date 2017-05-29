@@ -10,7 +10,7 @@ import SpriteKit
 
 extension SKNode {
     public func conditionFailure(with message: String) {
-        let assertionMessage = "\(type(of: Self)): \(message))"
+        let assertionMessage = "\(type(of: self)): \(message))"
         assertionFailure(assertionMessage)
     }
 }

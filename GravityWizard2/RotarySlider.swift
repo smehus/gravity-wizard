@@ -14,6 +14,7 @@ fileprivate struct Names {
 }
 
 let ANIMATION_DURATION = 2.0
+let LONG_ANIMATION_DURATION = 4.0
 
 fileprivate enum Physics {
     case rotary
@@ -132,11 +133,11 @@ final class RotarySlider: SKNode {
             let anchorBody = anchor?.physicsBody,
             let scene = scene as? GameScene
         else {
-            assertionFailure("Failed to resolve rotary physics bodies for joint")
+            conditionFailure(with: "Failed to resolve rotary physics bodies for joint")
             return
         }
         
-        let joint = SKPhysicsJointSliding.joint(withBodyA: rotaryBody, bodyB: anchorBody, anchor: rotaryNode.position, axis: orientation.jointAxis)
+        let joint = SKPhysicsJointSliding.joint(withBodyA: anchorBody, bodyB: rotaryBody, anchor: rotaryNode.position, axis: orientation.jointAxis)
         joint.lowerDistanceLimit = 0
         joint.upperDistanceLimit = orientation.jointUpperDistanceLimit(with: anchorNode)
         joint.shouldEnableLimits = true
@@ -160,7 +161,7 @@ final class RotarySlider: SKNode {
         let repeatAction = SKAction.repeatForever(SKAction.sequence([repeatedMoveAction, repeatedMoveAction.reversed()]))
         let finalMoveAction = SKAction.sequence([initialMoveAction, repeatAction])
         
-        let spinAction = SKAction.rotate(byAngle: 360, duration: ANIMATION_DURATION)
+        let spinAction = SKAction.rotate(byAngle: 360, duration: LONG_ANIMATION_DURATION)
         let spinRepeatAction = SKAction.repeatForever(spinAction)
         
         let finalAction = SKAction.group([spinRepeatAction, finalMoveAction])
@@ -182,13 +183,13 @@ final class RotarySlider: SKNode {
         /// Move up and down
         let moveVector = CGVector(dx: 0, dy: -bar.size.height)
         let moveAction = SKAction.move(by: moveVector, duration: ANIMATION_DURATION)
-        let moveSequence = SKAction.sequence([moveAction, moveAction.reversed()])
+        let moveSequence = SKAction.repeatForever(SKAction.sequence([moveAction, moveAction.reversed()]))
 
         /// Spin the rotary
-        let spinAction = SKAction.rotate(byAngle: 360, duration: 4.0)
+        let spinAction = SKAction.rotate(byAngle: 360, duration: LONG_ANIMATION_DURATION)
         let spinRepeatAction = SKAction.repeatForever(spinAction)
         
-        rotaryNode.run(SKAction.group([moveSequence, spinRepeatAction]))
+//        rotaryNode.run(SKAction.group([moveSequence, spinRepeatAction]))
         
         guard let gameScene = scene as? GameScene else {
             conditionFailure(with: "Failed to resolve scene as game scene")
@@ -197,7 +198,20 @@ final class RotarySlider: SKNode {
         
         // BAR ANIMATION
         
-//        let initialMoveVector = CGVector(dx: -, dy: <#T##CGFloat#>)
+        
+        /// Initial move action
+        let initialMoveVector = CGVector(dx: -gameScene.frame.size.width/2, dy: 0)
+        let initialAction = SKAction.move(by: initialMoveVector, duration: LONG_ANIMATION_DURATION/2)
+        
+        
+        /// Repeated move action
+        let barMoveVector = CGVector(dx: gameScene.frame.size.width, dy: 0)
+        let barMoveAction = SKAction.move(by: barMoveVector, duration: LONG_ANIMATION_DURATION)
+        
+        let repeatedBarAction = SKAction.repeatForever(SKAction.sequence([barMoveAction, barMoveAction.reversed()]))
+        let finalRunnableAction = SKAction.sequence([initialAction, repeatedBarAction])
+        
+        bar.run(finalRunnableAction)
     }
 }
 
