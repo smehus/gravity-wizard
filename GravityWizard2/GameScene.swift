@@ -684,7 +684,7 @@ extension GameScene {
         }
         
         rose.attacked()
-        obstacleParent.collision()
+        obstacleParent.collision(at: contact.contactPoint)
     }
     
     fileprivate func rockHitsHero(with contact: SKPhysicsContact) {

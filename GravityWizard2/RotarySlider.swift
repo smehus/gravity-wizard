@@ -78,10 +78,6 @@ fileprivate enum RotaryOrientation {
     }
 }
 
-protocol Obstacle {
-    func collision()
-}
-
 final class RotarySlider: SKNode {
     
     fileprivate var rotary: SKSpriteNode?
@@ -185,8 +181,6 @@ final class RotarySlider: SKNode {
         let spinRepeatAction = SKAction.repeatForever(spinAction)
         
         rotaryNode.run(SKAction.group([fullMoveGroup, spinRepeatAction]))
-        
-        
         bar.run(fullXSequence)
     }
 }
@@ -195,7 +189,7 @@ extension RotarySlider: LifecycleListener {
     func didMoveToScene() {
         resolveNodes()
         attachPhysics()
-        
+        isUserInteractionEnabled = true
         switch orientation {
         case .horizontal:
             startHorizontalAnimation()
@@ -205,8 +199,27 @@ extension RotarySlider: LifecycleListener {
     }
 }
 
-extension RotarySlider: Obstacle {
-    func collision() {
+extension RotarySlider {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        guard let scene = scene as? GameScene else {
+            conditionFailure(with: "Touches Began: FAiled to cast scene")
+            return
+        }
         
+        let point = touches.first!.location(in: scene)
+        collision(at: point)
+    }
+}
+
+extension RotarySlider: Obstacle {
+    func collision(at contactPoint: CGPoint) {
+        guard let rotaryNode = rotary else {
+            conditionFailure(with: "Failed to resolve rotary in collision")
+            return
+        }
+        
+        let action = SKAction.moveBy(x: 0, y: 100.0, duration: 0.1)
+        rotaryNode.run(SKAction.repeat(SKAction.sequence([action, action.reversed()]), count: 2))
     }
 }

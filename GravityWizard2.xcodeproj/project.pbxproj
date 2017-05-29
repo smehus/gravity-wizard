@@ -87,6 +87,7 @@
 		A5C4BBC51E18101C002B0B18 /* GravityProjectile.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5C4BBC41E18101C002B0B18 /* GravityProjectile.sks */; };
 		A5C4BBC81E181177002B0B18 /* GravityProjectileTail.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5C4BBC71E181177002B0B18 /* GravityProjectileTail.sks */; };
 		A5C4BBCA1E181D24002B0B18 /* GravityProjectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C4BBC91E181D24002B0B18 /* GravityProjectile.swift */; };
+		A5DC16051EDCB2C30000D92F /* Obstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DC16041EDCB2C30000D92F /* Obstacle.swift */; };
 		A5DF41391E93BF7C0084C222 /* DestructibleStone.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DF41381E93BF7C0084C222 /* DestructibleStone.swift */; };
 		A5E3150D1E215E8D00D3652C /* GameLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E3150C1E215E8D00D3652C /* GameLevel.swift */; };
 		A5E3150F1E2166F100D3652C /* SKScene+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E3150E1E2166F100D3652C /* SKScene+Extensions.swift */; };
@@ -178,6 +179,7 @@
 		A5C4BBC41E18101C002B0B18 /* GravityProjectile.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GravityProjectile.sks; sourceTree = "<group>"; };
 		A5C4BBC71E181177002B0B18 /* GravityProjectileTail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GravityProjectileTail.sks; sourceTree = "<group>"; };
 		A5C4BBC91E181D24002B0B18 /* GravityProjectile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GravityProjectile.swift; sourceTree = "<group>"; };
+		A5DC16041EDCB2C30000D92F /* Obstacle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Obstacle.swift; sourceTree = "<group>"; };
 		A5DF41381E93BF7C0084C222 /* DestructibleStone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DestructibleStone.swift; sourceTree = "<group>"; };
 		A5E3150C1E215E8D00D3652C /* GameLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLevel.swift; sourceTree = "<group>"; };
 		A5E3150E1E2166F100D3652C /* SKScene+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKScene+Extensions.swift"; sourceTree = "<group>"; };
@@ -370,6 +372,7 @@
 				A5E3150C1E215E8D00D3652C /* GameLevel.swift */,
 				A5899B051E2FA6290044971F /* GameLoopListener.swift */,
 				A55097D31EB8B36A00FC7F36 /* HeroBehaviorProtocols.swift */,
+				A5DC16041EDCB2C30000D92F /* Obstacle.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -569,6 +572,7 @@
 				A59152C81EDC608A00F90D5E /* Assert+SKNode.swift in Sources */,
 				A513A5E91E21552F003CD2C1 /* TreasureChestNode.swift in Sources */,
 				A5899B061E2FA6290044971F /* GameLoopListener.swift in Sources */,
+				A5DC16051EDCB2C30000D92F /* Obstacle.swift in Sources */,
 				A5808E681E5331CD007D3945 /* RewindSelector.swift in Sources */,
 				A59FB6981E0A088A00D1C915 /* CGVector+Extensions.swift in Sources */,
 				A5EE58CD1E5F1BB700D3D25B /* SKSpriteNode+Extensions.swift in Sources */,
