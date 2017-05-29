@@ -128,7 +128,7 @@ final class RotarySlider: SKNode {
     fileprivate func setupJoint() {
         guard
             let rotaryNode = rotary,
-            let anchorNode = anchor,
+            let _ = anchor,
             let rotaryBody = rotary?.physicsBody,
             let anchorBody = anchor?.physicsBody,
             let scene = scene as? GameScene
@@ -137,11 +137,12 @@ final class RotarySlider: SKNode {
             return
         }
         
-        let joint = SKPhysicsJointSliding.joint(withBodyA: anchorBody, bodyB: rotaryBody, anchor: rotaryNode.position, axis: orientation.jointAxis)
-        joint.lowerDistanceLimit = 0
-        joint.upperDistanceLimit = orientation.jointUpperDistanceLimit(with: anchorNode)
+        let jointPosition = scene.convert(rotaryNode.position, from: rotaryNode.parent!)
+        let joint = SKPhysicsJointSliding.joint(withBodyA: anchorBody, bodyB: rotaryBody, anchor: jointPosition, axis: orientation.jointAxis)
         joint.shouldEnableLimits = true
-        scene.physicsWorld.add(joint)
+        joint.lowerDistanceLimit = 0
+        joint.upperDistanceLimit = 40
+        scene.add(joint: joint)
     }
     
     fileprivate func startHorizontalAnimation() {
@@ -174,7 +175,7 @@ final class RotarySlider: SKNode {
             let _ = rotaryNode.physicsBody,
             let bar = anchor
             else {
-                assertionFailure("Missing rotary sprite in animation functions")
+                conditionFailure(with: "Missing rotary sprite in animation functions")
                 return
         }
         

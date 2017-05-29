@@ -760,3 +760,9 @@ extension GameScene {
     func levelCompleted() {}
     func gameOver() {}
 }
+
+extension GameScene {
+    func add(joint: SKPhysicsJoint) {
+        physicsWorld.add(joint)
+    }
+}
