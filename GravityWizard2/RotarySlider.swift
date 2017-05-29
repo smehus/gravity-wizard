@@ -86,6 +86,10 @@ final class RotarySlider: SKNode {
     fileprivate var belt: SKSpriteNode?
     fileprivate var orientation: RotaryOrientation = .horizontal
     
+    fileprivate var focusedRotary: SKSpriteNode? {
+        return rotarySprite
+    }
+    
     fileprivate func resolveNodes() {
         guard
             let rotaryNode = childNode(withName: Names.rotaryAnchor) as? SKSpriteNode,
@@ -116,17 +120,8 @@ final class RotarySlider: SKNode {
         spriteBody.categoryBitMask = Physics.rotary.categoryBitMask
         spriteBody.contactTestBitMask = Physics.rotary.contactTestBitMask
         spriteBody.collisionBitMask = Physics.rotary.collisionBitMask
-        spriteBody.isDynamic = true
+        spriteBody.isDynamic = false
         spriteBody.affectedByGravity = false
-        
-        
-        let anchorBody = SKPhysicsBody(circleOfRadius: 1.0)
-        anchorBody.categoryBitMask = Physics.anchor.categoryBitMask
-        anchorBody.contactTestBitMask = Physics.anchor.contactTestBitMask
-        anchorBody.collisionBitMask = Physics.anchor.collisionBitMask
-        anchorBody.isDynamic = false
-        anchorBody.affectedByGravity = false
-        rotaryAnchor?.physicsBody = anchorBody
     }
     
     fileprivate func setupSpringJoint() {
@@ -153,7 +148,7 @@ final class RotarySlider: SKNode {
     
     fileprivate func startHorizontalAnimation() {
         guard
-            let rotaryNode = rotaryAnchor,
+            let rotaryNode = focusedRotary,
             let bar = belt
         else {
             assertionFailure("Missing rotary sprite in animation functions")
@@ -177,7 +172,7 @@ final class RotarySlider: SKNode {
     
     fileprivate func startVerticalAnimation() {
         guard
-            let rotaryNode = rotaryAnchor,
+            let rotaryNode = focusedRotary,
             let _ = rotaryNode.physicsBody,
             let bar = belt,
             let gameScene = scene as? GameScene
@@ -223,8 +218,7 @@ extension RotarySlider: LifecycleListener {
     func didMoveToScene() {
         resolveNodes()
         attachPhysics()
-        setupSpringJoint()
-        
+    
         switch orientation {
         case .horizontal:
             startHorizontalAnimation()
