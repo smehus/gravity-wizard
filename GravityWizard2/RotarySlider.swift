@@ -78,6 +78,10 @@ fileprivate enum RotaryOrientation {
     }
 }
 
+protocol Obstacle {
+    func collision()
+}
+
 final class RotarySlider: SKNode {
     
     fileprivate var rotary: SKSpriteNode?
@@ -198,5 +202,11 @@ extension RotarySlider: LifecycleListener {
         case .vertical:
             startVerticalAnimation()
         }
+    }
+}
+
+extension RotarySlider: Obstacle {
+    func collision() {
+        
     }
 }

@@ -628,7 +628,7 @@ extension GameScene: SKPhysicsContactDelegate {
         }
         
         if collision.collisionCombination() == .heroCollidesWithObstacle {
-            heroCollidesWithEnemy(with: contact)
+            heroCollidesWithObstacle(with: contact)
         }
     }
     
@@ -670,6 +670,21 @@ extension GameScene {
         }
         
         rose.attacked()
+    }
+    
+    fileprivate func heroCollidesWithObstacle(with contact: SKPhysicsContact) {
+        let heroNode = contact.bodyA.categoryBitMask == PhysicsCategory.Hero ? contact.bodyA.node : contact.bodyB.node
+        let obstacle = contact.bodyA.categoryBitMask == PhysicsCategory.indesctructibleObstacle ? contact.bodyA.node : contact.bodyB.node
+        guard
+            let rose = heroNode as? RoseNode,
+            let obstacleParent = obstacle?.parent as? Obstacle
+        else {
+            conditionFailure(with: "Hero collides with enemy: failed to cast to rose")
+            return
+        }
+        
+        rose.attacked()
+        obstacleParent.collision()
     }
     
     fileprivate func rockHitsHero(with contact: SKPhysicsContact) {
