@@ -158,7 +158,7 @@
 		A59FB6D31E0AD9D700D1C915 /* BloodNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BloodNode.swift; sourceTree = "<group>"; };
 		A5AFBA191E1827AD00CE29E9 /* ArrowNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrowNode.swift; sourceTree = "<group>"; };
 		A5AFBA1B1E1828F200CE29E9 /* SKTexture+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKTexture+Extensions.swift"; sourceTree = "<group>"; };
-		A5B58EB31E09DC4900ADC865 /* GravityWizard2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GravityWizard2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5B58EB31E09DC4900ADC865 /* Rose.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rose.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5B58EB61E09DC4900ADC865 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5B58EB81E09DC4900ADC865 /* Level1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = Level1.sks; path = Scenes/Level1.sks; sourceTree = "<group>"; };
 		A5B58EBC1E09DC4900ADC865 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -388,7 +388,7 @@
 		A5B58EB41E09DC4900ADC865 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A5B58EB31E09DC4900ADC865 /* GravityWizard2.app */,
+				A5B58EB31E09DC4900ADC865 /* Rose.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -479,7 +479,7 @@
 			);
 			name = GravityWizard2;
 			productName = GravityWizard2;
-			productReference = A5B58EB31E09DC4900ADC865 /* GravityWizard2.app */;
+			productReference = A5B58EB31E09DC4900ADC865 /* Rose.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -746,7 +746,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mehus.GravityWizard2;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Rose;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -761,7 +761,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mehus.GravityWizard2;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Rose;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
