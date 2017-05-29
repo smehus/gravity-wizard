@@ -112,8 +112,8 @@ final class RotarySlider: SKNode {
         rotaryBody.categoryBitMask = Physics.rotary.categoryBitMask
         rotaryBody.contactTestBitMask = Physics.rotary.contactTestBitMask
         rotaryBody.collisionBitMask = Physics.rotary.collisionBitMask
-        rotaryBody.isDynamic = orientation == .horizontal ? false : true
-        rotaryBody.affectedByGravity = orientation == .horizontal ? false : true
+        rotaryBody.isDynamic = false
+        rotaryBody.affectedByGravity = false
         
         // Anchor Physics
         
@@ -171,30 +171,34 @@ final class RotarySlider: SKNode {
         guard
             let rotaryNode = rotary,
             let _ = rotaryNode.physicsBody,
-            let _ = anchor
+            let bar = anchor
             else {
                 assertionFailure("Missing rotary sprite in animation functions")
                 return
         }
         
-        let impulse = CGVector(dx: 0, dy: 1000)
-        let impulseAction = SKAction.applyImpulse(impulse, duration: 0.3)
-        let wait = SKAction.wait(forDuration: 5.0)
-        let impulseSequence = SKAction.sequence([wait, impulseAction])
-        let impulseRepeat = SKAction.repeatForever(impulseSequence)
-        
-        let spinAction = SKAction.rotate(byAngle: 360, duration: ANIMATION_DURATION)
+        // ROTARY ANIMATION
+
+        /// Move up and down
+        let moveVector = CGVector(dx: 0, dy: -bar.size.height)
+        let moveAction = SKAction.move(by: moveVector, duration: ANIMATION_DURATION)
+        let moveSequence = SKAction.sequence([moveAction, moveAction.reversed()])
+
+        /// Spin the rotary
+        let spinAction = SKAction.rotate(byAngle: 360, duration: 4.0)
         let spinRepeatAction = SKAction.repeatForever(spinAction)
         
-        rotaryNode.run(SKAction.group([impulseRepeat, spinRepeatAction]))
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
+        rotaryNode.run(SKAction.group([moveSequence, spinRepeatAction]))
         
-        startVerticalAnimation()
+        guard let gameScene = scene as? GameScene else {
+            conditionFailure(with: "Failed to resolve scene as game scene")
+            return
+        }
+        
+        // BAR ANIMATION
+        
+//        let initialMoveVector = CGVector(dx: -, dy: <#T##CGFloat#>)
     }
-
 }
 
 extension RotarySlider: LifecycleListener {
@@ -206,7 +210,6 @@ extension RotarySlider: LifecycleListener {
         case .horizontal:
             startHorizontalAnimation()
         case .vertical:
-            isUserInteractionEnabled = true
             startVerticalAnimation()
         }
     }
