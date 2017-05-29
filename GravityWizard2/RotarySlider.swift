@@ -9,8 +9,9 @@
 import SpriteKit
 
 fileprivate struct Names {
-    static let rotary = "rotary"
-    static let anchor = "anchor"
+    static let rotaryAnchor = "rotary-anchor"
+    static let rotarySprite = "rotary-sprite"
+    static let belt = "belt"
 }
 
 let ANIMATION_DURATION = 2.0
@@ -80,29 +81,31 @@ fileprivate enum RotaryOrientation {
 
 final class RotarySlider: SKNode {
     
-    fileprivate var rotary: SKSpriteNode?
-    fileprivate var anchor: SKSpriteNode?
+    fileprivate var rotaryAnchor: SKSpriteNode?
+    fileprivate var rotarySprite: SKSpriteNode?
+    fileprivate var belt: SKSpriteNode?
     fileprivate var orientation: RotaryOrientation = .horizontal
     
     fileprivate func resolveNodes() {
         guard
-            let rotaryNode = childNode(withName: Names.rotary) as? SKSpriteNode,
-            let anchorNode = childNode(withName: Names.anchor) as? SKSpriteNode
+            let rotaryNode = childNode(withName: Names.rotaryAnchor) as? SKSpriteNode,
+            let anchorNode = childNode(withName: Names.belt) as? SKSpriteNode,
+            let rotaryTexture = childNode(withName: Names.rotarySprite) as? SKSpriteNode
         else {
                 assertionFailure("Rotary Slider failed to resolve sprites")
                 return
         }
         
-        rotary = rotaryNode
-        anchor = anchorNode
+        rotaryAnchor = rotaryNode
+        rotarySprite = rotaryTexture
+        belt = anchorNode
         
         orientation = (anchorNode.size.width > anchorNode.size.height) ? .horizontal : .vertical
     }
 
     fileprivate func attachPhysics() {
         guard
-            let rotaryBody = rotary?.physicsBody,
-            let anchorBody = anchor?.physicsBody
+            let spriteBody = rotarySprite?.physicsBody
         else {
             conditionFailure(with: "Rotary nodes missing physics bodies")
             return
@@ -110,42 +113,47 @@ final class RotarySlider: SKNode {
         
         // Rotary Physics
         
-        rotaryBody.categoryBitMask = Physics.rotary.categoryBitMask
-        rotaryBody.contactTestBitMask = Physics.rotary.contactTestBitMask
-        rotaryBody.collisionBitMask = Physics.rotary.collisionBitMask
-        rotaryBody.isDynamic = true
-        rotaryBody.affectedByGravity = false
+        spriteBody.categoryBitMask = Physics.rotary.categoryBitMask
+        spriteBody.contactTestBitMask = Physics.rotary.contactTestBitMask
+        spriteBody.collisionBitMask = Physics.rotary.collisionBitMask
+        spriteBody.isDynamic = true
+        spriteBody.affectedByGravity = false
         
+        
+        let anchorBody = SKPhysicsBody(circleOfRadius: 1.0)
         anchorBody.categoryBitMask = Physics.anchor.categoryBitMask
         anchorBody.contactTestBitMask = Physics.anchor.contactTestBitMask
         anchorBody.collisionBitMask = Physics.anchor.collisionBitMask
         anchorBody.isDynamic = false
         anchorBody.affectedByGravity = false
+        rotaryAnchor?.physicsBody = anchorBody
     }
     
-    fileprivate func setupJoint() {
+    fileprivate func setupSpringJoint() {
         guard
-            let point = rotary?.position,
-            let bodyA = anchor?.physicsBody,
-            let bodyB = rotary?.physicsBody,
+            let rotaryBody = rotarySprite?.physicsBody,
+            let anchorBody = rotaryAnchor?.physicsBody,
+            let rotary = rotarySprite,
+            let anchor = rotaryAnchor,
             let gameScene = scene as? GameScene
         else {
-            conditionFailure(with: "Setup Joint: failed to unwrapp sprites")
+            conditionFailure(with: "Failed to unwrap physics bodies for joint")
             return
         }
         
-        let joint = SKPhysicsJointSliding.joint(withBodyA: bodyA, bodyB: bodyB, anchor: point, axis: orientation.jointAxis)
-        joint.lowerDistanceLimit = 0
-        joint.upperDistanceLimit = 50
-        joint.shouldEnableLimits = true
+        let rotaryPosition = gameScene.convert(rotary.position, from: rotary.parent!)
+        let anchorPosition = gameScene.convert(anchor.position, from: anchor.parent!)
         
+        let joint = SKPhysicsJointSpring.joint(withBodyA: rotaryBody, bodyB: anchorBody, anchorA: rotaryPosition, anchorB: anchorPosition)
+        joint.damping = 0.0
+        joint.frequency = 1.0
         gameScene.add(joint: joint)
     }
     
     fileprivate func startHorizontalAnimation() {
         guard
-            let rotaryNode = rotary,
-            let bar = anchor
+            let rotaryNode = rotaryAnchor,
+            let bar = belt
         else {
             assertionFailure("Missing rotary sprite in animation functions")
             return
@@ -168,9 +176,9 @@ final class RotarySlider: SKNode {
     
     fileprivate func startVerticalAnimation() {
         guard
-            let rotaryNode = rotary,
+            let rotaryNode = rotaryAnchor,
             let _ = rotaryNode.physicsBody,
-            let bar = anchor,
+            let bar = belt,
             let gameScene = scene as? GameScene
             else {
                 conditionFailure(with: "Missing rotary sprite in animation functions")
@@ -214,8 +222,8 @@ extension RotarySlider: LifecycleListener {
     func didMoveToScene() {
         resolveNodes()
         attachPhysics()
-        setupJoint()
-        isUserInteractionEnabled = true
+        setupSpringJoint()
+        
         switch orientation {
         case .horizontal: break
 //            startHorizontalAnimation()
@@ -240,12 +248,6 @@ extension RotarySlider {
 
 extension RotarySlider: Obstacle {
     func collision(at contactPoint: CGPoint) {
-        guard let rotaryNode = rotary else {
-            conditionFailure(with: "Failed to resolve rotary in collision")
-            return
-        }
-//        
-//        let action = SKAction.moveBy(x: 0, y: 100.0, duration: 0.1)
-//        rotaryNode.run(SKAction.repeat(SKAction.sequence([action, action.reversed()]), count: 2))
+
     }
 }
