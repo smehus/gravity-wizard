@@ -164,6 +164,13 @@ final class RoseNode: SKSpriteNode, GravityStateTracker {
         }
     }
     
+    func runLavaDeathAnimation() {
+        guard physicsBody?.contactTestBitMask != PhysicsCategory.None else { return }
+        physicsBody?.applyImpulse(CGVector(dx: 0, dy: 500))
+        physicsBody?.contactTestBitMask = PhysicsCategory.None
+        physicsBody?.collisionBitMask = PhysicsCategory.None
+    }
+    
     fileprivate func runAttackedAnimation() {
         let colorize = SKAction.colorize(with: .white, colorBlendFactor: 1.0, duration: 0.3)
         let flash = SKAction.sequence([colorize, colorize.reversed()])

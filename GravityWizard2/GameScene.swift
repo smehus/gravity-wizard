@@ -659,6 +659,7 @@ extension GameScene {
     }
     
     fileprivate func heroCollidesWithLava(with contact: SKPhysicsContact) {
+        rose?.runLavaDeathAnimation()
         gameOver()
     }
     

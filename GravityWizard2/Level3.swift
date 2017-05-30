@@ -68,6 +68,24 @@ final class Level3: GameScene {
     
     override func gameOver() {
         
+        guard let gameOverLabel = LevelCompleteLabel.createLabel(with: "Game Over"), let camera = camera else { return }
+        gameOverLabel.move(toParent: camera)
+        gameOverLabel.position = CGPoint.zero
+        
+        runZoomOutAction()
+        let presentScene = SKAction.afterDelay(2.0) {
+            guard let reloadLevel = self.currentLevel.levelScene() else {
+                self.conditionFailure(with: "Failed to load level scene on game over")
+                return
+            }
+            
+            reloadLevel.scaleMode = self.scaleMode
+            let transition = SKTransition.doorsOpenHorizontal(withDuration: 1.0)
+            self.view?.presentScene(reloadLevel, transition: transition)
+            
+        }
+        
+        run(presentScene)
     }
 }
 
