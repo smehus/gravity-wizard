@@ -48,6 +48,9 @@ fileprivate enum Physics {
         }
     }
     
+    var deactivated: UInt32 {
+        return PhysicsCategory.None
+    }
 }
 
 fileprivate enum RotaryOrientation {
@@ -218,7 +221,7 @@ extension RotarySlider: LifecycleListener {
     func didMoveToScene() {
         resolveNodes()
         attachPhysics()
-    
+        
         switch orientation {
         case .horizontal:
             startHorizontalAnimation()
@@ -228,21 +231,46 @@ extension RotarySlider: LifecycleListener {
     }
 }
 
-extension RotarySlider {
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        guard let scene = scene as? GameScene else {
-            conditionFailure(with: "Touches Began: FAiled to cast scene")
-            return
-        }
-        
-        let point = touches.first!.location(in: scene)
-        collision(at: point)
-    }
-}
+
 
 extension RotarySlider: Obstacle {
     func collision(at contactPoint: CGPoint) {
-
+        guard
+            let rotary = focusedRotary,
+            let body = rotary.physicsBody,
+            body.collisionBitMask != Physics.rotary.deactivated,
+            let gameScene = scene as? GameScene
+        else {
+            return
+        }
+        
+        deactiveCollisions()
+        let rotaryPosition = gameScene.convert(rotary.position, from: rotary.parent!)
+        let point = rotaryPosition - contactPoint
+        let vect = CGVector(point: point)
+        let responseAction = SKAction.move(by: vect, duration: 0.1)
+        responseAction.timingMode = .easeOut
+        let sequence = SKAction.sequence([responseAction, responseAction.reversed()])
+        let repeated = SKAction.repeat(sequence, count: 1)
+        
+        rotary.run(repeated, completion: activateCollisions)
+    }
+    
+    fileprivate func deactiveCollisions() {
+        guard let body = focusedRotary?.physicsBody else {
+            conditionFailure(with: "Activate collisions - missing sprite")
+            return
+        }
+        
+        body.collisionBitMask = Physics.rotary.deactivated
+    }
+    
+    fileprivate func activateCollisions() {
+        guard let body = focusedRotary?.physicsBody else {
+            conditionFailure(with: "Activate collisions - missing sprite")
+            return
+        }
+        
+        body.collisionBitMask = Physics.rotary.collisionBitMask
     }
 }
