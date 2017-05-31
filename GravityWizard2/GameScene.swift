@@ -457,11 +457,15 @@ extension GameScene {
         
         lastUpdateTimeInterval = currentTime
         
-        if let rose = rose {
-            rose.update(withDelta: deltaTime)
+        enumerateChildNodes(withName: "//*") { (node, _) in
+            guard let loopListener = node as? GameLoopListener else { return }
+            loopListener.update(withDelta: self.deltaTime)
         }
+//        if let rose = rose {
+//            rose.update(withDelta: deltaTime)
+//        }
         
-        if let projectile = currentProjectile {
+        if let projectile = currentProjectile {g
             updateDirection(with: projectile)
         }
         

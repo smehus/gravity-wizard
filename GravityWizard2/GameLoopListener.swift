@@ -27,3 +27,7 @@ extension GameLoopListener where Self: SKSpriteNode {
         
     }
 }
+
+extension GameLoopListener {
+    func updateDirection(withDelta deltaTime: Double) { }
+}

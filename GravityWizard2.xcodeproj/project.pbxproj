@@ -20,6 +20,7 @@
 		A51823601E103D6800DDE33A /* BreakableRocks.sks in Resources */ = {isa = PBXBuildFile; fileRef = A518235F1E103D6800DDE33A /* BreakableRocks.sks */; };
 		A51823621E10435D00DDE33A /* BreakableRocksNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51823611E10435D00DDE33A /* BreakableRocksNode.swift */; };
 		A51B845C1EDEE9E300EC53DB /* ChainedRotary.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51B845B1EDEE9E300EC53DB /* ChainedRotary.swift */; };
+		A51B845E1EDEF29400EC53DB /* ChainedRotary.sks in Resources */ = {isa = PBXBuildFile; fileRef = A51B845D1EDEF29400EC53DB /* ChainedRotary.sks */; };
 		A52F29A11E18252F0098B37A /* InFlightTrackable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52F29A01E18252F0098B37A /* InFlightTrackable.swift */; };
 		A53A0F731E65AF8D00761D88 /* LavaSection.sks in Resources */ = {isa = PBXBuildFile; fileRef = A53A0F721E65AF8D00761D88 /* LavaSection.sks */; };
 		A53A0F751E65B0F800761D88 /* LavaSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A0F741E65B0F800761D88 /* LavaSection.swift */; };
@@ -112,6 +113,7 @@
 		A518235F1E103D6800DDE33A /* BreakableRocks.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BreakableRocks.sks; sourceTree = "<group>"; };
 		A51823611E10435D00DDE33A /* BreakableRocksNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreakableRocksNode.swift; sourceTree = "<group>"; };
 		A51B845B1EDEE9E300EC53DB /* ChainedRotary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChainedRotary.swift; sourceTree = "<group>"; };
+		A51B845D1EDEF29400EC53DB /* ChainedRotary.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ChainedRotary.sks; sourceTree = "<group>"; };
 		A52F29A01E18252F0098B37A /* InFlightTrackable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InFlightTrackable.swift; sourceTree = "<group>"; };
 		A53A0F721E65AF8D00761D88 /* LavaSection.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LavaSection.sks; sourceTree = "<group>"; };
 		A53A0F741E65B0F800761D88 /* LavaSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LavaSection.swift; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 		A51B845A1EDEE9C300EC53DB /* ChainedRotary */ = {
 			isa = PBXGroup;
 			children = (
+				A51B845D1EDEF29400EC53DB /* ChainedRotary.sks */,
 			);
 			name = ChainedRotary;
 			sourceTree = "<group>";
@@ -559,6 +562,7 @@
 				A5899B041E2EFD940044971F /* Floor.sks in Resources */,
 				A5C4BBC81E181177002B0B18 /* GravityProjectileTail.sks in Resources */,
 				A513A5E31E2151A3003CD2C1 /* Level0.sks in Resources */,
+				A51B845E1EDEF29400EC53DB /* ChainedRotary.sks in Resources */,
 				A5B58EC41E09DC4900ADC865 /* Assets.xcassets in Resources */,
 				A53A0F731E65AF8D00761D88 /* LavaSection.sks in Resources */,
 				A5B58EC71E09DC4900ADC865 /* LaunchScreen.storyboard in Resources */,
