@@ -43,6 +43,7 @@
 		A5868FA41E0A042A00935E3B /* Wizard.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5868FA31E0A042A00935E3B /* Wizard.sks */; };
 		A5899B041E2EFD940044971F /* Floor.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5899B031E2EFD940044971F /* Floor.sks */; };
 		A5899B061E2FA6290044971F /* GameLoopListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5899B051E2FA6290044971F /* GameLoopListener.swift */; };
+		A58C690D1EDEE36B00ED9A11 /* ForegroundLayer3.sks in Resources */ = {isa = PBXBuildFile; fileRef = A58C690C1EDEE36B00ED9A11 /* ForegroundLayer3.sks */; };
 		A59152C81EDC608A00F90D5E /* Assert+SKNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59152C71EDC608A00F90D5E /* Assert+SKNode.swift */; };
 		A59EF8F91EB51719003B5036 /* Level3.sks in Resources */ = {isa = PBXBuildFile; fileRef = A59EF8F81EB51719003B5036 /* Level3.sks */; };
 		A59EF8FB1EB5172D003B5036 /* Level3.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59EF8FA1EB5172D003B5036 /* Level3.swift */; };
@@ -133,6 +134,7 @@
 		A5868FA31E0A042A00935E3B /* Wizard.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = Wizard.sks; path = Scenes/Wizard.sks; sourceTree = "<group>"; };
 		A5899B031E2EFD940044971F /* Floor.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Floor.sks; sourceTree = "<group>"; };
 		A5899B051E2FA6290044971F /* GameLoopListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLoopListener.swift; sourceTree = "<group>"; };
+		A58C690C1EDEE36B00ED9A11 /* ForegroundLayer3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ForegroundLayer3.sks; sourceTree = "<group>"; };
 		A59152C71EDC608A00F90D5E /* Assert+SKNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assert+SKNode.swift"; sourceTree = "<group>"; };
 		A59EF8F81EB51719003B5036 /* Level3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level3.sks; sourceTree = "<group>"; };
 		A59EF8FA1EB5172D003B5036 /* Level3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level3.swift; sourceTree = "<group>"; };
@@ -427,6 +429,7 @@
 			children = (
 				A59EF8F81EB51719003B5036 /* Level3.sks */,
 				A5BF10B61EC5E802005042D8 /* ForegroundLayer2.sks */,
+				A58C690C1EDEE36B00ED9A11 /* ForegroundLayer3.sks */,
 			);
 			name = Level3;
 			sourceTree = "<group>";
@@ -537,6 +540,7 @@
 				A5517F071ED5A564004140FD /* RotarySlider.sks in Resources */,
 				A5517F0C1ED84BAE004140FD /* VerticalRotarySlider.sks in Resources */,
 				A59EF8F91EB51719003B5036 /* Level3.sks in Resources */,
+				A58C690D1EDEE36B00ED9A11 /* ForegroundLayer3.sks in Resources */,
 				A5B58EB91E09DC4900ADC865 /* Level1.sks in Resources */,
 				A53A0F771E65B1E700761D88 /* LavaParticle.sks in Resources */,
 				A561F0961E8E73BA0028132F /* BreakableStones1.sks in Resources */,
