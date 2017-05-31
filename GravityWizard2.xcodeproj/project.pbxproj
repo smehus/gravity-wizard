@@ -19,6 +19,7 @@
 		A518235E1E0E109400DDE33A /* RockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A518235D1E0E109400DDE33A /* RockNode.swift */; };
 		A51823601E103D6800DDE33A /* BreakableRocks.sks in Resources */ = {isa = PBXBuildFile; fileRef = A518235F1E103D6800DDE33A /* BreakableRocks.sks */; };
 		A51823621E10435D00DDE33A /* BreakableRocksNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51823611E10435D00DDE33A /* BreakableRocksNode.swift */; };
+		A51B845C1EDEE9E300EC53DB /* ChainedRotary.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51B845B1EDEE9E300EC53DB /* ChainedRotary.swift */; };
 		A52F29A11E18252F0098B37A /* InFlightTrackable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52F29A01E18252F0098B37A /* InFlightTrackable.swift */; };
 		A53A0F731E65AF8D00761D88 /* LavaSection.sks in Resources */ = {isa = PBXBuildFile; fileRef = A53A0F721E65AF8D00761D88 /* LavaSection.sks */; };
 		A53A0F751E65B0F800761D88 /* LavaSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A0F741E65B0F800761D88 /* LavaSection.swift */; };
@@ -110,6 +111,7 @@
 		A518235D1E0E109400DDE33A /* RockNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RockNode.swift; path = Sprites/RockNode.swift; sourceTree = "<group>"; };
 		A518235F1E103D6800DDE33A /* BreakableRocks.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BreakableRocks.sks; sourceTree = "<group>"; };
 		A51823611E10435D00DDE33A /* BreakableRocksNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreakableRocksNode.swift; sourceTree = "<group>"; };
+		A51B845B1EDEE9E300EC53DB /* ChainedRotary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChainedRotary.swift; sourceTree = "<group>"; };
 		A52F29A01E18252F0098B37A /* InFlightTrackable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InFlightTrackable.swift; sourceTree = "<group>"; };
 		A53A0F721E65AF8D00761D88 /* LavaSection.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LavaSection.sks; sourceTree = "<group>"; };
 		A53A0F741E65B0F800761D88 /* LavaSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LavaSection.swift; sourceTree = "<group>"; };
@@ -230,6 +232,13 @@
 			name = Labels;
 			sourceTree = "<group>";
 		};
+		A51B845A1EDEE9C300EC53DB /* ChainedRotary */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ChainedRotary;
+			sourceTree = "<group>";
+		};
 		A5517F0A1ED84B8A004140FD /* RotarySlider */ = {
 			isa = PBXGroup;
 			children = (
@@ -274,6 +283,7 @@
 				A561F0971E8E74A40028132F /* BreakableStoneStructure.swift */,
 				A5DF41381E93BF7C0084C222 /* DestructibleStone.swift */,
 				A5517F081ED5A571004140FD /* RotarySlider.swift */,
+				A51B845B1EDEE9E300EC53DB /* ChainedRotary.swift */,
 			);
 			name = Environment;
 			sourceTree = "<group>";
@@ -323,6 +333,7 @@
 		A5899B021E2EFD5E0044971F /* World */ = {
 			isa = PBXGroup;
 			children = (
+				A51B845A1EDEE9C300EC53DB /* ChainedRotary */,
 				A5517F0A1ED84B8A004140FD /* RotarySlider */,
 				A5899B031E2EFD940044971F /* Floor.sks */,
 				A59FB6D11E0AD93D00D1C915 /* Blood.sks */,
@@ -619,6 +630,7 @@
 				A5E3B7421E27C230004F32A3 /* WeaponSelector.swift in Sources */,
 				A513A5E51E2152B2003CD2C1 /* Level0.swift in Sources */,
 				A59FB6A11E0A088A00D1C915 /* Vector3.swift in Sources */,
+				A51B845C1EDEE9E300EC53DB /* ChainedRotary.swift in Sources */,
 				A5B58EB71E09DC4900ADC865 /* AppDelegate.swift in Sources */,
 				A59FB6A41E0A08C200D1C915 /* LifecycleListener.swift in Sources */,
 				A5E3150D1E215E8D00D3652C /* GameLevel.swift in Sources */,
