@@ -465,7 +465,7 @@ extension GameScene {
 //            rose.update(withDelta: deltaTime)
 //        }
         
-        if let projectile = currentProjectile {g
+        if let projectile = currentProjectile {
             updateDirection(with: projectile)
         }
         

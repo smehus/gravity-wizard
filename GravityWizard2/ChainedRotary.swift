@@ -81,6 +81,8 @@ final class ChainedRotary: SKNode {
     
     fileprivate func setupJoint() {
         guard
+            let enemyPosition = enemy?.position,
+            let basePosition = base?.position,
             let enemyBody = enemy?.physicsBody,
             let baseBody = base?.physicsBody,
             let gameScene = scene as? GameScene
@@ -88,12 +90,30 @@ final class ChainedRotary: SKNode {
                 conditionFailure(with: "Failed to setup joint")
                 return
         }
+        
+        
+        let joint = SKPhysicsJointLimit.joint(withBodyA: baseBody, bodyB: enemyBody, anchorA: enemyPosition, anchorB: basePosition)
+        joint.maxLength = 2730 / 4
+        gameScene.add(joint: joint)
     }
-    
 }
 
 extension ChainedRotary: GameLoopListener {
     func update(withDelta deltaTime: Double) {
+        guard
+            let enemySprite = enemy,
+            let gameScene = scene as? GameScene,
+            let hero = gameScene.rose
+        else {
+            conditionFailure(with: "Failed to resolve sprites for update")
+            return
+        }
+        
+        
+        let heroPos = gameScene.convert(hero.position, from: hero.parent!)
+        let enemyPos = gameScene.convert(enemySprite.position, from: enemySprite.parent!)
+        let diff = (heroPos - enemyPos) * 0.02
+        enemy?.position += diff
         
     }
 }
