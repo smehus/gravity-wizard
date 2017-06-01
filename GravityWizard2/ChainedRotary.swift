@@ -81,8 +81,8 @@ final class ChainedRotary: SKNode {
     
     fileprivate func setupJoint() {
         guard
-            let enemyPosition = enemy?.position,
-            let basePosition = base?.position,
+            let enemySprite = enemy,
+            let baseSprite = base,
             let enemyBody = enemy?.physicsBody,
             let baseBody = base?.physicsBody,
             let gameScene = scene as? GameScene
@@ -90,10 +90,13 @@ final class ChainedRotary: SKNode {
                 conditionFailure(with: "Failed to setup joint")
                 return
         }
+
+        let enemyPOS = gameScene.convert(enemySprite.position, from: enemySprite.parent!)
+        let basePOS = gameScene.convert(baseSprite.position, from: baseSprite.parent!)
         
-        
-        let joint = SKPhysicsJointLimit.joint(withBodyA: baseBody, bodyB: enemyBody, anchorA: enemyPosition, anchorB: basePosition)
+        let joint = SKPhysicsJointLimit.joint(withBodyA: baseBody, bodyB: enemyBody, anchorA: basePOS, anchorB: enemyPOS)
         joint.maxLength = 2730 / 4
+        
         gameScene.add(joint: joint)
     }
 }
