@@ -333,7 +333,7 @@ extension GameScene {
         
         let length = newPoint.length()
         arcPath.addCurve(to: startingPosition + newVelocity, control1: startingPosition + length/4, control2: endPathPoint + length/4)
-        
+
         if let _ = trajectoryNode {
             trajectoryNode?.removeFromParent()
         }

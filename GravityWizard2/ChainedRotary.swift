@@ -43,6 +43,7 @@ final class ChainedRotary: SKNode {
     
     fileprivate var enemy: SKSpriteNode?
     fileprivate var base: SKSpriteNode?
+    fileprivate var rope: SKShapeNode?
     
     fileprivate func setupSprites() {
         guard
@@ -103,13 +104,18 @@ final class ChainedRotary: SKNode {
 
 extension ChainedRotary: GameLoopListener {
     func update(withDelta deltaTime: Double) {
+        updateRotary()
+        drawLine()
+    }
+    
+    fileprivate func updateRotary() {
         guard
             let enemySprite = enemy,
             let gameScene = scene as? GameScene,
             let hero = gameScene.rose
-        else {
-            conditionFailure(with: "Failed to resolve sprites for update")
-            return
+            else {
+                conditionFailure(with: "Failed to resolve sprites for update")
+                return
         }
         
         
@@ -117,7 +123,30 @@ extension ChainedRotary: GameLoopListener {
         let enemyPos = gameScene.convert(enemySprite.position, from: enemySprite.parent!)
         let diff = (heroPos - enemyPos) * 0.02
         enemy?.position += diff
+    }
+    
+    fileprivate func drawLine() {
+        guard
+            let enemySprite = enemy,
+            let baseSprite = base
+            else {
+                conditionFailure(with: "Failed to resolve sprites for update")
+                return
+        }
         
+        let path = CGMutablePath()
+        path.move(to: baseSprite.position)
+        path.addLine(to: enemySprite.position)
+        if rope == nil {
+            let line = SKShapeNode(path: path)
+            line.isAntialiased = true
+            line.strokeColor = .brown
+            line.zPosition = -1
+            rope = line
+            addChild(line)
+        } else {
+            rope?.path = path
+        }
     }
 }
 
