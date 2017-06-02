@@ -96,7 +96,8 @@ extension Level3: HeroSceneWrappingProtocol {
         if (heroPosition.x + hero.size.width) < 0 {
             hero.position = hero.position.offset(dx: scene!.size.width, dy: 0)
         } else if heroPosition.x > scene!.size.width {
-            hero.position = CGPoint(x: 0, y: heroPosition.y)
+            
+            hero.position = hero.position.offset(dx: -scene!.size.width, dy: 0)
         }
     }
 }
