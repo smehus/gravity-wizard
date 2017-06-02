@@ -96,7 +96,7 @@ final class ChainedRotary: SKNode {
         let basePOS = gameScene.convert(baseSprite.position, from: baseSprite.parent!)
         
         let joint = SKPhysicsJointLimit.joint(withBodyA: baseBody, bodyB: enemyBody, anchorA: basePOS, anchorB: enemyPOS)
-        joint.maxLength = 2730 / 4
+        joint.maxLength = 2730 / 3
         
         gameScene.add(joint: joint)
     }
