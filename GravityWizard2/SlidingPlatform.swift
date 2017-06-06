@@ -41,7 +41,7 @@ fileprivate enum Physics {
     }
 }
 
-let MOVE_VELOCITY: CGFloat = 50
+let MOVE_VELOCITY: CGFloat = 150
 
 final class SlidingPlatform: SKNode {
     
@@ -96,9 +96,12 @@ final class SlidingPlatform: SKNode {
         
         let basePOS = gameScene.convert(base.position, from: base.parent!)
         let joint = SKPhysicsJointSliding.joint(withBodyA: baseBody, bodyB: platformBody, anchor: basePOS, axis: axis)
+        
         joint.shouldEnableLimits = true
-        joint.lowerDistanceLimit = 0
-        joint.upperDistanceLimit = base.size.width
+        joint.lowerDistanceLimit = -base.size.width/2
+        joint.upperDistanceLimit = base.size.width/2
+        
+        gameScene.add(joint: joint)
     }
     
     fileprivate func animate() {
@@ -107,7 +110,54 @@ final class SlidingPlatform: SKNode {
             return
         }
         
-        body.velocity = CGVector(dx: -MOVE_VELOCITY, dy: 0)
+        let currentXPosition = platform.position.x
+        
+        if body.velocity.dx > 0 {
+            // Going forwards
+            
+            if currentXPosition >= base.upperWidthPosition() {
+                // Moved past limit - turn around
+                body.velocity = CGVector(dx: -MOVE_VELOCITY, dy: 0)
+            } else {
+                body.velocity = CGVector(dx: MOVE_VELOCITY, dy: 0)
+            }
+            
+        } else if body.velocity.dx < 0 {
+            // Going backwards
+            
+            if currentXPosition <= base.lowerWidthPosition() {
+                // Moved past limit - turn around
+                body.velocity = CGVector(dx: MOVE_VELOCITY, dy: 0)
+            } else {
+                body.velocity = CGVector(dx: -MOVE_VELOCITY, dy: 0)
+            }
+            
+        } else {
+            // Haven't started animating yet
+            body.velocity = CGVector(dx: -MOVE_VELOCITY, dy: 0)
+        }
+    }
+}
+
+extension SKSpriteNode {
+    func lowerWidthPosition() -> CGFloat {
+        guard anchorPoint.x == 0.5 else {
+            conditionFailure(with: "lowerWidthPosition - anchor point expected to be 0.5")
+            return 0
+        }
+        
+        let halfWidth = size.width / 2
+        return position.x - halfWidth
+    }
+    
+    func upperWidthPosition() -> CGFloat {
+        guard anchorPoint.x == 0.5 else {
+            conditionFailure(with: "lowerWidthPosition - anchor point expected to be 0.5")
+            return 0
+        }
+        
+        let halfWidth = size.width / 2
+        return position.x + halfWidth
     }
 }
 
