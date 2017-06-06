@@ -37,6 +37,8 @@
 		A55D63741E32496D007145C3 /* PlatformNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55D63731E32496D007145C3 /* PlatformNode.swift */; };
 		A561F0961E8E73BA0028132F /* BreakableStones1.sks in Resources */ = {isa = PBXBuildFile; fileRef = A561F0951E8E73BA0028132F /* BreakableStones1.sks */; };
 		A561F0981E8E74A40028132F /* BreakableStoneStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = A561F0971E8E74A40028132F /* BreakableStoneStructure.swift */; };
+		A57305171EE6D09900AFE76E /* SlidingPlatform.sks in Resources */ = {isa = PBXBuildFile; fileRef = A57305161EE6D09900AFE76E /* SlidingPlatform.sks */; };
+		A57305191EE6D1C200AFE76E /* SlidingPlatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57305181EE6D1C200AFE76E /* SlidingPlatform.swift */; };
 		A57A26B81E4CA9FA0071C4D9 /* MossyWall.sks in Resources */ = {isa = PBXBuildFile; fileRef = A57A26B71E4CA9FA0071C4D9 /* MossyWall.sks */; };
 		A57D1E9E1E4F73AF00C41985 /* MossyWall.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57D1E9D1E4F73AF00C41985 /* MossyWall.swift */; };
 		A5808E681E5331CD007D3945 /* RewindSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5808E671E5331CD007D3945 /* RewindSelector.swift */; };
@@ -130,6 +132,8 @@
 		A55D63731E32496D007145C3 /* PlatformNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformNode.swift; sourceTree = "<group>"; };
 		A561F0951E8E73BA0028132F /* BreakableStones1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BreakableStones1.sks; sourceTree = "<group>"; };
 		A561F0971E8E74A40028132F /* BreakableStoneStructure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreakableStoneStructure.swift; sourceTree = "<group>"; };
+		A57305161EE6D09900AFE76E /* SlidingPlatform.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SlidingPlatform.sks; sourceTree = "<group>"; };
+		A57305181EE6D1C200AFE76E /* SlidingPlatform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlidingPlatform.swift; sourceTree = "<group>"; };
 		A57A26B71E4CA9FA0071C4D9 /* MossyWall.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MossyWall.sks; sourceTree = "<group>"; };
 		A57D1E9D1E4F73AF00C41985 /* MossyWall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MossyWall.swift; sourceTree = "<group>"; };
 		A5808E671E5331CD007D3945 /* RewindSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewindSelector.swift; sourceTree = "<group>"; };
@@ -260,6 +264,14 @@
 			name = Engine;
 			sourceTree = "<group>";
 		};
+		A57305151EE6D06700AFE76E /* SlidingPlatform */ = {
+			isa = PBXGroup;
+			children = (
+				A57305161EE6D09900AFE76E /* SlidingPlatform.sks */,
+			);
+			name = SlidingPlatform;
+			sourceTree = "<group>";
+		};
 		A581491B1E2BDBBA0091552E /* Characters */ = {
 			isa = PBXGroup;
 			children = (
@@ -287,6 +299,7 @@
 				A5DF41381E93BF7C0084C222 /* DestructibleStone.swift */,
 				A5517F081ED5A571004140FD /* RotarySlider.swift */,
 				A51B845B1EDEE9E300EC53DB /* ChainedRotary.swift */,
+				A57305181EE6D1C200AFE76E /* SlidingPlatform.swift */,
 			);
 			name = Environment;
 			sourceTree = "<group>";
@@ -336,6 +349,7 @@
 		A5899B021E2EFD5E0044971F /* World */ = {
 			isa = PBXGroup;
 			children = (
+				A57305151EE6D06700AFE76E /* SlidingPlatform */,
 				A51B845A1EDEE9C300EC53DB /* ChainedRotary */,
 				A5517F0A1ED84B8A004140FD /* RotarySlider */,
 				A5899B031E2EFD940044971F /* Floor.sks */,
@@ -553,6 +567,7 @@
 				A5B58EC21E09DC4900ADC865 /* Main.storyboard in Resources */,
 				A5517F071ED5A564004140FD /* RotarySlider.sks in Resources */,
 				A5517F0C1ED84BAE004140FD /* VerticalRotarySlider.sks in Resources */,
+				A57305171EE6D09900AFE76E /* SlidingPlatform.sks in Resources */,
 				A59EF8F91EB51719003B5036 /* Level3.sks in Resources */,
 				A58C690D1EDEE36B00ED9A11 /* ForegroundLayer3.sks in Resources */,
 				A5B58EB91E09DC4900ADC865 /* Level1.sks in Resources */,
@@ -584,6 +599,7 @@
 				A59FB69C1E0A088A00D1C915 /* SKColor+Extensions.swift in Sources */,
 				A59FB6A01E0A088A00D1C915 /* SKTTimingFunctions.swift in Sources */,
 				A59FB69A1E0A088A00D1C915 /* SKAction+Extensions.swift in Sources */,
+				A57305191EE6D1C200AFE76E /* SlidingPlatform.swift in Sources */,
 				A5B58EBD1E09DC4900ADC865 /* GameScene.swift in Sources */,
 				A53A0F751E65B0F800761D88 /* LavaSection.swift in Sources */,
 				A59FB6D41E0AD9D700D1C915 /* BloodNode.swift in Sources */,
