@@ -10,6 +10,7 @@ import SpriteKit
 
 fileprivate struct NodeNames {
     static let foreground = "//Foreground"
+    static let bottomBackground = "//bottom"
 }
 
 final class Level3: GameScene {
@@ -41,13 +42,18 @@ final class Level3: GameScene {
         super.setupNodes()
         
         guard
-            let foregroundNode = childNode(withName: NodeNames.foreground)
+            let foregroundNode = childNode(withName: NodeNames.foreground),
+            let bottomBackground = childNode(withName: NodeNames.bottomBackground) as? SKSpriteNode
         else {
             assertionFailure("Level 3: Failed obtain child nodes from scene")
             return
         }
         
         foreground = foregroundNode
+        
+        let shader = SKShader(fileNamed: "wave.fsh")
+        bottomBackground.shader = shader
+        
     }
     
     override func update(levelWith currentTime: TimeInterval, delta: TimeInterval) {

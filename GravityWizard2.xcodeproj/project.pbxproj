@@ -37,6 +37,7 @@
 		A55D63741E32496D007145C3 /* PlatformNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55D63731E32496D007145C3 /* PlatformNode.swift */; };
 		A561F0961E8E73BA0028132F /* BreakableStones1.sks in Resources */ = {isa = PBXBuildFile; fileRef = A561F0951E8E73BA0028132F /* BreakableStones1.sks */; };
 		A561F0981E8E74A40028132F /* BreakableStoneStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = A561F0971E8E74A40028132F /* BreakableStoneStructure.swift */; };
+		A5674C2B1EE81E3D00D29F2B /* wave.fsh in Resources */ = {isa = PBXBuildFile; fileRef = A5674C2A1EE81E3D00D29F2B /* wave.fsh */; };
 		A57305171EE6D09900AFE76E /* SlidingPlatform.sks in Resources */ = {isa = PBXBuildFile; fileRef = A57305161EE6D09900AFE76E /* SlidingPlatform.sks */; };
 		A57305191EE6D1C200AFE76E /* SlidingPlatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57305181EE6D1C200AFE76E /* SlidingPlatform.swift */; };
 		A57A26B81E4CA9FA0071C4D9 /* MossyWall.sks in Resources */ = {isa = PBXBuildFile; fileRef = A57A26B71E4CA9FA0071C4D9 /* MossyWall.sks */; };
@@ -132,6 +133,7 @@
 		A55D63731E32496D007145C3 /* PlatformNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformNode.swift; sourceTree = "<group>"; };
 		A561F0951E8E73BA0028132F /* BreakableStones1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BreakableStones1.sks; sourceTree = "<group>"; };
 		A561F0971E8E74A40028132F /* BreakableStoneStructure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreakableStoneStructure.swift; sourceTree = "<group>"; };
+		A5674C2A1EE81E3D00D29F2B /* wave.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = wave.fsh; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		A57305161EE6D09900AFE76E /* SlidingPlatform.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SlidingPlatform.sks; sourceTree = "<group>"; };
 		A57305181EE6D1C200AFE76E /* SlidingPlatform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlidingPlatform.swift; sourceTree = "<group>"; };
 		A57A26B71E4CA9FA0071C4D9 /* MossyWall.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MossyWall.sks; sourceTree = "<group>"; };
@@ -262,6 +264,14 @@
 				A55250C91E122E2600EED486 /* ParticleFactory.swift */,
 			);
 			name = Engine;
+			sourceTree = "<group>";
+		};
+		A5674C291EE81E3D00D29F2B /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				A5674C2A1EE81E3D00D29F2B /* wave.fsh */,
+			);
+			path = Shaders;
 			sourceTree = "<group>";
 		};
 		A57305151EE6D06700AFE76E /* SlidingPlatform */ = {
@@ -426,6 +436,7 @@
 		A5B58EB51E09DC4900ADC865 /* GravityWizard2 */ = {
 			isa = PBXGroup;
 			children = (
+				A5674C291EE81E3D00D29F2B /* Shaders */,
 				A5C4BBBB1E16D2E2002B0B18 /* Game */,
 				A55250C61E122D9400EED486 /* Engine */,
 				A59FB6A21E0A08A800D1C915 /* Protocols */,
@@ -563,6 +574,7 @@
 				A5C4BBB61E14A1AD002B0B18 /* Viking.sks in Resources */,
 				A5B5BC941EA6351600F92F8A /* Snake.sks in Resources */,
 				A5E3B73F1E27C030004F32A3 /* WeaponSelector.sks in Resources */,
+				A5674C2B1EE81E3D00D29F2B /* wave.fsh in Resources */,
 				A55250CC1E148BC100EED486 /* Level2.sks in Resources */,
 				A5B58EC21E09DC4900ADC865 /* Main.storyboard in Resources */,
 				A5517F071ED5A564004140FD /* RotarySlider.sks in Resources */,
