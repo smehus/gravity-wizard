@@ -51,8 +51,8 @@ final class Level3: GameScene {
         
         foreground = foregroundNode
         
-        let shader = SKShader(fileNamed: "wave.fsh")
-        bottomBackground.shader = shader
+//        let shader = SKShader(fileNamed: "wave.fsh")
+//        bottomBackground.shader = shader
         
     }
     

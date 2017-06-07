@@ -38,6 +38,8 @@
 		A561F0961E8E73BA0028132F /* BreakableStones1.sks in Resources */ = {isa = PBXBuildFile; fileRef = A561F0951E8E73BA0028132F /* BreakableStones1.sks */; };
 		A561F0981E8E74A40028132F /* BreakableStoneStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = A561F0971E8E74A40028132F /* BreakableStoneStructure.swift */; };
 		A5674C2B1EE81E3D00D29F2B /* wave.fsh in Resources */ = {isa = PBXBuildFile; fileRef = A5674C2A1EE81E3D00D29F2B /* wave.fsh */; };
+		A5674C2D1EE824B500D29F2B /* VerticalSlidingPlatform.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5674C2C1EE824B500D29F2B /* VerticalSlidingPlatform.sks */; };
+		A5674C2F1EE8255400D29F2B /* VerticalSlidingPlatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5674C2E1EE8255400D29F2B /* VerticalSlidingPlatform.swift */; };
 		A57305171EE6D09900AFE76E /* SlidingPlatform.sks in Resources */ = {isa = PBXBuildFile; fileRef = A57305161EE6D09900AFE76E /* SlidingPlatform.sks */; };
 		A57305191EE6D1C200AFE76E /* SlidingPlatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57305181EE6D1C200AFE76E /* SlidingPlatform.swift */; };
 		A57A26B81E4CA9FA0071C4D9 /* MossyWall.sks in Resources */ = {isa = PBXBuildFile; fileRef = A57A26B71E4CA9FA0071C4D9 /* MossyWall.sks */; };
@@ -134,6 +136,8 @@
 		A561F0951E8E73BA0028132F /* BreakableStones1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BreakableStones1.sks; sourceTree = "<group>"; };
 		A561F0971E8E74A40028132F /* BreakableStoneStructure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreakableStoneStructure.swift; sourceTree = "<group>"; };
 		A5674C2A1EE81E3D00D29F2B /* wave.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = wave.fsh; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
+		A5674C2C1EE824B500D29F2B /* VerticalSlidingPlatform.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = VerticalSlidingPlatform.sks; sourceTree = "<group>"; };
+		A5674C2E1EE8255400D29F2B /* VerticalSlidingPlatform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalSlidingPlatform.swift; sourceTree = "<group>"; };
 		A57305161EE6D09900AFE76E /* SlidingPlatform.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SlidingPlatform.sks; sourceTree = "<group>"; };
 		A57305181EE6D1C200AFE76E /* SlidingPlatform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlidingPlatform.swift; sourceTree = "<group>"; };
 		A57A26B71E4CA9FA0071C4D9 /* MossyWall.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MossyWall.sks; sourceTree = "<group>"; };
@@ -278,6 +282,7 @@
 			isa = PBXGroup;
 			children = (
 				A57305161EE6D09900AFE76E /* SlidingPlatform.sks */,
+				A5674C2C1EE824B500D29F2B /* VerticalSlidingPlatform.sks */,
 			);
 			name = SlidingPlatform;
 			sourceTree = "<group>";
@@ -310,6 +315,7 @@
 				A5517F081ED5A571004140FD /* RotarySlider.swift */,
 				A51B845B1EDEE9E300EC53DB /* ChainedRotary.swift */,
 				A57305181EE6D1C200AFE76E /* SlidingPlatform.swift */,
+				A5674C2E1EE8255400D29F2B /* VerticalSlidingPlatform.swift */,
 			);
 			name = Environment;
 			sourceTree = "<group>";
@@ -574,6 +580,7 @@
 				A5C4BBB61E14A1AD002B0B18 /* Viking.sks in Resources */,
 				A5B5BC941EA6351600F92F8A /* Snake.sks in Resources */,
 				A5E3B73F1E27C030004F32A3 /* WeaponSelector.sks in Resources */,
+				A5674C2D1EE824B500D29F2B /* VerticalSlidingPlatform.sks in Resources */,
 				A5674C2B1EE81E3D00D29F2B /* wave.fsh in Resources */,
 				A55250CC1E148BC100EED486 /* Level2.sks in Resources */,
 				A5B58EC21E09DC4900ADC865 /* Main.storyboard in Resources */,
@@ -637,6 +644,7 @@
 				A5C4BBCA1E181D24002B0B18 /* GravityProjectile.swift in Sources */,
 				A59FB69F1E0A088A00D1C915 /* SKTEffects.swift in Sources */,
 				A52F29A11E18252F0098B37A /* InFlightTrackable.swift in Sources */,
+				A5674C2F1EE8255400D29F2B /* VerticalSlidingPlatform.swift in Sources */,
 				A5B58EBF1E09DC4900ADC865 /* GameViewController.swift in Sources */,
 				A5B5BC961EA6371600F92F8A /* SnakeNode.swift in Sources */,
 				A59FB6881E0A081B00D1C915 /* WizardNode.swift in Sources */,
