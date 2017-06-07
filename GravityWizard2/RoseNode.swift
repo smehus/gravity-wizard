@@ -165,8 +165,9 @@ final class RoseNode: SKSpriteNode, GravityStateTracker {
     }
     
     func runLavaDeathAnimation() {
-        guard physicsBody?.contactTestBitMask != PhysicsCategory.None else { return }
-        physicsBody?.applyImpulse(CGVector(dx: 0, dy: 500))
+        guard let body = physicsBody, body.contactTestBitMask != PhysicsCategory.None else { return }
+        body.velocity = CGVector(dx: 0, dy: 0)
+        physicsBody?.applyImpulse(CGVector(dx: 0, dy: 300))
         physicsBody?.contactTestBitMask = PhysicsCategory.None
         physicsBody?.collisionBitMask = PhysicsCategory.None
     }
