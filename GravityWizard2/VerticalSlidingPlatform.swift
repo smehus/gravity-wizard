@@ -20,14 +20,14 @@ fileprivate enum Physics {
     
     var categoryBitMask: UInt32 {
         switch self {
-        case .door: return PhysicsCategory.None
+        case .door: return PhysicsCategory.LevelComplete
         case .platform: return PhysicsCategory.Ground
         }
     }
     
     var contactTestBitMask: UInt32 {
         switch self {
-        case .door: return PhysicsCategory.None
+        case .door: return PhysicsCategory.Hero
         case .platform: return PhysicsCategory.None
         }
     }
@@ -39,6 +39,8 @@ fileprivate enum Physics {
         }
     }
 }
+
+let MOVE_DURATION = 3.0
 
 final class VerticalSlidingPlatform: SKNode {
     
@@ -88,7 +90,24 @@ final class VerticalSlidingPlatform: SKNode {
         door?.physicsBody?.contactTestBitMask = Physics.door.contactTestBitMask
         door?.physicsBody?.collisionBitMask = Physics.door.collisionBitMask
         door?.physicsBody?.affectedByGravity = false
-        door?.physicsBody?.isDynamic = false
+        door?.physicsBody?.isDynamic = true
+    }
+    
+    fileprivate func setupJoint() {
+        guard
+            let platformBody = platform?.physicsBody,
+            let doorSprite = door,
+            let doorBody = door?.physicsBody,
+            let gameScene = scene as? GameScene
+            else {
+                conditionFailure(with: "Failed to unwrap physics bodies")
+                return
+        }
+        
+        var convertedPOS = gameScene.convert(doorSprite.position, from: doorSprite.parent!)
+        let anchor = convertedPOS.offset(dx: 0, dy: doorSprite.size.height/2)
+        let joint = SKPhysicsJointFixed.joint(withBodyA: platformBody, bodyB: doorBody, anchor: anchor)
+        gameScene.add(joint: joint)
     }
     
     fileprivate func beginAnimating() {
@@ -97,7 +116,7 @@ final class VerticalSlidingPlatform: SKNode {
             return
         }
         
-        let move = SKAction.move(by: CGVector(dx: 0, dy: barHeight), duration: 2.0)
+        let move = SKAction.move(by: CGVector(dx: 0, dy: barHeight), duration: MOVE_DURATION)
         let moveSequence = SKAction.sequence([move, move.reversed()])
         platform?.run(SKAction.repeatForever(moveSequence))
         
@@ -108,6 +127,7 @@ extension VerticalSlidingPlatform: LifecycleListener {
     func didMoveToScene() {
         setupSprites()
         setupPhysics()
+        setupJoint()
         beginAnimating()
     }
 }
