@@ -7,27 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A50DBCE81E72DD12002DC44E /* StonePlatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50DBCE71E72DD12002DC44E /* StonePlatform.swift */; };
-		A50DBCEA1E745389002DC44E /* LevelCompleteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50DBCE91E745389002DC44E /* LevelCompleteNode.swift */; };
-		A513A5E91E21552F003CD2C1 /* TreasureChestNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A513A5E81E21552F003CD2C1 /* TreasureChestNode.swift */; };
-		A513A5F01E215A78003CD2C1 /* LevelCompleteLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A513A5EF1E215A78003CD2C1 /* LevelCompleteLabel.swift */; };
-		A518235E1E0E109400DDE33A /* RockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A518235D1E0E109400DDE33A /* RockNode.swift */; };
-		A51823621E10435D00DDE33A /* BreakableRocksNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51823611E10435D00DDE33A /* BreakableRocksNode.swift */; };
-		A51B845C1EDEE9E300EC53DB /* ChainedRotary.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51B845B1EDEE9E300EC53DB /* ChainedRotary.swift */; };
-		A53A0F751E65B0F800761D88 /* LavaSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A0F741E65B0F800761D88 /* LavaSection.swift */; };
-		A5517F091ED5A571004140FD /* RotarySlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5517F081ED5A571004140FD /* RotarySlider.swift */; };
-		A55250C81E122DC200EED486 /* Definitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55250C71E122DC200EED486 /* Definitions.swift */; };
-		A55250CA1E122E2600EED486 /* ParticleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55250C91E122E2600EED486 /* ParticleFactory.swift */; };
-		A55D63741E32496D007145C3 /* PlatformNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55D63731E32496D007145C3 /* PlatformNode.swift */; };
-		A561F0981E8E74A40028132F /* BreakableStoneStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = A561F0971E8E74A40028132F /* BreakableStoneStructure.swift */; };
 		A5674C2B1EE81E3D00D29F2B /* wave.fsh in Resources */ = {isa = PBXBuildFile; fileRef = A5674C2A1EE81E3D00D29F2B /* wave.fsh */; };
-		A5674C2F1EE8255400D29F2B /* VerticalSlidingPlatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5674C2E1EE8255400D29F2B /* VerticalSlidingPlatform.swift */; };
-		A57305191EE6D1C200AFE76E /* SlidingPlatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57305181EE6D1C200AFE76E /* SlidingPlatform.swift */; };
-		A57D1E9E1E4F73AF00C41985 /* MossyWall.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57D1E9D1E4F73AF00C41985 /* MossyWall.swift */; };
-		A5808E681E5331CD007D3945 /* RewindSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5808E671E5331CD007D3945 /* RewindSelector.swift */; };
-		A581491A1E2BDAD30091552E /* RoseNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58149191E2BDAD30091552E /* RoseNode.swift */; };
 		A59152C81EDC608A00F90D5E /* Assert+SKNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59152C71EDC608A00F90D5E /* Assert+SKNode.swift */; };
-		A59FB6881E0A081B00D1C915 /* WizardNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59FB6871E0A081B00D1C915 /* WizardNode.swift */; };
 		A59FB6961E0A088A00D1C915 /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59FB68A1E0A088A00D1C915 /* CGFloat+Extensions.swift */; };
 		A59FB6971E0A088A00D1C915 /* CGPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59FB68B1E0A088A00D1C915 /* CGPoint+Extensions.swift */; };
 		A59FB6981E0A088A00D1C915 /* CGVector+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59FB68C1E0A088A00D1C915 /* CGVector+Extensions.swift */; };
@@ -40,9 +21,7 @@
 		A59FB69F1E0A088A00D1C915 /* SKTEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59FB6931E0A088A00D1C915 /* SKTEffects.swift */; };
 		A59FB6A01E0A088A00D1C915 /* SKTTimingFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59FB6941E0A088A00D1C915 /* SKTTimingFunctions.swift */; };
 		A59FB6A11E0A088A00D1C915 /* Vector3.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59FB6951E0A088A00D1C915 /* Vector3.swift */; };
-		A59FB6AA1E0A13FA00D1C915 /* GroundNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59FB6A91E0A13FA00D1C915 /* GroundNode.swift */; };
 		A59FB6AC1E0A257600D1C915 /* CGSize+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59FB6AB1E0A257500D1C915 /* CGSize+Extensions.swift */; };
-		A59FB6D41E0AD9D700D1C915 /* BloodNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59FB6D31E0AD9D700D1C915 /* BloodNode.swift */; };
 		A5A968391EEAC80500A509DB /* LevelCompleteLabel.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5A968181EEAC80500A509DB /* LevelCompleteLabel.sks */; };
 		A5A9683A1EEAC80500A509DB /* WeaponSelector.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5A968191EEAC80500A509DB /* WeaponSelector.sks */; };
 		A5A9683B1EEAC80500A509DB /* ForegroundLayer2.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5A9681B1EEAC80500A509DB /* ForegroundLayer2.sks */; };
@@ -88,45 +67,47 @@
 		A5A968751EEACB8900A509DB /* LifecycleEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A9686B1EEACB8900A509DB /* LifecycleEmitter.swift */; };
 		A5A968761EEACB8900A509DB /* LifecycleListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A9686C1EEACB8900A509DB /* LifecycleListener.swift */; };
 		A5A968771EEACB8900A509DB /* Obstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A9686D1EEACB8900A509DB /* Obstacle.swift */; };
-		A5AFBA1A1E1827AD00CE29E9 /* ArrowNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AFBA191E1827AD00CE29E9 /* ArrowNode.swift */; };
+		A5A9687B1EEACDD800A509DB /* Definitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A968791EEACDD800A509DB /* Definitions.swift */; };
+		A5A9687C1EEACDD800A509DB /* ParticleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A9687A1EEACDD800A509DB /* ParticleFactory.swift */; };
+		A5A9689D1EEACE9D00A509DB /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A968801EEACE9D00A509DB /* Enemy.swift */; };
+		A5A9689E1EEACE9D00A509DB /* SnakeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A968811EEACE9D00A509DB /* SnakeNode.swift */; };
+		A5A9689F1EEACE9D00A509DB /* VikingNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A968821EEACE9D00A509DB /* VikingNode.swift */; };
+		A5A968A01EEACE9D00A509DB /* RoseNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A968831EEACE9D00A509DB /* RoseNode.swift */; };
+		A5A968A11EEACE9D00A509DB /* WizardNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A968841EEACE9D00A509DB /* WizardNode.swift */; };
+		A5A968A21EEACE9D00A509DB /* BloodNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A968861EEACE9D00A509DB /* BloodNode.swift */; };
+		A5A968A31EEACE9D00A509DB /* BreakableRocksNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A968871EEACE9D00A509DB /* BreakableRocksNode.swift */; };
+		A5A968A41EEACE9D00A509DB /* BreakableStoneStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A968881EEACE9D00A509DB /* BreakableStoneStructure.swift */; };
+		A5A968A51EEACE9D00A509DB /* ChainedRotary.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A968891EEACE9D00A509DB /* ChainedRotary.swift */; };
+		A5A968A61EEACE9D00A509DB /* DestructibleStone.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A9688A1EEACE9D00A509DB /* DestructibleStone.swift */; };
+		A5A968A71EEACE9D00A509DB /* GroundNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A9688B1EEACE9D00A509DB /* GroundNode.swift */; };
+		A5A968A81EEACE9D00A509DB /* LavaSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A9688C1EEACE9D00A509DB /* LavaSection.swift */; };
+		A5A968A91EEACE9D00A509DB /* MossyWall.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A9688D1EEACE9D00A509DB /* MossyWall.swift */; };
+		A5A968AA1EEACE9D00A509DB /* PlatformNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A9688E1EEACE9D00A509DB /* PlatformNode.swift */; };
+		A5A968AB1EEACE9D00A509DB /* RockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A9688F1EEACE9D00A509DB /* RockNode.swift */; };
+		A5A968AC1EEACE9D00A509DB /* RotarySlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A968901EEACE9D00A509DB /* RotarySlider.swift */; };
+		A5A968AD1EEACE9D00A509DB /* SlidingPlatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A968911EEACE9D00A509DB /* SlidingPlatform.swift */; };
+		A5A968AE1EEACE9D00A509DB /* StonePlatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A968921EEACE9D00A509DB /* StonePlatform.swift */; };
+		A5A968AF1EEACE9D00A509DB /* TreasureChestNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A968931EEACE9D00A509DB /* TreasureChestNode.swift */; };
+		A5A968B01EEACE9D00A509DB /* VerticalSlidingPlatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A968941EEACE9D00A509DB /* VerticalSlidingPlatform.swift */; };
+		A5A968B11EEACE9D00A509DB /* LevelCompleteLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A968961EEACE9D00A509DB /* LevelCompleteLabel.swift */; };
+		A5A968B21EEACE9D00A509DB /* LevelCompleteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A968971EEACE9D00A509DB /* LevelCompleteNode.swift */; };
+		A5A968B31EEACE9D00A509DB /* RewindSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A968981EEACE9D00A509DB /* RewindSelector.swift */; };
+		A5A968B41EEACE9D00A509DB /* WeaponSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A968991EEACE9D00A509DB /* WeaponSelector.swift */; };
+		A5A968B51EEACE9D00A509DB /* ArrowNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A9689B1EEACE9D00A509DB /* ArrowNode.swift */; };
+		A5A968B61EEACE9D00A509DB /* GravityProjectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A9689C1EEACE9D00A509DB /* GravityProjectile.swift */; };
 		A5AFBA1C1E1828F200CE29E9 /* SKTexture+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AFBA1B1E1828F200CE29E9 /* SKTexture+Extensions.swift */; };
 		A5B58EB71E09DC4900ADC865 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B58EB61E09DC4900ADC865 /* AppDelegate.swift */; };
 		A5B58EBF1E09DC4900ADC865 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B58EBE1E09DC4900ADC865 /* GameViewController.swift */; };
 		A5B58EC21E09DC4900ADC865 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5B58EC01E09DC4900ADC865 /* Main.storyboard */; };
 		A5B58EC41E09DC4900ADC865 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5B58EC31E09DC4900ADC865 /* Assets.xcassets */; };
 		A5B58EC71E09DC4900ADC865 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5B58EC51E09DC4900ADC865 /* LaunchScreen.storyboard */; };
-		A5B5BC961EA6371600F92F8A /* SnakeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B5BC951EA6371600F92F8A /* SnakeNode.swift */; };
-		A5B5BC991EA7872300F92F8A /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B5BC981EA7872300F92F8A /* Enemy.swift */; };
-		A5C4BBB81E14C708002B0B18 /* VikingNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C4BBB71E14C708002B0B18 /* VikingNode.swift */; };
-		A5C4BBCA1E181D24002B0B18 /* GravityProjectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C4BBC91E181D24002B0B18 /* GravityProjectile.swift */; };
-		A5DF41391E93BF7C0084C222 /* DestructibleStone.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DF41381E93BF7C0084C222 /* DestructibleStone.swift */; };
 		A5E3150F1E2166F100D3652C /* SKScene+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E3150E1E2166F100D3652C /* SKScene+Extensions.swift */; };
-		A5E3B7421E27C230004F32A3 /* WeaponSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E3B7411E27C230004F32A3 /* WeaponSelector.swift */; };
 		A5EE58CD1E5F1BB700D3D25B /* SKSpriteNode+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EE58CC1E5F1BB700D3D25B /* SKSpriteNode+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A50DBCE71E72DD12002DC44E /* StonePlatform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StonePlatform.swift; sourceTree = "<group>"; };
-		A50DBCE91E745389002DC44E /* LevelCompleteNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelCompleteNode.swift; sourceTree = "<group>"; };
-		A513A5E81E21552F003CD2C1 /* TreasureChestNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TreasureChestNode.swift; sourceTree = "<group>"; };
-		A513A5EF1E215A78003CD2C1 /* LevelCompleteLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelCompleteLabel.swift; sourceTree = "<group>"; };
-		A518235D1E0E109400DDE33A /* RockNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RockNode.swift; path = Sprites/RockNode.swift; sourceTree = "<group>"; };
-		A51823611E10435D00DDE33A /* BreakableRocksNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreakableRocksNode.swift; sourceTree = "<group>"; };
-		A51B845B1EDEE9E300EC53DB /* ChainedRotary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChainedRotary.swift; sourceTree = "<group>"; };
-		A53A0F741E65B0F800761D88 /* LavaSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LavaSection.swift; sourceTree = "<group>"; };
-		A5517F081ED5A571004140FD /* RotarySlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotarySlider.swift; sourceTree = "<group>"; };
-		A55250C71E122DC200EED486 /* Definitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Definitions.swift; sourceTree = "<group>"; };
-		A55250C91E122E2600EED486 /* ParticleFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticleFactory.swift; sourceTree = "<group>"; };
-		A55D63731E32496D007145C3 /* PlatformNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformNode.swift; sourceTree = "<group>"; };
-		A561F0971E8E74A40028132F /* BreakableStoneStructure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreakableStoneStructure.swift; sourceTree = "<group>"; };
 		A5674C2A1EE81E3D00D29F2B /* wave.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = wave.fsh; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
-		A5674C2E1EE8255400D29F2B /* VerticalSlidingPlatform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalSlidingPlatform.swift; sourceTree = "<group>"; };
-		A57305181EE6D1C200AFE76E /* SlidingPlatform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlidingPlatform.swift; sourceTree = "<group>"; };
-		A57D1E9D1E4F73AF00C41985 /* MossyWall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MossyWall.swift; sourceTree = "<group>"; };
-		A5808E671E5331CD007D3945 /* RewindSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewindSelector.swift; sourceTree = "<group>"; };
-		A58149191E2BDAD30091552E /* RoseNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoseNode.swift; sourceTree = "<group>"; };
 		A59152C71EDC608A00F90D5E /* Assert+SKNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assert+SKNode.swift"; sourceTree = "<group>"; };
-		A59FB6871E0A081B00D1C915 /* WizardNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WizardNode.swift; path = Sprites/WizardNode.swift; sourceTree = "<group>"; };
 		A59FB68A1E0A088A00D1C915 /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
 		A59FB68B1E0A088A00D1C915 /* CGPoint+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extensions.swift"; sourceTree = "<group>"; };
 		A59FB68C1E0A088A00D1C915 /* CGVector+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+Extensions.swift"; sourceTree = "<group>"; };
@@ -139,9 +120,7 @@
 		A59FB6931E0A088A00D1C915 /* SKTEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKTEffects.swift; sourceTree = "<group>"; };
 		A59FB6941E0A088A00D1C915 /* SKTTimingFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKTTimingFunctions.swift; sourceTree = "<group>"; };
 		A59FB6951E0A088A00D1C915 /* Vector3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector3.swift; sourceTree = "<group>"; };
-		A59FB6A91E0A13FA00D1C915 /* GroundNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GroundNode.swift; path = Sprites/GroundNode.swift; sourceTree = "<group>"; };
 		A59FB6AB1E0A257500D1C915 /* CGSize+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGSize+Extensions.swift"; sourceTree = "<group>"; };
-		A59FB6D31E0AD9D700D1C915 /* BloodNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BloodNode.swift; sourceTree = "<group>"; };
 		A5A968181EEAC80500A509DB /* LevelCompleteLabel.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LevelCompleteLabel.sks; sourceTree = "<group>"; };
 		A5A968191EEAC80500A509DB /* WeaponSelector.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = WeaponSelector.sks; sourceTree = "<group>"; };
 		A5A9681B1EEAC80500A509DB /* ForegroundLayer2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ForegroundLayer2.sks; sourceTree = "<group>"; };
@@ -187,7 +166,34 @@
 		A5A9686B1EEACB8900A509DB /* LifecycleEmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifecycleEmitter.swift; sourceTree = "<group>"; };
 		A5A9686C1EEACB8900A509DB /* LifecycleListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifecycleListener.swift; sourceTree = "<group>"; };
 		A5A9686D1EEACB8900A509DB /* Obstacle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Obstacle.swift; sourceTree = "<group>"; };
-		A5AFBA191E1827AD00CE29E9 /* ArrowNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrowNode.swift; sourceTree = "<group>"; };
+		A5A968791EEACDD800A509DB /* Definitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Definitions.swift; sourceTree = "<group>"; };
+		A5A9687A1EEACDD800A509DB /* ParticleFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticleFactory.swift; sourceTree = "<group>"; };
+		A5A968801EEACE9D00A509DB /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
+		A5A968811EEACE9D00A509DB /* SnakeNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeNode.swift; sourceTree = "<group>"; };
+		A5A968821EEACE9D00A509DB /* VikingNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VikingNode.swift; sourceTree = "<group>"; };
+		A5A968831EEACE9D00A509DB /* RoseNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoseNode.swift; sourceTree = "<group>"; };
+		A5A968841EEACE9D00A509DB /* WizardNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WizardNode.swift; sourceTree = "<group>"; };
+		A5A968861EEACE9D00A509DB /* BloodNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BloodNode.swift; sourceTree = "<group>"; };
+		A5A968871EEACE9D00A509DB /* BreakableRocksNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreakableRocksNode.swift; sourceTree = "<group>"; };
+		A5A968881EEACE9D00A509DB /* BreakableStoneStructure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreakableStoneStructure.swift; sourceTree = "<group>"; };
+		A5A968891EEACE9D00A509DB /* ChainedRotary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChainedRotary.swift; sourceTree = "<group>"; };
+		A5A9688A1EEACE9D00A509DB /* DestructibleStone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DestructibleStone.swift; sourceTree = "<group>"; };
+		A5A9688B1EEACE9D00A509DB /* GroundNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroundNode.swift; sourceTree = "<group>"; };
+		A5A9688C1EEACE9D00A509DB /* LavaSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LavaSection.swift; sourceTree = "<group>"; };
+		A5A9688D1EEACE9D00A509DB /* MossyWall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MossyWall.swift; sourceTree = "<group>"; };
+		A5A9688E1EEACE9D00A509DB /* PlatformNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformNode.swift; sourceTree = "<group>"; };
+		A5A9688F1EEACE9D00A509DB /* RockNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RockNode.swift; sourceTree = "<group>"; };
+		A5A968901EEACE9D00A509DB /* RotarySlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotarySlider.swift; sourceTree = "<group>"; };
+		A5A968911EEACE9D00A509DB /* SlidingPlatform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlidingPlatform.swift; sourceTree = "<group>"; };
+		A5A968921EEACE9D00A509DB /* StonePlatform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StonePlatform.swift; sourceTree = "<group>"; };
+		A5A968931EEACE9D00A509DB /* TreasureChestNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TreasureChestNode.swift; sourceTree = "<group>"; };
+		A5A968941EEACE9D00A509DB /* VerticalSlidingPlatform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalSlidingPlatform.swift; sourceTree = "<group>"; };
+		A5A968961EEACE9D00A509DB /* LevelCompleteLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelCompleteLabel.swift; sourceTree = "<group>"; };
+		A5A968971EEACE9D00A509DB /* LevelCompleteNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelCompleteNode.swift; sourceTree = "<group>"; };
+		A5A968981EEACE9D00A509DB /* RewindSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewindSelector.swift; sourceTree = "<group>"; };
+		A5A968991EEACE9D00A509DB /* WeaponSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeaponSelector.swift; sourceTree = "<group>"; };
+		A5A9689B1EEACE9D00A509DB /* ArrowNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrowNode.swift; sourceTree = "<group>"; };
+		A5A9689C1EEACE9D00A509DB /* GravityProjectile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GravityProjectile.swift; sourceTree = "<group>"; };
 		A5AFBA1B1E1828F200CE29E9 /* SKTexture+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKTexture+Extensions.swift"; sourceTree = "<group>"; };
 		A5B58EB31E09DC4900ADC865 /* Rose.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rose.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5B58EB61E09DC4900ADC865 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -196,13 +202,7 @@
 		A5B58EC31E09DC4900ADC865 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A5B58EC61E09DC4900ADC865 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A5B58EC81E09DC4900ADC865 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A5B5BC951EA6371600F92F8A /* SnakeNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeNode.swift; sourceTree = "<group>"; };
-		A5B5BC981EA7872300F92F8A /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
-		A5C4BBB71E14C708002B0B18 /* VikingNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VikingNode.swift; sourceTree = "<group>"; };
-		A5C4BBC91E181D24002B0B18 /* GravityProjectile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GravityProjectile.swift; sourceTree = "<group>"; };
-		A5DF41381E93BF7C0084C222 /* DestructibleStone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DestructibleStone.swift; sourceTree = "<group>"; };
 		A5E3150E1E2166F100D3652C /* SKScene+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKScene+Extensions.swift"; sourceTree = "<group>"; };
-		A5E3B7411E27C230004F32A3 /* WeaponSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeaponSelector.swift; sourceTree = "<group>"; };
 		A5EE58CC1E5F1BB700D3D25B /* SKSpriteNode+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKSpriteNode+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -217,74 +217,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A55250C61E122D9400EED486 /* Engine */ = {
-			isa = PBXGroup;
-			children = (
-				A55250C71E122DC200EED486 /* Definitions.swift */,
-				A55250C91E122E2600EED486 /* ParticleFactory.swift */,
-			);
-			name = Engine;
-			sourceTree = "<group>";
-		};
 		A5674C291EE81E3D00D29F2B /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
 				A5674C2A1EE81E3D00D29F2B /* wave.fsh */,
 			);
 			path = Shaders;
-			sourceTree = "<group>";
-		};
-		A581491B1E2BDBBA0091552E /* Characters */ = {
-			isa = PBXGroup;
-			children = (
-				A5B5BC971EA7870B00F92F8A /* Enemies */,
-				A5C4BBB71E14C708002B0B18 /* VikingNode.swift */,
-				A58149191E2BDAD30091552E /* RoseNode.swift */,
-			);
-			name = Characters;
-			sourceTree = "<group>";
-		};
-		A581491C1E2BDBC80091552E /* Environment */ = {
-			isa = PBXGroup;
-			children = (
-				A513A5E81E21552F003CD2C1 /* TreasureChestNode.swift */,
-				A59FB6A91E0A13FA00D1C915 /* GroundNode.swift */,
-				A59FB6D31E0AD9D700D1C915 /* BloodNode.swift */,
-				A518235D1E0E109400DDE33A /* RockNode.swift */,
-				A51823611E10435D00DDE33A /* BreakableRocksNode.swift */,
-				A55D63731E32496D007145C3 /* PlatformNode.swift */,
-				A57D1E9D1E4F73AF00C41985 /* MossyWall.swift */,
-				A53A0F741E65B0F800761D88 /* LavaSection.swift */,
-				A50DBCE71E72DD12002DC44E /* StonePlatform.swift */,
-				A50DBCE91E745389002DC44E /* LevelCompleteNode.swift */,
-				A561F0971E8E74A40028132F /* BreakableStoneStructure.swift */,
-				A5DF41381E93BF7C0084C222 /* DestructibleStone.swift */,
-				A5517F081ED5A571004140FD /* RotarySlider.swift */,
-				A51B845B1EDEE9E300EC53DB /* ChainedRotary.swift */,
-				A57305181EE6D1C200AFE76E /* SlidingPlatform.swift */,
-				A5674C2E1EE8255400D29F2B /* VerticalSlidingPlatform.swift */,
-			);
-			name = Environment;
-			sourceTree = "<group>";
-		};
-		A581491D1E2BDBDE0091552E /* Projectiles */ = {
-			isa = PBXGroup;
-			children = (
-				A5C4BBC91E181D24002B0B18 /* GravityProjectile.swift */,
-				A5AFBA191E1827AD00CE29E9 /* ArrowNode.swift */,
-			);
-			name = Projectiles;
-			sourceTree = "<group>";
-		};
-		A5868FA61E0A060400935E3B /* Sprites */ = {
-			isa = PBXGroup;
-			children = (
-				A581491D1E2BDBDE0091552E /* Projectiles */,
-				A581491C1E2BDBC80091552E /* Environment */,
-				A581491B1E2BDBBA0091552E /* Characters */,
-				A5E3B7401E27C21B004F32A3 /* HUD */,
-			);
-			name = Sprites;
 			sourceTree = "<group>";
 		};
 		A59FB6891E0A088A00D1C915 /* SKTUtils */ = {
@@ -409,6 +347,88 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		A5A968781EEACDD800A509DB /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				A5A968791EEACDD800A509DB /* Definitions.swift */,
+				A5A9687A1EEACDD800A509DB /* ParticleFactory.swift */,
+			);
+			path = Engine;
+			sourceTree = "<group>";
+		};
+		A5A9687D1EEACE9D00A509DB /* Sprites */ = {
+			isa = PBXGroup;
+			children = (
+				A5A9687E1EEACE9D00A509DB /* Characters */,
+				A5A968851EEACE9D00A509DB /* Environment */,
+				A5A968951EEACE9D00A509DB /* HUD */,
+				A5A9689A1EEACE9D00A509DB /* Projectiles */,
+			);
+			path = Sprites;
+			sourceTree = "<group>";
+		};
+		A5A9687E1EEACE9D00A509DB /* Characters */ = {
+			isa = PBXGroup;
+			children = (
+				A5A9687F1EEACE9D00A509DB /* Enemies */,
+				A5A968831EEACE9D00A509DB /* RoseNode.swift */,
+				A5A968841EEACE9D00A509DB /* WizardNode.swift */,
+			);
+			path = Characters;
+			sourceTree = "<group>";
+		};
+		A5A9687F1EEACE9D00A509DB /* Enemies */ = {
+			isa = PBXGroup;
+			children = (
+				A5A968801EEACE9D00A509DB /* Enemy.swift */,
+				A5A968811EEACE9D00A509DB /* SnakeNode.swift */,
+				A5A968821EEACE9D00A509DB /* VikingNode.swift */,
+			);
+			path = Enemies;
+			sourceTree = "<group>";
+		};
+		A5A968851EEACE9D00A509DB /* Environment */ = {
+			isa = PBXGroup;
+			children = (
+				A5A968861EEACE9D00A509DB /* BloodNode.swift */,
+				A5A968871EEACE9D00A509DB /* BreakableRocksNode.swift */,
+				A5A968881EEACE9D00A509DB /* BreakableStoneStructure.swift */,
+				A5A968891EEACE9D00A509DB /* ChainedRotary.swift */,
+				A5A9688A1EEACE9D00A509DB /* DestructibleStone.swift */,
+				A5A9688B1EEACE9D00A509DB /* GroundNode.swift */,
+				A5A9688C1EEACE9D00A509DB /* LavaSection.swift */,
+				A5A9688D1EEACE9D00A509DB /* MossyWall.swift */,
+				A5A9688E1EEACE9D00A509DB /* PlatformNode.swift */,
+				A5A9688F1EEACE9D00A509DB /* RockNode.swift */,
+				A5A968901EEACE9D00A509DB /* RotarySlider.swift */,
+				A5A968911EEACE9D00A509DB /* SlidingPlatform.swift */,
+				A5A968921EEACE9D00A509DB /* StonePlatform.swift */,
+				A5A968931EEACE9D00A509DB /* TreasureChestNode.swift */,
+				A5A968941EEACE9D00A509DB /* VerticalSlidingPlatform.swift */,
+			);
+			path = Environment;
+			sourceTree = "<group>";
+		};
+		A5A968951EEACE9D00A509DB /* HUD */ = {
+			isa = PBXGroup;
+			children = (
+				A5A968961EEACE9D00A509DB /* LevelCompleteLabel.swift */,
+				A5A968971EEACE9D00A509DB /* LevelCompleteNode.swift */,
+				A5A968981EEACE9D00A509DB /* RewindSelector.swift */,
+				A5A968991EEACE9D00A509DB /* WeaponSelector.swift */,
+			);
+			path = HUD;
+			sourceTree = "<group>";
+		};
+		A5A9689A1EEACE9D00A509DB /* Projectiles */ = {
+			isa = PBXGroup;
+			children = (
+				A5A9689B1EEACE9D00A509DB /* ArrowNode.swift */,
+				A5A9689C1EEACE9D00A509DB /* GravityProjectile.swift */,
+			);
+			path = Projectiles;
+			sourceTree = "<group>";
+		};
 		A5B58EAA1E09DC4900ADC865 = {
 			isa = PBXGroup;
 			children = (
@@ -428,13 +448,13 @@
 		A5B58EB51E09DC4900ADC865 /* GravityWizard2 */ = {
 			isa = PBXGroup;
 			children = (
+				A5A9687D1EEACE9D00A509DB /* Sprites */,
+				A5A968781EEACDD800A509DB /* Engine */,
 				A5A968631EEACB8900A509DB /* Protocols */,
 				A5A968571EEAC99C00A509DB /* Game */,
 				A5A968161EEAC80500A509DB /* Scenes */,
 				A5674C291EE81E3D00D29F2B /* Shaders */,
-				A55250C61E122D9400EED486 /* Engine */,
 				A59FB6891E0A088A00D1C915 /* SKTUtils */,
-				A5868FA61E0A060400935E3B /* Sprites */,
 				A5B58EB61E09DC4900ADC865 /* AppDelegate.swift */,
 				A5B58EBE1E09DC4900ADC865 /* GameViewController.swift */,
 				A5B58EC01E09DC4900ADC865 /* Main.storyboard */,
@@ -443,26 +463,6 @@
 				A5B58EC81E09DC4900ADC865 /* Info.plist */,
 			);
 			path = GravityWizard2;
-			sourceTree = "<group>";
-		};
-		A5B5BC971EA7870B00F92F8A /* Enemies */ = {
-			isa = PBXGroup;
-			children = (
-				A59FB6871E0A081B00D1C915 /* WizardNode.swift */,
-				A5B5BC951EA6371600F92F8A /* SnakeNode.swift */,
-				A5B5BC981EA7872300F92F8A /* Enemy.swift */,
-			);
-			name = Enemies;
-			sourceTree = "<group>";
-		};
-		A5E3B7401E27C21B004F32A3 /* HUD */ = {
-			isa = PBXGroup;
-			children = (
-				A513A5EF1E215A78003CD2C1 /* LevelCompleteLabel.swift */,
-				A5E3B7411E27C230004F32A3 /* WeaponSelector.swift */,
-				A5808E671E5331CD007D3945 /* RewindSelector.swift */,
-			);
-			name = HUD;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -569,68 +569,68 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5A9689E1EEACE9D00A509DB /* SnakeNode.swift in Sources */,
+				A5A968B01EEACE9D00A509DB /* VerticalSlidingPlatform.swift in Sources */,
+				A5A9689D1EEACE9D00A509DB /* Enemy.swift in Sources */,
+				A5A968A31EEACE9D00A509DB /* BreakableRocksNode.swift in Sources */,
 				A5A968621EEACA0300A509DB /* GameScene.swift in Sources */,
 				A5A9685F1EEAC99C00A509DB /* Level1.swift in Sources */,
+				A5A968A81EEACE9D00A509DB /* LavaSection.swift in Sources */,
+				A5A968B21EEACE9D00A509DB /* LevelCompleteNode.swift in Sources */,
+				A5A9689F1EEACE9D00A509DB /* VikingNode.swift in Sources */,
 				A5A968701EEACB8900A509DB /* GameLoopListener.swift in Sources */,
-				A50DBCEA1E745389002DC44E /* LevelCompleteNode.swift in Sources */,
 				A59FB69C1E0A088A00D1C915 /* SKColor+Extensions.swift in Sources */,
 				A5A968601EEAC99C00A509DB /* Level2.swift in Sources */,
+				A5A968A21EEACE9D00A509DB /* BloodNode.swift in Sources */,
+				A5A968A11EEACE9D00A509DB /* WizardNode.swift in Sources */,
 				A59FB6A01E0A088A00D1C915 /* SKTTimingFunctions.swift in Sources */,
+				A5A968B11EEACE9D00A509DB /* LevelCompleteLabel.swift in Sources */,
 				A59FB69A1E0A088A00D1C915 /* SKAction+Extensions.swift in Sources */,
 				A5A968711EEACB8900A509DB /* GestureInteractive.swift in Sources */,
-				A57305191EE6D1C200AFE76E /* SlidingPlatform.swift in Sources */,
-				A53A0F751E65B0F800761D88 /* LavaSection.swift in Sources */,
 				A5A968751EEACB8900A509DB /* LifecycleEmitter.swift in Sources */,
 				A5A968611EEAC99C00A509DB /* Level3.swift in Sources */,
-				A59FB6D41E0AD9D700D1C915 /* BloodNode.swift in Sources */,
+				A5A968AC1EEACE9D00A509DB /* RotarySlider.swift in Sources */,
 				A59152C81EDC608A00F90D5E /* Assert+SKNode.swift in Sources */,
-				A513A5E91E21552F003CD2C1 /* TreasureChestNode.swift in Sources */,
-				A5808E681E5331CD007D3945 /* RewindSelector.swift in Sources */,
+				A5A968A91EEACE9D00A509DB /* MossyWall.swift in Sources */,
 				A59FB6981E0A088A00D1C915 /* CGVector+Extensions.swift in Sources */,
+				A5A968A71EEACE9D00A509DB /* GroundNode.swift in Sources */,
+				A5A968AE1EEACE9D00A509DB /* StonePlatform.swift in Sources */,
+				A5A968B31EEACE9D00A509DB /* RewindSelector.swift in Sources */,
 				A5EE58CD1E5F1BB700D3D25B /* SKSpriteNode+Extensions.swift in Sources */,
+				A5A968AA1EEACE9D00A509DB /* PlatformNode.swift in Sources */,
 				A59FB69E1E0A088A00D1C915 /* SKTAudio.swift in Sources */,
-				A55D63741E32496D007145C3 /* PlatformNode.swift in Sources */,
 				A59FB6961E0A088A00D1C915 /* CGFloat+Extensions.swift in Sources */,
-				A518235E1E0E109400DDE33A /* RockNode.swift in Sources */,
-				A59FB6AA1E0A13FA00D1C915 /* GroundNode.swift in Sources */,
-				A513A5F01E215A78003CD2C1 /* LevelCompleteLabel.swift in Sources */,
-				A5DF41391E93BF7C0084C222 /* DestructibleStone.swift in Sources */,
+				A5A968AD1EEACE9D00A509DB /* SlidingPlatform.swift in Sources */,
+				A5A968A61EEACE9D00A509DB /* DestructibleStone.swift in Sources */,
 				A59FB69D1E0A088A00D1C915 /* SKNode+Extensions.swift in Sources */,
 				A5A968721EEACB8900A509DB /* GravityStateTracker.swift in Sources */,
-				A51823621E10435D00DDE33A /* BreakableRocksNode.swift in Sources */,
-				A561F0981E8E74A40028132F /* BreakableStoneStructure.swift in Sources */,
-				A5C4BBCA1E181D24002B0B18 /* GravityProjectile.swift in Sources */,
+				A5A9687C1EEACDD800A509DB /* ParticleFactory.swift in Sources */,
 				A59FB69F1E0A088A00D1C915 /* SKTEffects.swift in Sources */,
-				A5674C2F1EE8255400D29F2B /* VerticalSlidingPlatform.swift in Sources */,
+				A5A968AB1EEACE9D00A509DB /* RockNode.swift in Sources */,
+				A5A968A51EEACE9D00A509DB /* ChainedRotary.swift in Sources */,
 				A5A968741EEACB8900A509DB /* InFlightTrackable.swift in Sources */,
 				A5B58EBF1E09DC4900ADC865 /* GameViewController.swift in Sources */,
-				A5B5BC961EA6371600F92F8A /* SnakeNode.swift in Sources */,
+				A5A968A01EEACE9D00A509DB /* RoseNode.swift in Sources */,
+				A5A968B41EEACE9D00A509DB /* WeaponSelector.swift in Sources */,
+				A5A968B51EEACE9D00A509DB /* ArrowNode.swift in Sources */,
 				A5A968771EEACB8900A509DB /* Obstacle.swift in Sources */,
-				A59FB6881E0A081B00D1C915 /* WizardNode.swift in Sources */,
+				A5A968B61EEACE9D00A509DB /* GravityProjectile.swift in Sources */,
 				A5AFBA1C1E1828F200CE29E9 /* SKTexture+Extensions.swift in Sources */,
 				A5A9686E1EEACB8900A509DB /* Game.swift in Sources */,
 				A5A9686F1EEACB8900A509DB /* GameLevel.swift in Sources */,
-				A5B5BC991EA7872300F92F8A /* Enemy.swift in Sources */,
 				A59FB6991E0A088A00D1C915 /* Int+Extensions.swift in Sources */,
 				A59FB6971E0A088A00D1C915 /* CGPoint+Extensions.swift in Sources */,
-				A55250C81E122DC200EED486 /* Definitions.swift in Sources */,
-				A581491A1E2BDAD30091552E /* RoseNode.swift in Sources */,
 				A5E3150F1E2166F100D3652C /* SKScene+Extensions.swift in Sources */,
-				A5C4BBB81E14C708002B0B18 /* VikingNode.swift in Sources */,
+				A5A9687B1EEACDD800A509DB /* Definitions.swift in Sources */,
 				A59FB6AC1E0A257600D1C915 /* CGSize+Extensions.swift in Sources */,
 				A59FB69B1E0A088A00D1C915 /* SKAction+SpecialEffects.swift in Sources */,
 				A5A9685E1EEAC99C00A509DB /* Level0.swift in Sources */,
-				A50DBCE81E72DD12002DC44E /* StonePlatform.swift in Sources */,
+				A5A968AF1EEACE9D00A509DB /* TreasureChestNode.swift in Sources */,
+				A5A968A41EEACE9D00A509DB /* BreakableStoneStructure.swift in Sources */,
 				A5A968761EEACB8900A509DB /* LifecycleListener.swift in Sources */,
 				A5A968731EEACB8900A509DB /* HeroBehaviorProtocols.swift in Sources */,
-				A5517F091ED5A571004140FD /* RotarySlider.swift in Sources */,
-				A55250CA1E122E2600EED486 /* ParticleFactory.swift in Sources */,
-				A57D1E9E1E4F73AF00C41985 /* MossyWall.swift in Sources */,
-				A5E3B7421E27C230004F32A3 /* WeaponSelector.swift in Sources */,
 				A59FB6A11E0A088A00D1C915 /* Vector3.swift in Sources */,
-				A51B845C1EDEE9E300EC53DB /* ChainedRotary.swift in Sources */,
 				A5B58EB71E09DC4900ADC865 /* AppDelegate.swift in Sources */,
-				A5AFBA1A1E1827AD00CE29E9 /* ArrowNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
