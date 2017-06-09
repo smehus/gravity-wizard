@@ -36,6 +36,7 @@ enum Level: Int {
     case one
     case two
     case three
+    case four
     
     func nextLevel() -> Level? {
         let nextInt = self.rawValue + 1
@@ -52,9 +53,9 @@ enum Level: Int {
             return SKScene(fileNamed: "Level2") as? Level2
         case .three:
             return SKScene(fileNamed: "Level3") as? Level3
+        case .four:
+            return SKScene(fileNamed: "Level4") as? Level4
         }
-        
-        return nil
     }
 }
 
