@@ -43,7 +43,7 @@ final class Level3: GameScene {
         
         guard
             let foregroundNode = childNode(withName: NodeNames.foreground),
-            let bottomBackground = childNode(withName: NodeNames.bottomBackground) as? SKSpriteNode
+            let _ = childNode(withName: NodeNames.bottomBackground) as? SKSpriteNode
         else {
             assertionFailure("Level 3: Failed obtain child nodes from scene")
             return
