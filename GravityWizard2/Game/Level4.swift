@@ -24,6 +24,6 @@ final class Level4: GameScene {
     }
 
     override var xConstraintMultiplier: CGFloat {
-        return 6
+        return 5
     }
 }
