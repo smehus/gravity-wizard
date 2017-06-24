@@ -9,5 +9,21 @@
 import SpriteKit
 
 final class Level4: GameScene {
+    
+    var currentLevel: Level {
+        return .four
+    }
+    
+    
+    override var shouldAddScenePhysicsEdge: Bool {
+        return false
+    }
+    
+    override var yConstraintMultiplier: CGFloat {
+        return 1
+    }
 
+    override var xConstraintMultiplier: CGFloat {
+        return 6
+    }
 }
