@@ -25,5 +25,14 @@ extension SKSpriteNode {
         let size = text.size()
         return size.height/2
     }
+    
+    func updateXScale() {
+        guard let body = physicsBody else { return }
+        if body.velocity.dx > 0 {
+            xScale = 1
+        } else if body.velocity.dx < 0 {
+            xScale = -1
+        }
+    }
 }
 

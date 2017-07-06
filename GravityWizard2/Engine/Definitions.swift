@@ -133,6 +133,8 @@ struct PhysicsCategory {
     static let brokenRockParts:     UInt32 = 0x1 << 17
     
     static let indesctructibleObstacle: UInt32 = 0x1 << 18
+    
+    static let water:               UInt32 = 0x1 << 19
 }
 
 struct LightingMask {
@@ -157,6 +159,7 @@ enum CollisionCombination {
     case heroCollidesWithStone
     case heroCollidesWithEnemy
     case heroCollidesWithObstacle
+    case heroCollidesWithWater
     
     case travelatorCollidesWithLimits
     
@@ -181,6 +184,8 @@ extension UInt32 {
             return .heroCollidesWithEnemy
         case PhysicsCategory.Hero | PhysicsCategory.indesctructibleObstacle:
             return .heroCollidesWithObstacle
+        case PhysicsCategory.Hero | PhysicsCategory.water:
+            return .heroCollidesWithWater
             
             // ARROW
         case PhysicsCategory.arrow | PhysicsCategory.Edge:
