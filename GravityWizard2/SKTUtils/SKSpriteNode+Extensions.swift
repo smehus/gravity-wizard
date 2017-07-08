@@ -34,5 +34,18 @@ extension SKSpriteNode {
             xScale = -1
         }
     }
+    
+    func configure(with config: SpriteConfiguration) {
+        guard let body = physicsBody else {
+            conditionFailure(with: "Failed to unwrap physics body in configure method")
+            return
+        }
+        
+        body.categoryBitMask = config.categoryBitMask
+        body.contactTestBitMask = config.contactTestBitMask
+        body.collisionBitMask = config.collisionBitMask
+        body.isDynamic = config.isDynamic
+        body.affectedByGravity = config.affectedByGravity
+    }
 }
 

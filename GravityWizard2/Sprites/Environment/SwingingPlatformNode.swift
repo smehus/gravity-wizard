@@ -8,10 +8,14 @@
 
 import SpriteKit
 
-fileprivate enum Sprites: String {
-    case rope = "//rope"
-    case anchor = "//anchor"
-    case platform = "//platform"
+fileprivate enum Sprites: String, SpriteConfiguration {
+    case rope = "rope"
+    case anchor = "anchor"
+    case platform = "platform"
+    
+    var name: String {
+        return "//\(rawValue)"
+    }
     
     var categoryBitMask: UInt32 {
         switch self {
@@ -58,6 +62,17 @@ fileprivate enum Sprites: String {
             return true
         }
     }
+    
+    var affectedByGravity: Bool {
+        switch self {
+        case .rope:
+            return true
+        case .anchor:
+            return false
+        case .platform:
+            return true
+        }
+    }
 }
 
 final class SwingingPlatformNode: SKNode {
@@ -67,13 +82,17 @@ final class SwingingPlatformNode: SKNode {
     
     fileprivate func setupSprites() {
         guard
-            let ropeNode = childNode(withName: Sprites.rope.rawValue) as? SKSpriteNode,
-            let anchorNode = childNode(withName: Sprites.anchor.rawValue) as? SKSpriteNode,
-            let platformNode = childNode(withName: Sprites.platform.rawValue) as? SKSpriteNode
+            let ropeNode = childNode(withName: Sprites.rope.name) as? SKSpriteNode,
+            let anchorNode = childNode(withName: Sprites.anchor.name) as? SKSpriteNode,
+            let platformNode = childNode(withName: Sprites.platform.name) as? SKSpriteNode
         else {
             conditionFailure(with: "Failed to resolve sprites")
             return
         }
+        
+        ropeNode.zPosition = 10
+        platformNode.zPosition = 10
+        anchorNode.zPosition = 10
         
         rope = ropeNode
         platform = platformNode
@@ -81,21 +100,32 @@ final class SwingingPlatformNode: SKNode {
     }
     
     fileprivate func setupPhysics() {
-        guard
-            let ropeBody = rope?.physicsBody,
-            let anchorBody = anchor?.physicsBody,
-            let platformBody = platform?.physicsBody
-        else {
-            conditionFailure(with: "Failed to unwrap physics bodies")
-            return
-        }
-        
-        
+        platform?.configure(with: Sprites.platform)
+        rope?.configure(with: Sprites.rope)
+        anchor?.configure(with: Sprites.anchor)
     }
     
     fileprivate func setupJoints() {
+        guard
+            let ropeBody = rope?.physicsBody,
+            let anchorSprite = anchor,
+            let anchorBody = anchor?.physicsBody,
+            let _ = platform?.physicsBody,
+            let gameScene = scene as? GameScene
+        else {
+            conditionFailure(with: "Failed to unwrap physics bodies in joint setup")
+            return
+        }
         
-//        let joint = SKPhysicsJointPin.joint(withBodyA: <#T##SKPhysicsBody#>, bodyB: <#T##SKPhysicsBody#>, anchor: <#T##CGPoint#>)
+        let anchorPoint = gameScene.convert(anchorSprite.position, from: anchorSprite.parent!)
+        let joint = SKPhysicsJointPin.joint(withBodyA: anchorBody, bodyB: ropeBody, anchor: anchorPoint)
+        
+        gameScene.add(joint: joint)
+    }
+    
+    fileprivate func push() {
+        let pushVect = CGVector(dx: 500, dy: 0)
+        rope?.physicsBody?.velocity = pushVect
     }
 }
 
@@ -104,5 +134,6 @@ extension SwingingPlatformNode: LifecycleListener {
         setupSprites()
         setupPhysics()
         setupJoints()
+        push()
     }
 }

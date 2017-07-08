@@ -101,6 +101,7 @@
 		A5A968C51EEACF5D00A509DB /* ForegroundLayer3.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5A968BF1EEACF5D00A509DB /* ForegroundLayer3.sks */; };
 		A5A968C61EEACF5D00A509DB /* Level3.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5A968C01EEACF5D00A509DB /* Level3.sks */; };
 		A5A968CA1EEACFC700A509DB /* Level4.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5A968C91EEACFC700A509DB /* Level4.sks */; };
+		A5AB74041F117D40001840D7 /* SpriteConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AB74031F117D40001840D7 /* SpriteConfiguration.swift */; };
 		A5AFBA1C1E1828F200CE29E9 /* SKTexture+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AFBA1B1E1828F200CE29E9 /* SKTexture+Extensions.swift */; };
 		A5B58EB71E09DC4900ADC865 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B58EB61E09DC4900ADC865 /* AppDelegate.swift */; };
 		A5B58EBF1E09DC4900ADC865 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B58EBE1E09DC4900ADC865 /* GameViewController.swift */; };
@@ -206,6 +207,7 @@
 		A5A968BF1EEACF5D00A509DB /* ForegroundLayer3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ForegroundLayer3.sks; sourceTree = "<group>"; };
 		A5A968C01EEACF5D00A509DB /* Level3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level3.sks; sourceTree = "<group>"; };
 		A5A968C91EEACFC700A509DB /* Level4.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level4.sks; sourceTree = "<group>"; };
+		A5AB74031F117D40001840D7 /* SpriteConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteConfiguration.swift; sourceTree = "<group>"; };
 		A5AFBA1B1E1828F200CE29E9 /* SKTexture+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKTexture+Extensions.swift"; sourceTree = "<group>"; };
 		A5B58EB31E09DC4900ADC865 /* Rose.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rose.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5B58EB61E09DC4900ADC865 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 				A5A9686B1EEACB8900A509DB /* LifecycleEmitter.swift */,
 				A5A9686C1EEACB8900A509DB /* LifecycleListener.swift */,
 				A5A9686D1EEACB8900A509DB /* Obstacle.swift */,
+				A5AB74031F117D40001840D7 /* SpriteConfiguration.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -667,6 +670,7 @@
 				A5A968AF1EEACE9D00A509DB /* TreasureChestNode.swift in Sources */,
 				A5855E5D1F112FE100A34344 /* SwingingPlatformNode.swift in Sources */,
 				A5A968A41EEACE9D00A509DB /* BreakableStoneStructure.swift in Sources */,
+				A5AB74041F117D40001840D7 /* SpriteConfiguration.swift in Sources */,
 				A5A968761EEACB8900A509DB /* LifecycleListener.swift in Sources */,
 				A5A968731EEACB8900A509DB /* HeroBehaviorProtocols.swift in Sources */,
 				A59FB6A11E0A088A00D1C915 /* Vector3.swift in Sources */,
