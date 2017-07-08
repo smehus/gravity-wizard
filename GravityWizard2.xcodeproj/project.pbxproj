@@ -10,6 +10,8 @@
 		A53CB1CC1F0D9F0B000B9C64 /* WaterSceneNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53CB1CB1F0D9F0B000B9C64 /* WaterSceneNode.swift */; };
 		A554178A1F0D0FFC00A2CFE8 /* WaterScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A55417891F0D0FFC00A2CFE8 /* WaterScene.sks */; };
 		A5674C2B1EE81E3D00D29F2B /* wave.fsh in Resources */ = {isa = PBXBuildFile; fileRef = A5674C2A1EE81E3D00D29F2B /* wave.fsh */; };
+		A5840A9C1F11266F00659404 /* SwingingPlatform.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5840A9B1F11266F00659404 /* SwingingPlatform.sks */; };
+		A5855E5D1F112FE100A34344 /* SwingingPlatformNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5855E5C1F112FE100A34344 /* SwingingPlatformNode.swift */; };
 		A59152C81EDC608A00F90D5E /* Assert+SKNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59152C71EDC608A00F90D5E /* Assert+SKNode.swift */; };
 		A59FB6961E0A088A00D1C915 /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59FB68A1E0A088A00D1C915 /* CGFloat+Extensions.swift */; };
 		A59FB6971E0A088A00D1C915 /* CGPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59FB68B1E0A088A00D1C915 /* CGPoint+Extensions.swift */; };
@@ -113,6 +115,8 @@
 		A53CB1CB1F0D9F0B000B9C64 /* WaterSceneNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterSceneNode.swift; sourceTree = "<group>"; };
 		A55417891F0D0FFC00A2CFE8 /* WaterScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = WaterScene.sks; sourceTree = "<group>"; };
 		A5674C2A1EE81E3D00D29F2B /* wave.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = wave.fsh; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
+		A5840A9B1F11266F00659404 /* SwingingPlatform.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SwingingPlatform.sks; sourceTree = "<group>"; };
+		A5855E5C1F112FE100A34344 /* SwingingPlatformNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwingingPlatformNode.swift; sourceTree = "<group>"; };
 		A59152C71EDC608A00F90D5E /* Assert+SKNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assert+SKNode.swift"; sourceTree = "<group>"; };
 		A59FB68A1E0A088A00D1C915 /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
 		A59FB68B1E0A088A00D1C915 /* CGPoint+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extensions.swift"; sourceTree = "<group>"; };
@@ -310,6 +314,7 @@
 				A5A968371EEAC80500A509DB /* Viking.sks */,
 				A5A968381EEAC80500A509DB /* Wizard.sks */,
 				A55417891F0D0FFC00A2CFE8 /* WaterScene.sks */,
+				A5840A9B1F11266F00659404 /* SwingingPlatform.sks */,
 			);
 			path = Sprites;
 			sourceTree = "<group>";
@@ -403,6 +408,7 @@
 				A5A968931EEACE9D00A509DB /* TreasureChestNode.swift */,
 				A5A968941EEACE9D00A509DB /* VerticalSlidingPlatform.swift */,
 				A53CB1CB1F0D9F0B000B9C64 /* WaterSceneNode.swift */,
+				A5855E5C1F112FE100A34344 /* SwingingPlatformNode.swift */,
 			);
 			path = Environment;
 			sourceTree = "<group>";
@@ -572,6 +578,7 @@
 				A5A968C21EEACF5D00A509DB /* Level1.sks in Resources */,
 				A5A968C61EEACF5D00A509DB /* Level3.sks in Resources */,
 				A5A968411EEAC80500A509DB /* Blood.sks in Resources */,
+				A5840A9C1F11266F00659404 /* SwingingPlatform.sks in Resources */,
 				A5A9684A1EEAC80500A509DB /* LavaSection.sks in Resources */,
 				A5A968461EEAC80500A509DB /* BreakableStones2.sks in Resources */,
 				A5A968451EEAC80500A509DB /* BreakableStones1.sks in Resources */,
@@ -658,6 +665,7 @@
 				A59FB69B1E0A088A00D1C915 /* SKAction+SpecialEffects.swift in Sources */,
 				A5A9685E1EEAC99C00A509DB /* Level0.swift in Sources */,
 				A5A968AF1EEACE9D00A509DB /* TreasureChestNode.swift in Sources */,
+				A5855E5D1F112FE100A34344 /* SwingingPlatformNode.swift in Sources */,
 				A5A968A41EEACE9D00A509DB /* BreakableStoneStructure.swift in Sources */,
 				A5A968761EEACB8900A509DB /* LifecycleListener.swift in Sources */,
 				A5A968731EEACB8900A509DB /* HeroBehaviorProtocols.swift in Sources */,
