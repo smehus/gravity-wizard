@@ -73,6 +73,17 @@ fileprivate enum Sprites: String, SpriteConfiguration {
             return true
         }
     }
+    
+    var allowsRotation: Bool {
+        switch self {
+        case .rope:
+            return true
+        case .anchor:
+            return false
+        case .platform:
+            return false
+        }
+    }
 }
 
 final class SwingingPlatformNode: SKNode {
@@ -90,7 +101,7 @@ final class SwingingPlatformNode: SKNode {
             return
         }
         
-        ropeNode.zPosition = 10
+        ropeNode.zPosition = 9
         platformNode.zPosition = 10
         anchorNode.zPosition = 10
         
@@ -110,7 +121,8 @@ final class SwingingPlatformNode: SKNode {
             let ropeBody = rope?.physicsBody,
             let anchorSprite = anchor,
             let anchorBody = anchor?.physicsBody,
-            let _ = platform?.physicsBody,
+            let platformSprite = platform,
+            let platformBody = platform?.physicsBody,
             let gameScene = scene as? GameScene
         else {
             conditionFailure(with: "Failed to unwrap physics bodies in joint setup")
@@ -118,9 +130,12 @@ final class SwingingPlatformNode: SKNode {
         }
         
         let anchorPoint = gameScene.convert(anchorSprite.position, from: anchorSprite.parent!)
-        let joint = SKPhysicsJointPin.joint(withBodyA: anchorBody, bodyB: ropeBody, anchor: anchorPoint)
-        
+        let joint = SKPhysicsJointPin.joint(withBodyA: ropeBody, bodyB: anchorBody, anchor: anchorPoint)
         gameScene.add(joint: joint)
+        
+        let platformPoint = gameScene.convert(platformSprite.position, from: platformSprite.parent!)
+        let platformJoint = SKPhysicsJointPin.joint(withBodyA: ropeBody, bodyB: platformBody, anchor: platformPoint)
+        gameScene.add(joint: platformJoint)
     }
     
     fileprivate func push() {

@@ -15,4 +15,5 @@ protocol SpriteConfiguration {
     var collisionBitMask: UInt32  { get }
     var isDynamic: Bool { get }
     var affectedByGravity: Bool { get }
+    var allowsRotation: Bool  { get }
 }

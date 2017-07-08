@@ -71,6 +71,8 @@ final class WaterSceneNode: SKNode {
             sprite.physicsBody?.contactTestBitMask = Node.water.contactBitMask
             sprite.physicsBody?.collisionBitMask = Node.water.collisionBitMask
         }
+        
+        
     }
     
     private func buildFish() -> SKSpriteNode? {
