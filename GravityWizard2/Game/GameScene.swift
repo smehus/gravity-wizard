@@ -534,7 +534,6 @@ extension GameScene {
         case .walk:
             guard let rose = rose else { return }
             rose.walk(towards: direction(for: touchPoint, with: rose))
-        case .spring: break
         }
     }
     
@@ -547,7 +546,6 @@ extension GameScene {
         case .arrow, .gravity, .spring:
             updateProjectile(withTouch: touchPoint)
         case .walk: break
-        case .spring: break
         }
     }
     
@@ -562,7 +560,6 @@ extension GameScene {
         case .walk:
             guard let rose = rose else { return }
             rose.stop()
-        case .spring: break
         }
     }
 }

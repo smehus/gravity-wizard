@@ -124,12 +124,6 @@ final class WaterSceneNode: SKNode {
     }
 }
 
-extension WaterSceneNode: GameLoopListener {
-    func update(withDelta deltaTime: Double) {
-        
-    }
-}
-
 extension WaterSceneNode: LifecycleListener {
     func didMoveToScene() {
         setupNodes()
