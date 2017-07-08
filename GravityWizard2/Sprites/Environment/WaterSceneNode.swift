@@ -98,15 +98,29 @@ final class WaterSceneNode: SKNode {
             return
         }
         
+        let offset = fishSprite.size.width / 2
+        let randomBool = Int.random(min: 0, max: 1) != 0
+        let firstPoint = randomBool
+            ? CGPoint(x: (baseSprite.position.x + offset), y: fishSprite.position.y)
+            : CGPoint(x: baseSprite.position.x + (baseSprite.size.width - fishSprite.size.width), y: fishSprite.position.y)
         
-        let xVector = CGVector(dx: 100, dy: 0)
-        let flipForward = SKAction.scaleX(to: 1.0, duration: 0.3)
-        let flipBackwards = SKAction.scaleX(to: -1.0, duration: 0.3)
-        let xMoveAction = SKAction.move(by: xVector, duration: 3.0)
-        let xMoveSequence = SKAction.sequence([flipForward, xMoveAction, flipBackwards, xMoveAction.reversed()])
+        let firstflip = randomBool ? SKAction.scaleX(to: -1, duration: 0.3) : SKAction.scaleX(to: 1, duration: 0.3)
         
-        let finalGroup = SKAction.group([xMoveSequence])
-        fishSprite.run(SKAction.repeatForever(finalGroup))
+        let secondPoint = !randomBool
+            ? CGPoint(x: (baseSprite.position.x + offset), y: fishSprite.position.y)
+            : CGPoint(x: baseSprite.position.x + (baseSprite.size.width - fishSprite.size.width), y: fishSprite.position.y)
+        
+        let secondFlip = !randomBool ? SKAction.scaleX(to: -1, duration: 0.3) : SKAction.scaleX(to: 1, duration: 0.3)
+        
+        
+        let randomDuration = Int.random(min: 5, max: 15)
+        let firstMoveAction = SKAction.move(to: firstPoint, duration: Double(randomDuration))
+        let secondMoveAction = SKAction.move(to: secondPoint, duration: Double(randomDuration))
+        
+        let moveSequence = SKAction.sequence([firstflip, firstMoveAction, secondFlip, secondMoveAction])
+        
+        fishSprite.run(SKAction.repeatForever(moveSequence))
+
     }
 }
 
