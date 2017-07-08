@@ -197,7 +197,11 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel, SceneEdgeDecider {
     }
     
     fileprivate func setupHeroContactBorder() {
-        guard let rose = rose else { assertionFailure("SETUP HERO CONTACT BORDER - MISSING ROSE"); return }
+        guard let rose = rose else {
+            conditionFailure(with: "SETUP HERO CONTACT BORDER - MISSING ROSE")
+            return
+        }
+        
         let borderNode = SKSpriteNode(color: .clear, size: CGSize(width: rose.size.height / 2, height: rose.size.height / 2))
         let borderBody = SKPhysicsBody(circleOfRadius: borderNode.size.height / 2)
     
@@ -227,7 +231,7 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel, SceneEdgeDecider {
         }
 
         let x = isIpad() ? -camSize.width/2 : -camSize.width
-        let y = isIpad() ? 0 : camSize.height
+        let y = isIpad() ? camSize.height/2 : camSize.height
         let newPoint = CGPoint(x: x, y: y)
         selector.position = camera.convert(newPoint, to: selector.parent!)
         selector.alpha = 0.0

@@ -26,4 +26,9 @@ final class Level4: GameScene {
     override var xConstraintMultiplier: CGFloat {
         return 5
     }
+    
+    override func setupNodes() {
+        super.setupNodes()
+        // add shaders
+    }
 }

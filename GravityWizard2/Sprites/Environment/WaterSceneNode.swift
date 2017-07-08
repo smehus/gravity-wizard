@@ -50,16 +50,16 @@ final class WaterSceneNode: SKNode {
     fileprivate var base: SKSpriteNode?
     
     fileprivate func setupNodes() {
+        
         guard
-            let baseNode = childNode(withName: Node.base.rawValue) as? SKSpriteNode,
-            let fishNode = childNode(withName: Node.fish.rawValue) as? SKSpriteNode
+            let baseNode = childNode(withName: Node.base.rawValue) as? SKSpriteNode
         else {
             conditionFailure(with: "Failed to resolve fish")
             return
         }
         
         base = baseNode
-        fish = fishNode
+        fish = buildFish()
         
         enumerateChildNodes(withName: Node.water.rawValue) { (node, stop) in
             guard
@@ -73,6 +73,22 @@ final class WaterSceneNode: SKNode {
         }
     }
     
+    private func buildFish() -> SKSpriteNode? {
+        guard let baseSprite = base else {
+            conditionFailure(with: "Missing base when setting up fish")
+            return nil
+        }
+        
+        let fishSprite = SKSpriteNode(texture: SKTexture(image: #imageLiteral(resourceName: "red-fish-1")))
+        let randomY = Int.random(min: 20, max: 100)
+        let randomX = Int.random(min: 0, max: Int(baseSprite.size.width))
+        fishSprite.position = CGPoint(x: randomX, y: randomY)
+        fishSprite.zPosition = 9.0
+        addChild(fishSprite)
+        
+        return fishSprite
+    }
+    
     fileprivate func startFishAnimation() {
         guard
             let fishSprite = fish,
@@ -81,14 +97,13 @@ final class WaterSceneNode: SKNode {
             conditionFailure(with: "Faield to unwrap sprites")
             return
         }
+        
+        
         let xVector = CGVector(dx: 100, dy: 0)
         let flipForward = SKAction.scaleX(to: 1.0, duration: 0.3)
         let flipBackwards = SKAction.scaleX(to: -1.0, duration: 0.3)
         let xMoveAction = SKAction.move(by: xVector, duration: 3.0)
         let xMoveSequence = SKAction.sequence([flipForward, xMoveAction, flipBackwards, xMoveAction.reversed()])
-        
-        let swimAction = SKAction.scaleX(by: 0.2, y: 0, duration: 0.3)
-        let repeatedSwim = SKAction.repeatForever(SKAction.sequence([swimAction, swimAction.reversed()]))
         
         let finalGroup = SKAction.group([xMoveSequence])
         fishSprite.run(SKAction.repeatForever(finalGroup))
