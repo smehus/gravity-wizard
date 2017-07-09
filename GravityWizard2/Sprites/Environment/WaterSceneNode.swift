@@ -15,7 +15,7 @@ fileprivate enum Node: String, SpriteConfiguration {
     case foliage = "water-foliage"
     
     var name: String {
-        return "//\(rawValue)"
+        return "\(rawValue)"
     }
     
     var categoryBitMask: UInt32 {
@@ -43,7 +43,7 @@ fileprivate enum Node: String, SpriteConfiguration {
         case .fish:
             return PhysicsCategory.None
         case .water:
-            return PhysicsCategory.None
+            return PhysicsCategory.Hero | PhysicsCategory.arrow
         default: return PhysicsCategory.None
         }
     }

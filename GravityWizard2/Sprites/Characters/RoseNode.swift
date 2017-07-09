@@ -11,11 +11,12 @@ import SpriteKit
 fileprivate struct Definitions {
     struct Physics {
         struct ContactTest {
-            static let full = PhysicsCategory.Ground | PhysicsCategory.Rock | PhysicsCategory.GravityProjectile | PhysicsCategory.LevelComplete | PhysicsCategory.enemy
-            static let immune = PhysicsCategory.Ground | PhysicsCategory.Rock | PhysicsCategory.GravityProjectile | PhysicsCategory.LevelComplete
+            static let full = PhysicsCategory.Ground | PhysicsCategory.Rock | PhysicsCategory.GravityProjectile | PhysicsCategory.LevelComplete | PhysicsCategory.enemy | PhysicsCategory.water
+            
+            static let immune = PhysicsCategory.Ground | PhysicsCategory.Rock | PhysicsCategory.GravityProjectile | PhysicsCategory.LevelComplete | PhysicsCategory.water
         }
         
-        static let collision = PhysicsCategory.Ground | PhysicsCategory.Rock | PhysicsCategory.Edge | PhysicsCategory.destructible | PhysicsCategory.enemy | PhysicsCategory.indesctructibleObstacle
+        static let collision = PhysicsCategory.Ground | PhysicsCategory.Rock | PhysicsCategory.Edge | PhysicsCategory.destructible | PhysicsCategory.enemy | PhysicsCategory.indesctructibleObstacle | PhysicsCategory.water
     }
 
     struct ActionKeys {
