@@ -659,8 +659,15 @@ extension GameScene {
     }
     
     fileprivate func roseHitsGround(with contact: SKPhysicsContact) {
-        guard let rose = rose, rose.gravityState == .falling else { return }
-        rose.hardLanding()
+        let node = contact.bodyA.categoryBitMask == PhysicsCategory.Ground ? contact.bodyA.node : contact.bodyB.node
+        guard
+            let rose = rose, rose.gravityState == .falling,
+            let contactNode = node,
+            let contactBody = contactNode.physicsBody
+        else { return }
+        
+        var addJoint = (contactNode is MovingPlatform) ? true : false
+        rose.hardLanding(with: contactBody, contactPoint: contact.contactPoint, addJoint: true)
     }
     
     fileprivate func heroCollidesWithLava(with contact: SKPhysicsContact) {

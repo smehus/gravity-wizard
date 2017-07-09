@@ -138,9 +138,15 @@ final class SwingingPlatformNode: SKNode {
         gameScene.add(joint: platformJoint)
     }
     
-    fileprivate func push() {
-        let pushVect = CGVector(dx: 500, dy: 0)
-        rope?.physicsBody?.velocity = pushVect
+    fileprivate func setupPushAction() {
+        
+        let pushAction = SKAction.run {
+            self.platform?.physicsBody?.velocity = CGVector(dx: 500, dy: 0)
+        }
+
+        let wait = SKAction.wait(forDuration: 5.0)
+        let repeatedAction = SKAction.repeatForever(SKAction.sequence([pushAction, wait]))
+        run(repeatedAction)
     }
 }
 
@@ -149,6 +155,6 @@ extension SwingingPlatformNode: LifecycleListener {
         setupSprites()
         setupPhysics()
         setupJoints()
-        push()
+        setupPushAction()
     }
 }

@@ -8,21 +8,32 @@
 
 import SpriteKit
 
-class GroundNode: SKSpriteNode {
-
+final class MovingPlatform: SKSpriteNode, LifecycleListener {
+    func didMoveToScene() {
+        guard let body = physicsBody else {
+            assertionFailure("Moving Platform node is missing the physics body")
+            return
+        }
+        
+        body.isDynamic = true
+        body.restitution = 0.0
+        body.affectedByGravity = true
+        body.categoryBitMask = PhysicsCategory.Ground
+        lightingBitMask = LightingMask.defaultMask
+    }
 }
 
-extension GroundNode: LifecycleListener {
+final class GroundNode: SKSpriteNode, LifecycleListener {
     func didMoveToScene() {
         guard let body = physicsBody else {
             assertionFailure("Ground node is missing the physics body")
             return
         }
+        
         body.isDynamic = false
         body.restitution = 0.0
         body.affectedByGravity = false
         body.categoryBitMask = PhysicsCategory.Ground
-        physicsBody = body
         lightingBitMask = LightingMask.defaultMask
     }
 }

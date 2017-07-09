@@ -85,6 +85,19 @@ enum Health: Int {
     }
 }
 
+fileprivate struct GroundJoint {
+    var isActive = false
+    var joint: SKPhysicsJoint? {
+        didSet {
+            if let _ = joint {
+                isActive = true
+            } else {
+                isActive = false
+            }
+        }
+    }
+}
+
 final class RoseNode: SKSpriteNode, GravityStateTracker {
     
     struct Constants {
@@ -102,6 +115,7 @@ final class RoseNode: SKSpriteNode, GravityStateTracker {
     }
     
     fileprivate var lastAssignedTexture: Texture?
+    fileprivate var groundJoint = GroundJoint()
     
     var gravityState: GravityState = .ground {
         didSet {
@@ -121,17 +135,36 @@ final class RoseNode: SKSpriteNode, GravityStateTracker {
     }
     
     func jump(towards vector: CGVector) {
+        
+        if let joint = groundJoint.joint, let gameScene = scene as? GameScene {
+            gameScene.physicsWorld.remove(joint)
+            groundJoint.joint = nil
+        }
+        
         guard jumpCount <= Constants.MAX_JUMP_COUNT else { return }
         jumpCount += 1
         physicsBody?.velocity = vector
     }
     
-    func hardLanding() {
-        guard gravityState == .falling else { return }
+    func hardLanding(with body: SKPhysicsBody, contactPoint: CGPoint, addJoint: Bool) {
+        guard
+            gravityState == .falling
+        else { return }
+        
         isGrounded = true
         jumpCount = 0
         gravityState = .landing
         physicsBody?.velocity = CGVector.zero
+        
+        if
+            addJoint,
+            let gameScene = scene as? GameScene,
+            let roseBody = physicsBody
+        {
+            let joint = SKPhysicsJointPin.joint(withBodyA: roseBody, bodyB: body, anchor: contactPoint)
+            groundJoint.joint = joint
+            gameScene.add(joint: joint)
+        }
         
         let landAction = SKAction.animate(with: animationTextures(for: .hardLand), timePerFrame: 0.2)
         let wait = SKAction.afterDelay(0.5, runBlock: runIdleAnimation)
