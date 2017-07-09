@@ -8,10 +8,15 @@
 
 import SpriteKit
 
-fileprivate enum Node: String {
-    case fish = "//fish"
-    case water = "//water"
-    case base = "//base"
+fileprivate enum Node: String, SpriteConfiguration {
+    case fish = "fish"
+    case water = "water-scene"
+    case base = "base"
+    case foliage = "water-foliage"
+    
+    var name: String {
+        return "//\(rawValue)"
+    }
     
     var categoryBitMask: UInt32 {
         switch self {
@@ -23,7 +28,7 @@ fileprivate enum Node: String {
         }
     }
     
-    var contactBitMask: UInt32 {
+    var contactTestBitMask: UInt32 {
         switch self {
         case .fish:
             return PhysicsCategory.None
@@ -42,37 +47,76 @@ fileprivate enum Node: String {
         default: return PhysicsCategory.None
         }
     }
+    
+    var isDynamic: Bool {
+        switch self {
+        case .fish:
+            return false
+        case .water:
+            return false
+        case .base:
+            return false
+        default:
+            return false
+        }
+    }
+    
+    var affectedByGravity: Bool {
+        switch self {
+        case .fish:
+            return false
+        case .water:
+            return false
+        case .base:
+            return false
+        default:
+            return false
+        }
+    }
+    
+    var allowsRotation: Bool {
+        switch self {
+        case .fish:
+            return true
+        case .water:
+            return false
+        case .base:
+            return false
+        default:
+            return false
+        }
+    }
 }
-
+        
 final class WaterSceneNode: SKNode {
     
     fileprivate var fish: SKSpriteNode?
     fileprivate var base: SKSpriteNode?
+    fileprivate var waterScene: SKSpriteNode?
+    fileprivate var foliageScene: SKSpriteNode?
     
     fileprivate func setupNodes() {
         
         guard
-            let baseNode = childNode(withName: Node.base.rawValue) as? SKSpriteNode
+            let water = childNode(withName: Node.water.name) as? SKSpriteNode,
+            let foliage = childNode(withName: Node.foliage.name) as? SKSpriteNode,
+            let baseNode = childNode(withName: Node.base.name) as? SKSpriteNode
         else {
             conditionFailure(with: "Failed to resolve fish")
             return
         }
         
+        let foilageShader = SKShader(fileNamed: "wave.fsh")
+        foliage.shader = foilageShader
+        
+        water.configure(with: Node.water)
+        
+        waterScene = water
         base = baseNode
         fish = buildFish()
         
-        enumerateChildNodes(withName: Node.water.rawValue) { (node, stop) in
-            guard
-                let sprite = node as? SKSpriteNode,
-                let _ = sprite.physicsBody
-            else { return }
-            
-            sprite.physicsBody?.categoryBitMask = Node.water.categoryBitMask
-            sprite.physicsBody?.contactTestBitMask = Node.water.contactBitMask
-            sprite.physicsBody?.collisionBitMask = Node.water.collisionBitMask
-        }
-        
-        
+        waterScene?.zPosition = 10
+        fish?.zPosition = 9
     }
     
     private func buildFish() -> SKSpriteNode? {
