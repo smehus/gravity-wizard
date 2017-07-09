@@ -666,8 +666,8 @@ extension GameScene {
             let contactBody = contactNode.physicsBody
         else { return }
         
-        var addJoint = (contactNode is MovingPlatform) ? true : false
-        rose.hardLanding(with: contactBody, contactPoint: contact.contactPoint, addJoint: true)
+        let addJoint = (contactNode is MovingPlatform) ? true : false
+        rose.hardLanding(with: contactBody, contactPoint: contact.contactPoint, addJoint: addJoint)
     }
     
     fileprivate func heroCollidesWithLava(with contact: SKPhysicsContact) {

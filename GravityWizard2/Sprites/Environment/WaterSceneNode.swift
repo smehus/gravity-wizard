@@ -14,6 +14,8 @@ fileprivate enum Node: String, SpriteConfiguration {
     case base = "base"
     case foliage = "water-foliage"
     
+    
+    // TIP: - Reference nodes can't use the '//'. AKA Can't search the node tree recursively, otherwise only one reference node will react to code
     var name: String {
         return "\(rawValue)"
     }
