@@ -635,6 +635,10 @@ extension GameScene: SKPhysicsContactDelegate {
         if collision.collisionCombination() == .heroCollidesWithObstacle {
             heroCollidesWithObstacle(with: contact)
         }
+        
+        if collision.collisionCombination() == .heroCollidesWithWater {
+            heroCollidesWithWater(with: contact)
+        }
     }
     
     func didEnd(_ contact: SKPhysicsContact) {
@@ -649,6 +653,17 @@ extension GameScene: SKPhysicsContactDelegate {
 
 // MARK: - Collisions
 extension GameScene {
+    
+    fileprivate func heroCollidesWithWater(with contact: SKPhysicsContact) {
+        guard let rose = rose else { return }
+        let contactPoint = contact.contactPoint
+        rose.physicsBody?.affectedByGravity = false
+        rose.physicsBody?.velocity = CGVector(dx: 0, dy: -30.0)
+        rose.physicsBody?.friction = 1.0
+        rose.physicsBody?.linearDamping = 1.0
+        
+        
+    }
     
     fileprivate func heroCollidesWithGravityField(with contact: SKPhysicsContact) {
         let gravity = contact.bodyA.categoryBitMask == PhysicsCategory.GravityProjectile ? contact.bodyA.node : contact.bodyB.node
