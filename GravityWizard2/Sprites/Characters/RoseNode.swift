@@ -13,7 +13,7 @@ fileprivate struct Definitions {
         struct ContactTest {
             static let full = PhysicsCategory.Ground | PhysicsCategory.Rock | PhysicsCategory.GravityProjectile | PhysicsCategory.LevelComplete | PhysicsCategory.enemy | PhysicsCategory.water
             
-            static let immune = PhysicsCategory.Ground | PhysicsCategory.Rock | PhysicsCategory.GravityProjectile | PhysicsCategory.LevelComplete | PhysicsCategory.water
+            static let immune = PhysicsCategory.Ground | PhysicsCategory.Rock | PhysicsCategory.GravityProjectile | PhysicsCategory.LevelComplete
         }
         
         static let collision = PhysicsCategory.Ground | PhysicsCategory.Rock | PhysicsCategory.Edge | PhysicsCategory.destructible | PhysicsCategory.enemy | PhysicsCategory.indesctructibleObstacle 
@@ -204,6 +204,14 @@ final class RoseNode: SKSpriteNode, GravityStateTracker {
         physicsBody?.applyImpulse(CGVector(dx: 0, dy: 300))
         physicsBody?.contactTestBitMask = PhysicsCategory.None
         physicsBody?.collisionBitMask = PhysicsCategory.None
+    }
+    
+    func drown() {
+        physicsBody?.contactTestBitMask = Definitions.Physics.ContactTest.immune
+        physicsBody?.affectedByGravity = false
+        physicsBody?.velocity = CGVector(dx: 0, dy: -30.0)
+        physicsBody?.friction = 1.0
+        physicsBody?.linearDamping = 1.0
     }
     
     fileprivate func runAttackedAnimation() {

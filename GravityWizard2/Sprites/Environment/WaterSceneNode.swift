@@ -35,7 +35,7 @@ fileprivate enum Node: String, SpriteConfiguration {
         case .fish:
             return PhysicsCategory.None
         case .water:
-            return PhysicsCategory.Hero | PhysicsCategory.arrow
+            return PhysicsCategory.None
         default: return PhysicsCategory.None
         }
     }

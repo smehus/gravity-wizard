@@ -10,7 +10,23 @@ import SpriteKit
 
 class ParticleFactory {
     
+    private struct Names {
+        static let waterSplash = "WaterSplash"
+    }
+    
     static let sharedFactory = ParticleFactory()
+    
+    func waterSplash(scene: SKScene, position: CGPoint) {
+        guard let emitter = SKEmitterNode(fileNamed: Names.waterSplash) else {
+            assertionFailure("Failed to find file name \(Names.waterSplash)")
+            return
+        }
+    
+        
+        emitter.run(SKAction.removeFromParentAfterDelay(2.0))
+        emitter.position = position
+        scene.addChild(emitter)
+    }
     
     func explosion(intensity: CGFloat) -> SKEmitterNode {
         let emitter = SKEmitterNode()

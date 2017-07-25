@@ -108,6 +108,9 @@
 		A5B58EC21E09DC4900ADC865 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5B58EC01E09DC4900ADC865 /* Main.storyboard */; };
 		A5B58EC41E09DC4900ADC865 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5B58EC31E09DC4900ADC865 /* Assets.xcassets */; };
 		A5B58EC71E09DC4900ADC865 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5B58EC51E09DC4900ADC865 /* LaunchScreen.storyboard */; };
+		A5BE41391F276AFA0052E56A /* WaterSplash.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5BE41371F276AFA0052E56A /* WaterSplash.sks */; };
+		A5BE413A1F276AFA0052E56A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5BE41381F276AFA0052E56A /* Assets.xcassets */; };
+		A5BE41401F276DFD0052E56A /* WaterReflection.fsh in Resources */ = {isa = PBXBuildFile; fileRef = A5BE413F1F276DFD0052E56A /* WaterReflection.fsh */; };
 		A5E3150F1E2166F100D3652C /* SKScene+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E3150E1E2166F100D3652C /* SKScene+Extensions.swift */; };
 		A5EE58CD1E5F1BB700D3D25B /* SKSpriteNode+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EE58CC1E5F1BB700D3D25B /* SKSpriteNode+Extensions.swift */; };
 /* End PBXBuildFile section */
@@ -216,6 +219,9 @@
 		A5B58EC31E09DC4900ADC865 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A5B58EC61E09DC4900ADC865 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A5B58EC81E09DC4900ADC865 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5BE41371F276AFA0052E56A /* WaterSplash.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = WaterSplash.sks; sourceTree = "<group>"; };
+		A5BE41381F276AFA0052E56A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A5BE413F1F276DFD0052E56A /* WaterReflection.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = WaterReflection.fsh; sourceTree = "<group>"; };
 		A5E3150E1E2166F100D3652C /* SKScene+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKScene+Extensions.swift"; sourceTree = "<group>"; };
 		A5EE58CC1E5F1BB700D3D25B /* SKSpriteNode+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKSpriteNode+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -235,6 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				A5674C2A1EE81E3D00D29F2B /* wave.fsh */,
+				A5BE413F1F276DFD0052E56A /* WaterReflection.fsh */,
 			);
 			path = Shaders;
 			sourceTree = "<group>";
@@ -289,6 +296,8 @@
 				A5A968221EEAC80500A509DB /* Blood.sks */,
 				A5A968231EEAC80500A509DB /* GravityProjectileTail.sks */,
 				A5A968241EEAC80500A509DB /* LavaParticle.sks */,
+				A5BE41371F276AFA0052E56A /* WaterSplash.sks */,
+				A5BE41381F276AFA0052E56A /* Assets.xcassets */,
 			);
 			path = Particles;
 			sourceTree = "<group>";
@@ -564,6 +573,7 @@
 			files = (
 				A5A968431EEAC80500A509DB /* LavaParticle.sks in Resources */,
 				A5A968541EEAC80500A509DB /* VerticalSlidingPlatform.sks in Resources */,
+				A5BE41391F276AFA0052E56A /* WaterSplash.sks in Resources */,
 				A5A9684B1EEAC80500A509DB /* MossyWall.sks in Resources */,
 				A5A968511EEAC80500A509DB /* Snake.sks in Resources */,
 				A5A9683A1EEAC80500A509DB /* WeaponSelector.sks in Resources */,
@@ -580,6 +590,7 @@
 				A5A9684C1EEAC80500A509DB /* Platform2.sks in Resources */,
 				A5A968C21EEACF5D00A509DB /* Level1.sks in Resources */,
 				A5A968C61EEACF5D00A509DB /* Level3.sks in Resources */,
+				A5BE413A1F276AFA0052E56A /* Assets.xcassets in Resources */,
 				A5A968411EEAC80500A509DB /* Blood.sks in Resources */,
 				A5840A9C1F11266F00659404 /* SwingingPlatform.sks in Resources */,
 				A5A9684A1EEAC80500A509DB /* LavaSection.sks in Resources */,
@@ -592,6 +603,7 @@
 				A5A968531EEAC80500A509DB /* VerticalRotarySlider.sks in Resources */,
 				A5A968481EEAC80500A509DB /* Floor.sks in Resources */,
 				A5B58EC71E09DC4900ADC865 /* LaunchScreen.storyboard in Resources */,
+				A5BE41401F276DFD0052E56A /* WaterReflection.fsh in Resources */,
 				A5A9684F1EEAC80500A509DB /* RotatingGear.sks in Resources */,
 				A5A968551EEAC80500A509DB /* Viking.sks in Resources */,
 				A5A968441EEAC80500A509DB /* BreakableRocks.sks in Resources */,

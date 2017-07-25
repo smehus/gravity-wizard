@@ -656,13 +656,9 @@ extension GameScene {
     
     fileprivate func heroCollidesWithWater(with contact: SKPhysicsContact) {
         guard let rose = rose else { return }
+        rose.drown()
         let contactPoint = contact.contactPoint
-        rose.physicsBody?.affectedByGravity = false
-        rose.physicsBody?.velocity = CGVector(dx: 0, dy: -30.0)
-        rose.physicsBody?.friction = 1.0
-        rose.physicsBody?.linearDamping = 1.0
-        
-        
+        particleFactory.waterSplash(scene: self, position: contactPoint)
     }
     
     fileprivate func heroCollidesWithGravityField(with contact: SKPhysicsContact) {
