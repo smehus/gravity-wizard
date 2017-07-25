@@ -659,6 +659,7 @@ extension GameScene {
         rose.drown()
         let contactPoint = contact.contactPoint
         particleFactory.waterSplash(scene: self, position: contactPoint)
+        gameOver()
     }
     
     fileprivate func heroCollidesWithGravityField(with contact: SKPhysicsContact) {

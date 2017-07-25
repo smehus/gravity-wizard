@@ -14,7 +14,7 @@ fileprivate enum Sprites: String, SpriteConfiguration {
     case platform = "platform"
     
     var name: String {
-        return "//\(rawValue)"
+        return "\(rawValue)"
     }
     
     var categoryBitMask: UInt32 {
