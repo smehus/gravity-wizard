@@ -9,7 +9,7 @@
 import SpriteKit
 import GameplayKit
 
-fileprivate let GRAVITY_VEL: CGFloat = isIpad() ? 0.9 : 1.7
+fileprivate let GRAVITY_VEL: CGFloat = 0.9
 
 protocol SceneEdgeDecider {
 
@@ -163,19 +163,22 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel, SceneEdgeDecider {
     
     /// Zoom camera in and run a completion block when its donezo
     func runZoomInAction(with completion: @escaping () -> Void) {
-         guard let camera = camera, let rose = rose else { return }
-        if !isIpad() {
-            let zoomAction = SKAction.scale(to: 0.5, duration: 3.0)
-            let scaleAction = SKAction.customAction(withDuration: 3.0) { _ in
-                camera.constraints = [self.cameraEdgeConstraint(with: camera.xScale, cy: camera.yScale)]
-            }
-
-            let move = SKAction.move(to: convert(rose.position, from: rose.parent!), duration: 3.0)
-            camera.run(SKAction.group([zoomAction, scaleAction, move]), completion: completion)
+        completion()
+        // I like it better this way
         
-        } else {
-            completion()
-        }
+//         guard let camera = camera, let rose = rose else { return }
+//        if !isIpad() {
+//            let zoomAction = SKAction.scale(to: 0.5, duration: 3.0)
+//            let scaleAction = SKAction.customAction(withDuration: 3.0) { _ in
+//                camera.constraints = [self.cameraEdgeConstraint(with: camera.xScale, cy: camera.yScale)]
+//            }
+//
+//            let move = SKAction.move(to: convert(rose.position, from: rose.parent!), duration: 3.0)
+//            camera.run(SKAction.group([zoomAction, scaleAction, move]), completion: completion)
+//        
+//        } else {
+//            completion()
+//        }
     }
     
     fileprivate func setupCamera() {
@@ -230,8 +233,8 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel, SceneEdgeDecider {
             return
         }
 
-        let x = isIpad() ? -camSize.width/2 : -camSize.width
-        let y = isIpad() ? camSize.height/2 : camSize.height
+        let x = -camSize.width/2
+        let y = camSize.height/2
         let newPoint = CGPoint(x: x, y: y)
         selector.position = camera.convert(newPoint, to: selector.parent!)
         selector.alpha = 0.0
