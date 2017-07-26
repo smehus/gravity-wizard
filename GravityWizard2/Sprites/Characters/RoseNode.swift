@@ -102,7 +102,7 @@ fileprivate struct GroundJoint {
 final class RoseNode: SKSpriteNode, GravityStateTracker {
     
     struct Constants {
-        static let MAX_JUMP_COUNT = 2
+        static let MAX_JUMP_COUNT = 10
     }
     
     var isGrounded = true
