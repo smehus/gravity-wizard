@@ -10,6 +10,7 @@
 		A53CB1CC1F0D9F0B000B9C64 /* WaterSceneNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53CB1CB1F0D9F0B000B9C64 /* WaterSceneNode.swift */; };
 		A554178A1F0D0FFC00A2CFE8 /* WaterScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A55417891F0D0FFC00A2CFE8 /* WaterScene.sks */; };
 		A5674C2B1EE81E3D00D29F2B /* wave.fsh in Resources */ = {isa = PBXBuildFile; fileRef = A5674C2A1EE81E3D00D29F2B /* wave.fsh */; };
+		A56B423E1F296114007A9ADB /* ProjectileNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B423D1F296114007A9ADB /* ProjectileNode.swift */; };
 		A5840A9C1F11266F00659404 /* SwingingPlatform.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5840A9B1F11266F00659404 /* SwingingPlatform.sks */; };
 		A5855E5D1F112FE100A34344 /* SwingingPlatformNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5855E5C1F112FE100A34344 /* SwingingPlatformNode.swift */; };
 		A59152C81EDC608A00F90D5E /* Assert+SKNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59152C71EDC608A00F90D5E /* Assert+SKNode.swift */; };
@@ -119,6 +120,7 @@
 		A53CB1CB1F0D9F0B000B9C64 /* WaterSceneNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterSceneNode.swift; sourceTree = "<group>"; };
 		A55417891F0D0FFC00A2CFE8 /* WaterScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = WaterScene.sks; sourceTree = "<group>"; };
 		A5674C2A1EE81E3D00D29F2B /* wave.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = wave.fsh; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
+		A56B423D1F296114007A9ADB /* ProjectileNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectileNode.swift; sourceTree = "<group>"; };
 		A5840A9B1F11266F00659404 /* SwingingPlatform.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SwingingPlatform.sks; sourceTree = "<group>"; };
 		A5855E5C1F112FE100A34344 /* SwingingPlatformNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwingingPlatformNode.swift; sourceTree = "<group>"; };
 		A59152C71EDC608A00F90D5E /* Assert+SKNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assert+SKNode.swift"; sourceTree = "<group>"; };
@@ -397,6 +399,7 @@
 				A5A968801EEACE9D00A509DB /* Enemy.swift */,
 				A5A968811EEACE9D00A509DB /* SnakeNode.swift */,
 				A5A968821EEACE9D00A509DB /* VikingNode.swift */,
+				A56B423D1F296114007A9ADB /* ProjectileNode.swift */,
 			);
 			path = Enemies;
 			sourceTree = "<group>";
@@ -631,6 +634,7 @@
 				A5A968B21EEACE9D00A509DB /* LevelCompleteNode.swift in Sources */,
 				A5A9689F1EEACE9D00A509DB /* VikingNode.swift in Sources */,
 				A5A968701EEACB8900A509DB /* GameLoopListener.swift in Sources */,
+				A56B423E1F296114007A9ADB /* ProjectileNode.swift in Sources */,
 				A59FB69C1E0A088A00D1C915 /* SKColor+Extensions.swift in Sources */,
 				A5A968601EEAC99C00A509DB /* Level2.swift in Sources */,
 				A5A968A21EEACE9D00A509DB /* BloodNode.swift in Sources */,
