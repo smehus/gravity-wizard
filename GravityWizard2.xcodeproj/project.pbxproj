@@ -11,6 +11,7 @@
 		A554178A1F0D0FFC00A2CFE8 /* WaterScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A55417891F0D0FFC00A2CFE8 /* WaterScene.sks */; };
 		A5674C2B1EE81E3D00D29F2B /* wave.fsh in Resources */ = {isa = PBXBuildFile; fileRef = A5674C2A1EE81E3D00D29F2B /* wave.fsh */; };
 		A56B423E1F296114007A9ADB /* ProjectileNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B423D1F296114007A9ADB /* ProjectileNode.swift */; };
+		A56B42401F296ACD007A9ADB /* NSDictionary+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B423F1F296ACD007A9ADB /* NSDictionary+Extensions.swift */; };
 		A5840A9C1F11266F00659404 /* SwingingPlatform.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5840A9B1F11266F00659404 /* SwingingPlatform.sks */; };
 		A5855E5D1F112FE100A34344 /* SwingingPlatformNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5855E5C1F112FE100A34344 /* SwingingPlatformNode.swift */; };
 		A59152C81EDC608A00F90D5E /* Assert+SKNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59152C71EDC608A00F90D5E /* Assert+SKNode.swift */; };
@@ -121,6 +122,7 @@
 		A55417891F0D0FFC00A2CFE8 /* WaterScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = WaterScene.sks; sourceTree = "<group>"; };
 		A5674C2A1EE81E3D00D29F2B /* wave.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = wave.fsh; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		A56B423D1F296114007A9ADB /* ProjectileNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectileNode.swift; sourceTree = "<group>"; };
+		A56B423F1F296ACD007A9ADB /* NSDictionary+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDictionary+Extensions.swift"; sourceTree = "<group>"; };
 		A5840A9B1F11266F00659404 /* SwingingPlatform.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SwingingPlatform.sks; sourceTree = "<group>"; };
 		A5855E5C1F112FE100A34344 /* SwingingPlatformNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwingingPlatformNode.swift; sourceTree = "<group>"; };
 		A59152C71EDC608A00F90D5E /* Assert+SKNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assert+SKNode.swift"; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 				A5E3150E1E2166F100D3652C /* SKScene+Extensions.swift */,
 				A5EE58CC1E5F1BB700D3D25B /* SKSpriteNode+Extensions.swift */,
 				A59152C71EDC608A00F90D5E /* Assert+SKNode.swift */,
+				A56B423F1F296ACD007A9ADB /* NSDictionary+Extensions.swift */,
 			);
 			path = SKTUtils;
 			sourceTree = "<group>";
@@ -650,6 +653,7 @@
 				A5A968A91EEACE9D00A509DB /* MossyWall.swift in Sources */,
 				A59FB6981E0A088A00D1C915 /* CGVector+Extensions.swift in Sources */,
 				A5A968A71EEACE9D00A509DB /* GroundNode.swift in Sources */,
+				A56B42401F296ACD007A9ADB /* NSDictionary+Extensions.swift in Sources */,
 				A5A968AE1EEACE9D00A509DB /* StonePlatform.swift in Sources */,
 				A5A968B31EEACE9D00A509DB /* RewindSelector.swift in Sources */,
 				A5EE58CD1E5F1BB700D3D25B /* SKSpriteNode+Extensions.swift in Sources */,

@@ -8,6 +8,25 @@
 
 import SpriteKit
 
+enum UserDataAccessor {
+    case texture
+    
+    var key: String {
+        switch self {
+        case .texture:
+            return "texture"
+        }
+    }
+}
+
+fileprivate enum Texture: String {
+    case large = "large-rock"
+    
+    var texture: SKTexture? {
+        return nil
+    }
+    
+}
 
 /// Use the rotation property in the Scene editor node to change the direciton
 /// of the projectile shooter thingy
@@ -15,11 +34,19 @@ import SpriteKit
 /// to change the texture of projectile to shoot
 final class ProjectileNode: SKNode {
     
-    
+    fileprivate func setupNode() {
+        guard
+            let textureData = userData?[.texture] as? String,
+            let texture = Texture(rawValue: textureData)?.texture
+        else {
+            conditionFailure(with: "Failed to create setup node")
+            return
+        }
+    }
 }
 
 extension ProjectileNode: LifecycleListener {
     func didMoveToScene() {
-        
+        setupNode()
     }
 }
