@@ -9,10 +9,26 @@
 import SpriteKit
 
 fileprivate enum Texture: String {
-    case large = "large-rock"
+    case largeSandRock = "large-sand-rock"
+    case smallSandRock = "small-sand-rock"
+    
+    var largeRockVariation: UIImage {
+        let array = [#imageLiteral(resourceName: "sand-rock-1"),
+                     #imageLiteral(resourceName: "sand-rock-2"),
+                     #imageLiteral(resourceName: "sand-rock-3"),
+                     #imageLiteral(resourceName: "sand-rock-4")]
+        
+        return array.random()
+    }
+
     
     var texture: SKTexture? {
-        return nil
+        switch self {
+        case .smallSandRock:
+            return SKTexture(image: #imageLiteral(resourceName: "small-sand-rock"))
+        case .largeSandRock:
+            return SKTexture(image: largeRockVariation)
+        }
     }
     
 }
@@ -23,6 +39,14 @@ fileprivate enum Texture: String {
 /// to change the texture of projectile to shoot
 final class ProjectileNode: SKNode {
     
+    fileprivate var baseProjectile: SKSpriteNode?
+    
+    var rosePosition: CGPoint? {
+        didSet {
+            
+        }
+    }
+    
     fileprivate func setupNode() {
         guard
             let textureData = userData?[.texture] as? String,
@@ -31,6 +55,32 @@ final class ProjectileNode: SKNode {
             conditionFailure(with: "Failed to create setup node")
             return
         }
+        
+        baseProjectile = SKSpriteNode(texture: texture)
+
+    }
+    
+    fileprivate func startShooting() {
+        
+    }
+    
+    fileprivate func stopShooting() {
+        
+    }
+}
+
+extension ProjectileNode: GameLoopListener {
+    func update(withDelta deltaTime: Double) {
+        guard
+            let gameScene = scene as? GameScene,
+            let rose = gameScene.rose
+        else {
+            conditionFailure(with: "Failed to cast scene as game scene")
+            return
+        }
+        
+        let position = gameScene.convert(rose.position, from: rose.parent!)
+        rosePosition = position
     }
 }
 

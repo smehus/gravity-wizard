@@ -12,6 +12,7 @@
 		A5674C2B1EE81E3D00D29F2B /* wave.fsh in Resources */ = {isa = PBXBuildFile; fileRef = A5674C2A1EE81E3D00D29F2B /* wave.fsh */; };
 		A56B423E1F296114007A9ADB /* ProjectileNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B423D1F296114007A9ADB /* ProjectileNode.swift */; };
 		A56B42401F296ACD007A9ADB /* NSDictionary+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B423F1F296ACD007A9ADB /* NSDictionary+Extensions.swift */; };
+		A56B42421F2A1253007A9ADB /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B42411F2A1253007A9ADB /* Array+Extensions.swift */; };
 		A5840A9C1F11266F00659404 /* SwingingPlatform.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5840A9B1F11266F00659404 /* SwingingPlatform.sks */; };
 		A5855E5D1F112FE100A34344 /* SwingingPlatformNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5855E5C1F112FE100A34344 /* SwingingPlatformNode.swift */; };
 		A59152C81EDC608A00F90D5E /* Assert+SKNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59152C71EDC608A00F90D5E /* Assert+SKNode.swift */; };
@@ -123,6 +124,7 @@
 		A5674C2A1EE81E3D00D29F2B /* wave.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = wave.fsh; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		A56B423D1F296114007A9ADB /* ProjectileNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectileNode.swift; sourceTree = "<group>"; };
 		A56B423F1F296ACD007A9ADB /* NSDictionary+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDictionary+Extensions.swift"; sourceTree = "<group>"; };
+		A56B42411F2A1253007A9ADB /* Array+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		A5840A9B1F11266F00659404 /* SwingingPlatform.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SwingingPlatform.sks; sourceTree = "<group>"; };
 		A5855E5C1F112FE100A34344 /* SwingingPlatformNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwingingPlatformNode.swift; sourceTree = "<group>"; };
 		A59152C71EDC608A00F90D5E /* Assert+SKNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assert+SKNode.swift"; sourceTree = "<group>"; };
@@ -253,24 +255,25 @@
 		A59FB6891E0A088A00D1C915 /* SKTUtils */ = {
 			isa = PBXGroup;
 			children = (
+				A59152C71EDC608A00F90D5E /* Assert+SKNode.swift */,
 				A59FB68A1E0A088A00D1C915 /* CGFloat+Extensions.swift */,
 				A59FB68B1E0A088A00D1C915 /* CGPoint+Extensions.swift */,
+				A59FB6AB1E0A257500D1C915 /* CGSize+Extensions.swift */,
 				A59FB68C1E0A088A00D1C915 /* CGVector+Extensions.swift */,
 				A59FB68D1E0A088A00D1C915 /* Int+Extensions.swift */,
+				A56B423F1F296ACD007A9ADB /* NSDictionary+Extensions.swift */,
 				A59FB68E1E0A088A00D1C915 /* SKAction+Extensions.swift */,
 				A59FB68F1E0A088A00D1C915 /* SKAction+SpecialEffects.swift */,
 				A59FB6901E0A088A00D1C915 /* SKColor+Extensions.swift */,
 				A59FB6911E0A088A00D1C915 /* SKNode+Extensions.swift */,
-				A59FB6921E0A088A00D1C915 /* SKTAudio.swift */,
-				A59FB6931E0A088A00D1C915 /* SKTEffects.swift */,
-				A59FB6941E0A088A00D1C915 /* SKTTimingFunctions.swift */,
-				A59FB6951E0A088A00D1C915 /* Vector3.swift */,
-				A59FB6AB1E0A257500D1C915 /* CGSize+Extensions.swift */,
-				A5AFBA1B1E1828F200CE29E9 /* SKTexture+Extensions.swift */,
 				A5E3150E1E2166F100D3652C /* SKScene+Extensions.swift */,
 				A5EE58CC1E5F1BB700D3D25B /* SKSpriteNode+Extensions.swift */,
-				A59152C71EDC608A00F90D5E /* Assert+SKNode.swift */,
-				A56B423F1F296ACD007A9ADB /* NSDictionary+Extensions.swift */,
+				A59FB6921E0A088A00D1C915 /* SKTAudio.swift */,
+				A59FB6931E0A088A00D1C915 /* SKTEffects.swift */,
+				A5AFBA1B1E1828F200CE29E9 /* SKTexture+Extensions.swift */,
+				A59FB6941E0A088A00D1C915 /* SKTTimingFunctions.swift */,
+				A59FB6951E0A088A00D1C915 /* Vector3.swift */,
+				A56B42411F2A1253007A9ADB /* Array+Extensions.swift */,
 			);
 			path = SKTUtils;
 			sourceTree = "<group>";
@@ -667,6 +670,7 @@
 				A5A9687C1EEACDD800A509DB /* ParticleFactory.swift in Sources */,
 				A5A968B81EEACF1500A509DB /* Level4.swift in Sources */,
 				A59FB69F1E0A088A00D1C915 /* SKTEffects.swift in Sources */,
+				A56B42421F2A1253007A9ADB /* Array+Extensions.swift in Sources */,
 				A53CB1CC1F0D9F0B000B9C64 /* WaterSceneNode.swift in Sources */,
 				A5A968AB1EEACE9D00A509DB /* RockNode.swift in Sources */,
 				A5A968A51EEACE9D00A509DB /* ChainedRotary.swift in Sources */,
