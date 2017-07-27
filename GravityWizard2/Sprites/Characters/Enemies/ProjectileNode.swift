@@ -8,17 +8,6 @@
 
 import SpriteKit
 
-enum UserDataAccessor {
-    case texture
-    
-    var key: String {
-        switch self {
-        case .texture:
-            return "texture"
-        }
-    }
-}
-
 fileprivate enum Texture: String {
     case large = "large-rock"
     

@@ -214,3 +214,14 @@ extension UInt32 {
 func isIpad() -> Bool {
     return UIDevice.current.userInterfaceIdiom == .pad
 }
+
+enum UserDataAccessor {
+    case texture
+    
+    var key: String {
+        switch self {
+        case .texture:
+            return "texture"
+        }
+    }
+}
