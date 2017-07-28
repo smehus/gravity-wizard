@@ -8,9 +8,13 @@
 
 import SpriteKit
 
-fileprivate enum Texture: String {
+fileprivate enum Texture: String, SpriteConfiguration, StringInitable {
     case largeSandRock = "large-sand-rock"
     case smallSandRock = "small-sand-rock"
+    
+    init?(string: String) {
+        self.init(rawValue: string)
+    }
     
     var largeRockVariation: UIImage {
         let array = [#imageLiteral(resourceName: "sand-rock-1"),
@@ -20,7 +24,7 @@ fileprivate enum Texture: String {
         
         return array.random()
     }
-
+    
     
     var texture: SKTexture? {
         switch self {
@@ -31,6 +35,53 @@ fileprivate enum Texture: String {
         }
     }
     
+    var name: String {
+        return "\(rawValue)"
+    }
+    
+    var categoryBitMask: UInt32 {
+        switch self {
+        case .smallSandRock, .largeSandRock:
+            return PhysicsCategory.enemy
+        }
+    }
+    
+    var contactTestBitMask: UInt32 {
+        switch self {
+        case .smallSandRock, .largeSandRock:
+            return PhysicsCategory.Hero
+        }
+    }
+    
+    var collisionBitMask: UInt32 {
+        switch self {
+        case .smallSandRock, .largeSandRock:
+            return PhysicsCategory.Hero
+        }
+    }
+    
+    // Physics
+    
+    var isDynamic: Bool {
+        switch self {
+        case .smallSandRock, .largeSandRock:
+            return true
+        }
+    }
+    
+    var affectedByGravity: Bool {
+        switch self {
+        case .smallSandRock, .largeSandRock:
+            return true
+        }
+    }
+    
+    var allowsRotation: Bool {
+        switch self {
+        case .smallSandRock, .largeSandRock:
+            return true
+        }
+    }
 }
 
 /// Use the rotation property in the Scene editor node to change the direciton
@@ -40,47 +91,80 @@ fileprivate enum Texture: String {
 final class ProjectileNode: SKNode {
     
     fileprivate var baseProjectile: SKSpriteNode?
-    
-    var rosePosition: CGPoint? {
-        didSet {
-            
-        }
-    }
+    fileprivate var timer: TimeInterval = 0
+    fileprivate var direction: Direction?
     
     fileprivate func setupNode() {
+        
         guard
-            let textureData = userData?[.texture] as? String,
-            let texture = Texture(rawValue: textureData)?.texture
-        else {
-            conditionFailure(with: "Failed to create setup node")
-            return
+            let data = try? UserData(data: userData),
+            let texture: Texture = data.value(for: .texture),
+            let nodeDirection: Direction = data.value(for: .direction),
+            let spriteTexture = texture.texture
+            else {
+                conditionFailure(with: "Failed to create setup node")
+                return
         }
         
-        baseProjectile = SKSpriteNode(texture: texture)
+        self.direction = nodeDirection
+        
+        baseProjectile = SKSpriteNode(texture: texture.texture)
+        baseProjectile?.zPosition = 10
+        baseProjectile?.physicsBody = SKPhysicsBody(texture: spriteTexture, size: spriteTexture.size())
+        baseProjectile?.configure(with: texture)
+    }
+    
+    fileprivate func shootProjectile() {
+        guard
+            let projectile = baseProjectile?.copy() as? SKSpriteNode,
+            let _ = projectile.physicsBody
+        else {
+            conditionFailure(with: "Failed to create copy of sprite")
+            return
+        }
 
-    }
-    
-    fileprivate func startShooting() {
         
-    }
-    
-    fileprivate func stopShooting() {
+        addChild(projectile)
         
+        if let vector = direction?.projectileVector(velocity: 500) {
+            projectile.physicsBody?.velocity = vector
+        }
     }
 }
 
 extension ProjectileNode: GameLoopListener {
     func update(withDelta deltaTime: Double) {
+        
+        ///
+        /// Get Heros position
+        ///
+        
         guard
             let gameScene = scene as? GameScene,
             let rose = gameScene.rose
-        else {
-            conditionFailure(with: "Failed to cast scene as game scene")
-            return
+            else {
+                conditionFailure(with: "Failed to cast scene as game scene")
+                return
         }
         
-        let position = gameScene.convert(rose.position, from: rose.parent!)
-        rosePosition = position
+        let rosePosition = gameScene.convert(rose.position, from: rose.parent!)
+        
+        
+        ///
+        /// Shoot projectile every three seconds
+        ///
+        
+        timer += deltaTime
+        
+        switch timer {
+        case _ where timer > 3.0 && ((position.x - rosePosition.x) / 1000.0) < 1.0:
+            timer = 0
+            shootProjectile()
+        case _ where timer > 3.0:
+            timer = 0
+        default: break
+        }
+        
     }
 }
 

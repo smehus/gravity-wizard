@@ -59,11 +59,32 @@ enum Level: Int {
     }
 }
 
-enum Direction {
+enum Direction: StringInitable {
     case left
     case right
     case up
     case down
+    
+    enum VelocityIntensity {
+        case low
+        case middle
+        case high
+    }
+    
+    init?(string: String) {
+        switch string {
+        case _ where string == "east":
+            self = .right
+        case _ where string == "west":
+            self = .left
+        case _ where string == "north":
+            self = .up
+        case _ where string == "south":
+            self = .down
+        default:
+            return nil
+        }
+    }
     
     var walkingXVector: CGFloat {
         switch self {
@@ -72,6 +93,23 @@ enum Direction {
         case .right:
             return 20
         default: return 0
+        }
+    }
+//    
+//    func intensity(for intensity: VelocityIntensity) -> CGFloat {
+//        
+//    }
+    
+    func projectileVector(velocity: Double) -> CGVector {
+        switch self {
+        case .down:
+            return CGVector(dx: 0, dy: -velocity)
+        case .up:
+            return CGVector(dx: 0, dy: velocity)
+        case .left:
+            return CGVector(dx: -velocity, dy: 0)
+        case .right:
+            return CGVector(dx: velocity, dy: 0)
         }
     }
 }
@@ -217,11 +255,14 @@ func isIpad() -> Bool {
 
 enum UserDataAccessor {
     case texture
+    case direction
     
     var key: String {
         switch self {
         case .texture:
             return "texture"
+        case .direction:
+            return "direction"
         }
     }
 }
