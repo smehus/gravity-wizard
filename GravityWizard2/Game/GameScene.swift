@@ -621,6 +621,10 @@ extension GameScene: SKPhysicsContactDelegate {
             enemyCollidesWithGround(with: contact)
         }
         
+        if collision.collisionCombination() == .enemyCollidesWithEdge {
+            enemyCollidesWithEdge(with: contact)
+        }
+        
         // Gravity Projectile
         if collision.collisionCombination() == .gravityProjectileHitsGround {
             gravityProjectileHitGround(with: contact)
@@ -675,6 +679,10 @@ extension GameScene: SKPhysicsContactDelegate {
 
 // MARK: - Collisions
 extension GameScene {
+    
+    ///
+    /// Hero
+    ///
     
     private func heroCollidesWithWater(with contact: SKPhysicsContact) {
         guard let rose = rose else { return }
@@ -739,6 +747,15 @@ extension GameScene {
         createBloodExplosion(with: rose)
     }
     
+    private func heroCollidesWithLevelComplete(with contact: SKPhysicsContact) {
+        levelCompleted()
+    }
+    
+    
+    ///
+    /// Blood
+    ///
+    
     private func bloodCollidesWithGround(with contact: SKPhysicsContact) {
         let node = contact.bodyA.categoryBitMask == PhysicsCategory.Blood ? contact.bodyA.node : contact.bodyB.node
         
@@ -746,6 +763,12 @@ extension GameScene {
             blood.hitGround()
         }
     }
+    
+    ///
+    /// Arrows
+    ///
+    
+    
     // TODO: If second arrow is launched while first arrow is still in air - the first arrow will be removed
     private func arrowCollidesWithEdge(with contact: SKPhysicsContact) {
         let node = contact.bodyA.categoryBitMask == PhysicsCategory.arrow ? contact.bodyA.node : contact.bodyB.node
@@ -805,9 +828,10 @@ extension GameScene {
         }
     }
     
-    private func heroCollidesWithLevelComplete(with contact: SKPhysicsContact) {
-        levelCompleted()
-    }
+    
+    ///
+    /// Enemy
+    ///
     
     private func enemyCollidesWithBorder(with contact: SKPhysicsContact) {
         print("Enemy Collides With Border Body")
@@ -819,6 +843,11 @@ extension GameScene {
         let remove = SKAction.removeFromParent()
         
         enemyNode?.run(SKAction.sequence([ wait, remove ]))
+    }
+    
+    private func enemyCollidesWithEdge(with contact: SKPhysicsContact) {
+        let enemyNode = contact.bodyA.categoryBitMask == PhysicsCategory.enemy ? contact.bodyA.node : contact.bodyB.node
+        enemyNode?.removeFromParent()
     }
 }
 

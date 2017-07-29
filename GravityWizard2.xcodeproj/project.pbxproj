@@ -106,6 +106,7 @@
 		A5A968CA1EEACFC700A509DB /* Level4.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5A968C91EEACFC700A509DB /* Level4.sks */; };
 		A5AB74041F117D40001840D7 /* SpriteConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AB74031F117D40001840D7 /* SpriteConfiguration.swift */; };
 		A5ACBA6A1F2D014700CB83E4 /* BorderNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ACBA691F2D014700CB83E4 /* BorderNode.swift */; };
+		A5ACBA6C1F2D1A9000CB83E4 /* EdgeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ACBA6B1F2D1A9000CB83E4 /* EdgeNode.swift */; };
 		A5AFBA1C1E1828F200CE29E9 /* SKTexture+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AFBA1B1E1828F200CE29E9 /* SKTexture+Extensions.swift */; };
 		A5B58EB71E09DC4900ADC865 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B58EB61E09DC4900ADC865 /* AppDelegate.swift */; };
 		A5B58EBF1E09DC4900ADC865 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B58EBE1E09DC4900ADC865 /* GameViewController.swift */; };
@@ -219,6 +220,7 @@
 		A5A968C91EEACFC700A509DB /* Level4.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level4.sks; sourceTree = "<group>"; };
 		A5AB74031F117D40001840D7 /* SpriteConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteConfiguration.swift; sourceTree = "<group>"; };
 		A5ACBA691F2D014700CB83E4 /* BorderNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderNode.swift; sourceTree = "<group>"; };
+		A5ACBA6B1F2D1A9000CB83E4 /* EdgeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeNode.swift; sourceTree = "<group>"; };
 		A5AFBA1B1E1828F200CE29E9 /* SKTexture+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKTexture+Extensions.swift"; sourceTree = "<group>"; };
 		A5B58EB31E09DC4900ADC865 /* Rose.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rose.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5B58EB61E09DC4900ADC865 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -433,6 +435,7 @@
 				A53CB1CB1F0D9F0B000B9C64 /* WaterSceneNode.swift */,
 				A5855E5C1F112FE100A34344 /* SwingingPlatformNode.swift */,
 				A5ACBA691F2D014700CB83E4 /* BorderNode.swift */,
+				A5ACBA6B1F2D1A9000CB83E4 /* EdgeNode.swift */,
 			);
 			path = Environment;
 			sourceTree = "<group>";
@@ -659,6 +662,7 @@
 				A59152C81EDC608A00F90D5E /* Assert+SKNode.swift in Sources */,
 				A5A968A91EEACE9D00A509DB /* MossyWall.swift in Sources */,
 				A59FB6981E0A088A00D1C915 /* CGVector+Extensions.swift in Sources */,
+				A5ACBA6C1F2D1A9000CB83E4 /* EdgeNode.swift in Sources */,
 				A5A968A71EEACE9D00A509DB /* GroundNode.swift in Sources */,
 				A56B42401F296ACD007A9ADB /* NSDictionary+Extensions.swift in Sources */,
 				A5A968AE1EEACE9D00A509DB /* StonePlatform.swift in Sources */,

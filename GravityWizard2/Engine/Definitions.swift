@@ -215,6 +215,7 @@ enum CollisionCombination {
     
     case enemyCollidesWithBorder
     case enemyCollidesWithGround
+    case enemyCollidesWithEdge
     
     case travelatorCollidesWithLimits
     
@@ -260,6 +261,8 @@ extension UInt32 {
             return .enemyCollidesWithBorder
         case PhysicsCategory.enemy | PhysicsCategory.Ground:
             return .enemyCollidesWithGround
+        case PhysicsCategory.enemy | PhysicsCategory.Edge:
+            return .enemyCollidesWithEdge
             
             // MISC
         case PhysicsCategory.GravityProjectile | PhysicsCategory.Ground:

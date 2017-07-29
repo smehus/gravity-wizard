@@ -49,7 +49,7 @@ fileprivate enum Texture: String, SpriteConfiguration, StringInitable {
     var contactTestBitMask: UInt32 {
         switch self {
         case .smallSandRock, .largeSandRock:
-            return PhysicsCategory.Hero | PhysicsCategory.Ground
+            return PhysicsCategory.Hero | PhysicsCategory.Ground | PhysicsCategory.Edge
         }
     }
     
