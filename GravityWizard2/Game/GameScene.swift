@@ -715,7 +715,7 @@ extension GameScene {
             assertionFailure("Hero collides with enemy: failed to cast to rose")
             return
         }
-        
+        createBloodExplosion(with: rose)
         rose.attacked()
     }
     
