@@ -49,6 +49,10 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel, SceneEdgeDecider {
         return 1
     }
     
+    var totalSceneSize: CGSize {
+        fatalError("Need to override")
+    }
+    
 
     /// Scense
     var roseScene: SKScene!

@@ -90,16 +90,16 @@ fileprivate enum Texture: String, SpriteConfiguration, StringInitable {
 /// to change the texture of projectile to shoot
 final class ProjectileNode: SKNode {
     
-    fileprivate var baseProjectile: SKSpriteNode?
-    fileprivate var timer: TimeInterval = 0
+    private var baseProjectile: SKSpriteNode?
+    private var timer: TimeInterval = 0
     
     /// Direciton to shoot in - retrieved from user data
-    fileprivate var direction: Direction?
+    private var direction: Direction?
 
     /// How close the hero needs to be for the shooters to start shooting
-    fileprivate let HERO_PERIMETER: CGFloat = 1000
+    private let HERO_PERIMETER: CGFloat = 1000
     
-    fileprivate var PROJECTILE_VELOCITY: Double {
+    private var PROJECTILE_VELOCITY: Double {
         let horizontalVelocity: Double = 1500
         guard let dir = direction else {
             return 500
@@ -113,7 +113,7 @@ final class ProjectileNode: SKNode {
         }
     }
     
-    fileprivate func setupNode() {
+    private func setupNode() {
         
         guard
             let texture: Texture = userData?[ .texture ],
@@ -132,7 +132,7 @@ final class ProjectileNode: SKNode {
         baseProjectile?.configure(with: texture)
     }
     
-    fileprivate func shootProjectile() {
+    private func shootProjectile() {
         guard
             let projectile = baseProjectile?.copy() as? SKSpriteNode,
             let _ = projectile.physicsBody
@@ -183,6 +183,26 @@ extension ProjectileNode: GameLoopListener {
         default: break
         }
         
+        clean()
+    }
+    
+    private func clean() {
+        guard let gameScene = scene as? Level4 else { return }
+        
+        for child in children {
+            let childPosition = gameScene.convert(child.position, from: child.parent!)
+            
+            let buffer = child.calculateAccumulatedFrame().size.width * 2
+            
+            if
+                childPosition.y < 0 ||
+                childPosition.x < 0 ||
+                childPosition.y > (gameScene.totalSceneSize.height + buffer) ||
+                childPosition.x > (gameScene.totalSceneSize.width + buffer)
+            {
+                child.removeFromParent()
+            }
+        }
     }
 }
 

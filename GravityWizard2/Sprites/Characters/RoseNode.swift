@@ -16,7 +16,7 @@ fileprivate struct Definitions {
             static let immune = PhysicsCategory.Ground | PhysicsCategory.Rock | PhysicsCategory.GravityProjectile | PhysicsCategory.LevelComplete
         }
         
-        static let collision = PhysicsCategory.Ground | PhysicsCategory.Rock | PhysicsCategory.Edge | PhysicsCategory.destructible | PhysicsCategory.enemy | PhysicsCategory.indesctructibleObstacle 
+        static let collision = PhysicsCategory.Ground | PhysicsCategory.Rock | PhysicsCategory.Edge | PhysicsCategory.destructible | PhysicsCategory.enemy | PhysicsCategory.indesctructibleObstacle | PhysicsCategory.border
     }
 
     struct ActionKeys {

@@ -102,6 +102,17 @@ public func + (left: CGPoint, right: CGPoint) -> CGPoint {
   return CGPoint(x: left.x + right.x, y: left.y + right.y)
 }
 
+
+/// Handles less than opeartor
+public func <(left: CGPoint, right: CGPoint) -> Bool {
+    return (left.x < right.x) && (left.y < right.y)
+}
+
+/// Handles more than opeartor
+public func >(left: CGPoint, right: CGPoint) -> Bool {
+    return (left.x > right.x) && (left.y > right.y)
+}
+
 /**
  * Increments a CGPoint with the value of another.
  */

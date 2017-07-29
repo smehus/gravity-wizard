@@ -14,6 +14,13 @@ final class Level4: GameScene {
         return .four
     }
     
+    override var totalSceneSize: CGSize {
+        guard let background = childNode(withName: "//background") else {
+            return CGSize(width: 0, height: 0)
+        }
+        
+        return CGSize(width: background.frame.size.width, height: background.frame.size.height)
+    }
     
     override var shouldAddScenePhysicsEdge: Bool {
         return false
