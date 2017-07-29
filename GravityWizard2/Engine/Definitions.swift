@@ -8,8 +8,20 @@
 
 import SpriteKit
 
+///
+/// A bunch of stuff
+///
+
 struct Interval {
     static let gravityProjectileLife = 0.8
+}
+
+enum UserDataError: Error {
+    case initFailed
+}
+
+protocol StringInitable {
+    init?(string: String)
 }
 
 enum ActionType {
@@ -173,6 +185,8 @@ struct PhysicsCategory {
     static let indesctructibleObstacle: UInt32 = 0x1 << 18
     
     static let water:               UInt32 = 0x1 << 19
+    
+    static let border:              UInt32 = 0x1 << 20
 }
 
 struct LightingMask {
@@ -198,6 +212,9 @@ enum CollisionCombination {
     case heroCollidesWithEnemy
     case heroCollidesWithObstacle
     case heroCollidesWithWater
+    
+    case enemyCollidesWithBorder
+    case enemyCollidesWithGround
     
     case travelatorCollidesWithLimits
     
@@ -237,6 +254,13 @@ extension UInt32 {
         case PhysicsCategory.arrow | PhysicsCategory.destructible:
             return .arrowCollidesWithDesctructible
             
+            // Enemy - aka boulders
+            
+        case PhysicsCategory.enemy | PhysicsCategory.border:
+            return .enemyCollidesWithBorder
+        case PhysicsCategory.enemy | PhysicsCategory.Ground:
+            return .enemyCollidesWithGround
+            
             // MISC
         case PhysicsCategory.GravityProjectile | PhysicsCategory.Ground:
             return .gravityProjectileHitsGround
@@ -244,6 +268,7 @@ extension UInt32 {
             return .bloodCollidesWithGround
         case PhysicsCategory.travelatorPlatform | PhysicsCategory.travelatorBase:
             return .none
+            
         default: return .none
         }
     }

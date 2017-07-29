@@ -580,8 +580,9 @@ extension GameScene: SKPhysicsContactDelegate {
         }
         
         
-        
-        // Arrow 
+        ///
+        /// Arrow
+        ///
         
         if collision.collisionCombination() == .arrowCollidesWithEdge {
             arrowCollidesWithEdge(with: contact)
@@ -604,12 +605,26 @@ extension GameScene: SKPhysicsContactDelegate {
         }
         
         
+        ///
+        /// Enemy
+        ///
+        
+        if collision.collisionCombination() == .enemyCollidesWithBorder {
+            enemyCollidesWithBorder(with: contact)
+        }
+        
+        if collision.collisionCombination() == .enemyCollidesWithGround {
+            enemyCollidesWithGround(with: contact)
+        }
+        
         // Gravity Projectile
         if collision.collisionCombination() == .gravityProjectileHitsGround {
             gravityProjectileHitGround(with: contact)
         }
         
-        // Hero
+        ///
+        /// Hero
+        ///
         
         if collision.collisionCombination() == .heroCollidesWithLevelComplete {
             heroCollidesWithLevelComplete(with: contact)
@@ -657,7 +672,7 @@ extension GameScene: SKPhysicsContactDelegate {
 // MARK: - Collisions
 extension GameScene {
     
-    fileprivate func heroCollidesWithWater(with contact: SKPhysicsContact) {
+    private func heroCollidesWithWater(with contact: SKPhysicsContact) {
         guard let rose = rose else { return }
         rose.drown()
         let contactPoint = contact.contactPoint
@@ -665,7 +680,7 @@ extension GameScene {
         gameOver()
     }
     
-    fileprivate func heroCollidesWithGravityField(with contact: SKPhysicsContact) {
+    private func heroCollidesWithGravityField(with contact: SKPhysicsContact) {
         let gravity = contact.bodyA.categoryBitMask == PhysicsCategory.GravityProjectile ? contact.bodyA.node : contact.bodyB.node
         guard let field = gravity as? GravityProjectile, field.shouldCollideWithLauncher else { return }
         
@@ -673,7 +688,7 @@ extension GameScene {
         currentProjectile = nil
     }
     
-    fileprivate func roseHitsGround(with contact: SKPhysicsContact) {
+    private func roseHitsGround(with contact: SKPhysicsContact) {
         let node = contact.bodyA.categoryBitMask == PhysicsCategory.Ground ? contact.bodyA.node : contact.bodyB.node
         guard
             let rose = rose, rose.gravityState == .falling,
@@ -685,12 +700,12 @@ extension GameScene {
         rose.hardLanding(with: contactBody, contactPoint: contact.contactPoint, addJoint: addJoint)
     }
     
-    fileprivate func heroCollidesWithLava(with contact: SKPhysicsContact) {
+    private func heroCollidesWithLava(with contact: SKPhysicsContact) {
         rose?.runLavaDeathAnimation()
         gameOver()
     }
     
-    fileprivate func heroCollidesWithEnemy(with contact: SKPhysicsContact) {
+    private func heroCollidesWithEnemy(with contact: SKPhysicsContact) {
         let heroNode = contact.bodyA.categoryBitMask == PhysicsCategory.Hero ? contact.bodyA.node : contact.bodyB.node
         guard let rose = heroNode as? RoseNode else {
             assertionFailure("Hero collides with enemy: failed to cast to rose")
@@ -700,7 +715,7 @@ extension GameScene {
         rose.attacked()
     }
     
-    fileprivate func heroCollidesWithObstacle(with contact: SKPhysicsContact) {
+    private func heroCollidesWithObstacle(with contact: SKPhysicsContact) {
         let heroNode = contact.bodyA.categoryBitMask == PhysicsCategory.Hero ? contact.bodyA.node : contact.bodyB.node
         let obstacle = contact.bodyA.categoryBitMask == PhysicsCategory.indesctructibleObstacle ? contact.bodyA.node : contact.bodyB.node
         guard
@@ -715,12 +730,12 @@ extension GameScene {
         obstacleParent.collision(at: contact.contactPoint)
     }
     
-    fileprivate func rockHitsHero(with contact: SKPhysicsContact) {
+    private func rockHitsHero(with contact: SKPhysicsContact) {
         guard let rose = rose else { return }
         createBloodExplosion(with: rose)
     }
     
-    fileprivate func bloodCollidesWithGround(with contact: SKPhysicsContact) {
+    private func bloodCollidesWithGround(with contact: SKPhysicsContact) {
         let node = contact.bodyA.categoryBitMask == PhysicsCategory.Blood ? contact.bodyA.node : contact.bodyB.node
         
         if let blood = node as? BloodNode {
@@ -728,14 +743,14 @@ extension GameScene {
         }
     }
     // TODO: If second arrow is launched while first arrow is still in air - the first arrow will be removed
-    fileprivate func arrowCollidesWithEdge(with contact: SKPhysicsContact) {
+    private func arrowCollidesWithEdge(with contact: SKPhysicsContact) {
         let node = contact.bodyA.categoryBitMask == PhysicsCategory.arrow ? contact.bodyA.node : contact.bodyB.node
         if let arrow = node {
             arrow.removeFromParent()
         }
     }
     
-    fileprivate func arrowCollidesWithBreakable(with contact: SKPhysicsContact) {
+    private func arrowCollidesWithBreakable(with contact: SKPhysicsContact) {
         if let arrow = currentProjectile {
             explosion(at: arrow.position)
             guard let breakableRocks = breakableRocks else { return }
@@ -744,14 +759,14 @@ extension GameScene {
         }
     }
     
-    fileprivate func arrowCollidesWithGround(with contact: SKPhysicsContact) {
+    private func arrowCollidesWithGround(with contact: SKPhysicsContact) {
         let node = contact.bodyA.categoryBitMask == PhysicsCategory.arrow ? contact.bodyA.node : contact.bodyB.node
         if let arrow = node as? ArrowNode {
             arrow.physicsBody = nil
         }
     }
     
-    fileprivate func arrowCollidesWithEnemy(with contact: SKPhysicsContact) {
+    private func arrowCollidesWithEnemy(with contact: SKPhysicsContact) {
         let enemyNode = contact.bodyA.categoryBitMask == PhysicsCategory.enemy ? contact.bodyA.node : contact.bodyB.node
         let arrowNode = contact.bodyA.categoryBitMask == PhysicsCategory.arrow ? contact.bodyA.node : contact.bodyB.node
         guard let enemy = enemyNode as? Enemy else {
@@ -763,7 +778,7 @@ extension GameScene {
         enemy.hitWithArrow()
     }
     
-    fileprivate func arrowCollidesWithDesctructable(with contact: SKPhysicsContact) {
+    private func arrowCollidesWithDesctructable(with contact: SKPhysicsContact) {
         guard
             let node = contact.bodyA.categoryBitMask == PhysicsCategory.destructible ? contact.bodyA.node : contact.bodyB.node,
             let arrowNode = contact.bodyA.categoryBitMask == PhysicsCategory.arrow ? contact.bodyA.node : contact.bodyB.node,
@@ -780,14 +795,26 @@ extension GameScene {
         destructible.hit()
     }
     
-    fileprivate func gravityProjectileHitGround(with contact: SKPhysicsContact) {
+    private func gravityProjectileHitGround(with contact: SKPhysicsContact) {
         if let projectile = currentProjectile as? GravityProjectile, projectile.isInFlight {
             projectile.createGravityField()
         }
     }
     
-    fileprivate func heroCollidesWithLevelComplete(with contact: SKPhysicsContact) {
+    private func heroCollidesWithLevelComplete(with contact: SKPhysicsContact) {
         levelCompleted()
+    }
+    
+    private func enemyCollidesWithBorder(with contact: SKPhysicsContact) {
+        print("Enemy Collides With Border Body")
+    }
+    
+    private func enemyCollidesWithGround(with contact: SKPhysicsContact) {
+        let enemyNode = contact.bodyA.categoryBitMask == PhysicsCategory.enemy ? contact.bodyA.node : contact.bodyB.node
+        let wait = SKAction.wait(forDuration: 2.0)
+        let remove = SKAction.removeFromParent()
+        
+        enemyNode?.run(SKAction.sequence([ wait, remove ]))
     }
 }
 

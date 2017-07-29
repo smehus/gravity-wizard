@@ -29,7 +29,7 @@ fileprivate enum Texture: String, SpriteConfiguration, StringInitable {
     var texture: SKTexture? {
         switch self {
         case .smallSandRock:
-            return SKTexture(image: #imageLiteral(resourceName: "small-sand-rock"))
+            return SKTexture(image: largeRockVariation)
         case .largeSandRock:
             return SKTexture(image: largeRockVariation)
         }
@@ -49,14 +49,14 @@ fileprivate enum Texture: String, SpriteConfiguration, StringInitable {
     var contactTestBitMask: UInt32 {
         switch self {
         case .smallSandRock, .largeSandRock:
-            return PhysicsCategory.Hero
+            return PhysicsCategory.Hero | PhysicsCategory.Ground
         }
     }
     
     var collisionBitMask: UInt32 {
         switch self {
         case .smallSandRock, .largeSandRock:
-            return PhysicsCategory.Hero
+            return PhysicsCategory.Hero | PhysicsCategory.Ground | PhysicsCategory.enemy
         }
     }
     
@@ -92,7 +92,26 @@ final class ProjectileNode: SKNode {
     
     fileprivate var baseProjectile: SKSpriteNode?
     fileprivate var timer: TimeInterval = 0
+    
+    /// Direciton to shoot in - retrieved from user data
     fileprivate var direction: Direction?
+
+    /// How close the hero needs to be for the shooters to start shooting
+    fileprivate let HERO_PERIMETER: CGFloat = 1000
+    
+    fileprivate var PROJECTILE_VELOCITY: Double {
+        let horizontalVelocity: Double = 1500
+        guard let dir = direction else {
+            return 500
+        }
+        
+        switch dir {
+        case .down:
+            return 0
+        case .up, .left, .right:
+            return horizontalVelocity
+        }
+    }
     
     fileprivate func setupNode() {
         
@@ -125,7 +144,7 @@ final class ProjectileNode: SKNode {
         
         addChild(projectile)
         
-        if let vector = direction?.projectileVector(velocity: 500) {
+        if let vector = direction?.projectileVector(velocity: PROJECTILE_VELOCITY) {
             projectile.physicsBody?.velocity = vector
         }
     }
@@ -156,7 +175,7 @@ extension ProjectileNode: GameLoopListener {
         timer += deltaTime
         
         switch timer {
-        case _ where timer > 3.0 && ((position.x - rosePosition.x) / 1000.0) < 1.0:
+        case _ where timer > 3.0 && ((position.x - rosePosition.x) / HERO_PERIMETER) < 1.0:
             timer = 0
             shootProjectile()
         case _ where timer > 3.0:

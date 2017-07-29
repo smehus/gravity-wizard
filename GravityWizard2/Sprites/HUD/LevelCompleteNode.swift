@@ -11,6 +11,8 @@ import SpriteKit
 
 final class LevelCompleteNode: SKSpriteNode {
     fileprivate func setupPhysicsBody() {
+        physicsBody?.isDynamic = false
+        physicsBody?.affectedByGravity = false
         physicsBody?.categoryBitMask = PhysicsCategory.LevelComplete
         physicsBody?.collisionBitMask = PhysicsCategory.None
         physicsBody?.contactTestBitMask = PhysicsCategory.Hero
