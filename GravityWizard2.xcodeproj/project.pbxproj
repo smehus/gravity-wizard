@@ -556,6 +556,7 @@
 					A5B58EB21E09DC4900ADC865 = {
 						CreatedOnToolsVersion = 8.2;
 						DevelopmentTeam = 4HWQ95CTCF;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -832,7 +833,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mehus.GravityWizard2;
 				PRODUCT_NAME = Rose;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -846,7 +848,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mehus.GravityWizard2;
 				PRODUCT_NAME = Rose;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

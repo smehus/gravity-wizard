@@ -153,7 +153,7 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel, SceneEdgeDecider {
         }
         
         let zoomAction = SKAction.scale(to: 1.0, duration: 2.0)
-        let scaleAction = SKAction.customAction(withDuration: 2.0) { _ in
+        let scaleAction = SKAction.customAction(withDuration: 2.0) { _,_  in
             let playerConstraint = SKConstraint.distance(SKRange(constantValue: 0), to: rose)
             camera.constraints = [playerConstraint, self.cameraEdgeConstraint(with: camera.xScale, cy: camera.yScale)]
         }
