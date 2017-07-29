@@ -39,7 +39,7 @@ class VikingNode: SKSpriteNode {
         bloodPoint.y -= head!.halfHeight()
         
         if let blood = BloodNode.generateBloodNode() {
-            let bleedAction = SKAction.run { [weak self] _ in
+            let bleedAction = SKAction.run { [weak self] in
                 guard let `self` = self else { return }
                 
                 let bloodNode = blood.copy() as! BloodNode

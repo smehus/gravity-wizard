@@ -35,7 +35,7 @@ class Level1: GameScene {
     fileprivate var light: SKNode?
     fileprivate var levelComplete: SKNode?
     
-    override func levelCompleted() {
+    @objc override func levelCompleted() {
         guard let successLevel = LevelCompleteLabel.createLabel(), let camera = camera else { return }
         successLevel.move(toParent: camera)
         successLevel.position = CGPoint.zero
@@ -51,7 +51,7 @@ class Level1: GameScene {
         run(presentScene)
     }
     
-    override func gameOver() {
+    @objc override func gameOver() {
         guard let gameOverLabel = LevelCompleteLabel.createLabel(with: "Game Over"), let camera = camera else { return }
         gameOverLabel.move(toParent: camera)
         gameOverLabel.position = CGPoint.zero

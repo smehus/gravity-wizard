@@ -188,7 +188,7 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel, SceneEdgeDecider {
         camera.position = sceneMidPoint
         
         isRunningStartingAnimation = true
-        runZoomInAction { [weak self] _ in
+        runZoomInAction { [weak self] in
             guard let strongSelf = self else { return }
             
             let playerConstraint = SKConstraint.distance(SKRange(constantValue: 0), to: rose)

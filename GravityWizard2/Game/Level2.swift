@@ -17,6 +17,7 @@ fileprivate struct Constants {
     static let platformVelocityX: CGFloat = 300
 }
 
+@objcMembers
 final class Level2: GameScene {
     
     var currentLevel: Level {
@@ -64,7 +65,7 @@ final class Level2: GameScene {
 }
 
 extension Level2 {
-    override func contactDidBegin(with contact: SKPhysicsContact) {
+    @objc override func contactDidBegin(with contact: SKPhysicsContact) {
         super.contactDidBegin(with: contact)
      
         
@@ -72,7 +73,7 @@ extension Level2 {
 }
 
 extension Level2 {
-    override func levelCompleted() {
+    @objc override func levelCompleted() {
         guard let successLevel = LevelCompleteLabel.createLabel(), let camera = camera else { return }
         successLevel.move(toParent: camera)
         successLevel.position = CGPoint.zero
@@ -89,7 +90,7 @@ extension Level2 {
         run(presentScene)
     }
     
-    override func gameOver() {
+    @objc override func gameOver() {
         guard let gameOverLabel = LevelCompleteLabel.createLabel(with: "Game Over"), let camera = camera else { return }
         gameOverLabel.move(toParent: camera)
         gameOverLabel.position = CGPoint.zero

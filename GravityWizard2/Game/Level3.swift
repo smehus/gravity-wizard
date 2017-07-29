@@ -64,11 +64,11 @@ final class Level3: GameScene {
         updateHeroForSceneWrapping()
     }
     
-    override func contactDidBegin(with contact: SKPhysicsContact) {
+    @objc override func contactDidBegin(with contact: SKPhysicsContact) {
         super.contactDidBegin(with: contact)
     }
     
-    override func levelCompleted() {
+    @objc override func levelCompleted() {
         guard let successLevel = LevelCompleteLabel.createLabel(), let camera = camera else { return }
         successLevel.move(toParent: camera)
         successLevel.position = CGPoint.zero
@@ -85,7 +85,7 @@ final class Level3: GameScene {
         run(presentScene)
     }
     
-    override func gameOver() {
+    @objc override func gameOver() {
         
         guard let gameOverLabel = LevelCompleteLabel.createLabel(with: "Game Over"), let camera = camera else { return }
         gameOverLabel.move(toParent: camera)

@@ -15,24 +15,3 @@ enum UserDataError: Error {
 protocol StringInitable {
     init?(string: String)
 }
-
-struct UserData {
-    
-    private let rawData: NSMutableDictionary
-    
-    init(data: NSMutableDictionary?) throws{
-        guard let userData = data else {
-            throw UserDataError.initFailed
-        }
-        
-        self.rawData = userData
-    }
-    
-    func value<T: StringInitable>(for accessor: UserDataAccessor) -> T? {
-        guard let object = rawData[accessor] as? String else {
-            return nil
-        }
-        
-        return T.init(string: object)
-    }
-}

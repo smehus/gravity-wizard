@@ -97,9 +97,8 @@ final class ProjectileNode: SKNode {
     fileprivate func setupNode() {
         
         guard
-            let data = try? UserData(data: userData),
-            let texture: Texture = data.value(for: .texture),
-            let nodeDirection: Direction = data.value(for: .direction),
+            let texture: Texture = userData?[ .texture ],
+            let nodeDirection: Direction = userData?[ .direction ],
             let spriteTexture = texture.texture
             else {
                 conditionFailure(with: "Failed to create setup node")

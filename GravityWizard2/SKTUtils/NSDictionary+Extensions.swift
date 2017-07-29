@@ -10,9 +10,13 @@ import Foundation
 
 extension NSMutableDictionary {
     
-    subscript(accessor: UserDataAccessor) -> Any? {
+    subscript<T: StringInitable>(accessor: UserDataAccessor) -> T? {
         get {
-            return self[accessor.key]
+            guard let value = self[accessor.key] as? String else {
+                return nil
+            }
+            
+            return  T.init(string: value)
         }
         
         set {

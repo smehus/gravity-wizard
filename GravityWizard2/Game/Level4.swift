@@ -32,7 +32,7 @@ final class Level4: GameScene {
         // add shaders
     }
     
-    override func gameOver() {
+   @objc override func gameOver() {
         
         guard let gameOverLabel = LevelCompleteLabel.createLabel(with: "Game Over"), let camera = camera else { return }
         gameOverLabel.move(toParent: camera)
