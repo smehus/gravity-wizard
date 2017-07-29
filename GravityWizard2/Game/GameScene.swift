@@ -847,7 +847,11 @@ extension GameScene {
     
     private func enemyCollidesWithEdge(with contact: SKPhysicsContact) {
         let enemyNode = contact.bodyA.categoryBitMask == PhysicsCategory.enemy ? contact.bodyA.node : contact.bodyB.node
-        enemyNode?.removeFromParent()
+        
+        let fadeAction = SKAction.fadeAlpha(to: 0.0, duration: 0.5)
+        let remove = SKAction.removeFromParent()
+        
+        enemyNode?.run(SKAction.sequence([fadeAction, remove]))
     }
 }
 
