@@ -41,3 +41,16 @@ extension LavaSection: LifecycleListener {
         setupNodes()
     }
 }
+
+final class GenericLavaCategoryNode: SKSpriteNode {
+    private func setupNode() {
+        physicsBody?.categoryBitMask = PhysicsCategory.Lava
+        physicsBody?.contactTestBitMask = PhysicsCategory.Hero
+    }
+}
+
+extension GenericLavaCategoryNode: LifecycleListener {
+    func didMoveToScene() {
+        setupNode()
+    }
+}
