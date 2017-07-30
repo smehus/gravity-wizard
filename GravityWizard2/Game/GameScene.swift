@@ -93,8 +93,11 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel, SceneEdgeDecider {
     
     override func didMove(to view: SKView) {
         physicsWorld.contactDelegate = self
-        setupNodes()
+        anchorPoint = CGPoint(x: 0, y: 0)
+
+        setupRequiredNodes()
         setupCamera()
+        setupNodes()
         setupHeroContactBorder()
     }
     
@@ -105,10 +108,7 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel, SceneEdgeDecider {
     func didSimulatePhysicsForLevel() { }
     
     func setupNodes() {
-        
-        addChild(cameraNode)
-        camera = cameraNode
-        
+    
         if shouldAddScenePhysicsEdge {
             physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
             physicsBody?.categoryBitMask = PhysicsCategory.Edge
@@ -116,14 +116,26 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel, SceneEdgeDecider {
 
         emitDidMoveToView()
         
-        roseScene = SKScene(fileNamed: "Rose")
-        rose = childNode(withName: "//rose") as? RoseNode
-        setHeroStartingPosition()
         breakableRocks = childNode(withName: "//BreakableRocks") as? BreakableRocksNode
         
         if let node = BloodNode.generateBloodNode() {
             bloodNode = node
         }
+    }
+    
+    private func setupRequiredNodes() {
+        
+        guard let heroScene = SKScene(fileNamed: "Rose"),
+            let hero = childNode(withName: "//rose") as? RoseNode else {
+                fatalError("Faield to setup rose")
+        }
+    
+        addChild(cameraNode)
+        camera = cameraNode
+
+        roseScene = heroScene
+        rose = hero
+        setHeroStartingPosition()
     }
     
     fileprivate func setHeroStartingPosition() {

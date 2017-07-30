@@ -33,21 +33,16 @@ final class Level5: GameScene {
     
     private var maxXPosition: CGFloat {
         let cameraPosition = convert(camera!.position, from: camera!.parent!)
-        return cameraPosition.x + scene!.size.width
+        let returnValue = cameraPosition.x + (scene!.size.width / 2)
+        return returnValue
     }
     
-    
-    private var lastPlatformPosition: CGFloat? {
-        didSet {
-            print("🐭 setting position \(lastPlatformPosition)")
-        }
-    }
+    private var lastPlatformPosition: CGFloat?
     
     // MARK: - Super Functions
     
     override func setupNodes() {
         super.setupNodes()
-        anchorPoint = CGPoint(x: 0, y: 0)
         lastPlatformPosition = 1000
         populatePlatforms()
     }
@@ -74,6 +69,7 @@ final class Level5: GameScene {
         }
         
         while lastPosition < maxXPosition {
+            
             // TODO: Make 300 a random number
             lastPosition += 300
             generatePlatform(at: lastPosition)
