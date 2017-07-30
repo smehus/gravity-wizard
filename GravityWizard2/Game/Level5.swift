@@ -10,6 +10,11 @@ import SpriteKit
 
 final class Level5: GameScene {
     
+    private var maxXPosition: CGFloat {
+        let cameraPosition = convert(camera!.position, from: camera!.parent!)
+        return cameraPosition.x + (scene!.size.width / 2)
+    }
+    
     // MARK: Super Methods
     
     var currentLevel: Level {
@@ -21,7 +26,7 @@ final class Level5: GameScene {
     }
     
     override var yConstraintMultiplier: CGFloat {
-        return 4
+        return 1
     }
     
     override var xConstraintMultiplier: CGFloat {
@@ -30,27 +35,44 @@ final class Level5: GameScene {
     
     override func setupNodes() {
         super.setupNodes()
+        anchorPoint = CGPoint(x: 0, y: 0)
     }
     
     override func update(levelWith currentTime: TimeInterval, delta: TimeInterval) {
         roseCheck()
+        let t = maxXPosition
     }
     
     private func roseCheck() {
         guard let rose = rose else { return }
-        let rosePosition = convert(rose.position, to: rose.parent!)
+        let rosePosition = convert(rose.position, from: rose.parent!)
         
         if rosePosition.y < 0 {
             gameOver()
         }
     }
+    
+    private func populatePlatforms() {
+        
+    }
+    
+    private func generatePlatform(at position: CGPoint) {
+        guard
+            let platformScene = SKScene(fileNamed: "CollapsablePlatform"),
+            let platformNode = platformScene.childNode(withName: "platform") as? SKNode
+        else {
+            conditionFailure(with: "Failed to init collapsable platform")
+            return
+        }
+        
+        platformNode.position = position
+        platformNode.zPosition = 10
+        addChild(platformNode)
+    }
 }
 
 // MARK: - End Level
 
-///
-/// Level 5 End Level
-///
 
 extension Level5 {
     @objc override func levelCompleted() {

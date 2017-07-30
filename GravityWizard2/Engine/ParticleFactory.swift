@@ -22,7 +22,7 @@ class ParticleFactory {
             return
         }
     
-        
+        emitter.advanceSimulationTime(0.2)
         emitter.run(SKAction.removeFromParentAfterDelay(2.0))
         emitter.position = position
         scene.addChild(emitter)

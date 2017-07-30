@@ -146,61 +146,20 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel, SceneEdgeDecider {
         return edgeConstraint
     }
     
-    /// Zoom camera out to full scale
-    func runZoomOutAction() {
-        guard
-            let rose = rose,
-            let camera = camera,
-            !isIpad()
-            else {
-                return
-        }
-        
-        let zoomAction = SKAction.scale(to: 1.0, duration: 2.0)
-        let scaleAction = SKAction.customAction(withDuration: 2.0) { _,_  in
-            let playerConstraint = SKConstraint.distance(SKRange(constantValue: 0), to: rose)
-            camera.constraints = [playerConstraint, self.cameraEdgeConstraint(with: camera.xScale, cy: camera.yScale)]
-        }
-        
-        camera.run(SKAction.group([zoomAction, scaleAction]))
-    }
-    
-    /// Zoom camera in and run a completion block when its donezo
-    func runZoomInAction(with completion: @escaping () -> Void) {
-        completion()
-        // I like it better this way
-        
-//         guard let camera = camera, let rose = rose else { return }
-//        if !isIpad() {
-//            let zoomAction = SKAction.scale(to: 0.5, duration: 3.0)
-//            let scaleAction = SKAction.customAction(withDuration: 3.0) { _ in
-//                camera.constraints = [self.cameraEdgeConstraint(with: camera.xScale, cy: camera.yScale)]
-//            }
-//
-//            let move = SKAction.move(to: convert(rose.position, from: rose.parent!), duration: 3.0)
-//            camera.run(SKAction.group([zoomAction, scaleAction, move]), completion: completion)
-//        
-//        } else {
-//            completion()
-//        }
-    }
-    
     fileprivate func setupCamera() {
-        guard let camera = camera, let rose = rose else { return }
+        guard let camera = camera, let rose = rose else {
+            conditionFailure(with: "Failed to unwrap rose for setupCamera")
+            return
+        }
         camera.xScale = 1.0
         camera.yScale = 1.0
         camera.position = sceneMidPoint
         
-        isRunningStartingAnimation = true
-        runZoomInAction { [weak self] in
-            guard let strongSelf = self else { return }
-            
-            let playerConstraint = SKConstraint.distance(SKRange(constantValue: 0), to: rose)
-            camera.constraints = [playerConstraint, strongSelf.cameraEdgeConstraint(with: camera.xScale, cy: camera.yScale)]
-            
-            self?.isRunningStartingAnimation = false
-            self?.setupHUDElements()
-        }
+        let playerConstraint = SKConstraint.distance(SKRange(constantValue: 0), to: rose)
+        camera.constraints = [playerConstraint, cameraEdgeConstraint(with: camera.xScale, cy: camera.yScale)]
+        
+        isRunningStartingAnimation = false
+        setupHUDElements()
     }
     
     fileprivate func setupHeroContactBorder() {
@@ -871,5 +830,57 @@ extension GameScene {
 extension GameScene {
     func add(joint: SKPhysicsJoint) {
         physicsWorld.add(joint)
+    }
+}
+
+
+
+
+
+
+
+
+
+// MARK: - Unused stuff
+
+extension GameScene {
+    /// Zoom camera out to full scale
+    func runZoomOutAction() {
+        guard
+            let rose = rose,
+            let camera = camera,
+            !isIpad()
+            else {
+                return
+        }
+        
+        let zoomAction = SKAction.scale(to: 1.0, duration: 2.0)
+        let scaleAction = SKAction.customAction(withDuration: 2.0) { _,_  in
+            let playerConstraint = SKConstraint.distance(SKRange(constantValue: 0), to: rose)
+            camera.constraints = [playerConstraint, self.cameraEdgeConstraint(with: camera.xScale, cy: camera.yScale)]
+        }
+        
+        camera.run(SKAction.group([zoomAction, scaleAction]))
+    }
+    
+    
+    /// Zoom camera in and run a completion block when its donezo
+    func runZoomInAction(with completion: @escaping () -> Void) {
+        completion()
+        // I like it better this way
+        
+        guard let camera = camera, let rose = rose else { return }
+        if !isIpad() {
+            let zoomAction = SKAction.scale(to: 0.5, duration: 3.0)
+            let scaleAction = SKAction.customAction(withDuration: 3.0) { (_, _) in
+                camera.constraints = [self.cameraEdgeConstraint(with: camera.xScale, cy: camera.yScale)]
+            }
+            
+            let move = SKAction.move(to: convert(rose.position, from: rose.parent!), duration: 3.0)
+            camera.run(SKAction.group([zoomAction, scaleAction, move]), completion: completion)
+            
+        } else {
+            completion()
+        }
     }
 }
