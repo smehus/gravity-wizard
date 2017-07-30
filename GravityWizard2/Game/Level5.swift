@@ -91,7 +91,7 @@ final class Level5: GameScene {
             return
         }
         
-        let nextPosition = CGPoint(x: x, y: platformScene.size.height/4)
+        let nextPosition = CGPoint(x: x, y: 0)
         platformNode.position = nextPosition
         platformNode.zPosition = 10
         platformNode.move(toParent: self)
