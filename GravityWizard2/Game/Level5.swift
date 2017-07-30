@@ -39,10 +39,17 @@ final class Level5: GameScene {
     
     private var lastPlatformPosition: CGFloat?
     private var isRendering = true
-    
+
     private var platformDistribution: CGFloat {
         let random = Int.random(min: 300, max: Int(scene!.size.width))
         return CGFloat(random)
+    }
+    
+
+    
+    private var lastFieldWave: TimeInterval = 0
+    private var waveFrequency: TimeInterval {
+        return 5.0
     }
     
     // MARK: - Super Functions
@@ -51,13 +58,19 @@ final class Level5: GameScene {
         super.setupNodes()
         lastPlatformPosition = 1000
         populatePlatforms()
-        generateField()
     }
     
     override func update(levelWith currentTime: TimeInterval, delta: TimeInterval) {
         guard isRendering else { return }
         roseCheck()
         populatePlatforms()
+        
+        lastFieldWave += delta
+        print("last \(lastFieldWave)")
+        if lastFieldWave >= waveFrequency {
+            lastFieldWave = 0
+            generateField()
+        }
     }
     
     // MARK: - Private Functions
@@ -101,11 +114,12 @@ final class Level5: GameScene {
     
     private func generateField() {
         let field = Field.linear.generate()
-        field.position = camera!.position
-        field.region = SKRegion(size: CGSize(width: 500, height: 500))
+        field.position = CGPoint(x: maxXPosition, y: camera!.position.y)
+        field.region = SKRegion(size: CGSize(width: 500, height: scene!.size.height))
         addChild(field)
         
-        field.run(SKAction.moveBy(x: -1000, y: 0, duration: 5.0))
+        let move = SKAction.moveBy(x: -scene!.size.width, y: 0, duration: 5.0)
+        field.run(SKAction.sequence([move, SKAction.removeFromParent()]))
     }
 }
 
