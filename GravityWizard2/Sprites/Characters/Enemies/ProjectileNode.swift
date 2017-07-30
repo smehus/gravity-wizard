@@ -175,7 +175,7 @@ extension ProjectileNode: GameLoopListener {
         timer += deltaTime
         
         switch timer {
-        case _ where timer > Double(Int.random(min: 1, max: 4)) && ((position.x - rosePosition.x) / HERO_PERIMETER) < 1.0:
+        case _ where timer > Double(Int.random(min: 1, max: 6)) && ((position.x - rosePosition.x) / HERO_PERIMETER) < 1.0:
             timer = 0
             shootProjectile()
         case _ where timer > 3.0:
