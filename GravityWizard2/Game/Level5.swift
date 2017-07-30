@@ -40,6 +40,11 @@ final class Level5: GameScene {
     private var lastPlatformPosition: CGFloat?
     private var isRendering = true
     
+    private var platformDistribution: CGFloat {
+        let random = Int.random(min: 300, max: Int(scene!.size.width))
+        return CGFloat(random)
+    }
+    
     // MARK: - Super Functions
     
     override func setupNodes() {
@@ -73,9 +78,8 @@ final class Level5: GameScene {
         
         while lastPosition < maxXPosition {
             print("CREATING PLATFORM \(lastPosition) \(maxXPosition)")
-            // TODO: Make 300 a random number
-            lastPosition += 300
             
+            lastPosition += platformDistribution
             generatePlatform(at: lastPosition)
             lastPlatformPosition = lastPosition
         }

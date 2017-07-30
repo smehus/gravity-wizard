@@ -97,6 +97,7 @@ final class CollapsablePlatform: SKNode {
             return nil
         }
         
+        platformNode.setupNode()
         return platformNode
     }
     
@@ -120,18 +121,12 @@ final class CollapsablePlatform: SKNode {
         }
         
         enumerateChildNodes(withName: SpriteConfig.platformTop.name) { (node, stop) in
-            guard let sprite = node as? SKSpriteNode, let _ = sprite.physicsBody else {
-                self.conditionFailure(with: "Failed to unwrap and cast sprite \(String(describing: node.name))")
+            guard let sprite = node as? MovingPlatform else {
+                print("😡 Platofrm top not a moving platform")
                 return
             }
             
-            sprite.configure(with: SpriteConfig.platformTop)
+            sprite.didMoveToScene()
         }
-    }
-}
-
-extension CollapsablePlatform: LifecycleListener {
-    func didMoveToScene() {
-        setupNode()
     }
 }
