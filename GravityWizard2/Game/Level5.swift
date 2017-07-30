@@ -51,6 +51,7 @@ final class Level5: GameScene {
         super.setupNodes()
         lastPlatformPosition = 1000
         populatePlatforms()
+        generateField()
     }
     
     override func update(levelWith currentTime: TimeInterval, delta: TimeInterval) {
@@ -96,6 +97,61 @@ final class Level5: GameScene {
         platformNode.position = nextPosition
         platformNode.zPosition = 10
         platformNode.move(toParent: self)
+    }
+    
+    private func generateField() {
+        let field = Field.linear.generate()
+        field.position = camera!.position
+        field.region = SKRegion(size: CGSize(width: 500, height: 500))
+        addChild(field)
+        
+        field.run(SKAction.moveBy(x: -1000, y: 0, duration: 5.0))
+    }
+}
+
+enum Field {
+    case linear
+    case turbulence
+    case radial
+    case velocity
+    
+    func generate() -> SKFieldNode {
+        switch self {
+        case .linear:
+            return linearField()
+        case .radial:
+            return radialField()
+        case .turbulence:
+            return turbulenceField()
+        case .velocity:
+            return velocityField()
+        }
+    }
+    
+    private func turbulenceField() -> SKFieldNode {
+        let field = SKFieldNode.turbulenceField(withSmoothness: 1.0, animationSpeed: 5)
+        field.strength = 0.3
+        return field
+    }
+    
+    private func radialField() -> SKFieldNode {
+        let field = SKFieldNode.radialGravityField()
+        field.strength = 100.0
+        field.falloff = 1.0
+        field.isEnabled = true
+        return field
+    }
+    
+    private func linearField() -> SKFieldNode {
+        let field = SKFieldNode.linearGravityField(withVector: vector_float3(-1, 0, 0))
+        field.strength = 9.8
+        return field
+    }
+    
+    private func velocityField() -> SKFieldNode {
+        let field = SKFieldNode.velocityField(withVector: vector_float3(-1, 0, 0))
+        field.zPosition = 20
+        return field
     }
 }
 
