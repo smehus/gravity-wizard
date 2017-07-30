@@ -10,12 +10,7 @@ import SpriteKit
 
 final class Level5: GameScene {
     
-    private var maxXPosition: CGFloat {
-        let cameraPosition = convert(camera!.position, from: camera!.parent!)
-        return cameraPosition.x + (scene!.size.width / 2)
-    }
-    
-    // MARK: Super Methods
+    // MARK: Super Properties
     
     var currentLevel: Level {
         return .five
@@ -33,15 +28,36 @@ final class Level5: GameScene {
         return 5
     }
     
+    
+    // MARK: - Private Properties
+    
+    private var maxXPosition: CGFloat {
+        let cameraPosition = convert(camera!.position, from: camera!.parent!)
+        return cameraPosition.x + scene!.size.width
+    }
+    
+    
+    private var lastPlatformPosition: CGFloat? {
+        didSet {
+            print("🐭 setting position \(lastPlatformPosition)")
+        }
+    }
+    
+    // MARK: - Super Functions
+    
     override func setupNodes() {
         super.setupNodes()
         anchorPoint = CGPoint(x: 0, y: 0)
+        lastPlatformPosition = 1000
+        populatePlatforms()
     }
     
     override func update(levelWith currentTime: TimeInterval, delta: TimeInterval) {
         roseCheck()
-        let t = maxXPosition
+        populatePlatforms()
     }
+    
+    // MARK: - Private Functions
     
     private func roseCheck() {
         guard let rose = rose else { return }
@@ -53,21 +69,32 @@ final class Level5: GameScene {
     }
     
     private func populatePlatforms() {
+        guard var lastPosition = lastPlatformPosition, lastPosition < maxXPosition else {
+            return
+        }
+        
+        while lastPosition < maxXPosition {
+            // TODO: Make 300 a random number
+            lastPosition += 300
+            generatePlatform(at: lastPosition)
+            lastPlatformPosition = lastPosition
+        }
         
     }
     
-    private func generatePlatform(at position: CGPoint) {
+    private func generatePlatform(at x: CGFloat) {
         guard
             let platformScene = SKScene(fileNamed: "CollapsablePlatform"),
-            let platformNode = platformScene.childNode(withName: "platform") as? SKNode
+            let platformNode = platformScene.childNode(withName: "platform")
         else {
             conditionFailure(with: "Failed to init collapsable platform")
             return
         }
         
-        platformNode.position = position
+        let nextPosition = CGPoint(x: x, y: platformScene.size.height/4)
+        platformNode.position = nextPosition
         platformNode.zPosition = 10
-        addChild(platformNode)
+        platformNode.move(toParent: self)
     }
 }
 
