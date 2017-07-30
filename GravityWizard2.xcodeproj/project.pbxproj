@@ -17,6 +17,7 @@
 		A56B42401F296ACD007A9ADB /* NSDictionary+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B423F1F296ACD007A9ADB /* NSDictionary+Extensions.swift */; };
 		A56B42421F2A1253007A9ADB /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B42411F2A1253007A9ADB /* Array+Extensions.swift */; };
 		A5783CAA1F2E6A4E00FC010C /* CollapsablePlatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5783CA91F2E6A4E00FC010C /* CollapsablePlatform.swift */; };
+		A5783CAC1F2E8BA400FC010C /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5783CAB1F2E8BA400FC010C /* Field.swift */; };
 		A5840A9C1F11266F00659404 /* SwingingPlatform.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5840A9B1F11266F00659404 /* SwingingPlatform.sks */; };
 		A5855E5D1F112FE100A34344 /* SwingingPlatformNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5855E5C1F112FE100A34344 /* SwingingPlatformNode.swift */; };
 		A59152C81EDC608A00F90D5E /* Assert+SKNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59152C71EDC608A00F90D5E /* Assert+SKNode.swift */; };
@@ -135,6 +136,7 @@
 		A56B423F1F296ACD007A9ADB /* NSDictionary+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDictionary+Extensions.swift"; sourceTree = "<group>"; };
 		A56B42411F2A1253007A9ADB /* Array+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		A5783CA91F2E6A4E00FC010C /* CollapsablePlatform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsablePlatform.swift; sourceTree = "<group>"; };
+		A5783CAB1F2E8BA400FC010C /* Field.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Field.swift; sourceTree = "<group>"; };
 		A5840A9B1F11266F00659404 /* SwingingPlatform.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SwingingPlatform.sks; sourceTree = "<group>"; };
 		A5855E5C1F112FE100A34344 /* SwingingPlatformNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwingingPlatformNode.swift; sourceTree = "<group>"; };
 		A59152C71EDC608A00F90D5E /* Assert+SKNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assert+SKNode.swift"; sourceTree = "<group>"; };
@@ -373,7 +375,7 @@
 			path = Game;
 			sourceTree = "<group>";
 		};
-		A5A968631EEACB8900A509DB /* Protocols */ = {
+		A5A968631EEACB8900A509DB /* Game Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				A5A968641EEACB8900A509DB /* Game.swift */,
@@ -387,8 +389,9 @@
 				A5A9686C1EEACB8900A509DB /* LifecycleListener.swift */,
 				A5A9686D1EEACB8900A509DB /* Obstacle.swift */,
 				A5AB74031F117D40001840D7 /* SpriteConfiguration.swift */,
+				A5783CAB1F2E8BA400FC010C /* Field.swift */,
 			);
-			path = Protocols;
+			path = "Game Helpers";
 			sourceTree = "<group>";
 		};
 		A5A968781EEACDD800A509DB /* Engine */ = {
@@ -531,7 +534,7 @@
 			children = (
 				A5A9687D1EEACE9D00A509DB /* Sprites */,
 				A5A968781EEACDD800A509DB /* Engine */,
-				A5A968631EEACB8900A509DB /* Protocols */,
+				A5A968631EEACB8900A509DB /* Game Helpers */,
 				A5A968571EEAC99C00A509DB /* Game */,
 				A5A968161EEAC80500A509DB /* Scenes */,
 				A5674C291EE81E3D00D29F2B /* Shaders */,
@@ -673,6 +676,7 @@
 				A59FB69C1E0A088A00D1C915 /* SKColor+Extensions.swift in Sources */,
 				A5A968601EEAC99C00A509DB /* Level2.swift in Sources */,
 				A5A968A21EEACE9D00A509DB /* BloodNode.swift in Sources */,
+				A5783CAC1F2E8BA400FC010C /* Field.swift in Sources */,
 				A5A968A11EEACE9D00A509DB /* WizardNode.swift in Sources */,
 				A59FB6A01E0A088A00D1C915 /* SKTTimingFunctions.swift in Sources */,
 				A5A968B11EEACE9D00A509DB /* LevelCompleteLabel.swift in Sources */,
