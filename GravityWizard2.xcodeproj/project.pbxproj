@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		A53CB1CC1F0D9F0B000B9C64 /* WaterSceneNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53CB1CB1F0D9F0B000B9C64 /* WaterSceneNode.swift */; };
+		A549D5CF1F2E02F800470E2D /* Level5.sks in Resources */ = {isa = PBXBuildFile; fileRef = A549D5CE1F2E02F800470E2D /* Level5.sks */; };
+		A549D5D11F2E032600470E2D /* Level5.swift in Sources */ = {isa = PBXBuildFile; fileRef = A549D5D01F2E032600470E2D /* Level5.swift */; };
 		A554178A1F0D0FFC00A2CFE8 /* WaterScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A55417891F0D0FFC00A2CFE8 /* WaterScene.sks */; };
 		A5674C2B1EE81E3D00D29F2B /* wave.fsh in Resources */ = {isa = PBXBuildFile; fileRef = A5674C2A1EE81E3D00D29F2B /* wave.fsh */; };
 		A56B423E1F296114007A9ADB /* ProjectileNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B423D1F296114007A9ADB /* ProjectileNode.swift */; };
@@ -122,6 +124,8 @@
 
 /* Begin PBXFileReference section */
 		A53CB1CB1F0D9F0B000B9C64 /* WaterSceneNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterSceneNode.swift; sourceTree = "<group>"; };
+		A549D5CE1F2E02F800470E2D /* Level5.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level5.sks; sourceTree = "<group>"; };
+		A549D5D01F2E032600470E2D /* Level5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level5.swift; sourceTree = "<group>"; };
 		A55417891F0D0FFC00A2CFE8 /* WaterScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = WaterScene.sks; sourceTree = "<group>"; };
 		A5674C2A1EE81E3D00D29F2B /* wave.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = wave.fsh; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		A56B423D1F296114007A9ADB /* ProjectileNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectileNode.swift; sourceTree = "<group>"; };
@@ -247,6 +251,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A549D5CD1F2E00DD00470E2D /* Level5 */ = {
+			isa = PBXGroup;
+			children = (
+				A549D5CE1F2E02F800470E2D /* Level5.sks */,
+			);
+			path = Level5;
+			sourceTree = "<group>";
+		};
 		A5674C291EE81E3D00D29F2B /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
@@ -351,6 +363,7 @@
 				A5A9685B1EEAC99C00A509DB /* Level2.swift */,
 				A5A9685C1EEAC99C00A509DB /* Level3.swift */,
 				A5A968B71EEACF1500A509DB /* Level4.swift */,
+				A549D5D01F2E032600470E2D /* Level5.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -463,6 +476,7 @@
 		A5A968B91EEACF5D00A509DB /* Levels */ = {
 			isa = PBXGroup;
 			children = (
+				A549D5CD1F2E00DD00470E2D /* Level5 */,
 				A5A968C81EEACFB600A509DB /* Level4 */,
 				A5A968BA1EEACF5D00A509DB /* Level0.sks */,
 				A5A968BB1EEACF5D00A509DB /* Level1.sks */,
@@ -602,6 +616,7 @@
 				A5A9684D1EEAC80500A509DB /* Rose.sks in Resources */,
 				A5A968501EEAC80500A509DB /* SlidingPlatform.sks in Resources */,
 				A5A968471EEAC80500A509DB /* ChainedRotary.sks in Resources */,
+				A549D5CF1F2E02F800470E2D /* Level5.sks in Resources */,
 				A5A968561EEAC80500A509DB /* Wizard.sks in Resources */,
 				A5A9684C1EEAC80500A509DB /* Platform2.sks in Resources */,
 				A5A968C21EEACF5D00A509DB /* Level1.sks in Resources */,
@@ -673,6 +688,7 @@
 				A59FB6961E0A088A00D1C915 /* CGFloat+Extensions.swift in Sources */,
 				A5A968AD1EEACE9D00A509DB /* SlidingPlatform.swift in Sources */,
 				A5A968A61EEACE9D00A509DB /* DestructibleStone.swift in Sources */,
+				A549D5D11F2E032600470E2D /* Level5.swift in Sources */,
 				A59FB69D1E0A088A00D1C915 /* SKNode+Extensions.swift in Sources */,
 				A5A968721EEACB8900A509DB /* GravityStateTracker.swift in Sources */,
 				A5A9687C1EEACDD800A509DB /* ParticleFactory.swift in Sources */,
