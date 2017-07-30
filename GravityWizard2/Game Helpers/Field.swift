@@ -29,7 +29,7 @@ enum Field {
     
     private func turbulenceField() -> SKFieldNode {
         let field = SKFieldNode.turbulenceField(withSmoothness: 1.0, animationSpeed: 5)
-        field.strength = 0.3
+        field.strength = 10.0
         return field
     }
     
@@ -43,7 +43,7 @@ enum Field {
     
     private func linearField() -> SKFieldNode {
         let field = SKFieldNode.linearGravityField(withVector: vector_float3(-1, 0, 0))
-        field.strength = 15.0
+        field.strength = 9.8
         return field
     }
     

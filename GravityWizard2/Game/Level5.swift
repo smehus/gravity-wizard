@@ -44,9 +44,7 @@ final class Level5: GameScene {
         let random = Int.random(min: 300, max: Int(scene!.size.width))
         return CGFloat(random)
     }
-    
-
-    
+ 
     private var lastFieldWave: TimeInterval = 0
     private var waveFrequency: TimeInterval {
         return 5.0
@@ -66,7 +64,11 @@ final class Level5: GameScene {
         populatePlatforms()
         
         lastFieldWave += delta
-        print("last \(lastFieldWave)")
+        
+        ///
+        /// Create gravity waves
+        ///
+        
         if lastFieldWave >= waveFrequency {
             lastFieldWave = 0
             generateField()
@@ -97,7 +99,6 @@ final class Level5: GameScene {
             generatePlatform(at: lastPosition)
             lastPlatformPosition = lastPosition
         }
-        
     }
     
     private func generatePlatform(at x: CGFloat) {
@@ -113,10 +114,18 @@ final class Level5: GameScene {
     }
     
     private func generateField() {
-        let field = Field.linear.generate()
+        let field = Field.turbulence.generate()
         field.position = CGPoint(x: maxXPosition, y: camera!.position.y)
         field.region = SKRegion(size: CGSize(width: 500, height: scene!.size.height))
         addChild(field)
+        
+        let placeholder = SKShapeNode(circleOfRadius: 100)
+        placeholder.position = field.position
+        placeholder.fillColor = .red
+        
+        let constraint = SKConstraint.distance(SKRange(constantValue: 0), to: field)
+        placeholder.constraints = [constraint]
+        addChild(placeholder)
         
         let move = SKAction.moveBy(x: -scene!.size.width, y: 0, duration: 5.0)
         field.run(SKAction.sequence([move, SKAction.removeFromParent()]))
@@ -124,7 +133,6 @@ final class Level5: GameScene {
 }
 
 // MARK: - End Level
-
 
 extension Level5 {
     @objc override func levelCompleted() {
