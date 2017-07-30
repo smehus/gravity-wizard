@@ -10,6 +10,7 @@
 		A53CB1CC1F0D9F0B000B9C64 /* WaterSceneNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53CB1CB1F0D9F0B000B9C64 /* WaterSceneNode.swift */; };
 		A549D5CF1F2E02F800470E2D /* Level5.sks in Resources */ = {isa = PBXBuildFile; fileRef = A549D5CE1F2E02F800470E2D /* Level5.sks */; };
 		A549D5D11F2E032600470E2D /* Level5.swift in Sources */ = {isa = PBXBuildFile; fileRef = A549D5D01F2E032600470E2D /* Level5.swift */; };
+		A549D5D31F2E064E00470E2D /* CollapsablePlatform.sks in Resources */ = {isa = PBXBuildFile; fileRef = A549D5D21F2E064E00470E2D /* CollapsablePlatform.sks */; };
 		A554178A1F0D0FFC00A2CFE8 /* WaterScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A55417891F0D0FFC00A2CFE8 /* WaterScene.sks */; };
 		A5674C2B1EE81E3D00D29F2B /* wave.fsh in Resources */ = {isa = PBXBuildFile; fileRef = A5674C2A1EE81E3D00D29F2B /* wave.fsh */; };
 		A56B423E1F296114007A9ADB /* ProjectileNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B423D1F296114007A9ADB /* ProjectileNode.swift */; };
@@ -126,6 +127,7 @@
 		A53CB1CB1F0D9F0B000B9C64 /* WaterSceneNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterSceneNode.swift; sourceTree = "<group>"; };
 		A549D5CE1F2E02F800470E2D /* Level5.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level5.sks; sourceTree = "<group>"; };
 		A549D5D01F2E032600470E2D /* Level5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level5.swift; sourceTree = "<group>"; };
+		A549D5D21F2E064E00470E2D /* CollapsablePlatform.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = CollapsablePlatform.sks; sourceTree = "<group>"; };
 		A55417891F0D0FFC00A2CFE8 /* WaterScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = WaterScene.sks; sourceTree = "<group>"; };
 		A5674C2A1EE81E3D00D29F2B /* wave.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = wave.fsh; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.glsl; };
 		A56B423D1F296114007A9ADB /* ProjectileNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectileNode.swift; sourceTree = "<group>"; };
@@ -350,6 +352,7 @@
 				A5A968381EEAC80500A509DB /* Wizard.sks */,
 				A55417891F0D0FFC00A2CFE8 /* WaterScene.sks */,
 				A5840A9B1F11266F00659404 /* SwingingPlatform.sks */,
+				A549D5D21F2E064E00470E2D /* CollapsablePlatform.sks */,
 			);
 			path = Sprites;
 			sourceTree = "<group>";
@@ -608,6 +611,7 @@
 				A5A968511EEAC80500A509DB /* Snake.sks in Resources */,
 				A5A9683A1EEAC80500A509DB /* WeaponSelector.sks in Resources */,
 				A5A968521EEAC80500A509DB /* StonePlatform.sks in Resources */,
+				A549D5D31F2E064E00470E2D /* CollapsablePlatform.sks in Resources */,
 				A554178A1F0D0FFC00A2CFE8 /* WaterScene.sks in Resources */,
 				A5A968421EEAC80500A509DB /* GravityProjectileTail.sks in Resources */,
 				A5A968C51EEACF5D00A509DB /* ForegroundLayer3.sks in Resources */,

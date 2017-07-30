@@ -31,6 +31,19 @@ final class Level5: GameScene {
     override func setupNodes() {
         super.setupNodes()
     }
+    
+    override func update(levelWith currentTime: TimeInterval, delta: TimeInterval) {
+        roseCheck()
+    }
+    
+    private func roseCheck() {
+        guard let rose = rose else { return }
+        let rosePosition = convert(rose.position, to: rose.parent!)
+        
+        if rosePosition.y < 0 {
+            gameOver()
+        }
+    }
 }
 
 // MARK: - End Level
