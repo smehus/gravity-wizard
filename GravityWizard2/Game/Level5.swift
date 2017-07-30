@@ -25,7 +25,7 @@ final class Level5: GameScene {
     }
     
     override var xConstraintMultiplier: CGFloat {
-        return 5
+        return 40
     }
     
     
@@ -38,6 +38,7 @@ final class Level5: GameScene {
     }
     
     private var lastPlatformPosition: CGFloat?
+    private var isRendering = true
     
     // MARK: - Super Functions
     
@@ -48,6 +49,7 @@ final class Level5: GameScene {
     }
     
     override func update(levelWith currentTime: TimeInterval, delta: TimeInterval) {
+        guard isRendering else { return }
         roseCheck()
         populatePlatforms()
     }
@@ -60,6 +62,7 @@ final class Level5: GameScene {
         
         if rosePosition.y < 0 {
             gameOver()
+            isRendering = false
         }
     }
     
@@ -69,9 +72,10 @@ final class Level5: GameScene {
         }
         
         while lastPosition < maxXPosition {
-            
+            print("CREATING PLATFORM \(lastPosition) \(maxXPosition)")
             // TODO: Make 300 a random number
             lastPosition += 300
+            
             generatePlatform(at: lastPosition)
             lastPlatformPosition = lastPosition
         }
