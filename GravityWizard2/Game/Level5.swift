@@ -83,14 +83,11 @@ final class Level5: GameScene {
     }
     
     private func generatePlatform(at x: CGFloat) {
-        guard
-            let platformScene = SKScene(fileNamed: "CollapsablePlatform"),
-            let platformNode = platformScene.childNode(withName: "platform")
-        else {
+        guard let platformNode = CollapsablePlatform.generate() else {
             conditionFailure(with: "Failed to init collapsable platform")
             return
         }
-        
+
         let nextPosition = CGPoint(x: x, y: 0)
         platformNode.position = nextPosition
         platformNode.zPosition = 10

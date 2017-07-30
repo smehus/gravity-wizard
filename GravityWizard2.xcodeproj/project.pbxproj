@@ -16,6 +16,7 @@
 		A56B423E1F296114007A9ADB /* ProjectileNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B423D1F296114007A9ADB /* ProjectileNode.swift */; };
 		A56B42401F296ACD007A9ADB /* NSDictionary+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B423F1F296ACD007A9ADB /* NSDictionary+Extensions.swift */; };
 		A56B42421F2A1253007A9ADB /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B42411F2A1253007A9ADB /* Array+Extensions.swift */; };
+		A5783CAA1F2E6A4E00FC010C /* CollapsablePlatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5783CA91F2E6A4E00FC010C /* CollapsablePlatform.swift */; };
 		A5840A9C1F11266F00659404 /* SwingingPlatform.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5840A9B1F11266F00659404 /* SwingingPlatform.sks */; };
 		A5855E5D1F112FE100A34344 /* SwingingPlatformNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5855E5C1F112FE100A34344 /* SwingingPlatformNode.swift */; };
 		A59152C81EDC608A00F90D5E /* Assert+SKNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59152C71EDC608A00F90D5E /* Assert+SKNode.swift */; };
@@ -133,6 +134,7 @@
 		A56B423D1F296114007A9ADB /* ProjectileNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectileNode.swift; sourceTree = "<group>"; };
 		A56B423F1F296ACD007A9ADB /* NSDictionary+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDictionary+Extensions.swift"; sourceTree = "<group>"; };
 		A56B42411F2A1253007A9ADB /* Array+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
+		A5783CA91F2E6A4E00FC010C /* CollapsablePlatform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsablePlatform.swift; sourceTree = "<group>"; };
 		A5840A9B1F11266F00659404 /* SwingingPlatform.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SwingingPlatform.sks; sourceTree = "<group>"; };
 		A5855E5C1F112FE100A34344 /* SwingingPlatformNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwingingPlatformNode.swift; sourceTree = "<group>"; };
 		A59152C71EDC608A00F90D5E /* Assert+SKNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assert+SKNode.swift"; sourceTree = "<group>"; };
@@ -452,6 +454,7 @@
 				A5855E5C1F112FE100A34344 /* SwingingPlatformNode.swift */,
 				A5ACBA691F2D014700CB83E4 /* BorderNode.swift */,
 				A5ACBA6B1F2D1A9000CB83E4 /* EdgeNode.swift */,
+				A5783CA91F2E6A4E00FC010C /* CollapsablePlatform.swift */,
 			);
 			path = Environment;
 			sourceTree = "<group>";
@@ -726,6 +729,7 @@
 				A5AB74041F117D40001840D7 /* SpriteConfiguration.swift in Sources */,
 				A5A968761EEACB8900A509DB /* LifecycleListener.swift in Sources */,
 				A5A968731EEACB8900A509DB /* HeroBehaviorProtocols.swift in Sources */,
+				A5783CAA1F2E6A4E00FC010C /* CollapsablePlatform.swift in Sources */,
 				A59FB6A11E0A088A00D1C915 /* Vector3.swift in Sources */,
 				A5B58EB71E09DC4900ADC865 /* AppDelegate.swift in Sources */,
 			);

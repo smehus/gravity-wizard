@@ -159,7 +159,5 @@ extension WeaponSelector: LifecycleListener {
         
         arrowButton = arrow
         gravityButton = gravity
-        
-        selectedGravity()
     }
 }
