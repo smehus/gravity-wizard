@@ -39,6 +39,8 @@ final class Level5: GameScene {
     
     private var lastPlatformPosition: CGFloat?
     private var isRendering = true
+    
+    private var sandStorms: [(SKFieldNode, SKEmitterNode)] = []
 
     private var platformDistribution: CGFloat {
         let random = Int.random(min: 300, max: Int(scene!.size.width))
@@ -47,7 +49,7 @@ final class Level5: GameScene {
  
     private var lastFieldWave: TimeInterval = 0
     private var waveFrequency: TimeInterval {
-        return 5.0
+        return Double(Int.random(min: 6, max: 10))
     }
     
     // MARK: - Super Functions
@@ -56,6 +58,7 @@ final class Level5: GameScene {
         super.setupNodes()
         lastPlatformPosition = 1000
         populatePlatforms()
+        generateField()
     }
     
     override func update(levelWith currentTime: TimeInterval, delta: TimeInterval) {
@@ -93,8 +96,6 @@ final class Level5: GameScene {
         }
         
         while lastPosition < maxXPosition {
-            print("CREATING PLATFORM \(lastPosition) \(maxXPosition)")
-            
             lastPosition += platformDistribution
             generatePlatform(at: lastPosition)
             lastPlatformPosition = lastPosition
@@ -114,21 +115,32 @@ final class Level5: GameScene {
     }
     
     private func generateField() {
-        let field = Field.turbulence.generate()
+        let fieldHeight: CGFloat = scene!.size.height / 2
+        let fieldWidth: CGFloat = 500
+        
+        let field = Field.linear.generate()
+        //TODO: Y position of camera is off at first - similar to how the x pos was off before
+        
+        print("🎒 cam pos: \(camera!.position.y)")
         field.position = CGPoint(x: maxXPosition, y: camera!.position.y)
-        field.region = SKRegion(size: CGSize(width: 500, height: scene!.size.height))
+        field.region = SKRegion(size: CGSize(width: fieldWidth, height: fieldHeight))
         addChild(field)
         
-        let placeholder = SKShapeNode(circleOfRadius: 100)
-        placeholder.position = field.position
-        placeholder.fillColor = .red
-        
+        let stormParticle = particleFactory.sandStorm(width: fieldWidth, height: fieldHeight)
         let constraint = SKConstraint.distance(SKRange(constantValue: 0), to: field)
-        placeholder.constraints = [constraint]
-        addChild(placeholder)
+        stormParticle.constraints = [constraint]
+        stormParticle.targetNode = self
+        addChild(stormParticle)
         
-        let move = SKAction.moveBy(x: -scene!.size.width, y: 0, duration: 5.0)
-        field.run(SKAction.sequence([move, SKAction.removeFromParent()]))
+        let removal = SKAction.run {
+            field.removeFromParent()
+            stormParticle.removeFromParent()
+        }
+        
+        let move = SKAction.moveBy(x: -(scene!.size.width * 2), y: 0, duration: 10.0)
+        field.run(SKAction.sequence([move, removal]))
+        
+//        sandStorms.append((field, stormParticle))
     }
 }
 

@@ -43,7 +43,7 @@ enum Field {
     
     private func linearField() -> SKFieldNode {
         let field = SKFieldNode.linearGravityField(withVector: vector_float3(-1, 0, 0))
-        field.strength = 9.8
+        field.strength = 15.0
         return field
     }
     

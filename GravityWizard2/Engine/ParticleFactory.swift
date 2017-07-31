@@ -10,15 +10,25 @@ import SpriteKit
 
 class ParticleFactory {
     
-    private struct Names {
-        static let waterSplash = "WaterSplash"
+    private enum Particle {
+        case waterSplash
+        case sandStorm
+        
+        var filename: String {
+            switch self {
+            case .waterSplash:
+                return "WaterSplash"
+            case .sandStorm:
+                return "SandStorm"
+            }
+        }
     }
     
     static let sharedFactory = ParticleFactory()
     
     func waterSplash(scene: SKScene, position: CGPoint) {
-        guard let emitter = SKEmitterNode(fileNamed: Names.waterSplash) else {
-            assertionFailure("Failed to find file name \(Names.waterSplash)")
+        guard let emitter = SKEmitterNode(fileNamed: Particle.waterSplash.filename) else {
+            assertionFailure("Failed to find file name \(Particle.waterSplash)")
             return
         }
     
@@ -26,6 +36,15 @@ class ParticleFactory {
         emitter.run(SKAction.removeFromParentAfterDelay(2.0))
         emitter.position = position
         scene.addChild(emitter)
+    }
+    
+    func sandStorm(width: CGFloat, height: CGFloat) -> SKEmitterNode {
+        guard let emitter = SKEmitterNode(fileNamed: Particle.sandStorm.filename) else {
+            fatalError("Failed to create \(Particle.sandStorm)")
+        }
+        
+        emitter.particlePositionRange = CGVector(dx: width, dy: height * 2)
+        return emitter
     }
     
     func explosion(intensity: CGFloat) -> SKEmitterNode {

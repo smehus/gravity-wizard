@@ -18,6 +18,7 @@
 		A56B42421F2A1253007A9ADB /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B42411F2A1253007A9ADB /* Array+Extensions.swift */; };
 		A5783CAA1F2E6A4E00FC010C /* CollapsablePlatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5783CA91F2E6A4E00FC010C /* CollapsablePlatform.swift */; };
 		A5783CAC1F2E8BA400FC010C /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5783CAB1F2E8BA400FC010C /* Field.swift */; };
+		A5783CAE1F2EA30600FC010C /* SandStorm.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5783CAD1F2EA30600FC010C /* SandStorm.sks */; };
 		A5840A9C1F11266F00659404 /* SwingingPlatform.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5840A9B1F11266F00659404 /* SwingingPlatform.sks */; };
 		A5855E5D1F112FE100A34344 /* SwingingPlatformNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5855E5C1F112FE100A34344 /* SwingingPlatformNode.swift */; };
 		A59152C81EDC608A00F90D5E /* Assert+SKNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59152C71EDC608A00F90D5E /* Assert+SKNode.swift */; };
@@ -137,6 +138,7 @@
 		A56B42411F2A1253007A9ADB /* Array+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		A5783CA91F2E6A4E00FC010C /* CollapsablePlatform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsablePlatform.swift; sourceTree = "<group>"; };
 		A5783CAB1F2E8BA400FC010C /* Field.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Field.swift; sourceTree = "<group>"; };
+		A5783CAD1F2EA30600FC010C /* SandStorm.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SandStorm.sks; sourceTree = "<group>"; };
 		A5840A9B1F11266F00659404 /* SwingingPlatform.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SwingingPlatform.sks; sourceTree = "<group>"; };
 		A5855E5C1F112FE100A34344 /* SwingingPlatformNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwingingPlatformNode.swift; sourceTree = "<group>"; };
 		A59152C71EDC608A00F90D5E /* Assert+SKNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assert+SKNode.swift"; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 		A5A968211EEAC80500A509DB /* Particles */ = {
 			isa = PBXGroup;
 			children = (
+				A5783CAD1F2EA30600FC010C /* SandStorm.sks */,
 				A5A968221EEAC80500A509DB /* Blood.sks */,
 				A5A968231EEAC80500A509DB /* GravityProjectileTail.sks */,
 				A5A968241EEAC80500A509DB /* LavaParticle.sks */,
@@ -615,6 +618,7 @@
 				A5BE41391F276AFA0052E56A /* WaterSplash.sks in Resources */,
 				A5A9684B1EEAC80500A509DB /* MossyWall.sks in Resources */,
 				A5A968511EEAC80500A509DB /* Snake.sks in Resources */,
+				A5783CAE1F2EA30600FC010C /* SandStorm.sks in Resources */,
 				A5A9683A1EEAC80500A509DB /* WeaponSelector.sks in Resources */,
 				A5A968521EEAC80500A509DB /* StonePlatform.sks in Resources */,
 				A549D5D31F2E064E00470E2D /* CollapsablePlatform.sks in Resources */,
