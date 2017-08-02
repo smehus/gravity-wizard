@@ -25,9 +25,17 @@ final class Level5: GameScene {
     }
     
     override var xConstraintMultiplier: CGFloat {
-        return 40
+        return 5
     }
     
+    override var totalSceneSize: CGSize {
+        guard let scene = scene else { return CGSize.zero }
+        let halfScene = scene.size.width / 2
+        // xConstraintMultiplier is the multipier for half scene segments - specifically for constraints.
+        // Kinda weird but whatever
+        let totalWidth = (halfScene * xConstraintMultiplier) + halfScene
+        return CGSize(width: totalWidth, height: scene.size.height)
+    }
     
     // MARK: - Private Properties
     
@@ -39,8 +47,7 @@ final class Level5: GameScene {
     
     private var lastPlatformPosition: CGFloat?
     private var isRendering = true
-    
-    private var sandStorms: [(SKFieldNode, SKEmitterNode)] = []
+    private var finalPlatformPlaced = false
 
     private var platformDistribution: CGFloat {
         let random = Int.random(min: 300, max: Int(scene!.size.width))
@@ -95,10 +102,14 @@ final class Level5: GameScene {
             return
         }
         
-        while lastPosition < maxXPosition {
+        while lastPosition < maxXPosition || maxXPosition < (totalSceneSize.width - (scene!.size.width / 2)) {
             lastPosition += platformDistribution
             generatePlatform(at: lastPosition)
             lastPlatformPosition = lastPosition
+        }
+        
+        if maxXPosition >= (totalSceneSize.width - (scene!.size.width / 2)) {
+            createFinalPlatform()
         }
     }
     
@@ -115,6 +126,7 @@ final class Level5: GameScene {
     }
     
     private func generateField() {
+        return
         let fieldHeight: CGFloat = scene!.size.height / 2
         let fieldWidth: CGFloat = 500
         
@@ -139,8 +151,29 @@ final class Level5: GameScene {
         
         let move = SKAction.moveBy(x: -(scene!.size.width * 2), y: 0, duration: 10.0)
         field.run(SKAction.sequence([move, removal]))
+
+    }
+    
+    private func createFinalPlatform() {
+        guard !finalPlatformPlaced else { return }
+        finalPlatformPlaced = true
         
-//        sandStorms.append((field, stormParticle))
+        let platformTexture = SKTexture(image: #imageLiteral(resourceName: "sand-platform"))
+        let platform = SKSpriteNode(texture: platformTexture, size: platformTexture.size())
+        platform.physicsBody = SKPhysicsBody(texture: platformTexture, size: platformTexture.size())
+        platform.physicsBody?.isDynamic = false
+        platform.physicsBody?.categoryBitMask = PhysicsCategory.Ground
+        platform.physicsBody?.collisionBitMask = PhysicsCategory.Hero
+        platform.physicsBody?.contactTestBitMask = PhysicsCategory.Hero
+        platform.position = CGPoint(x: (totalSceneSize.width - platformTexture.size().width), y: platformTexture.size().height / 2)
+        platform.zPosition = 10
+        
+        let door = LevelCompleteNode.instantiate()
+        door.position = CGPoint(x: 0, y: 0)
+        door.zPosition = 20
+        platform.addChild(door)
+        
+        addChild(platform)
     }
 }
 

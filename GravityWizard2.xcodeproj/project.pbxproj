@@ -342,6 +342,7 @@
 				A5A968271EEAC80500A509DB /* BreakableStones1.sks */,
 				A5A968281EEAC80500A509DB /* BreakableStones2.sks */,
 				A5A968291EEAC80500A509DB /* ChainedRotary.sks */,
+				A549D5D21F2E064E00470E2D /* CollapsablePlatform.sks */,
 				A5A9682A1EEAC80500A509DB /* Floor.sks */,
 				A5A9682B1EEAC80500A509DB /* GravityProjectile.sks */,
 				A5A9682C1EEAC80500A509DB /* LavaSection.sks */,
@@ -353,13 +354,12 @@
 				A5A968321EEAC80500A509DB /* SlidingPlatform.sks */,
 				A5A968331EEAC80500A509DB /* Snake.sks */,
 				A5A968341EEAC80500A509DB /* StonePlatform.sks */,
+				A5840A9B1F11266F00659404 /* SwingingPlatform.sks */,
 				A5A968351EEAC80500A509DB /* VerticalRotarySlider.sks */,
 				A5A968361EEAC80500A509DB /* VerticalSlidingPlatform.sks */,
 				A5A968371EEAC80500A509DB /* Viking.sks */,
-				A5A968381EEAC80500A509DB /* Wizard.sks */,
 				A55417891F0D0FFC00A2CFE8 /* WaterScene.sks */,
-				A5840A9B1F11266F00659404 /* SwingingPlatform.sks */,
-				A549D5D21F2E064E00470E2D /* CollapsablePlatform.sks */,
+				A5A968381EEAC80500A509DB /* Wizard.sks */,
 			);
 			path = Sprites;
 			sourceTree = "<group>";
