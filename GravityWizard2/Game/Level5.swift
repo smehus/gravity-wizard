@@ -25,7 +25,7 @@ final class Level5: GameScene {
     }
     
     override var xConstraintMultiplier: CGFloat {
-        return 5
+        return 20
     }
     
     override var totalSceneSize: CGSize {
@@ -128,7 +128,6 @@ final class Level5: GameScene {
     }
     
     private func generateField() {
-        return
         let fieldHeight: CGFloat = scene!.size.height / 2
         let fieldWidth: CGFloat = 500
         
@@ -141,7 +140,8 @@ final class Level5: GameScene {
         addChild(field)
         
         let stormParticle = particleFactory.sandStorm(width: fieldWidth, height: fieldHeight)
-        let constraint = SKConstraint.distance(SKRange(constantValue: 0), to: field)
+        
+        let constraint = SKConstraint.distance(SKRange(constantValue: 0), to: CGPoint(x: -(fieldWidth / 2), y: 0), in: field)
         stormParticle.constraints = [constraint]
         stormParticle.targetNode = self
         addChild(stormParticle)
