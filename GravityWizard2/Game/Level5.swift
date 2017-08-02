@@ -102,12 +102,13 @@ final class Level5: GameScene {
             return
         }
         
-        if maxXPosition >= (totalSceneSize.width - (scene!.size.width / 2)) && !finalPlatformPlaced {
+        if maxXPosition >= (totalSceneSize.width - (scene!.size.width / 2))  {
             createFinalPlatform()
             return
         }
         
-        while lastPosition < maxXPosition && maxXPosition < (totalSceneSize.width - (scene!.size.width / 2)) {
+        while lastPosition < maxXPosition && maxXPosition < (totalSceneSize.width - scene!.size.width) {
+            print("LAST POS: \(lastPosition) MAXXPOS \(maxXPosition) TOTALSCENW DITH \(totalSceneSize.width) SCEN WIDTH \(scene!.size.width)")
             lastPosition += platformDistribution
             generatePlatform(at: lastPosition)
             lastPlatformPosition = lastPosition
@@ -159,6 +160,7 @@ final class Level5: GameScene {
         guard !finalPlatformPlaced else { return }
         finalPlatformPlaced = true
         
+        print("🐟 Creating Final Platform")
         let platformTexture = SKTexture(image: #imageLiteral(resourceName: "sand-platform"))
         let platform = SKSpriteNode(texture: platformTexture, size: platformTexture.size())
         platform.physicsBody = SKPhysicsBody(texture: platformTexture, size: platformTexture.size())
@@ -166,11 +168,11 @@ final class Level5: GameScene {
         platform.physicsBody?.categoryBitMask = PhysicsCategory.Ground
         platform.physicsBody?.collisionBitMask = PhysicsCategory.Hero
         platform.physicsBody?.contactTestBitMask = PhysicsCategory.Hero
-        platform.position = CGPoint(x: (totalSceneSize.width - platformTexture.size().width), y: platformTexture.size().height / 2)
+        platform.position = CGPoint(x: (totalSceneSize.width - (platformTexture.size().width * 2)), y: platformTexture.size().height / 2)
         platform.zPosition = 10
         
         let door = LevelCompleteNode.instantiate()
-        door.position = CGPoint(x: 0, y: 0)
+        door.position = CGPoint(x: 0, y: (platformTexture.size().height / 2) + (door.texture!.size().height / 2))
         door.zPosition = 20
         platform.addChild(door)
         
