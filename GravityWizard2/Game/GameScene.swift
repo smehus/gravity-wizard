@@ -91,6 +91,12 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel, SceneEdgeDecider {
     
     var trajectoryNode: SKShapeNode?
     
+    ///
+    /// Observers
+    ///
+    
+    var jumpCountObserver: NSKeyValueObservation?
+    
     override func didMove(to view: SKView) {
         physicsWorld.contactDelegate = self
         anchorPoint = CGPoint(x: 0, y: 0)
@@ -133,8 +139,14 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel, SceneEdgeDecider {
         addChild(cameraNode)
         camera = cameraNode
 
+
+        
         roseScene = heroScene
         rose = hero
+        jumpCountObserver = rose?.observe(\.jumpCount) { (rose, change) in
+            print("🐇 Jump Count Changed \(rose.jumpCount)")
+        }
+        
         setHeroStartingPosition()
     }
     

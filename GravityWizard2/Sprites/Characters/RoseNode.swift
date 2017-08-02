@@ -99,14 +99,14 @@ fileprivate struct GroundJoint {
     }
 }
 
-final class RoseNode: SKSpriteNode, GravityStateTracker {
+@objcMembers final class RoseNode: SKSpriteNode, GravityStateTracker {
     
     struct Constants {
         static let MAX_JUMP_COUNT = 10
     }
     
     var isGrounded = true
-    var jumpCount = 0
+    dynamic var jumpCount = Constants.MAX_JUMP_COUNT
     var previousVelocity: CGVector?
     var startingPosition: CGPoint?
     var currentHealth: Health = .full {
@@ -142,8 +142,8 @@ final class RoseNode: SKSpriteNode, GravityStateTracker {
             groundJoint.joint = nil
         }
         
-        guard jumpCount <= Constants.MAX_JUMP_COUNT else { return }
-        jumpCount += 1
+        guard jumpCount != 0 else { return }
+        jumpCount -= 1
         physicsBody?.velocity = vector
     }
     
@@ -153,7 +153,7 @@ final class RoseNode: SKSpriteNode, GravityStateTracker {
         else { return }
         
         isGrounded = true
-        jumpCount = 0
+        jumpCount = Constants.MAX_JUMP_COUNT
         gravityState = .landing
         physicsBody?.velocity = CGVector.zero
         
