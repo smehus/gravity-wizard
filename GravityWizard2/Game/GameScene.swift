@@ -97,6 +97,13 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel, SceneEdgeDecider {
     
     var jumpCountObserver: NSKeyValueObservation?
     
+    
+    ///
+    /// HUD
+    ///
+    
+    private var jumpCountLabel: SKLabelNode?
+    
     override func didMove(to view: SKView) {
         physicsWorld.contactDelegate = self
         anchorPoint = CGPoint(x: 0, y: 0)
@@ -144,7 +151,7 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel, SceneEdgeDecider {
         roseScene = heroScene
         rose = hero
         jumpCountObserver = rose?.observe(\.jumpCount) { (rose, change) in
-            print("🐇 Jump Count Changed \(rose.jumpCount)")
+            self.jumpCountLabel?.text = "\(rose.jumpCount)"
         }
         
         setHeroStartingPosition()
@@ -208,7 +215,7 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel, SceneEdgeDecider {
     
     fileprivate func setupHUDElements() {
         setupWeaponSelector()
-//        setupRewindButton()
+        setupJumpCountLabel()
     }
     
     fileprivate func setupWeaponSelector() {
@@ -228,6 +235,18 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel, SceneEdgeDecider {
         selector.move(toParent: camera)
         let fadeAction = SKAction.fadeIn(withDuration: 0.5)
         selector.run(fadeAction)
+    }
+    
+    private func setupJumpCountLabel() {
+        guard let camera = camera, let camSize = cameraSize else { return }
+        let label = SKLabelNode(text: "\(rose?.jumpCount ?? 0)")
+        label.fontSize = 100
+        
+        let point = CGPoint(x: ((camSize.width / 2) - label.frame.maxX), y: -((camSize.height / 2) - label.frame.maxY))
+        label.position = point
+        label.zPosition = 20
+        camera.addChild(label)
+        jumpCountLabel = label
     }
     
     fileprivate func setupRewindButton() {
