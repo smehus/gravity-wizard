@@ -102,14 +102,15 @@ final class Level5: GameScene {
             return
         }
         
-        while lastPosition < maxXPosition || maxXPosition < (totalSceneSize.width - (scene!.size.width / 2)) {
+        if maxXPosition >= (totalSceneSize.width - (scene!.size.width / 2)) && !finalPlatformPlaced {
+            createFinalPlatform()
+            return
+        }
+        
+        while lastPosition < maxXPosition && maxXPosition < (totalSceneSize.width - (scene!.size.width / 2)) {
             lastPosition += platformDistribution
             generatePlatform(at: lastPosition)
             lastPlatformPosition = lastPosition
-        }
-        
-        if maxXPosition >= (totalSceneSize.width - (scene!.size.width / 2)) {
-            createFinalPlatform()
         }
     }
     
