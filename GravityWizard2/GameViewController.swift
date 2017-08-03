@@ -91,11 +91,30 @@ class GameViewController: UIViewController {
             skView.presentScene(scene, transition: self.sceneTransition())
         }
         
+        let levelThree = UIAlertAction(title: "Level three", style: .default) { _ in
+            guard let skView = self.view as? SKView, let scene = self.generateScene(level: .three) else { return }
+            skView.presentScene(scene, transition: self.sceneTransition())
+        }
+        
+        let levelFour = UIAlertAction(title: "Level four", style: .default) { _ in
+            guard let skView = self.view as? SKView, let scene = self.generateScene(level: .four) else { return }
+            skView.presentScene(scene, transition: self.sceneTransition())
+        }
+        
+        let levelFive = UIAlertAction(title: "Level five", style: .default) { _ in
+            guard let skView = self.view as? SKView, let scene = self.generateScene(level: .five) else { return }
+            skView.presentScene(scene, transition: self.sceneTransition())
+        }
+        
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
         alert.addAction(levelZero)
         alert.addAction(levelOne)
         alert.addAction(levelTwo)
+        alert.addAction(levelThree)
+        alert.addAction(levelFour)
+        alert.addAction(levelFive)
+        
         alert.addAction(cancel)
         alert.popoverPresentationController?.sourceView = view
         present(alert, animated: true, completion: nil)
