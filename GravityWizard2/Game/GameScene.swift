@@ -118,6 +118,8 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel, SceneEdgeDecider {
     // MARK: - Sublcass Methods
 
     func update(levelWith currentTime: TimeInterval, delta: TimeInterval) { }
+    func levelCompleted() {}
+    func gameOver() {}
     func didSimulatePhysicsForLevel() { }
     
     func setupNodes() {
@@ -863,11 +865,6 @@ extension GameScene: HeroResetProtocol {
         let resetAction = SKAction.move(to: pos, duration: 0.5)
         rose.run(resetAction)
     }
-}
-
-extension GameScene {
-    func levelCompleted() {}
-    func gameOver() {}
 }
 
 extension GameScene {
