@@ -178,12 +178,8 @@ final class Level5: GameScene {
         
         addChild(platform)
     }
-}
-
-// MARK: - End Level
-
-extension Level5 {
-    @objc override func levelCompleted() {
+    
+    override func levelCompleted() {
         guard let successLevel = LevelCompleteLabel.createLabel(), let camera = camera else { return }
         successLevel.move(toParent: camera)
         successLevel.position = CGPoint.zero
@@ -200,7 +196,7 @@ extension Level5 {
         run(presentScene)
     }
     
-    @objc override func gameOver() {
+    override func gameOver() {
         
         guard let gameOverLabel = LevelCompleteLabel.createLabel(with: "Game Over"), let camera = camera else { return }
         gameOverLabel.move(toParent: camera)

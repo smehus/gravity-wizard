@@ -18,7 +18,7 @@ class Level0: GameScene {
         return true
     }
     
-    @objc override func levelCompleted() {
+    override func levelCompleted() {
         guard let successLevel = LevelCompleteLabel.createLabel(), let camera = camera else {
             assertionFailure("Failed to create level complete lable")
             return
