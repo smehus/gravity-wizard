@@ -16,6 +16,8 @@
 		A56B423E1F296114007A9ADB /* ProjectileNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B423D1F296114007A9ADB /* ProjectileNode.swift */; };
 		A56B42401F296ACD007A9ADB /* NSDictionary+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B423F1F296ACD007A9ADB /* NSDictionary+Extensions.swift */; };
 		A56B42421F2A1253007A9ADB /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B42411F2A1253007A9ADB /* Array+Extensions.swift */; };
+		A576E07F1F3492310062228D /* AngledIcePlatform.sks in Resources */ = {isa = PBXBuildFile; fileRef = A576E07E1F3492310062228D /* AngledIcePlatform.sks */; };
+		A576E0811F3492B30062228D /* AngledIcePlatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = A576E0801F3492B30062228D /* AngledIcePlatform.swift */; };
 		A5783CAA1F2E6A4E00FC010C /* CollapsablePlatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5783CA91F2E6A4E00FC010C /* CollapsablePlatform.swift */; };
 		A5783CAC1F2E8BA400FC010C /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5783CAB1F2E8BA400FC010C /* Field.swift */; };
 		A5783CAE1F2EA30600FC010C /* SandStorm.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5783CAD1F2EA30600FC010C /* SandStorm.sks */; };
@@ -138,6 +140,8 @@
 		A56B423D1F296114007A9ADB /* ProjectileNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectileNode.swift; sourceTree = "<group>"; };
 		A56B423F1F296ACD007A9ADB /* NSDictionary+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDictionary+Extensions.swift"; sourceTree = "<group>"; };
 		A56B42411F2A1253007A9ADB /* Array+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
+		A576E07E1F3492310062228D /* AngledIcePlatform.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = AngledIcePlatform.sks; sourceTree = "<group>"; };
+		A576E0801F3492B30062228D /* AngledIcePlatform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AngledIcePlatform.swift; sourceTree = "<group>"; };
 		A5783CA91F2E6A4E00FC010C /* CollapsablePlatform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsablePlatform.swift; sourceTree = "<group>"; };
 		A5783CAB1F2E8BA400FC010C /* Field.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Field.swift; sourceTree = "<group>"; };
 		A5783CAD1F2EA30600FC010C /* SandStorm.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SandStorm.sks; sourceTree = "<group>"; };
@@ -364,6 +368,7 @@
 				A5A968371EEAC80500A509DB /* Viking.sks */,
 				A55417891F0D0FFC00A2CFE8 /* WaterScene.sks */,
 				A5A968381EEAC80500A509DB /* Wizard.sks */,
+				A576E07E1F3492310062228D /* AngledIcePlatform.sks */,
 			);
 			path = Sprites;
 			sourceTree = "<group>";
@@ -466,6 +471,7 @@
 				A5ACBA691F2D014700CB83E4 /* BorderNode.swift */,
 				A5ACBA6B1F2D1A9000CB83E4 /* EdgeNode.swift */,
 				A5783CA91F2E6A4E00FC010C /* CollapsablePlatform.swift */,
+				A576E0801F3492B30062228D /* AngledIcePlatform.swift */,
 			);
 			path = Environment;
 			sourceTree = "<group>";
@@ -637,6 +643,7 @@
 				A5A968521EEAC80500A509DB /* StonePlatform.sks in Resources */,
 				A549D5D31F2E064E00470E2D /* CollapsablePlatform.sks in Resources */,
 				A554178A1F0D0FFC00A2CFE8 /* WaterScene.sks in Resources */,
+				A576E07F1F3492310062228D /* AngledIcePlatform.sks in Resources */,
 				A5A968421EEAC80500A509DB /* GravityProjectileTail.sks in Resources */,
 				A5A968C51EEACF5D00A509DB /* ForegroundLayer3.sks in Resources */,
 				A5674C2B1EE81E3D00D29F2B /* wave.fsh in Resources */,
@@ -696,6 +703,7 @@
 				A5A968601EEAC99C00A509DB /* Level2.swift in Sources */,
 				A5A968A21EEACE9D00A509DB /* BloodNode.swift in Sources */,
 				A5783CAC1F2E8BA400FC010C /* Field.swift in Sources */,
+				A576E0811F3492B30062228D /* AngledIcePlatform.swift in Sources */,
 				A5DCD0901F33417A0018D211 /* Level6.swift in Sources */,
 				A5A968A11EEACE9D00A509DB /* WizardNode.swift in Sources */,
 				A59FB6A01E0A088A00D1C915 /* SKTTimingFunctions.swift in Sources */,
