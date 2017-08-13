@@ -30,22 +30,27 @@ enum IcePosition {
     
     func currentSprite(sceneSize: CGSize) -> SKSpriteNode {
         let texture = currentTexture()
-        let sprite = SKSpriteNode(texture: texture, size: CGSize(width: sceneSize.width/2, height: sceneSize.width/2))
+        let textureSize = sceneSize.width * 0.75
+        let sprite = SKSpriteNode(texture: texture, size: CGSize(width: textureSize, height: textureSize))
         sprite.anchorPoint = CGPoint(x: 0, y: 0)
         return sprite
     }
     
     func nextSlide(sceneSize: CGSize) -> (IcePosition, SKSpriteNode)? {
+        guard currentPos() < sceneSize.height else { return nil }
+        let textureSize = sceneSize.width * 0.75
+        
         var nextPosition: IcePosition
+        let sprite = SKSpriteNode(texture: nextTexture(), size: CGSize(width: textureSize, height: textureSize))
+        sprite.anchorPoint = CGPoint(x: 0, y: 0)
+        
         switch self {
         case .left(let dy):
-            nextPosition = .right(dy: dy + nextTexture().size().height)
+            nextPosition = .right(dy: dy + textureSize)
         case .right(let dy):
-            nextPosition = .left(dy: dy + nextTexture().size().height)
+            nextPosition = .left(dy: dy + textureSize)
         }
         
-        let sprite = SKSpriteNode(texture: nextTexture(), size: CGSize(width: sceneSize.width/2, height: sceneSize.width/2))
-        sprite.anchorPoint = CGPoint(x: 0, y: 0)
         return (nextPosition, sprite)
     }
     
@@ -150,17 +155,33 @@ final class Level6: GameScene {
 extension Level6 {
     
     private func populatePlatforms() {
-        if let _ = lastPosition {
+        
+        if let slideModel = lastPosition, let nextSlideModel = slideModel.nextSlide(sceneSize: totalSceneSize) {
+    
+            ///
+            /// Generate slides - flipping each side
+            ///
             
-        } else {
+            let nextSlide = nextSlideModel.1
+            switch nextSlideModel.0 {
+            case .left(let dy):
+                nextSlide.position = CGPoint(x: 0, y: dy)
+            case .right(let dy):
+                nextSlide.position = CGPoint(x: totalSceneSize.width - nextSlide.size.width, y: dy)
+            }
+            
+            addChild(nextSlide)
+            lastPosition = nextSlideModel.0
+            
+        } else if lastPosition == nil {
             
             ///
             /// Create Initial Slider
             ///
             
-            let initialPosition = IcePosition.right(dy: 100)
+            let initialPosition = IcePosition.right(dy: 0)
             let newSlide = initialPosition.currentSprite(sceneSize: totalSceneSize)
-            newSlide.position = CGPoint(x: 300, y: 100)
+            newSlide.position = CGPoint(x: totalSceneSize.width - newSlide.size.width, y: 0)
             
             addChild(newSlide)
             lastPosition = initialPosition
