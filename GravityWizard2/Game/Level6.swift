@@ -156,24 +156,7 @@ extension Level6 {
     
     private func populatePlatforms() {
         
-        if let slideModel = lastPosition, let nextSlideModel = slideModel.nextSlide(sceneSize: totalSceneSize) {
-    
-            ///
-            /// Generate slides - flipping each side
-            ///
-            
-            let nextSlide = nextSlideModel.1
-            switch nextSlideModel.0 {
-            case .left(let dy):
-                nextSlide.position = CGPoint(x: 0, y: dy)
-            case .right(let dy):
-                nextSlide.position = CGPoint(x: totalSceneSize.width - nextSlide.size.width, y: dy)
-            }
-            
-            addChild(nextSlide)
-            lastPosition = nextSlideModel.0
-            
-        } else if lastPosition == nil {
+        if lastPosition == nil {
             
             ///
             /// Create Initial Slider
@@ -185,6 +168,31 @@ extension Level6 {
             
             addChild(newSlide)
             lastPosition = initialPosition
+            
+            return
         }
+        
+        guard
+            let slideModel = lastPosition,
+            let nextSlideModel = slideModel.nextSlide(sceneSize: totalSceneSize)
+        else {
+            return
+        }
+        
+        
+        ///
+        /// Generate slides - flipping each side
+        ///
+        
+        let nextSlide = nextSlideModel.1
+        switch nextSlideModel.0 {
+        case .left(let dy):
+            nextSlide.position = CGPoint(x: 0, y: dy)
+        case .right(let dy):
+            nextSlide.position = CGPoint(x: totalSceneSize.width - nextSlide.size.width, y: dy)
+        }
+        
+        addChild(nextSlide)
+        lastPosition = nextSlideModel.0
     }
 }
