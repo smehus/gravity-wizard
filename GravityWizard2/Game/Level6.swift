@@ -12,7 +12,30 @@ enum IcePosition {
     case left(dy: CGFloat)
     case right(dy: CGFloat)
     
-    func nextSlide() -> (IcePosition, SKSpriteNode)? {
+    func currentTexture() -> SKTexture {
+        switch self {
+        case .left:
+            return SKTexture(image: #imageLiteral(resourceName: "ice-slide-l"))
+        case .right:
+            return SKTexture(image: #imageLiteral(resourceName: "ice-slide-r"))
+        }
+    }
+    
+    func currentPos() -> CGFloat {
+        switch self {
+        case .right(let dy), .left(let dy):
+            return dy
+        }
+    }
+    
+    func currentSprite(sceneSize: CGSize) -> SKSpriteNode {
+        let texture = currentTexture()
+        let sprite = SKSpriteNode(texture: texture, size: CGSize(width: sceneSize.width/2, height: sceneSize.width/2))
+        sprite.anchorPoint = CGPoint(x: 0, y: 0)
+        return sprite
+    }
+    
+    func nextSlide(sceneSize: CGSize) -> (IcePosition, SKSpriteNode)? {
         var nextPosition: IcePosition
         switch self {
         case .left(let dy):
@@ -21,7 +44,8 @@ enum IcePosition {
             nextPosition = .left(dy: dy + nextTexture().size().height)
         }
         
-        let sprite = SKSpriteNode(texture: nextTexture(), size: nextTexture().size())
+        let sprite = SKSpriteNode(texture: nextTexture(), size: CGSize(width: sceneSize.width/2, height: sceneSize.width/2))
+        sprite.anchorPoint = CGPoint(x: 0, y: 0)
         return (nextPosition, sprite)
     }
     
@@ -71,6 +95,7 @@ final class Level6: GameScene {
     }
     
     private var lastPlatformPosition: CGFloat?
+    private var lastPosition: IcePosition?
     
     // MARK: - Super Functions
     
@@ -125,6 +150,20 @@ final class Level6: GameScene {
 extension Level6 {
     
     private func populatePlatforms() {
-        
+        if let _ = lastPosition {
+            
+        } else {
+            
+            ///
+            /// Create Initial Slider
+            ///
+            
+            let initialPosition = IcePosition.right(dy: 100)
+            let newSlide = initialPosition.currentSprite(sceneSize: totalSceneSize)
+            newSlide.position = CGPoint(x: 300, y: 100)
+            
+            addChild(newSlide)
+            lastPosition = initialPosition
+        }
     }
 }
