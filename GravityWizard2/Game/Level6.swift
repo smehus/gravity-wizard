@@ -8,6 +8,32 @@
 
 import SpriteKit
 
+enum IcePosition {
+    case left(dy: CGFloat)
+    case right(dy: CGFloat)
+    
+    func nextSlide() -> (IcePosition, SKSpriteNode)? {
+        var nextPosition: IcePosition
+        switch self {
+        case .left(let dy):
+            nextPosition = .right(dy: dy + nextTexture().size().height)
+        case .right(let dy):
+            nextPosition = .left(dy: dy + nextTexture().size().height)
+        }
+        
+        let sprite = SKSpriteNode(texture: nextTexture(), size: nextTexture().size())
+        return (nextPosition, sprite)
+    }
+    
+    func nextTexture() -> SKTexture {
+        switch self {
+        case .left:
+            return SKTexture(image: #imageLiteral(resourceName: "ice-slide-r"))
+        case .right:
+            return SKTexture(image: #imageLiteral(resourceName: "ice-slide-l"))
+        }
+    }
+}
 
 final class Level6: GameScene {
     
