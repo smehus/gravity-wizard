@@ -77,7 +77,7 @@ final class Level6: GameScene {
     }
     
     override var yConstraintMultiplier: CGFloat {
-        return 6
+        return 20
     }
     
     override var xConstraintMultiplier: CGFloat {
@@ -86,11 +86,13 @@ final class Level6: GameScene {
     
     override var totalSceneSize: CGSize {
         guard let scene = scene else { return CGSize.zero }
-        let halfScene = scene.size.width / 2
+        let halfWidth = scene.size.width / 2
+        let halfHeight = scene.size.height / 2
         // xConstraintMultiplier is the multipier for half scene segments - specifically for constraints.
         // Kinda weird but whatever
-        let totalWidth = (halfScene * xConstraintMultiplier) + halfScene
-        return CGSize(width: totalWidth, height: scene.size.height)
+        let totalWidth = (halfWidth * xConstraintMultiplier) + halfWidth
+        let totalHeight = (halfHeight * yConstraintMultiplier) + halfHeight
+        return CGSize(width: totalWidth, height: totalHeight)
     }
     
     private var maxYPosition: CGFloat {
