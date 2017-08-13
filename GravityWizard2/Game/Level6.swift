@@ -157,30 +157,18 @@ final class Level6: GameScene {
 extension Level6 {
     
     private func populatePlatforms() {
-        
-        if lastPosition == nil {
-            
-            ///
-            /// Create Initial Slider
-            ///
-            
-            let initialPosition = IcePosition.right(dy: 0)
-            let newSlide = initialPosition.currentSprite(sceneSize: totalSceneSize)
-            newSlide.position = CGPoint(x: totalSceneSize.width - newSlide.size.width, y: 0)
-            
-            addChild(newSlide)
-            lastPosition = initialPosition
-            
+        switch lastPosition {
+        case .none:
+            generateInitialPlatform()
+        case .some(let model):
+            generatePlatform(slideModel: model)
+        }
+    }
+    
+    private func generatePlatform(slideModel: IcePosition) {
+        guard let nextSlideModel = slideModel.nextSlide(sceneSize: totalSceneSize) else {
             return
         }
-        
-        guard
-            let slideModel = lastPosition,
-            let nextSlideModel = slideModel.nextSlide(sceneSize: totalSceneSize)
-        else {
-            return
-        }
-        
         
         ///
         /// Generate slides - flipping each side
@@ -196,5 +184,23 @@ extension Level6 {
         
         addChild(nextSlide)
         lastPosition = nextSlideModel.0
+    }
+    
+    private func generateInitialPlatform() {
+        guard  lastPosition == nil else {
+            return
+        }
+        
+        ///
+        /// Create Initial Slider
+        ///
+        
+        let initialPosition = IcePosition.right(dy: 0)
+        let newSlide = initialPosition.currentSprite(sceneSize: totalSceneSize)
+        newSlide.position = CGPoint(x: totalSceneSize.width - newSlide.size.width, y: 0)
+        
+        addChild(newSlide)
+        lastPosition = initialPosition
+    
     }
 }
