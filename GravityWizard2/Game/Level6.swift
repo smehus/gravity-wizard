@@ -38,15 +38,22 @@ final class Level6: GameScene {
         return CGSize(width: totalWidth, height: scene.size.height)
     }
     
+    private var maxYPosition: CGFloat {
+        let cameraPosition = convert(camera!.position, from: camera!.parent!)
+        let returnValue = cameraPosition.y + (scene!.size.height / 2)
+        return returnValue
+    }
+    
+    private var lastPlatformPosition: CGFloat?
+    
     // MARK: - Super Functions
     
     override func setupNodes() {
         super.setupNodes()
-
     }
     
     override func update(levelWith currentTime: TimeInterval, delta: TimeInterval) {
-
+        populatePlatforms()
     }
     
     override func levelCompleted() {
@@ -86,5 +93,12 @@ final class Level6: GameScene {
         }
         
         run(presentScene)
+    }
+}
+
+extension Level6 {
+    
+    private func populatePlatforms() {
+        
     }
 }
