@@ -24,6 +24,17 @@ final class MovingPlatform: SKSpriteNode, LifecycleListener {
 }
 
 final class GroundNode: SKSpriteNode, LifecycleListener {
+    
+    init(texture: SKTexture, size: CGSize) {
+        super.init(texture: texture, color: .white, size: size)
+        physicsBody = SKPhysicsBody(texture: texture, alphaThreshold: 0.5, size: size)
+        didMoveToScene()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
     func didMoveToScene() {
         guard let body = physicsBody else {
             assertionFailure("Ground node is missing the physics body")
