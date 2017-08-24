@@ -49,8 +49,13 @@ class ParticleFactory {
         }
         
         emitter.zPosition = 20
-        emitter.position = CGPoint(x: 500, y: 500)
+        emitter.particleBirthRate = 600
+        emitter.particleLifetime = 8
+        emitter.particlePositionRange = CGVector(dx: scene.totalSceneSize.width , dy: scene.totalSceneSize.height)
+        emitter.particlePosition = CGPoint(x: 0, y: 0)
+        emitter.position = CGPoint(x: scene.totalSceneSize.width / 2, y: scene.totalSceneSize.height / 2)
         scene.addChild(emitter)
+        emitter.advanceSimulationTime(4)
     }
     
     func sandStorm(width: CGFloat, height: CGFloat) -> SKEmitterNode {
