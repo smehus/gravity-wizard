@@ -13,6 +13,7 @@ class ParticleFactory {
     private enum Particle {
         case waterSplash
         case sandStorm
+        case snowyLand
         
         var filename: String {
             switch self {
@@ -20,6 +21,8 @@ class ParticleFactory {
                 return "WaterSplash"
             case .sandStorm:
                 return "SandStorm"
+            case .snowyLand:
+                return "SnowParticle"
             }
         }
     }
@@ -35,6 +38,18 @@ class ParticleFactory {
         emitter.advanceSimulationTime(0.2)
         emitter.run(SKAction.removeFromParentAfterDelay(2.0))
         emitter.position = position
+        scene.addChild(emitter)
+    }
+    
+    func addWinterSnowyBackground(scene: GameScene) {
+        guard
+            let emitter = SKEmitterNode(fileNamed: Particle.snowyLand.filename)
+        else {
+            fatalError("Failed to find file \(Particle.snowyLand.filename)")
+        }
+        
+        emitter.zPosition = 20
+        emitter.position = CGPoint(x: 500, y: 500)
         scene.addChild(emitter)
     }
     

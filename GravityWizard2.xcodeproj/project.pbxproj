@@ -126,6 +126,7 @@
 		A5BE41401F276DFD0052E56A /* WaterReflection.fsh in Resources */ = {isa = PBXBuildFile; fileRef = A5BE413F1F276DFD0052E56A /* WaterReflection.fsh */; };
 		A5DCD08E1F3340760018D211 /* Level6.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5DCD08D1F3340760018D211 /* Level6.sks */; };
 		A5DCD0901F33417A0018D211 /* Level6.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DCD08F1F33417A0018D211 /* Level6.swift */; };
+		A5E21F9E1F4EF94400934CE2 /* SnowParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5E21F9D1F4EF94400934CE2 /* SnowParticle.sks */; };
 		A5E3150F1E2166F100D3652C /* SKScene+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E3150E1E2166F100D3652C /* SKScene+Extensions.swift */; };
 		A5EE58CD1E5F1BB700D3D25B /* SKSpriteNode+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EE58CC1E5F1BB700D3D25B /* SKSpriteNode+Extensions.swift */; };
 /* End PBXBuildFile section */
@@ -252,6 +253,7 @@
 		A5BE413F1F276DFD0052E56A /* WaterReflection.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = WaterReflection.fsh; sourceTree = "<group>"; };
 		A5DCD08D1F3340760018D211 /* Level6.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level6.sks; sourceTree = "<group>"; };
 		A5DCD08F1F33417A0018D211 /* Level6.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level6.swift; sourceTree = "<group>"; };
+		A5E21F9D1F4EF94400934CE2 /* SnowParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SnowParticle.sks; sourceTree = "<group>"; };
 		A5E3150E1E2166F100D3652C /* SKScene+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKScene+Extensions.swift"; sourceTree = "<group>"; };
 		A5EE58CC1E5F1BB700D3D25B /* SKSpriteNode+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKSpriteNode+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -339,6 +341,7 @@
 				A5A968241EEAC80500A509DB /* LavaParticle.sks */,
 				A5BE41371F276AFA0052E56A /* WaterSplash.sks */,
 				A5BE41381F276AFA0052E56A /* Assets.xcassets */,
+				A5E21F9D1F4EF94400934CE2 /* SnowParticle.sks */,
 			);
 			path = Particles;
 			sourceTree = "<group>";
@@ -643,6 +646,7 @@
 				A5A968521EEAC80500A509DB /* StonePlatform.sks in Resources */,
 				A549D5D31F2E064E00470E2D /* CollapsablePlatform.sks in Resources */,
 				A554178A1F0D0FFC00A2CFE8 /* WaterScene.sks in Resources */,
+				A5E21F9E1F4EF94400934CE2 /* SnowParticle.sks in Resources */,
 				A576E07F1F3492310062228D /* AngledIcePlatform.sks in Resources */,
 				A5A968421EEAC80500A509DB /* GravityProjectileTail.sks in Resources */,
 				A5A968C51EEACF5D00A509DB /* ForegroundLayer3.sks in Resources */,

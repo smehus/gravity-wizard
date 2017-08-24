@@ -109,6 +109,7 @@ final class Level6: GameScene {
     
     override func setupNodes() {
         super.setupNodes()
+        particleFactory.addWinterSnowyBackground(scene: self)
     }
     
     override func update(levelWith currentTime: TimeInterval, delta: TimeInterval) {

@@ -41,39 +41,11 @@ final class Level2: GameScene {
         movingPlatform?.animate(with: Constants.platformVelocityX)
     }
     
-    fileprivate func setupBreakableStoneStructure() {
-        guard
-            let structure = childNode(withName: "//\(Names.breakableStoneStructure)") as? BreakableStoneStructure
-        else {
-            assertionFailure("Failed to get stone structure")
-            return
-        }
-        
-        destructableStoneStructure = structure
+    override func contactDidBegin(with contact: SKPhysicsContact) {
+        super.contactDidBegin(with: contact)
     }
     
-    fileprivate func setupPlatform() {
-        guard
-            let platform = childNode(withName: "//\(Names.movingPlatform)") as? StonePlatform
-        else {
-            assertionFailure("Failed to find moving platform node")
-            return
-        }
-          
-        movingPlatform = platform
-    }
-}
-
-extension Level2 {
-    @objc override func contactDidBegin(with contact: SKPhysicsContact) {
-        super.contactDidBegin(with: contact)
-     
-        
-    }
-}
-
-extension Level2 {
-    @objc override func levelCompleted() {
+    override func levelCompleted() {
         guard let successLevel = LevelCompleteLabel.createLabel(), let camera = camera else { return }
         successLevel.move(toParent: camera)
         successLevel.position = CGPoint.zero
@@ -90,7 +62,7 @@ extension Level2 {
         run(presentScene)
     }
     
-    @objc override func gameOver() {
+    override func gameOver() {
         guard let gameOverLabel = LevelCompleteLabel.createLabel(with: "Game Over"), let camera = camera else { return }
         gameOverLabel.move(toParent: camera)
         gameOverLabel.position = CGPoint.zero
@@ -108,5 +80,27 @@ extension Level2 {
         }
         
         run(presentScene)
+    }
+    
+    fileprivate func setupBreakableStoneStructure() {
+        guard
+            let structure = childNode(withName: "//\(Names.breakableStoneStructure)") as? BreakableStoneStructure
+            else {
+                assertionFailure("Failed to get stone structure")
+                return
+        }
+        
+        destructableStoneStructure = structure
+    }
+    
+    fileprivate func setupPlatform() {
+        guard
+            let platform = childNode(withName: "//\(Names.movingPlatform)") as? StonePlatform
+            else {
+                assertionFailure("Failed to find moving platform node")
+                return
+        }
+        
+        movingPlatform = platform
     }
 }
