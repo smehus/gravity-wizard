@@ -52,6 +52,10 @@ enum Level: Int {
     case five
     case six
     
+    static func all() -> [Level] {
+        return [.zero, .one, .two, .three, .four, .five, .six]
+    }
+    
     func nextLevel() -> Level? {
         let nextInt = self.rawValue + 1
         return Level(rawValue: nextInt)

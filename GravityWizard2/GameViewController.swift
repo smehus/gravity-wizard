@@ -14,7 +14,9 @@ class GameViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        // Update this when ios 11 comes out
+        // This is need to let the system know the preferredScreenEdgesDeferringSystemGestures has changed
+        //            setNeedsUpdateOfScreenEdgesDeferringSystemGestures()
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
             if let scene = Level.six.levelScene() {
@@ -51,6 +53,10 @@ class GameViewController: UIViewController {
             return .all
         }
     }
+    
+    override func preferredScreenEdgesDeferringSystemGestures() -> UIRectEdge {
+        return .top
+    }
 
     override var prefersStatusBarHidden: Bool {
         return true
@@ -76,44 +82,16 @@ class GameViewController: UIViewController {
     fileprivate func showLevelSelector() {
         let alert = UIAlertController(title: "Pick Level", message: nil, preferredStyle: .actionSheet)
         
-        let levelZero = UIAlertAction(title: "Level Zero", style: .default) { _ in
-            guard let skView = self.view as? SKView, let scene = self.generateScene(level: .zero) else { return }
-            skView.presentScene(scene, transition: self.sceneTransition())
-        }
-        
-        let levelOne = UIAlertAction(title: "Level One", style: .default) { _ in
-            guard let skView = self.view as? SKView, let scene = self.generateScene(level: .one) else { return }
-            skView.presentScene(scene, transition: self.sceneTransition())
-        }
-        
-        let levelTwo = UIAlertAction(title: "Level Two", style: .default) { _ in
-            guard let skView = self.view as? SKView, let scene = self.generateScene(level: .two) else { return }
-            skView.presentScene(scene, transition: self.sceneTransition())
-        }
-        
-        let levelThree = UIAlertAction(title: "Level three", style: .default) { _ in
-            guard let skView = self.view as? SKView, let scene = self.generateScene(level: .three) else { return }
-            skView.presentScene(scene, transition: self.sceneTransition())
-        }
-        
-        let levelFour = UIAlertAction(title: "Level four", style: .default) { _ in
-            guard let skView = self.view as? SKView, let scene = self.generateScene(level: .four) else { return }
-            skView.presentScene(scene, transition: self.sceneTransition())
-        }
-        
-        let levelFive = UIAlertAction(title: "Level five", style: .default) { _ in
-            guard let skView = self.view as? SKView, let scene = self.generateScene(level: .five) else { return }
-            skView.presentScene(scene, transition: self.sceneTransition())
+        for (idx, level) in Level.all().enumerated() {
+            let action = UIAlertAction(title: "Level \(idx)", style: .default) { _ in
+                guard let skView = self.view as? SKView, let scene = self.generateScene(level: level) else { return }
+                skView.presentScene(scene, transition: self.sceneTransition())
+            }
+            
+            alert.addAction(action)
         }
         
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        
-        alert.addAction(levelZero)
-        alert.addAction(levelOne)
-        alert.addAction(levelTwo)
-        alert.addAction(levelThree)
-        alert.addAction(levelFour)
-        alert.addAction(levelFive)
         
         alert.addAction(cancel)
         alert.popoverPresentationController?.sourceView = view
