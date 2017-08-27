@@ -61,7 +61,7 @@ private enum SpriteConfig: SpriteConfiguration {
     }
 }
 
-class SnowBall: SKSpriteNode {
+final class SnowBall: SKSpriteNode {
     
     private typealias `Self` = SnowBall
     static let SIZE_MULTIPLIER: CGFloat = 6
