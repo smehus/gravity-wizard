@@ -121,6 +121,7 @@
 		A5B58EC21E09DC4900ADC865 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5B58EC01E09DC4900ADC865 /* Main.storyboard */; };
 		A5B58EC41E09DC4900ADC865 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5B58EC31E09DC4900ADC865 /* Assets.xcassets */; };
 		A5B58EC71E09DC4900ADC865 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5B58EC51E09DC4900ADC865 /* LaunchScreen.storyboard */; };
+		A5B75A341F5312DB004BE5BD /* SnowBall.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B75A331F5312DB004BE5BD /* SnowBall.swift */; };
 		A5BE41391F276AFA0052E56A /* WaterSplash.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5BE41371F276AFA0052E56A /* WaterSplash.sks */; };
 		A5BE413A1F276AFA0052E56A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5BE41381F276AFA0052E56A /* Assets.xcassets */; };
 		A5BE41401F276DFD0052E56A /* WaterReflection.fsh in Resources */ = {isa = PBXBuildFile; fileRef = A5BE413F1F276DFD0052E56A /* WaterReflection.fsh */; };
@@ -248,6 +249,7 @@
 		A5B58EC31E09DC4900ADC865 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A5B58EC61E09DC4900ADC865 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A5B58EC81E09DC4900ADC865 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5B75A331F5312DB004BE5BD /* SnowBall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnowBall.swift; sourceTree = "<group>"; };
 		A5BE41371F276AFA0052E56A /* WaterSplash.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = WaterSplash.sks; sourceTree = "<group>"; };
 		A5BE41381F276AFA0052E56A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A5BE413F1F276DFD0052E56A /* WaterReflection.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = WaterReflection.fsh; sourceTree = "<group>"; };
@@ -475,6 +477,7 @@
 				A5ACBA6B1F2D1A9000CB83E4 /* EdgeNode.swift */,
 				A5783CA91F2E6A4E00FC010C /* CollapsablePlatform.swift */,
 				A576E0801F3492B30062228D /* AngledIcePlatform.swift */,
+				A5B75A331F5312DB004BE5BD /* SnowBall.swift */,
 			);
 			path = Environment;
 			sourceTree = "<group>";
@@ -723,6 +726,7 @@
 				A5ACBA6C1F2D1A9000CB83E4 /* EdgeNode.swift in Sources */,
 				A5A968A71EEACE9D00A509DB /* GroundNode.swift in Sources */,
 				A56B42401F296ACD007A9ADB /* NSDictionary+Extensions.swift in Sources */,
+				A5B75A341F5312DB004BE5BD /* SnowBall.swift in Sources */,
 				A5A968AE1EEACE9D00A509DB /* StonePlatform.swift in Sources */,
 				A5A968B31EEACE9D00A509DB /* RewindSelector.swift in Sources */,
 				A5EE58CD1E5F1BB700D3D25B /* SKSpriteNode+Extensions.swift in Sources */,
@@ -802,6 +806,7 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_LINK_OBJC_RUNTIME = NO;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
@@ -859,6 +864,7 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_LINK_OBJC_RUNTIME = NO;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;

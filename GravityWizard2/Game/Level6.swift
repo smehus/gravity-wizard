@@ -104,6 +104,10 @@ final class Level6: GameScene {
     
     private var lastPlatformPosition: CGFloat?
     private var lastPosition: IcePosition?
+    private var lastSnowBallTime: TimeInterval?
+    private struct Constants {
+        static let SNOW_BALL_FREQ: TimeInterval = 5
+    }
     
     // MARK: - Super Functions
     
@@ -114,6 +118,7 @@ final class Level6: GameScene {
     
     override func update(levelWith currentTime: TimeInterval, delta: TimeInterval) {
         populatePlatforms()
+        generateBall(time: currentTime)
     }
     
     override func levelCompleted() {
@@ -155,6 +160,33 @@ final class Level6: GameScene {
         run(presentScene)
     }
 }
+
+///
+/// Snowballs
+///
+
+extension Level6 {
+    
+    private func generateBall(time: TimeInterval) {
+        switch lastSnowBallTime {
+        case .none:
+            break
+        case .some(let lastTime):
+            guard lastTime < (time - Constants.SNOW_BALL_FREQ) else { return }
+        }
+        
+        
+        let snowball = SnowBall.generate()
+        snowball.position = CGPoint(x: totalSceneSize.width / 2, y: totalSceneSize.height)
+        addChild(snowball)
+        
+        lastSnowBallTime = time
+    }
+}
+
+///
+/// Platforms
+///
 
 extension Level6 {
     

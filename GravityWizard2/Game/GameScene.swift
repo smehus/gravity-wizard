@@ -580,7 +580,7 @@ extension GameScene: SKPhysicsContactDelegate {
         contactDidBegin(with: contact)
     }
     
-    func contactDidBegin(with contact: SKPhysicsContact) {
+    @objc func contactDidBegin(with contact: SKPhysicsContact) {
         let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
         
         if collision.collisionCombination() == .bloodCollidesWithGround {

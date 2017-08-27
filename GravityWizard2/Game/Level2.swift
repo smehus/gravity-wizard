@@ -41,7 +41,7 @@ final class Level2: GameScene {
         movingPlatform?.animate(with: Constants.platformVelocityX)
     }
     
-    override func contactDidBegin(with contact: SKPhysicsContact) {
+    @objc override func contactDidBegin(with contact: SKPhysicsContact) {
         super.contactDidBegin(with: contact)
     }
     
