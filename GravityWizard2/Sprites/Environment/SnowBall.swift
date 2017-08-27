@@ -21,21 +21,21 @@ private enum SpriteConfig: SpriteConfiguration {
     var categoryBitMask: UInt32 {
         switch self {
         case .snowball:
-            return PhysicsCategory.Ground
+            return PhysicsCategory.enemy
         }
     }
     
     var contactTestBitMask: UInt32 {
         switch self {
         case .snowball:
-            return PhysicsCategory.enemy | PhysicsCategory.Ground
+            return PhysicsCategory.Hero
         }
     }
     
     var collisionBitMask: UInt32 {
         switch self {
         case .snowball:
-            return PhysicsCategory.enemy | PhysicsCategory.Ground
+            return PhysicsCategory.Ground | PhysicsCategory.Hero
         }
     }
     
