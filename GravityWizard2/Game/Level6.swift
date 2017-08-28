@@ -13,12 +13,12 @@ enum IcePosition {
     case left(dy: CGFloat)
     case right(dy: CGFloat)
     
-    func currentTexture() -> SKTexture {
+    func currentOrientation() -> Bool {
         switch self {
         case .left:
-            return SKTexture(image: #imageLiteral(resourceName: "ice-slide-l"))
+            return true
         case .right:
-            return SKTexture(image: #imageLiteral(resourceName: "ice-slide-r"))
+            return false
         }
     }
     
@@ -29,20 +29,21 @@ enum IcePosition {
         }
     }
     
-    func currentSprite(sceneSize: CGSize) -> SKSpriteNode {
-        let texture = currentTexture()
+    func currentSprite(sceneSize: CGSize) -> IceTerrain {
+        let thisOrientation = currentOrientation()
         let textureSize = sceneSize.width * 0.75
-        let sprite = GroundNode(texture: texture, size: CGSize(width: textureSize, height: textureSize))
+        let sprite = IceTerrain.node(orientation: thisOrientation, size: CGSize(width: textureSize, height: textureSize))
         
         return sprite
     }
     
-    func nextSlide(sceneSize: CGSize) -> (IcePosition, SKSpriteNode)? {
+    func nextSlide(sceneSize: CGSize) -> (IcePosition, IceTerrain)? {
         guard currentPos() < sceneSize.height else { return nil }
         let textureSize = sceneSize.width * 0.75
         
         var nextPosition: IcePosition
-        let sprite = GroundNode(texture: nextTexture(), size: CGSize(width: textureSize, height: textureSize))
+//        let sprite = GroundNode(texture: nextTexture(), size: CGSize(width: textureSize, height: textureSize))
+        let sprite = IceTerrain.node(orientation: nextOrientation(), size: CGSize(width: textureSize, height: textureSize))
         
         
         switch self {
@@ -55,12 +56,12 @@ enum IcePosition {
         return (nextPosition, sprite)
     }
     
-    func nextTexture() -> SKTexture {
+    func nextOrientation() -> Bool {
         switch self {
         case .left:
-            return SKTexture(image: #imageLiteral(resourceName: "ice-slide-r"))
+            return true
         case .right:
-            return SKTexture(image: #imageLiteral(resourceName: "ice-slide-l"))
+            return false
         }
     }
 }
@@ -216,7 +217,7 @@ extension Level6 {
             nextSlide.position = CGPoint(x: totalSceneSize.width - (nextSlide.size.width / 2), y: dy)
         }
         
-        addChild(nextSlide)
+        nextSlide.move(toParent: self)
         lastPosition = nextSlideModel.0
     }
     
@@ -232,7 +233,7 @@ extension Level6 {
         let newSlide = IcePosition.right(dy: 0).currentSprite(sceneSize: totalSceneSize)
         newSlide.position = CGPoint(x: totalSceneSize.width - (newSlide.size.width / 2), y: newSlide.size.height / 2)
         
-        addChild(newSlide)
+        newSlide.move(toParent: self)
         lastPosition = IcePosition.right(dy: newSlide.size.height / 2)
     
     }

@@ -130,6 +130,9 @@
 		A5E21F9E1F4EF94400934CE2 /* SnowParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5E21F9D1F4EF94400934CE2 /* SnowParticle.sks */; };
 		A5E3150F1E2166F100D3652C /* SKScene+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E3150E1E2166F100D3652C /* SKScene+Extensions.swift */; };
 		A5EE58CD1E5F1BB700D3D25B /* SKSpriteNode+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EE58CC1E5F1BB700D3D25B /* SKSpriteNode+Extensions.swift */; };
+		A5F991671F542519001CE504 /* IceTerrain.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5F991661F542519001CE504 /* IceTerrain.sks */; };
+		A5F991691F542546001CE504 /* IceTerrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F991681F542546001CE504 /* IceTerrain.swift */; };
+		A5F9916C1F542613001CE504 /* IceTerrain-flipped.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5F9916B1F542613001CE504 /* IceTerrain-flipped.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -258,6 +261,9 @@
 		A5E21F9D1F4EF94400934CE2 /* SnowParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SnowParticle.sks; sourceTree = "<group>"; };
 		A5E3150E1E2166F100D3652C /* SKScene+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKScene+Extensions.swift"; sourceTree = "<group>"; };
 		A5EE58CC1E5F1BB700D3D25B /* SKSpriteNode+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKSpriteNode+Extensions.swift"; sourceTree = "<group>"; };
+		A5F991661F542519001CE504 /* IceTerrain.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = IceTerrain.sks; sourceTree = "<group>"; };
+		A5F991681F542546001CE504 /* IceTerrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IceTerrain.swift; sourceTree = "<group>"; };
+		A5F9916B1F542613001CE504 /* IceTerrain-flipped.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "IceTerrain-flipped.sks"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -351,6 +357,7 @@
 		A5A968251EEAC80500A509DB /* Sprites */ = {
 			isa = PBXGroup;
 			children = (
+				A5F9916A1F5425BF001CE504 /* Ice Terrain */,
 				A5A968261EEAC80500A509DB /* BreakableRocks.sks */,
 				A5A968271EEAC80500A509DB /* BreakableStones1.sks */,
 				A5A968281EEAC80500A509DB /* BreakableStones2.sks */,
@@ -478,6 +485,7 @@
 				A5783CA91F2E6A4E00FC010C /* CollapsablePlatform.swift */,
 				A576E0801F3492B30062228D /* AngledIcePlatform.swift */,
 				A5B75A331F5312DB004BE5BD /* SnowBall.swift */,
+				A5F991681F542546001CE504 /* IceTerrain.swift */,
 			);
 			path = Environment;
 			sourceTree = "<group>";
@@ -578,6 +586,15 @@
 			path = Level6;
 			sourceTree = "<group>";
 		};
+		A5F9916A1F5425BF001CE504 /* Ice Terrain */ = {
+			isa = PBXGroup;
+			children = (
+				A5F991661F542519001CE504 /* IceTerrain.sks */,
+				A5F9916B1F542613001CE504 /* IceTerrain-flipped.sks */,
+			);
+			path = "Ice Terrain";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -655,6 +672,7 @@
 				A5A968C51EEACF5D00A509DB /* ForegroundLayer3.sks in Resources */,
 				A5674C2B1EE81E3D00D29F2B /* wave.fsh in Resources */,
 				A5B58EC21E09DC4900ADC865 /* Main.storyboard in Resources */,
+				A5F991671F542519001CE504 /* IceTerrain.sks in Resources */,
 				A5A9684D1EEAC80500A509DB /* Rose.sks in Resources */,
 				A5A968501EEAC80500A509DB /* SlidingPlatform.sks in Resources */,
 				A5A968471EEAC80500A509DB /* ChainedRotary.sks in Resources */,
@@ -682,6 +700,7 @@
 				A5A968441EEAC80500A509DB /* BreakableRocks.sks in Resources */,
 				A5DCD08E1F3340760018D211 /* Level6.sks in Resources */,
 				A5A968C11EEACF5D00A509DB /* Level0.sks in Resources */,
+				A5F9916C1F542613001CE504 /* IceTerrain-flipped.sks in Resources */,
 				A5A968C41EEACF5D00A509DB /* ForegroundLayer2.sks in Resources */,
 				A5A968391EEAC80500A509DB /* LevelCompleteLabel.sks in Resources */,
 				A5A968491EEAC80500A509DB /* GravityProjectile.sks in Resources */,
@@ -752,6 +771,7 @@
 				A5A968B51EEACE9D00A509DB /* ArrowNode.swift in Sources */,
 				A5A968771EEACB8900A509DB /* Obstacle.swift in Sources */,
 				A5A968B61EEACE9D00A509DB /* GravityProjectile.swift in Sources */,
+				A5F991691F542546001CE504 /* IceTerrain.swift in Sources */,
 				A5AFBA1C1E1828F200CE29E9 /* SKTexture+Extensions.swift in Sources */,
 				A5A9686E1EEACB8900A509DB /* Game.swift in Sources */,
 				A5A9686F1EEACB8900A509DB /* GameLevel.swift in Sources */,
