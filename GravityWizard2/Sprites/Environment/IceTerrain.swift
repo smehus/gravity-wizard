@@ -47,7 +47,7 @@ private enum SpriteConfig: SpriteConfiguration {
     var collisionBitMask: UInt32 {
         switch self {
         case .ground, .flippedGround:
-            return PhysicsCategory.Ground | PhysicsCategory.Hero
+            return PhysicsCategory.enemy | PhysicsCategory.Hero
         }
     }
     
@@ -93,7 +93,7 @@ internal final class IceTerrain: SKNode {
         let node = scene.childNode(withName: "root") as! IceTerrain
         
         node.config = config
-        node.setupNode(size: size)
+        node.setupNode(size: size, config: config)
         
         return node
     }
@@ -102,17 +102,17 @@ internal final class IceTerrain: SKNode {
         return ground!.size
     }
     
-    private func setupNode(size: CGSize) {
+    private func setupNode(size: CGSize, config: SpriteConfig) {
         guard let groundSprite = childNode(withName: "ground") as? SKSpriteNode else {
-            conditionFailure(with: "fuckkk")
+            conditionFailure(with: "Failed to resolve ice terrain")
             return
         }
         
         
         groundSprite.size = size
         self.ground = groundSprite
-        groundSprite.physicsBody = SKPhysicsBody(texture: groundSprite.texture!, size: groundSprite.texture!.size())
-        groundSprite.configure(with: config!)
+        groundSprite.physicsBody = SKPhysicsBody(texture: groundSprite.texture!, size: size)
+        groundSprite.configure(with: config)
     }
 }
 

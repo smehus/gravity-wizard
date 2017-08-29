@@ -42,7 +42,6 @@ enum IcePosition {
         let textureSize = sceneSize.width * 0.75
         
         var nextPosition: IcePosition
-//        let sprite = GroundNode(texture: nextTexture(), size: CGSize(width: textureSize, height: textureSize))
         let sprite = IceTerrain.node(orientation: nextOrientation(), size: CGSize(width: textureSize, height: textureSize))
         
         
@@ -59,9 +58,9 @@ enum IcePosition {
     func nextOrientation() -> Bool {
         switch self {
         case .left:
-            return true
-        case .right:
             return false
+        case .right:
+            return true
         }
     }
 }
