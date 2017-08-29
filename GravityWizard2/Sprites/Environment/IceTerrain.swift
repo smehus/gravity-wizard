@@ -93,7 +93,7 @@ internal final class IceTerrain: SKNode {
         let node = scene.childNode(withName: "root") as! IceTerrain
         
         node.config = config
-        node.setupNode(size: size, config: config)
+        node.setupNode(withSize: size, config: config)
         
         return node
     }
@@ -102,17 +102,22 @@ internal final class IceTerrain: SKNode {
         return ground!.size
     }
     
-    private func setupNode(size: CGSize, config: SpriteConfig) {
+    private func setupNode(withSize newSize: CGSize, config: SpriteConfig) {
         guard let groundSprite = childNode(withName: "ground") as? SKSpriteNode else {
             conditionFailure(with: "Failed to resolve ice terrain")
             return
         }
         
-        
-        groundSprite.size = size
+        let sizeRatio: CGSize = newSize / groundSprite.size
+        groundSprite.size = newSize
         self.ground = groundSprite
-        groundSprite.physicsBody = SKPhysicsBody(texture: groundSprite.texture!, size: size)
+        groundSprite.physicsBody = SKPhysicsBody(texture: groundSprite.texture!, size: newSize)
         groundSprite.configure(with: config)
+        
+        groundSprite.enumerateChildNodes(withName: "foilage") { node, stop in
+            guard let sprite = node as? SKSpriteNode else { return }
+            sprite.size = sprite.size * sizeRatio
+        }
     }
 }
 
