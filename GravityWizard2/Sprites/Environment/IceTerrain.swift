@@ -114,9 +114,9 @@ internal final class IceTerrain: SKNode {
         groundSprite.physicsBody = SKPhysicsBody(texture: groundSprite.texture!, size: newSize)
         groundSprite.configure(with: config)
         
-        groundSprite.enumerateChildNodes(withName: "foilage") { node, stop in
+        groundSprite.enumerateChildNodes(withName: "//foilage") { node, stop in
             guard let sprite = node as? SKSpriteNode else { return }
-            let heightOffset = (sprite.size.height / 2) * sizeRatio.height
+            let heightOffset = (sprite.size.height / 3) * sizeRatio.height
             sprite.size = sprite.size * sizeRatio
             sprite.position.y += heightOffset
         }
