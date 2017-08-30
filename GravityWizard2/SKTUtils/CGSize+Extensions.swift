@@ -33,6 +33,13 @@ func *(lhs: CGSize, rhs: CGSize) -> CGSize {
     return CGSize(width: widthRatio, height: heightRatio)
 }
 
+
+extension CGSize {
+    var cgPoint: CGPoint {
+        return CGPoint(x: width, y: height)
+    }
+}
+
 extension CGSize {
     public mutating func offset(dx: CGFloat, dy: CGFloat) -> CGSize {
         width += dx
