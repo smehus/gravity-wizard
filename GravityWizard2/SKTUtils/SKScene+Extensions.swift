@@ -38,6 +38,14 @@ extension SKScene {
         return CGSize(width: xValue, height: yValue)
     }
     
+    func addTestFrame(size: CGSize) {
+        let testNode = SKShapeNode(rect: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+        testNode.fillColor = .clear
+        testNode.strokeColor = .red
+        testNode.lineWidth = 30
+        addChild(testNode)
+    }
+    
     func createFixedJoint(with nodeA: SKNode?, nodeB: SKNode?, position: CGPoint) {
         guard let bodyA = nodeA?.physicsBody, let bodyB = nodeB?.physicsBody else {
             assertionFailure("Create fixed joint called with nil nodes")
