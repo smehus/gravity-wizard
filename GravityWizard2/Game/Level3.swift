@@ -16,7 +16,7 @@ fileprivate struct NodeNames {
 final class Level3: GameScene {
     
     /// Container nodes
-    fileprivate var background: SKNode?
+    fileprivate var background: SKSpriteNode?
     fileprivate var foreground: SKNode?
     
     // MARK: - Game Protocol
@@ -25,6 +25,13 @@ final class Level3: GameScene {
         return .three
     }
     
+    override var totalSceneSize: CGSize {
+        guard let sizer = background else {
+            return size
+        }
+        
+        return CGSize(width: sizer.size.width, height: sizer.size.height * 2)
+    }
     
     // MARK: - SceneEdgeDecider Protocol
     
@@ -43,17 +50,14 @@ final class Level3: GameScene {
         
         guard
             let foregroundNode = childNode(withName: NodeNames.foreground),
-            let _ = childNode(withName: NodeNames.bottomBackground) as? SKSpriteNode
+            let backgroundNode = childNode(withName: NodeNames.bottomBackground) as? SKSpriteNode
         else {
             assertionFailure("Level 3: Failed obtain child nodes from scene")
             return
         }
         
         foreground = foregroundNode
-        
-//        let shader = SKShader(fileNamed: "wave.fsh")
-//        bottomBackground.shader = shader
-        
+        background = backgroundNode
     }
     
     override func update(levelWith currentTime: TimeInterval, delta: TimeInterval) {

@@ -114,11 +114,11 @@ final class Level6: GameScene {
         super.setupNodes()
         particleFactory.addWinterSnowyBackground(scene: self)
         addPhysicsBorders(size: totalSceneSize)
-        addTestFrame(size: totalSceneSize)
+//        addTestFrame(size: totalSceneSize)
     }
     
     override func update(levelWith currentTime: TimeInterval, delta: TimeInterval) {
-//        populatePlatforms()
+        populatePlatforms()
         generateBall(time: currentTime)
     }
     

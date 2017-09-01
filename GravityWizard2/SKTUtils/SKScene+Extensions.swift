@@ -56,8 +56,8 @@ extension SKScene {
     
     func addPhysicsBorders(size: CGSize) {
         
-        let leftBorder = SKShapeNode(rect: CGRect(x: 0, y: 0, width: 1.0, height: size.height))
-        let rightBorder = SKShapeNode(rect: CGRect(x: size.width - 1.0, y: 0, width: 1.0, height: size.height))
+        let leftBorder = SKShapeNode(rect: CGRect(x: 0, y: size.height / 2, width: 1.0, height: size.height))
+        let rightBorder = SKShapeNode(rect: CGRect(x: size.width - 1.0, y: size.height / 2, width: 1.0, height: size.height))
 
         for border in [leftBorder, rightBorder] {
             let body = SKPhysicsBody(rectangleOf: border.frame.size)

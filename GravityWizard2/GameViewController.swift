@@ -19,7 +19,7 @@ class GameViewController: UIViewController {
         //            setNeedsUpdateOfScreenEdgesDeferringSystemGestures()
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
-            if let scene = Level.four.levelScene() {
+            if let scene = Level.three.levelScene() {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
                 

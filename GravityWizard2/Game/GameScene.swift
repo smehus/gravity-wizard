@@ -109,8 +109,8 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel, SceneEdgeDecider {
         anchorPoint = CGPoint(x: 0, y: 0)
 
         setupRequiredNodes()
-        setupCamera()
         setupNodes()
+        setupCamera()
         setupHeroContactBorder()
     }
     
