@@ -21,6 +21,13 @@ extension SKScene {
         return isIpad() ? size.height : playableHeight
     }
     
+    var playableMargin: CGFloat {
+        let maxAspectRatio: CGFloat = 16.0/9.0
+        let playableHeight = size.width / maxAspectRatio
+        let playableMargin = (size.height-playableHeight) / 2.0
+        return isIpad() ? 0 : playableMargin
+    }
+    
     var sceneMidPoint: CGPoint {
         let width = size.width / 2
         let height = size.height / 2

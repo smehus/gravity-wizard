@@ -167,13 +167,20 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel, SceneEdgeDecider {
     
     /// Creates an edge constraint for the camera - so it does not scroll off screen content (black / gray area)
     func cameraEdgeConstraint(with cx: CGFloat, cy: CGFloat) -> SKConstraint {
-        let xInset = frame.size.width/2 * cx
-        let yInset = playableHeight/2 * cy
-        let constraintRect = frame.insetBy(dx: xInset, dy: yInset)
+        
+        /// Don't use the camera scale anymore cause its alwayse one
+        
+        let xInset = frame.size.width / 2
+        let yInset = playableHeight / 2
+        
+        /// This is the frame that matters
+        let alteredFrame = CGRect(x: 0, y: 0, width: totalSceneSize.width, height: totalSceneSize.height)
+        
+        let constraintRect = alteredFrame.insetBy(dx: xInset, dy: yInset)
         
         /// These multlipliers decide if the camera should follow past the top off the scene and past the right of the scene
-        let xRange = SKRange(lowerLimit: constraintRect.minX, upperLimit: constraintRect.maxX * xConstraintMultiplier)
-        let yRange = SKRange(lowerLimit: constraintRect.minY, upperLimit: constraintRect.maxY * yConstraintMultiplier)
+        let xRange = SKRange(lowerLimit: constraintRect.minX, upperLimit: constraintRect.maxX )
+        let yRange = SKRange(lowerLimit: constraintRect.minY, upperLimit: constraintRect.maxY)
         let edgeConstraint = SKConstraint.positionX(xRange, y: yRange)
         edgeConstraint.referenceNode = self
         return edgeConstraint

@@ -78,7 +78,7 @@ final class Level6: GameScene {
     }
     
     override var yConstraintMultiplier: CGFloat {
-        return 5
+        return 2
     }
     
     override var xConstraintMultiplier: CGFloat {
@@ -88,7 +88,8 @@ final class Level6: GameScene {
     override var totalSceneSize: CGSize {
         guard let scene = scene else { return CGSize.zero }
         let halfWidth = scene.size.width / 2
-        let halfHeight = scene.size.height / 2
+        let halfHeight = playableHeight / 2
+        
         // xConstraintMultiplier is the multipier for half scene segments - specifically for constraints.
         // Kinda weird but whatever
         let totalWidth = (halfWidth * xConstraintMultiplier) + halfWidth
@@ -114,10 +115,11 @@ final class Level6: GameScene {
     override func setupNodes() {
         super.setupNodes()
         particleFactory.addWinterSnowyBackground(scene: self)
+        addTestFrame(size: totalSceneSize)
     }
     
     override func update(levelWith currentTime: TimeInterval, delta: TimeInterval) {
-        populatePlatforms()
+//        populatePlatforms()
         generateBall(time: currentTime)
     }
     
