@@ -53,6 +53,25 @@ extension SKScene {
         addChild(testNode)
     }
     
+    
+    func addPhysicsBorders(size: CGSize) {
+        
+        let leftBorder = SKShapeNode(rect: CGRect(x: 0, y: 0, width: 1.0, height: size.height))
+        let rightBorder = SKShapeNode(rect: CGRect(x: size.width - 1.0, y: 0, width: 1.0, height: size.height))
+
+        for border in [leftBorder, rightBorder] {
+            let body = SKPhysicsBody(rectangleOf: border.frame.size)
+            body.affectedByGravity = false
+            body.isDynamic = false
+            body.categoryBitMask = PhysicsCategory.Ground
+            body.contactTestBitMask = PhysicsCategory.Hero | PhysicsCategory.enemy
+            body.collisionBitMask = PhysicsCategory.Hero | PhysicsCategory.enemy
+            border.physicsBody = body
+            
+            addChild(border)
+        }
+    }
+    
     func createFixedJoint(with nodeA: SKNode?, nodeB: SKNode?, position: CGPoint) {
         guard let bodyA = nodeA?.physicsBody, let bodyB = nodeB?.physicsBody else {
             assertionFailure("Create fixed joint called with nil nodes")
