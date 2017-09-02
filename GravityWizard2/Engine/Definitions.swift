@@ -52,9 +52,10 @@ enum Level: Int {
     case five
     case six
     case seven
+    case eight
     
     static func all() -> [Level] {
-        return [.zero, .one, .two, .three, .four, .five, .six, .seven]
+        return [.zero, .one, .two, .three, .four, .five, .six, .seven, .eight]
     }
     
     func nextLevel() -> Level? {
@@ -80,6 +81,8 @@ enum Level: Int {
             return SKScene(fileNamed: "Level6") as? Level6
         case .seven:
             return SKScene(fileNamed: "Level7") as? Level7
+        case .eight:
+            return SKScene(fileNamed: "Level7") as? Level8
         }
     }
 }
