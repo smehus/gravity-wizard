@@ -12,6 +12,7 @@ import SpriteKit
 fileprivate struct Names {
     static let movingPlatform = "MovingPlatform"
     static let platformBase = "PlatformBase"
+    static let levelComplete = "level-complete"
 }
 
 final class StonePlatform: SKNode {
@@ -62,12 +63,17 @@ final class StonePlatform: SKNode {
     fileprivate func setupPlatform() {
         guard
             let platform = childNode(withName: "//\(Names.movingPlatform)"),
+            let door = childNode(withName: "//\(Names.levelComplete)"),
+            let _ = door.physicsBody,
             let _ = platform.physicsBody
         else {
             assertionFailure("Failed to find moving platform")
             return
         }
     
+        door.physicsBody?.categoryBitMask = PhysicsCategory.LevelComplete
+        door.physicsBody?.collisionBitMask = PhysicsCategory.None
+        
         platform.physicsBody?.categoryBitMask = PhysicsCategory.Ground
         platform.physicsBody?.affectedByGravity = false
         platform.physicsBody?.allowsRotation = false
