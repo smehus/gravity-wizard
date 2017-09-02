@@ -41,7 +41,7 @@ class Level8: GameScene {
     }
     
     override func didSimulatePhysicsForLevel() {
-        backgroundLayer?.position = cameraOffset
+        
     }
     
     override func levelCompleted() {

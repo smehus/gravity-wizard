@@ -56,11 +56,15 @@ class Level7: GameScene {
         guard
             let background = childNode(withName: Keys.backgroundLayer.rawValue),
             let target = childNode(withName: Keys.targetLayer.rawValue) as? TargetLayer,
-            let platform = childNode(withName: Keys.platformLayer.rawValue) as? PlatformLayer
+            let platform = childNode(withName: Keys.platformLayer.rawValue) as? PlatformLayer,
+            let camera = camera
         else {
             conditionFailure(with: "Failed to setup nodes")
             return
         }
+        
+        background.position = CGPoint(x: -(frame.size.width / 2), y: -(playableHeight / 2))
+        background.move(toParent: camera)
         
         backgroundLayer = background
         targetLayer = target
@@ -69,11 +73,10 @@ class Level7: GameScene {
 
     override func update(levelWith currentTime: TimeInterval, delta: TimeInterval) {
         targetLayer?.update(levelWith: currentTime, delta: delta)
-        backgroundLayer?.position = cameraOffset
     }
     
     override func didSimulatePhysicsForLevel() {
-        backgroundLayer?.position = cameraOffset
+
     }
     
     override func levelCompleted() {
