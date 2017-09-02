@@ -8,10 +8,20 @@
 
 import SpriteKit
 
+private enum Keys: String {
+    case world = "world"
+    case targetLayer = "target-layer"
+    case playerLayer = "player-layer"
+}
+
 class Level7: GameScene {
     
+    private var world: SKNode!
+    private var targetLayer: SKNode!
+    private var playerLayer: SKNode!
+    
     var currentLevel: Level {
-        return .six
+        return .seven
     }
     
     override var shouldAddScenePhysicsEdge: Bool {
@@ -31,7 +41,20 @@ class Level7: GameScene {
     }
     
     override func setupNodes() {
+        super.setupNodes()
         
+        guard
+            let worldNode = childNode(withName: Keys.world.rawValue),
+            let target = worldNode.childNode(withName: Keys.targetLayer.rawValue),
+            let player = worldNode.childNode(withName: Keys.playerLayer.rawValue)
+        else {
+            conditionFailure(with: "Failed to setup nodes")
+            return
+        }
+        
+        world = worldNode
+        targetLayer = target
+        playerLayer = player
     }
 
     override func update(levelWith currentTime: TimeInterval, delta: TimeInterval) {
