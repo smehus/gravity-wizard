@@ -78,7 +78,7 @@ final class Level6: GameScene {
     }
     
     override var yConstraintMultiplier: CGFloat {
-        return 5
+        return 3
     }
     
     override var xConstraintMultiplier: CGFloat {
@@ -104,6 +104,7 @@ final class Level6: GameScene {
     private var lastPlatformPosition: CGFloat?
     private var lastPosition: IcePosition?
     private var lastSnowBallTime: TimeInterval?
+    private var levelCompleteDoor: SKSpriteNode?
     private struct Constants {
         static let SNOW_BALL_FREQ: TimeInterval = 5
     }
@@ -114,7 +115,6 @@ final class Level6: GameScene {
         super.setupNodes()
         particleFactory.addWinterSnowyBackground(scene: self)
         addPhysicsBorders(size: totalSceneSize)
-//        addTestFrame(size: totalSceneSize)
     }
     
     override func update(levelWith currentTime: TimeInterval, delta: TimeInterval) {
@@ -219,6 +219,40 @@ extension Level6 {
         
         nextSlide.move(toParent: self)
         lastPosition = nextSlideModel.0
+        
+        if levelCompleteDoor == nil, (totalSceneSize.height - nextSlide.position.y) < 300 {
+            let doorTexture = SKTexture(image: #imageLiteral(resourceName: "ice-door"))
+            let door = SKSpriteNode(texture: doorTexture, color: .white, size: doorTexture.size() * 2)
+            door.physicsBody = SKPhysicsBody(rectangleOf: doorTexture.size() * 2)
+            door.physicsBody?.categoryBitMask = PhysicsCategory.LevelComplete
+            door.physicsBody?.isDynamic = false
+            
+            let doorPlatformTexture = SKTexture(image: #imageLiteral(resourceName: "ice-floor"))
+            let doorPlatform = SKSpriteNode(texture: doorPlatformTexture, color: .white, size: doorPlatformTexture.size())
+            doorPlatform.physicsBody = SKPhysicsBody(rectangleOf: doorPlatformTexture.size())
+            doorPlatform.physicsBody?.categoryBitMask = PhysicsCategory.Ground
+            doorPlatform.physicsBody?.collisionBitMask = PhysicsCategory.Hero
+            doorPlatform.physicsBody?.isDynamic = false
+            
+            
+            door.position = CGPoint(x: 0, y: (doorPlatform.size.height / 2) + (door.size.height / 2))
+            doorPlatform.addChild(door)
+            
+            var xPos: CGFloat
+            switch nextSlideModel.0 {
+            case .left:
+                xPos = totalSceneSize.width - 300
+            case .right:
+                xPos = 300
+            }
+            
+            doorPlatform.position = CGPoint(x: xPos, y: totalSceneSize.height - 300)
+            
+            doorPlatform.zPosition = 20
+            addChild(doorPlatform)
+            
+            levelCompleteDoor = door
+        }
     }
     
     private func generateInitialPlatform() {
