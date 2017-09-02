@@ -31,6 +31,10 @@ class Level1: GameScene {
         return true
     }
     
+    override var totalSceneSize: CGSize {
+        return size
+    }
+    
     /// Sprites
     fileprivate var light: SKNode?
     fileprivate var levelComplete: SKNode?

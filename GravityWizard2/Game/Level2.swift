@@ -28,6 +28,10 @@ final class Level2: GameScene {
         return true
     }
     
+    override var totalSceneSize: CGSize {
+        return size
+    }
+    
     fileprivate var movingPlatform: StonePlatform?
     fileprivate var destructableStoneStructure: BreakableStoneStructure?
     
