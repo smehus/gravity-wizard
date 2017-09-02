@@ -55,8 +55,14 @@ private enum Texture {
 
 class TargetLayer: SKNode {
     
+    static let ENEMY_NAME = "flying-enemy"
+    
     var waitDuration: TimeInterval = Double(CGFloat.random(min: 0.0, max: 3.0))
     private var timer: TimeInterval = 0
+    
+    var parentScene: Level7 {
+        return parent as! Level7
+    }
     
     func update(levelWith currentTime: TimeInterval, delta: TimeInterval) {
         timer += delta
@@ -71,6 +77,21 @@ class TargetLayer: SKNode {
     
     private func triggerEnemy() {
         let nextTexture: Texture = Bool.random() ? Texture.propeller : Texture.winged
+        let sprite = SKSpriteNode(texture: nextTexture.texture, color: .white, size: nextTexture.texture.size() * 2)
+        sprite.name = TargetLayer.ENEMY_NAME
+        let body = SKPhysicsBody(texture: nextTexture.texture, size: nextTexture.texture.size() * 2)
+        body.categoryBitMask = PhysicsCategory.enemy
+        body.contactTestBitMask = PhysicsCategory.arrow
+        body.collisionBitMask = PhysicsCategory.arrow | PhysicsCategory.Hero | PhysicsCategory.enemy
+        body.isDynamic = true
+        body.affectedByGravity = true
+        body.allowsRotation = true
+        sprite.physicsBody = body
+        
+        sprite.position = CGPoint(x: parentScene.camera!.position.x, y: (parentScene.camera!.position.y - (parentScene.frame.size.height / 2)))
+        sprite.zPosition = 20
+        addChild(sprite)
+        sprite.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 700))
     }
 }
 

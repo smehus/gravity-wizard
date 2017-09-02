@@ -29,7 +29,7 @@ class Level7: GameScene {
     }
     
     override var yConstraintMultiplier: CGFloat {
-        return 1
+        return 3
     }
     
     override var xConstraintMultiplier: CGFloat {
@@ -37,28 +37,28 @@ class Level7: GameScene {
     }
     
     override var totalSceneSize: CGSize {
-        return size
+        let width = size.width * xConstraintMultiplier
+        let height = playableHeight * yConstraintMultiplier
+        return CGSize(width: width, height: height)
     }
     
     override func setupNodes() {
         super.setupNodes()
         
         guard
-            let worldNode = childNode(withName: Keys.world.rawValue),
-            let target = worldNode.childNode(withName: Keys.targetLayer.rawValue) as? TargetLayer,
-            let platform = worldNode.childNode(withName: Keys.platformLayer.rawValue) as? PlatformLayer
+            let target = childNode(withName: Keys.targetLayer.rawValue) as? TargetLayer,
+            let platform = childNode(withName: Keys.platformLayer.rawValue) as? PlatformLayer
         else {
             conditionFailure(with: "Failed to setup nodes")
             return
         }
         
-        world = worldNode
         targetLayer = target
         platformLayer = platform
     }
 
     override func update(levelWith currentTime: TimeInterval, delta: TimeInterval) {
-        
+        targetLayer?.update(levelWith: currentTime, delta: delta)
     }
     
     override func didSimulatePhysicsForLevel() {

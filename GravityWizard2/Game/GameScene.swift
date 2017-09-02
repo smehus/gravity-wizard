@@ -807,13 +807,11 @@ extension GameScene {
     private func arrowCollidesWithEnemy(with contact: SKPhysicsContact) {
         let enemyNode = contact.bodyA.categoryBitMask == PhysicsCategory.enemy ? contact.bodyA.node : contact.bodyB.node
         let arrowNode = contact.bodyA.categoryBitMask == PhysicsCategory.arrow ? contact.bodyA.node : contact.bodyB.node
-        guard let enemy = enemyNode as? Enemy else {
-            assertionFailure("Failed to cast collision node to Enemy type")
-            return
-        }
-        
         createFixedJoint(with: arrowNode, nodeB: enemyNode, position: contact.contactPoint)
-        enemy.hitWithArrow()
+        
+        if let enemy = enemyNode as? Enemy {
+            enemy.hitWithArrow()
+        }
     }
     
     private func arrowCollidesWithDesctructable(with contact: SKPhysicsContact) {
