@@ -73,6 +73,7 @@ class Level7: GameScene {
 
     override func update(levelWith currentTime: TimeInterval, delta: TimeInterval) {
         targetLayer?.update(levelWith: currentTime, delta: delta)
+        platformLayer?.update(levelWith: currentTime, delta: delta)
     }
     
     override func didSimulatePhysicsForLevel() {
