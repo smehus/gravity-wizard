@@ -8,16 +8,12 @@
 
 import SpriteKit
 
-private enum SpawnState {
-    case generation
-    case done
-}
-
 class PlatformLayer: SKNode {
     
-    private var state: SpawnState = .generation
+   @objc private dynamic var isSpawning = true
     private var platformTexture: SKTexture?
     private var lastPlatformPosition: CGPoint?
+    private var stateListener: NSKeyValueObservation?
     
     private var randomXPosition: CGFloat {
         return CGFloat.random(min: 0, max: parentScene.totalSceneSize.width)
@@ -29,10 +25,16 @@ class PlatformLayer: SKNode {
     
     func setupSprites() {
         platformTexture = SKTexture(image: #imageLiteral(resourceName: "grass-edge-platform"))
+        
+        stateListener = self.observe(\.isSpawning, options: [.new]) { (strongSelf , change) in
+            if change.newValue == false {
+                strongSelf.spawnFinalPlatform()
+            }
+        }
     }
     
     func update(levelWith currentTime: TimeInterval, delta: TimeInterval) {
-        if state == .generation {
+        if isSpawning {
             spawnPlatform()
         }
     }
@@ -47,16 +49,7 @@ class PlatformLayer: SKNode {
     }
     
     private func spawnInitial() {
-        guard let texture = platformTexture else { return }
-        
-        let sprite = SKSpriteNode(texture: texture)
-        let body = SKPhysicsBody(texture: texture, size: texture.size())
-        body.categoryBitMask = PhysicsCategory.Ground
-        body.collisionBitMask = PhysicsCategory.Hero
-        body.contactTestBitMask = PhysicsCategory.Hero
-        body.isDynamic = false
-        
-        sprite.physicsBody = body
+        guard let sprite = spawnSprite() else { return }
         sprite.position = CGPoint(x: randomXPosition, y: parentScene.playableHeight / 2)
         addChild(sprite)
         
@@ -64,7 +57,39 @@ class PlatformLayer: SKNode {
     }
     
     private func spawnNext(position: CGPoint) {
+        guard let lastPosition = lastPlatformPosition else {
+            spawnInitial()
+            return
+        }
         
+        guard lastPosition.y < (parentScene.totalSceneSize.height - (parentScene.playableHeight / 2)) else {
+            isSpawning = false
+            return
+        }
+        
+        guard let sprite = spawnSprite() else { return }
+        
+        sprite.position = CGPoint(x: randomXPosition, y: lastPosition.y + (parentScene.playableHeight / 2))
+        addChild(sprite)
+        
+        lastPlatformPosition = sprite.position
+    }
+    
+    private func spawnFinalPlatform() {
+        
+    }
+    
+    private func spawnSprite() -> SKSpriteNode? {
+        guard let texture = platformTexture else { return nil }
+        let sprite = SKSpriteNode(texture: texture)
+        let body = SKPhysicsBody(texture: texture, size: texture.size())
+        body.categoryBitMask = PhysicsCategory.Ground
+        body.collisionBitMask = PhysicsCategory.Hero
+        body.contactTestBitMask = PhysicsCategory.Hero
+        body.isDynamic = false
+        sprite.physicsBody = body
+        
+        return sprite
     }
 }
 
