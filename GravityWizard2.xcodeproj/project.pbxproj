@@ -127,6 +127,8 @@
 		A5BE41391F276AFA0052E56A /* WaterSplash.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5BE41371F276AFA0052E56A /* WaterSplash.sks */; };
 		A5BE413A1F276AFA0052E56A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5BE41381F276AFA0052E56A /* Assets.xcassets */; };
 		A5BE41401F276DFD0052E56A /* WaterReflection.fsh in Resources */ = {isa = PBXBuildFile; fileRef = A5BE413F1F276DFD0052E56A /* WaterReflection.fsh */; };
+		A5C5E0521F5B020B00D4DEA5 /* TargetLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C5E0511F5B020B00D4DEA5 /* TargetLayer.swift */; };
+		A5C5E0541F5B031300D4DEA5 /* PlatformLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C5E0531F5B031300D4DEA5 /* PlatformLayer.swift */; };
 		A5DCD08E1F3340760018D211 /* Level6.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5DCD08D1F3340760018D211 /* Level6.sks */; };
 		A5DCD0901F33417A0018D211 /* Level6.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DCD08F1F33417A0018D211 /* Level6.swift */; };
 		A5E21F9E1F4EF94400934CE2 /* SnowParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5E21F9D1F4EF94400934CE2 /* SnowParticle.sks */; };
@@ -260,6 +262,8 @@
 		A5BE41371F276AFA0052E56A /* WaterSplash.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = WaterSplash.sks; sourceTree = "<group>"; };
 		A5BE41381F276AFA0052E56A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A5BE413F1F276DFD0052E56A /* WaterReflection.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = WaterReflection.fsh; sourceTree = "<group>"; };
+		A5C5E0511F5B020B00D4DEA5 /* TargetLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetLayer.swift; sourceTree = "<group>"; };
+		A5C5E0531F5B031300D4DEA5 /* PlatformLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformLayer.swift; sourceTree = "<group>"; };
 		A5DCD08D1F3340760018D211 /* Level6.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level6.sks; sourceTree = "<group>"; };
 		A5DCD08F1F33417A0018D211 /* Level6.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level6.swift; sourceTree = "<group>"; };
 		A5E21F9D1F4EF94400934CE2 /* SnowParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SnowParticle.sks; sourceTree = "<group>"; };
@@ -400,6 +404,7 @@
 		A5A968571EEAC99C00A509DB /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				A5C5E0501F5B01E600D4DEA5 /* Level7 */,
 				A5A968581EEAC99C00A509DB /* GameScene.swift */,
 				A5A968591EEAC99C00A509DB /* Level0.swift */,
 				A5A9685A1EEAC99C00A509DB /* Level1.swift */,
@@ -408,7 +413,6 @@
 				A5A968B71EEACF1500A509DB /* Level4.swift */,
 				A549D5D01F2E032600470E2D /* Level5.swift */,
 				A5DCD08F1F33417A0018D211 /* Level6.swift */,
-				A551222E1F5AEA0B004B2DDB /* Level7.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -592,6 +596,16 @@
 			path = GravityWizard2;
 			sourceTree = "<group>";
 		};
+		A5C5E0501F5B01E600D4DEA5 /* Level7 */ = {
+			isa = PBXGroup;
+			children = (
+				A551222E1F5AEA0B004B2DDB /* Level7.swift */,
+				A5C5E0511F5B020B00D4DEA5 /* TargetLayer.swift */,
+				A5C5E0531F5B031300D4DEA5 /* PlatformLayer.swift */,
+			);
+			path = Level7;
+			sourceTree = "<group>";
+		};
 		A5DCD08C1F3340550018D211 /* Level6 */ = {
 			isa = PBXGroup;
 			children = (
@@ -729,6 +743,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5C5E0521F5B020B00D4DEA5 /* TargetLayer.swift in Sources */,
 				A5A9689E1EEACE9D00A509DB /* SnakeNode.swift in Sources */,
 				A5A968B01EEACE9D00A509DB /* VerticalSlidingPlatform.swift in Sources */,
 				A5A9689D1EEACE9D00A509DB /* Enemy.swift in Sources */,
@@ -795,6 +810,7 @@
 				A5ACBA6A1F2D014700CB83E4 /* BorderNode.swift in Sources */,
 				A59FB6971E0A088A00D1C915 /* CGPoint+Extensions.swift in Sources */,
 				A5E3150F1E2166F100D3652C /* SKScene+Extensions.swift in Sources */,
+				A5C5E0541F5B031300D4DEA5 /* PlatformLayer.swift in Sources */,
 				A5A9687B1EEACDD800A509DB /* Definitions.swift in Sources */,
 				A59FB6AC1E0A257600D1C915 /* CGSize+Extensions.swift in Sources */,
 				A59FB69B1E0A088A00D1C915 /* SKAction+SpecialEffects.swift in Sources */,

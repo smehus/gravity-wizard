@@ -11,14 +11,14 @@ import SpriteKit
 private enum Keys: String {
     case world = "world"
     case targetLayer = "target-layer"
-    case playerLayer = "player-layer"
+    case platformLayer = "platform-layer"
 }
 
 class Level7: GameScene {
     
     private var world: SKNode!
-    private var targetLayer: SKNode!
-    private var playerLayer: SKNode!
+    private var targetLayer: TargetLayer!
+    private var platformLayer: PlatformLayer!
     
     var currentLevel: Level {
         return .seven
@@ -45,8 +45,8 @@ class Level7: GameScene {
         
         guard
             let worldNode = childNode(withName: Keys.world.rawValue),
-            let target = worldNode.childNode(withName: Keys.targetLayer.rawValue),
-            let player = worldNode.childNode(withName: Keys.playerLayer.rawValue)
+            let target = worldNode.childNode(withName: Keys.targetLayer.rawValue) as? TargetLayer,
+            let platform = worldNode.childNode(withName: Keys.platformLayer.rawValue) as? PlatformLayer
         else {
             conditionFailure(with: "Failed to setup nodes")
             return
@@ -54,7 +54,7 @@ class Level7: GameScene {
         
         world = worldNode
         targetLayer = target
-        playerLayer = player
+        platformLayer = platform
     }
 
     override func update(levelWith currentTime: TimeInterval, delta: TimeInterval) {
