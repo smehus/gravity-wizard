@@ -17,8 +17,8 @@ private enum Keys: String {
 class Level7: GameScene {
     
     private var world: SKNode!
-    private var targetLayer: TargetLayer!
-    private var platformLayer: PlatformLayer!
+    private var targetLayer: TargetLayer?
+    private var platformLayer: PlatformLayer?
     
     var currentLevel: Level {
         return .seven
@@ -58,6 +58,10 @@ class Level7: GameScene {
     }
 
     override func update(levelWith currentTime: TimeInterval, delta: TimeInterval) {
+        
+    }
+    
+    override func didSimulatePhysicsForLevel() {
         
     }
     
