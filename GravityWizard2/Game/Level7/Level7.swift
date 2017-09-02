@@ -12,6 +12,7 @@ private enum Keys: String {
     case world = "world"
     case targetLayer = "target-layer"
     case platformLayer = "platform-layer"
+    case backgroundLayer = "background-layer"
 }
 
 class Level7: GameScene {
@@ -19,6 +20,7 @@ class Level7: GameScene {
     private var world: SKNode!
     private var targetLayer: TargetLayer?
     private var platformLayer: PlatformLayer?
+    private var backgroundLayer: SKNode?
     
     var currentLevel: Level {
         return .seven
@@ -36,6 +38,12 @@ class Level7: GameScene {
         return 1
     }
     
+    var cameraOffset: CGPoint {
+        let y = camera!.position.y - (playableHeight / 2)
+        let x = camera!.position.x - (frame.size.width / 2)
+        return CGPoint(x: x, y: y)
+    }
+    
     override var totalSceneSize: CGSize {
         let width = size.width * xConstraintMultiplier
         let height = playableHeight * yConstraintMultiplier
@@ -46,6 +54,7 @@ class Level7: GameScene {
         super.setupNodes()
         
         guard
+            let background = childNode(withName: Keys.backgroundLayer.rawValue),
             let target = childNode(withName: Keys.targetLayer.rawValue) as? TargetLayer,
             let platform = childNode(withName: Keys.platformLayer.rawValue) as? PlatformLayer
         else {
@@ -53,16 +62,18 @@ class Level7: GameScene {
             return
         }
         
+        backgroundLayer = background
         targetLayer = target
         platformLayer = platform
     }
 
     override func update(levelWith currentTime: TimeInterval, delta: TimeInterval) {
         targetLayer?.update(levelWith: currentTime, delta: delta)
+        backgroundLayer?.position = cameraOffset
     }
     
     override func didSimulatePhysicsForLevel() {
-        
+        backgroundLayer?.position = cameraOffset
     }
     
     override func levelCompleted() {

@@ -73,25 +73,40 @@ class TargetLayer: SKNode {
             
             triggerEnemy()
         }
+        
+        killOffscreenSprites()
+    }
+    
+    private func killOffscreenSprites() {
+        enumerateChildNodes(withName: TargetLayer.ENEMY_NAME) { (node, stop) in
+            let minY = self.parentScene.camera!.position.y - (self.parentScene.playableHeight / 2)
+            if node.position.y < (minY - 100) {
+                node.removeFromParent()
+            }
+        }
     }
     
     private func triggerEnemy() {
+        let sizeMultiplier: CGFloat = 3
         let nextTexture: Texture = Bool.random() ? Texture.propeller : Texture.winged
-        let sprite = SKSpriteNode(texture: nextTexture.texture, color: .white, size: nextTexture.texture.size() * 2)
+        let sprite = SKSpriteNode(texture: nextTexture.texture, color: .white, size: nextTexture.texture.size() * sizeMultiplier)
         sprite.name = TargetLayer.ENEMY_NAME
-        let body = SKPhysicsBody(texture: nextTexture.texture, size: nextTexture.texture.size() * 2)
+        let body = SKPhysicsBody(texture: nextTexture.texture, size: nextTexture.texture.size() * sizeMultiplier)
         body.categoryBitMask = PhysicsCategory.enemy
         body.contactTestBitMask = PhysicsCategory.arrow
-        body.collisionBitMask = PhysicsCategory.arrow | PhysicsCategory.Hero | PhysicsCategory.enemy
+        body.collisionBitMask = PhysicsCategory.arrow | PhysicsCategory.Hero | PhysicsCategory.enemy | PhysicsCategory.Ground
         body.isDynamic = true
         body.affectedByGravity = true
         body.allowsRotation = true
         sprite.physicsBody = body
-        
-        sprite.position = CGPoint(x: parentScene.camera!.position.x, y: (parentScene.camera!.position.y - (parentScene.frame.size.height / 2)))
+        let xPOS = CGFloat.random(min: 0, max: parentScene.totalSceneSize.width)
+        sprite.position = CGPoint(x: xPOS, y: (parentScene.camera!.position.y - (parentScene.playableHeight / 2)))
         sprite.zPosition = 20
         addChild(sprite)
-        sprite.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 700))
+        sprite.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 1500))
+        
+        let animationAction = SKAction.animate(with: nextTexture.animationTextures, timePerFrame: 0.1)
+        sprite.run(SKAction.repeatForever(animationAction))
     }
 }
 
