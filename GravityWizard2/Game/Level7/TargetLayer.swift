@@ -89,7 +89,7 @@ class TargetLayer: SKNode {
     private func triggerEnemy() {
         let sizeMultiplier: CGFloat = 3
         let nextTexture: Texture = Bool.random() ? Texture.propeller : Texture.winged
-        let sprite = SKSpriteNode(texture: nextTexture.texture, color: .white, size: nextTexture.texture.size() * sizeMultiplier)
+        let sprite = FlyingEnemy(texture: nextTexture.texture, color: .white, size: nextTexture.texture.size() * sizeMultiplier)
         sprite.name = TargetLayer.ENEMY_NAME
         let body = SKPhysicsBody(texture: nextTexture.texture, size: nextTexture.texture.size() * sizeMultiplier)
         body.categoryBitMask = PhysicsCategory.enemy
@@ -99,6 +99,7 @@ class TargetLayer: SKNode {
         body.affectedByGravity = true
         body.allowsRotation = true
         sprite.physicsBody = body
+        
         let xPOS = CGFloat.random(min: 0, max: parentScene.totalSceneSize.width)
         sprite.position = CGPoint(x: xPOS, y: (parentScene.camera!.position.y - (parentScene.playableHeight / 2)))
         sprite.zPosition = 20

@@ -99,12 +99,18 @@ fileprivate struct GroundJoint {
     }
 }
 
+enum JumpRestorationType {
+    case groundRestore
+    case actionRestore
+}
+
 @objcMembers final class RoseNode: SKSpriteNode, GravityStateTracker {
     
     struct Constants {
         static let MAX_JUMP_COUNT = 100
     }
     
+    var jumpRestorationType: JumpRestorationType = .groundRestore
     var isGrounded = true
     dynamic var jumpCount = Constants.MAX_JUMP_COUNT
     var previousVelocity: CGVector?
@@ -153,7 +159,10 @@ fileprivate struct GroundJoint {
         else { return }
         
         isGrounded = true
-        jumpCount = Constants.MAX_JUMP_COUNT
+        if jumpRestorationType == .groundRestore {
+            jumpCount = Constants.MAX_JUMP_COUNT
+        }
+        
         gravityState = .landing
         physicsBody?.velocity = CGVector.zero
         

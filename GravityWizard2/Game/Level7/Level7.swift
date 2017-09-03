@@ -52,7 +52,8 @@ class Level7: GameScene {
     
     override func setupNodes() {
         super.setupNodes()
-        
+        rose?.jumpRestorationType = .actionRestore
+        rose?.jumpCount = 0
         guard
             let background = childNode(withName: Keys.backgroundLayer.rawValue),
             let target = childNode(withName: Keys.targetLayer.rawValue) as? TargetLayer,
@@ -78,6 +79,21 @@ class Level7: GameScene {
     
     override func didSimulatePhysicsForLevel() {
 
+    }
+    
+    override func contactDidBegin(with contact: SKPhysicsContact) {
+        super.contactDidBegin(with: contact)
+        
+        let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
+
+        ArrowCollision: if collision.collisionCombination() == .arrowCollidesWithEnemy {
+            let enemyNode = contact.bodyA.categoryBitMask == PhysicsCategory.enemy ? contact.bodyA.node : contact.bodyB.node
+            guard let enemy = enemyNode as? FlyingEnemy else { break ArrowCollision }
+            guard !enemy.isHit  else { break ArrowCollision }
+            
+            enemy.isHit = true
+            rose?.jumpCount += 1
+        }
     }
     
     override func levelCompleted() {
