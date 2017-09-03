@@ -10,13 +10,19 @@ import SpriteKit
 
 class WindStreamLayer: SKNode {
     
-    private func setupSprites() {
-        
+    private var parentScene: Level8 {
+        return scene as! Level8
     }
-}
-
-extension WindStreamLayer: LifecycleListener {
-    func didMoveToScene() {
-        setupSprites()
+    
+    private let numberOfStreams: CGFloat = 0
+    private let particleFactory = ParticleFactory.sharedFactory
+    
+    func setupStreams(size: CGSize) {
+        var streamPosition: CGPoint = CGPoint(x: 300, y: 300)
+        let emitter = particleFactory.upwardsWind()
+        emitter.position = convert(streamPosition, to: self)
+        emitter.zPosition = 50
+        addChild(emitter)
     }
+    
 }

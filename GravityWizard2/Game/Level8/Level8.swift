@@ -56,6 +56,7 @@ class Level8: GameScene {
             return
         }
 
+        windLayer.setupStreams(size: totalSceneSize)
         windStreamLayer = windLayer
     }
     

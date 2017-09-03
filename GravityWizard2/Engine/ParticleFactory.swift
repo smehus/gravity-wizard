@@ -35,24 +35,12 @@ class ParticleFactory {
     
     static let sharedFactory = ParticleFactory()
     
-    func addUpwardsWind(to scene: SKScene, at position: CGPoint) {
-        guard let emitter = SKEmitterNode(fileNamed: Particle.downwardWind.filename) else {
-            assertionFailure()
-            return
-        }
-        
-        emitter.position = position
-        scene.addChild(emitter)
+    func upwardsWind() -> SKEmitterNode {
+        return SKEmitterNode(fileNamed: Particle.upwardWind.filename)!
     }
     
-    func addDownwardWind(to scene: SKScene, at position: CGPoint) {
-        guard let emitter = SKEmitterNode(fileNamed: Particle.downwardWind.filename) else {
-            assertionFailure()
-            return
-        }
-        
-        emitter.position = position
-        scene.addChild(emitter)
+    func downwardWind() -> SKEmitterNode {
+        return SKEmitterNode(fileNamed: Particle.downwardWind.filename)!
     }
     
     func waterSplash(scene: SKScene, position: CGPoint) {
