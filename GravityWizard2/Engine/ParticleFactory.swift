@@ -14,6 +14,8 @@ class ParticleFactory {
         case waterSplash
         case sandStorm
         case snowyLand
+        case upwardWind
+        case downwardWind
         
         var filename: String {
             switch self {
@@ -23,11 +25,35 @@ class ParticleFactory {
                 return "SandStorm"
             case .snowyLand:
                 return "SnowParticle"
+            case .upwardWind:
+                return "UpwardsWind"
+            case .downwardWind:
+                return "DownwardsWind"
             }
         }
     }
     
     static let sharedFactory = ParticleFactory()
+    
+    func addUpwardsWind(to scene: SKScene, at position: CGPoint) {
+        guard let emitter = SKEmitterNode(fileNamed: Particle.downwardWind.filename) else {
+            assertionFailure()
+            return
+        }
+        
+        emitter.position = position
+        scene.addChild(emitter)
+    }
+    
+    func addDownwardWind(to scene: SKScene, at position: CGPoint) {
+        guard let emitter = SKEmitterNode(fileNamed: Particle.downwardWind.filename) else {
+            assertionFailure()
+            return
+        }
+        
+        emitter.position = position
+        scene.addChild(emitter)
+    }
     
     func waterSplash(scene: SKScene, position: CGPoint) {
         guard let emitter = SKEmitterNode(fileNamed: Particle.waterSplash.filename) else {

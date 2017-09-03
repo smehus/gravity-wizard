@@ -29,7 +29,7 @@ class Level8: GameScene {
     }
     
     override var yConstraintMultiplier: CGFloat {
-        return 1
+        return 3
     }
     
     override var xConstraintMultiplier: CGFloat {
@@ -52,9 +52,7 @@ class Level8: GameScene {
             conditionFailure(with: "Failed to resolve nodes")
             return
         }
-        
-        let cameraConstraint = SKConstraint.distance(SKRange(constantValue: 0), to: camera)
-        background.constraints = [cameraConstraint]
+
     }
     
     override func update(levelWith currentTime: TimeInterval, delta: TimeInterval) {
