@@ -18,11 +18,14 @@ class WindStreamLayer: SKNode {
     private let particleFactory = ParticleFactory.sharedFactory
     
     func setupStreams(size: CGSize) {
-        var streamPosition: CGPoint = CGPoint(x: 300, y: 300)
+        var streamPosition: CGPoint = CGPoint(x: parentScene.frame.size.width / 3, y: 0)
         let emitter = particleFactory.upwardsWind()
         emitter.position = convert(streamPosition, to: self)
         emitter.zPosition = 50
         addChild(emitter)
+        
+        while streamPosition.x < (size.width - (parentScene.size.halfWidth)) {
+            
+        }
     }
-    
 }
