@@ -10,10 +10,12 @@ import SpriteKit
 
 private enum Nodes {
     case background
+    case windStreams
     
     var name: String {
         switch self {
         case .background: return "background"
+        case .windStreams: return "wind-streams"
         }
     }
 }
@@ -23,6 +25,8 @@ class Level8: GameScene {
     var currentLevel: Level {
         return .eight
     }
+    
+    private var windStreamLayer: WindStreamLayer?
     
     override var shouldAddScenePhysicsEdge: Bool {
         return false
@@ -46,13 +50,13 @@ class Level8: GameScene {
         super.setupNodes()
         
         guard
-            let camera = camera,
-            let background = childNode(withName: Nodes.background.name)
+            let windLayer = childNode(withName: Nodes.windStreams.name) as? WindStreamLayer
         else {
             conditionFailure(with: "Failed to resolve nodes")
             return
         }
 
+        windStreamLayer = windLayer
     }
     
     override func update(levelWith currentTime: TimeInterval, delta: TimeInterval) {
