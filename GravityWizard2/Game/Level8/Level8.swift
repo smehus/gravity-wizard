@@ -33,7 +33,7 @@ class Level8: GameScene {
     }
     
     override var yConstraintMultiplier: CGFloat {
-        return 3
+        return 1
     }
     
     override var xConstraintMultiplier: CGFloat {

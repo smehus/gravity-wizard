@@ -39,7 +39,7 @@ class ParticleFactory {
         return SKEmitterNode(fileNamed: Particle.upwardWind.filename)!
     }
     
-    func downwardWind() -> SKEmitterNode {
+    func downwardsWind() -> SKEmitterNode {
         return SKEmitterNode(fileNamed: Particle.downwardWind.filename)!
     }
     
