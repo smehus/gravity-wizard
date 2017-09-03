@@ -52,8 +52,8 @@ class Level7: GameScene {
     
     override func setupNodes() {
         super.setupNodes()
-//        rose?.jumpRestorationType = .actionRestore
-//        rose?.jumpCount = 0
+        rose?.jumpRestorationType = .actionRestore
+        rose?.jumpCount = 0
         guard
             let background = childNode(withName: Keys.backgroundLayer.rawValue),
             let target = childNode(withName: Keys.targetLayer.rawValue) as? TargetLayer,
