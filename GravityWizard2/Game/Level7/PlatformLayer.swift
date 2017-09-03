@@ -76,7 +76,20 @@ class PlatformLayer: SKNode {
     }
     
     private func spawnFinalPlatform() {
+        guard let platform = spawnSprite() else { fatalError() }
+        let halfPlayableHeight = parentScene.playableHeight / 2
+        let yPOS = parentScene.totalSceneSize.height - (halfPlayableHeight / 2)
+        platform.position = CGPoint(x: randomXPosition, y: yPOS)
         
+        let doorTexture = SKTexture(image: #imageLiteral(resourceName: "black-door"))
+        let door = SKSpriteNode(texture: doorTexture, color: .white, size: doorTexture.size() * 2)
+        door.physicsBody = SKPhysicsBody(rectangleOf: doorTexture.size() * 2)
+        door.physicsBody?.categoryBitMask = PhysicsCategory.LevelComplete
+        door.physicsBody?.contactTestBitMask = PhysicsCategory.Hero
+        door.physicsBody?.isDynamic = false
+        door.position = CGPoint(x: 0, y: (platform.size.halfHeight + door.size.halfHeight))
+        platform.addChild(door)
+        addChild(platform)
     }
     
     private func spawnSprite() -> SKSpriteNode? {

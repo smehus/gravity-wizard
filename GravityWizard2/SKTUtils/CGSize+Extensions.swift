@@ -41,6 +41,15 @@ extension CGSize {
 }
 
 extension CGSize {
+    
+    var halfHeight: CGFloat {
+        return CGFloat(height / 2)
+    }
+    
+    var halfWidth: CGFloat {
+        return CGFloat(width / 2)
+    }
+    
     public mutating func offset(dx: CGFloat, dy: CGFloat) -> CGSize {
         width += dx
         height += dy
