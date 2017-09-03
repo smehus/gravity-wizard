@@ -8,6 +8,16 @@
 
 import SpriteKit
 
+private enum Nodes {
+    case background
+    
+    var name: String {
+        switch self {
+        case .background: return "background"
+        }
+    }
+}
+
 class Level8: GameScene {
     
     var currentLevel: Level {
@@ -34,6 +44,17 @@ class Level8: GameScene {
     
     override func setupNodes() {
         super.setupNodes()
+        
+        guard
+            let camera = camera,
+            let background = childNode(withName: Nodes.background.name)
+        else {
+            conditionFailure(with: "Failed to resolve nodes")
+            return
+        }
+        
+        let cameraConstraint = SKConstraint.distance(SKRange(constantValue: 0), to: camera)
+        background.constraints = [cameraConstraint]
     }
     
     override func update(levelWith currentTime: TimeInterval, delta: TimeInterval) {
