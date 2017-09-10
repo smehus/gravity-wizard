@@ -44,7 +44,7 @@ class Level8: GameScene {
     }
     
     override var xConstraintMultiplier: CGFloat {
-        return 10
+        return 2
     }
     
     override var totalSceneSize: CGSize {
@@ -88,7 +88,7 @@ class Level8: GameScene {
             
             enemy.isHit = true
             enemy.physicsBody?.affectedByGravity = true
-            rose?.jumpCount += 1
+            rose?.jumpCount += 2
         }
     }
     

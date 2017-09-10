@@ -23,7 +23,7 @@ class WindStreamLayer: SKNode {
         addStream(at: streamPosition)
         
         var passCount = 0
-        while streamPosition.x < (size.width - (parentScene.size.halfWidth)) {
+        while streamPosition.x < (size.width - (parentScene.size.width * 0.75)) {
             var nextPosition: CGPoint
             
             ///
@@ -57,7 +57,14 @@ class WindStreamLayer: SKNode {
             }
             
             streamPosition = nextPosition
-
+            
+            ///
+            /// Check for end of the scene. Place the level complete platform
+            ///
+            
+            if streamPosition.x > (size.width - (parentScene.size.width * 0.75)) {
+                /// place final platform
+            }
         }
     }
     
@@ -74,7 +81,7 @@ class WindStreamLayer: SKNode {
         field.categoryBitMask = PhysicsCategory.heroField
         field.strength = 15
         field.region = SKRegion(size: CGSize(width: 300, height: (scene as! GameScene).totalSceneSize.height))
-        addChild(field)
+//        addChild(field)
     }
     
     private func addPlatform(between lhs: CGFloat, and rhs: CGFloat) {
