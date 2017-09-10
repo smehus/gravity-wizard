@@ -33,6 +33,7 @@ class Level8: GameScene {
     }
     
     private var windStreamLayer: WindStreamLayer?
+    private var backgroundLayer: SKNode?
     private var gameState = GameState.playing
     
     override var shouldAddScenePhysicsEdge: Bool {
@@ -57,14 +58,18 @@ class Level8: GameScene {
         super.setupNodes()
         
         guard
+            let backgroundSprite = childNode(withName: Nodes.background.name),
             let windLayer = childNode(withName: Nodes.windStreams.name) as? WindStreamLayer
         else {
             conditionFailure(with: "Failed to resolve nodes")
             return
         }
 
+        backgroundLayer = backgroundSprite
         windLayer.setupStreams(size: totalSceneSize)
         windStreamLayer = windLayer
+        
+        repeatBackground()
     }
     
     override func update(levelWith currentTime: TimeInterval, delta: TimeInterval) {
@@ -129,6 +134,23 @@ class Level8: GameScene {
         }
         
         run(presentScene)
+    }
+    
+    private func repeatBackground() {
+        guard
+            let background = backgroundLayer,
+            let sprite = background.childNode(withName: "background-image") as? SKSpriteNode
+        else { assertionFailure(); return }
+        
+        var currentSprite = sprite
+        
+        for _ in 0...Int(xConstraintMultiplier) {
+            let newPosition = currentSprite.position.x + size.width
+            let newBG = sprite.copy() as! SKSpriteNode
+            newBG.position = CGPoint(x: newPosition, y: currentSprite.position.y)
+            background.addChild(newBG)
+            currentSprite = newBG
+        }
     }
     
     private func roseCheck() {

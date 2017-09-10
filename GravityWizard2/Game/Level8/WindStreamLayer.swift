@@ -63,7 +63,7 @@ class WindStreamLayer: SKNode {
             ///
             
             if streamPosition.x > (size.width - (parentScene.size.width * 0.75)) {
-                /// place final platform
+                spawnFinalPlatform()
             }
         }
     }
@@ -138,4 +138,22 @@ class WindStreamLayer: SKNode {
             addChild(sprite)
         }
     }
+    
+    private func spawnFinalPlatform() {
+
+        let texture = SKTexture(image: #imageLiteral(resourceName: "grass-edge-platform"))
+        let platform = GroundNode(texture: texture, size: texture.size())
+        platform.position = CGPoint(x: parentScene.totalSceneSize.width - (parentScene.size.halfWidth / 2), y: parentScene.size.halfHeight)
+        
+        let doorTexture = SKTexture(image: #imageLiteral(resourceName: "black-door"))
+        let door = SKSpriteNode(texture: doorTexture, color: .white, size: doorTexture.size() * 2)
+        door.physicsBody = SKPhysicsBody(rectangleOf: doorTexture.size() * 2)
+        door.physicsBody?.categoryBitMask = PhysicsCategory.LevelComplete
+        door.physicsBody?.contactTestBitMask = PhysicsCategory.Hero
+        door.physicsBody?.isDynamic = false
+        door.position = CGPoint(x: 0, y: (platform.size.halfHeight + door.size.halfHeight))
+        platform.addChild(door)
+        addChild(platform)
+    }
+
 }
