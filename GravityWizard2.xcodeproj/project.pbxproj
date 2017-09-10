@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A5173E001F6574430090095B /* StateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5173DFF1F6574430090095B /* StateMachine.swift */; };
 		A52366A91F656F640038E0CA /* DownwardsWind.sks in Resources */ = {isa = PBXBuildFile; fileRef = A52366A81F656F630038E0CA /* DownwardsWind.sks */; };
 		A53CB1CC1F0D9F0B000B9C64 /* WaterSceneNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53CB1CB1F0D9F0B000B9C64 /* WaterSceneNode.swift */; };
 		A549D5CF1F2E02F800470E2D /* Level5.sks in Resources */ = {isa = PBXBuildFile; fileRef = A549D5CE1F2E02F800470E2D /* Level5.sks */; };
@@ -147,6 +148,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A5173DFF1F6574430090095B /* StateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateMachine.swift; sourceTree = "<group>"; };
 		A52366A81F656F630038E0CA /* DownwardsWind.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = DownwardsWind.sks; sourceTree = "<group>"; };
 		A53CB1CB1F0D9F0B000B9C64 /* WaterSceneNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterSceneNode.swift; sourceTree = "<group>"; };
 		A549D5CE1F2E02F800470E2D /* Level5.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level5.sks; sourceTree = "<group>"; };
@@ -450,6 +452,7 @@
 				A5A9686D1EEACB8900A509DB /* Obstacle.swift */,
 				A5AB74031F117D40001840D7 /* SpriteConfiguration.swift */,
 				A5783CAB1F2E8BA400FC010C /* Field.swift */,
+				A5173DFF1F6574430090095B /* StateMachine.swift */,
 			);
 			path = "Game Helpers";
 			sourceTree = "<group>";
@@ -860,6 +863,7 @@
 				A5A9685E1EEAC99C00A509DB /* Level0.swift in Sources */,
 				A5A968AF1EEACE9D00A509DB /* TreasureChestNode.swift in Sources */,
 				A5855E5D1F112FE100A34344 /* SwingingPlatformNode.swift in Sources */,
+				A5173E001F6574430090095B /* StateMachine.swift in Sources */,
 				A5A968A41EEACE9D00A509DB /* BreakableStoneStructure.swift in Sources */,
 				A5AB74041F117D40001840D7 /* SpriteConfiguration.swift in Sources */,
 				A5A968761EEACB8900A509DB /* LifecycleListener.swift in Sources */,

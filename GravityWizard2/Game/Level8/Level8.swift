@@ -20,6 +20,12 @@ private enum Nodes {
     }
 }
 
+private enum GameState {
+    case playing
+    case gameOver
+    case levelComplete
+}
+
 class Level8: GameScene {
     
     var currentLevel: Level {
@@ -27,6 +33,7 @@ class Level8: GameScene {
     }
     
     private var windStreamLayer: WindStreamLayer?
+    private var gameState = GameState.playing
     
     override var shouldAddScenePhysicsEdge: Bool {
         return false
@@ -61,11 +68,12 @@ class Level8: GameScene {
     }
     
     override func update(levelWith currentTime: TimeInterval, delta: TimeInterval) {
-
+        guard gameState == .playing else { return }
+        roseCheck()
     }
     
     override func didSimulatePhysicsForLevel() {
-        
+        guard gameState == .playing else { return }
     }
     
     override func levelCompleted() {
@@ -106,4 +114,15 @@ class Level8: GameScene {
         
         run(presentScene)
     }
+    
+    private func roseCheck() {
+        guard let rose = rose else { return }
+        let rosePosition = convert(rose.position, from: rose.parent!)
+        
+        if rosePosition.y < 0 {
+            gameState = .gameOver
+            gameOver()
+        }
+    }
+    
 }
