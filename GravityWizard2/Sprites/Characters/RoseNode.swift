@@ -345,7 +345,7 @@ extension RoseNode {
         physicsBody?.categoryBitMask = PhysicsCategory.Hero
         physicsBody?.contactTestBitMask = Definitions.Physics.ContactTest.full
         physicsBody?.collisionBitMask = Definitions.Physics.collision
-        physicsBody?.fieldBitMask = PhysicsCategory.None
+        physicsBody?.fieldBitMask = PhysicsCategory.heroField
         physicsBody?.restitution = 0.0
         physicsBody?.friction = 1.0
     }

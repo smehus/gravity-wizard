@@ -14,7 +14,7 @@ final class ArrowNode: SKSpriteNode {
         static let category = PhysicsCategory.arrow
         static let contact = PhysicsCategory.Edge | PhysicsCategory.Ground
         static let collision = PhysicsCategory.Edge | PhysicsCategory.Ground | PhysicsCategory.destructible
-        static let field = PhysicsCategory.None
+        static let field = PhysicsCategory.heroField
     }
     
     var isInFlight: Bool = false

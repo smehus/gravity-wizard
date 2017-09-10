@@ -203,6 +203,8 @@ struct PhysicsCategory {
     static let water:               UInt32 = 0x1 << 19
     
     static let border:              UInt32 = 0x1 << 20
+    
+    static let heroField:           UInt32 = 0x1 << 21
 }
 
 struct LightingMask {

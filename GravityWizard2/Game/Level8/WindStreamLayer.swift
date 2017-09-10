@@ -43,5 +43,13 @@ class WindStreamLayer: SKNode {
         initialEmitter.position = convert(point, to: self)
         initialEmitter.zPosition = 50
         addChild(initialEmitter)
+        
+        let vector = upwards ? vector_float3(0, 1, 0) : vector_float3(0, -1, 0)
+        let field = SKFieldNode.linearGravityField(withVector: vector)
+        field.position = convert(point, to: self)
+        field.categoryBitMask = PhysicsCategory.heroField
+        field.strength = 15
+        field.region = SKRegion(size: CGSize(width: 300, height: (scene as! GameScene).totalSceneSize.height))
+        addChild(field)
     }
 }

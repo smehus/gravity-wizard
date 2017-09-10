@@ -137,6 +137,7 @@ final class Level5: GameScene {
         print("🎒 cam pos: \(camera!.position.y)")
         field.position = CGPoint(x: maxXPosition, y: camera!.position.y)
         field.region = SKRegion(size: CGSize(width: fieldWidth, height: fieldHeight))
+        field.categoryBitMask = PhysicsCategory.heroField
         addChild(field)
         
         let stormParticle = particleFactory.sandStorm(width: fieldWidth, height: fieldHeight)
