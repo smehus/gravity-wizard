@@ -40,11 +40,11 @@ class Level8: GameScene {
     }
     
     override var yConstraintMultiplier: CGFloat {
-        return 1
+        return 2
     }
     
     override var xConstraintMultiplier: CGFloat {
-        return 1
+        return 10
     }
     
     override var totalSceneSize: CGSize {
