@@ -22,6 +22,7 @@ class WindStreamLayer: SKNode {
         var streamPosition: CGPoint = CGPoint(x: parentScene.frame.size.width / 3, y: 0)
         addStream(at: streamPosition)
         
+        var passCount = 0
         while streamPosition.x < (size.width - (parentScene.size.halfWidth)) {
             var nextPosition: CGPoint
             
@@ -46,7 +47,17 @@ class WindStreamLayer: SKNode {
             
             addEnemy(between: streamPosition, secondPoint: nextPosition, count: 2)
             
+            
+            ///
+            /// Add platform if required
+            ///
+            if ((parentScene.size.width * CGFloat(passCount)) + parentScene.size.halfWidth) < streamPosition.x {
+                addPlatform(between: streamPosition.x, and: nextPosition.x)
+                passCount += 1
+            }
+            
             streamPosition = nextPosition
+
         }
     }
     
@@ -64,6 +75,19 @@ class WindStreamLayer: SKNode {
         field.strength = 15
         field.region = SKRegion(size: CGSize(width: 300, height: (scene as! GameScene).totalSceneSize.height))
         addChild(field)
+    }
+    
+    private func addPlatform(between lhs: CGFloat, and rhs: CGFloat) {
+        let diff = (rhs - lhs) / 2
+        let xPos = lhs + diff
+        let yPos = CGFloat.random(min: 0, max: parentScene.totalSceneSize.height - 300)
+        let platformPosition = CGPoint(x: xPos, y: yPos)
+        
+        let texture = SKTexture(image: #imageLiteral(resourceName: "grass-edge-platform"))
+        let sprite = GroundNode(texture: texture, size: texture.size())
+        sprite.position = convert(platformPosition, to: self)
+        sprite.zPosition = 20
+        addChild(sprite)
     }
     
     private func addEnemy(between firstPoint: CGPoint, secondPoint: CGPoint, count: Int) {
