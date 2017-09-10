@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A52366A91F656F640038E0CA /* DownwardsWind.sks in Resources */ = {isa = PBXBuildFile; fileRef = A52366A81F656F630038E0CA /* DownwardsWind.sks */; };
 		A53CB1CC1F0D9F0B000B9C64 /* WaterSceneNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53CB1CB1F0D9F0B000B9C64 /* WaterSceneNode.swift */; };
 		A549D5CF1F2E02F800470E2D /* Level5.sks in Resources */ = {isa = PBXBuildFile; fileRef = A549D5CE1F2E02F800470E2D /* Level5.sks */; };
 		A549D5D11F2E032600470E2D /* Level5.swift in Sources */ = {isa = PBXBuildFile; fileRef = A549D5D01F2E032600470E2D /* Level5.swift */; };
@@ -115,7 +116,6 @@
 		A5A968C61EEACF5D00A509DB /* Level3.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5A968C01EEACF5D00A509DB /* Level3.sks */; };
 		A5A968CA1EEACFC700A509DB /* Level4.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5A968C91EEACFC700A509DB /* Level4.sks */; };
 		A5AA18E01F5C77C7009D68B3 /* UpwardsWind.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5AA18DF1F5C77C7009D68B3 /* UpwardsWind.sks */; };
-		A5AA18E21F5C7923009D68B3 /* DownwardsWind.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5AA18E11F5C7923009D68B3 /* DownwardsWind.sks */; };
 		A5AA18E41F5C85FB009D68B3 /* WindStreamLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AA18E31F5C85FB009D68B3 /* WindStreamLayer.swift */; };
 		A5AB74041F117D40001840D7 /* SpriteConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AB74031F117D40001840D7 /* SpriteConfiguration.swift */; };
 		A5ACBA6A1F2D014700CB83E4 /* BorderNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ACBA691F2D014700CB83E4 /* BorderNode.swift */; };
@@ -147,6 +147,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A52366A81F656F630038E0CA /* DownwardsWind.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = DownwardsWind.sks; sourceTree = "<group>"; };
 		A53CB1CB1F0D9F0B000B9C64 /* WaterSceneNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterSceneNode.swift; sourceTree = "<group>"; };
 		A549D5CE1F2E02F800470E2D /* Level5.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level5.sks; sourceTree = "<group>"; };
 		A549D5D01F2E032600470E2D /* Level5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level5.swift; sourceTree = "<group>"; };
@@ -255,7 +256,6 @@
 		A5A968C01EEACF5D00A509DB /* Level3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level3.sks; sourceTree = "<group>"; };
 		A5A968C91EEACFC700A509DB /* Level4.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level4.sks; sourceTree = "<group>"; };
 		A5AA18DF1F5C77C7009D68B3 /* UpwardsWind.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = UpwardsWind.sks; sourceTree = "<group>"; };
-		A5AA18E11F5C7923009D68B3 /* DownwardsWind.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = DownwardsWind.sks; sourceTree = "<group>"; };
 		A5AA18E31F5C85FB009D68B3 /* WindStreamLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindStreamLayer.swift; sourceTree = "<group>"; };
 		A5AB74031F117D40001840D7 /* SpriteConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteConfiguration.swift; sourceTree = "<group>"; };
 		A5ACBA691F2D014700CB83E4 /* BorderNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderNode.swift; sourceTree = "<group>"; };
@@ -382,7 +382,7 @@
 				A5BE41381F276AFA0052E56A /* Assets.xcassets */,
 				A5E21F9D1F4EF94400934CE2 /* SnowParticle.sks */,
 				A5AA18DF1F5C77C7009D68B3 /* UpwardsWind.sks */,
-				A5AA18E11F5C7923009D68B3 /* DownwardsWind.sks */,
+				A52366A81F656F630038E0CA /* DownwardsWind.sks */,
 			);
 			path = Particles;
 			sourceTree = "<group>";
@@ -732,7 +732,7 @@
 				A549D5D31F2E064E00470E2D /* CollapsablePlatform.sks in Resources */,
 				A554178A1F0D0FFC00A2CFE8 /* WaterScene.sks in Resources */,
 				A5E21F9E1F4EF94400934CE2 /* SnowParticle.sks in Resources */,
-				A5AA18E21F5C7923009D68B3 /* DownwardsWind.sks in Resources */,
+				A52366A91F656F640038E0CA /* DownwardsWind.sks in Resources */,
 				A576E07F1F3492310062228D /* AngledIcePlatform.sks in Resources */,
 				A5A968421EEAC80500A509DB /* GravityProjectileTail.sks in Resources */,
 				A5A968C51EEACF5D00A509DB /* ForegroundLayer3.sks in Resources */,
