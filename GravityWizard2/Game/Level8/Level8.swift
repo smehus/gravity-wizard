@@ -76,6 +76,22 @@ class Level8: GameScene {
         guard gameState == .playing else { return }
     }
     
+    override func contactDidBegin(with contact: SKPhysicsContact) {
+        super.contactDidBegin(with: contact)
+        
+        let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
+        
+        ArrowCollision: if collision.collisionCombination() == .arrowCollidesWithEnemy {
+            let enemyNode = contact.bodyA.categoryBitMask == PhysicsCategory.enemy ? contact.bodyA.node : contact.bodyB.node
+            guard let enemy = enemyNode as? FlyingEnemy else { break ArrowCollision }
+            guard !enemy.isHit  else { break ArrowCollision }
+            
+            enemy.isHit = true
+            enemy.physicsBody?.affectedByGravity = true
+            rose?.jumpCount += 1
+        }
+    }
+    
     override func levelCompleted() {
         guard let successLevel = LevelCompleteLabel.createLabel(), let camera = camera else { return }
         successLevel.move(toParent: camera)

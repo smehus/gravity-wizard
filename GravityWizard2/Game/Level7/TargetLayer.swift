@@ -8,51 +8,6 @@
 
 import SpriteKit
 
-private enum Texture {
-    case propeller
-    case winged
-    
-    var texture: SKTexture {
-        switch self {
-        case .propeller:
-            return SKTexture(image: #imageLiteral(resourceName: "propeller-enemy-0"))
-        case .winged:
-            return SKTexture(image: #imageLiteral(resourceName: "winged-enemy-0"))
-        }
-    }
-    
-    var animationTextures: [SKTexture] {
-        switch self {
-        case .propeller:
-            return propellerTextures
-        case .winged:
-            return wingedTextures
-        }
-    }
-    
-    private var wingedTextures: [SKTexture] {
-        var textures: [SKTexture] = []
-        let base = "winged-enemy-"
-        for i in 0...4 {
-            let t = SKTexture(imageNamed: "\(base)\(i)")
-            textures.append(t)
-        }
-        
-        return textures
-    }
-    
-    private var propellerTextures: [SKTexture] {
-        var textures: [SKTexture] = []
-        let base = "propeller-enemy-"
-        for i in 0...5 {
-            let t = SKTexture(imageNamed: "\(base)\(i)")
-            textures.append(t)
-        }
-        
-        return textures
-    }
-}
-
 class TargetLayer: SKNode {
     
     static let ENEMY_NAME = "flying-enemy"
@@ -88,7 +43,7 @@ class TargetLayer: SKNode {
     
     private func triggerEnemy() {
         let sizeMultiplier: CGFloat = 3
-        let nextTexture: Texture = Bool.random() ? Texture.propeller : Texture.winged
+        let nextTexture: FlyingEnemyTexture = Bool.random() ? .propeller : .winged
         let sprite = FlyingEnemy(texture: nextTexture.texture, color: .white, size: nextTexture.texture.size() * sizeMultiplier)
         sprite.name = TargetLayer.ENEMY_NAME
         let body = SKPhysicsBody(texture: nextTexture.texture, size: nextTexture.texture.size() * sizeMultiplier)
