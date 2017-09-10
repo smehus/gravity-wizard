@@ -90,6 +90,14 @@ class WindStreamLayer: SKNode {
             body.allowsRotation = true
             sprite.physicsBody = body
             
+            let textureAnimation = SKAction.animate(with: texture.animationTextures, timePerFrame: 0.2)
+            
+            let jumpVector: CGFloat = Bool.random() ? -50 : 50
+            let jumpUpAction = SKAction.moveBy(x: 0, y: jumpVector, duration: 0.3)
+            let jumpSequence = SKAction.sequence([jumpUpAction, jumpUpAction.reversed()])
+            
+            let finalSequence = SKAction.group([textureAnimation, jumpSequence])
+            sprite.run(SKAction.repeatForever(finalSequence))
             
             addChild(sprite)
         }
