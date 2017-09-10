@@ -68,19 +68,24 @@ class WindStreamLayer: SKNode {
     
     private func addEnemy(between firstPoint: CGPoint, secondPoint: CGPoint, count: Int) {
         
-        let diff = (firstPoint.x - secondPoint.x) / 2
+        let diff = (secondPoint.x - firstPoint.x) / 2
         let enemyX = firstPoint.x + diff
         
-        for _ in 0..<count {
-            let enemyY = CGFloat.random(min: min(firstPoint.y, secondPoint.y), max: max(firstPoint.y, secondPoint.y))
+        for i in 0..<count {
+            let startingMinY = parentScene.totalSceneSize.halfHeight * CGFloat(i)
+            
+            let textureSizeMultiplier: CGFloat = 3
+            let texture: FlyingEnemyTexture = Bool.random() ? .propeller : .winged
+            let halfTextureHeight = (texture.texture.size() * textureSizeMultiplier).halfHeight
+            
+            let enemyY = CGFloat.random(min: max(startingMinY, halfTextureHeight), max: parentScene.totalSceneSize.halfHeight + startingMinY)
             let point = CGPoint(x: enemyX, y: enemyY)
             
-            let sizeMultiplier: CGFloat = 3
-            let texture: FlyingEnemyTexture = Bool.random() ? .propeller : .winged
-            let sprite = FlyingEnemy(texture: texture.texture, color: .white, size: texture.texture.size() * sizeMultiplier)
+            
+            let sprite = FlyingEnemy(texture: texture.texture, color: .white, size: texture.texture.size() * textureSizeMultiplier)
             sprite.position = convert(point, to: self)
             
-            let body = SKPhysicsBody(texture: texture.texture, size: texture.texture.size() * sizeMultiplier)
+            let body = SKPhysicsBody(texture: texture.texture, size: texture.texture.size() * textureSizeMultiplier)
             body.categoryBitMask = PhysicsCategory.enemy
             body.contactTestBitMask = PhysicsCategory.arrow
             body.collisionBitMask = PhysicsCategory.arrow | PhysicsCategory.Hero | PhysicsCategory.enemy | PhysicsCategory.Ground
@@ -92,8 +97,8 @@ class WindStreamLayer: SKNode {
             
             let textureAnimation = SKAction.animate(with: texture.animationTextures, timePerFrame: 0.2)
             
-            let jumpVector: CGFloat = Bool.random() ? -50 : 50
-            let jumpUpAction = SKAction.moveBy(x: 0, y: jumpVector, duration: 0.3)
+            let jumpVector: CGFloat = CGFloat.random(min: -150, max: 150)
+            let jumpUpAction = SKAction.moveBy(x: 0, y: jumpVector, duration: Double(CGFloat.random(min: 0.3, max: 1.0)))
             let jumpSequence = SKAction.sequence([jumpUpAction, jumpUpAction.reversed()])
             
             let finalSequence = SKAction.group([textureAnimation, jumpSequence])
