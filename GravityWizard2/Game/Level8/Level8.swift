@@ -75,6 +75,7 @@ class Level8: GameScene {
     override func update(levelWith currentTime: TimeInterval, delta: TimeInterval) {
         guard gameState == .playing else { return }
         roseCheck()
+        killOffscreenSprites()
     }
     
     override func didSimulatePhysicsForLevel() {
@@ -150,6 +151,22 @@ class Level8: GameScene {
             newBG.position = CGPoint(x: newPosition, y: currentSprite.position.y)
             background.addChild(newBG)
             currentSprite = newBG
+        }
+    }
+    
+    private func killOffscreenSprites() {
+        
+        for node in children {
+            let minY = self.camera!.position.y - (self.playableHeight / 2)
+            if node is ArrowNode, node.position.y < (minY - 100) {
+                node.removeFromParent()
+            }
+            
+            for child in node.children.filter({ $0 is FlyingEnemy }) {
+                if child.position.y < (minY - 100) {
+                    child.removeFromParent()
+                }
+            }
         }
     }
     

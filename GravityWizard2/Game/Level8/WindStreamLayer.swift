@@ -10,6 +10,8 @@ import SpriteKit
 
 class WindStreamLayer: SKNode {
     
+    static let ENEMY_NAME = "enemy"
+    
     private var parentScene: Level8 {
         return scene as! Level8
     }
@@ -68,6 +70,10 @@ class WindStreamLayer: SKNode {
         }
     }
     
+    func update() {
+        
+    }
+    
     private func addStream(at point: CGPoint, upwards: Bool = true) {
         lastStreamWasUp = upwards
         let initialEmitter = upwards ? particleFactory.upwardsWind() : particleFactory.downwardsWind()
@@ -114,6 +120,7 @@ class WindStreamLayer: SKNode {
             
             
             let sprite = FlyingEnemy(texture: texture.texture, color: .white, size: texture.texture.size() * textureSizeMultiplier)
+            sprite.name = WindStreamLayer.ENEMY_NAME
             sprite.position = convert(point, to: self)
             
             let body = SKPhysicsBody(texture: texture.texture, size: texture.texture.size() * textureSizeMultiplier)
@@ -155,5 +162,4 @@ class WindStreamLayer: SKNode {
         platform.addChild(door)
         addChild(platform)
     }
-
 }
