@@ -87,7 +87,7 @@ class WindStreamLayer: SKNode {
         field.categoryBitMask = PhysicsCategory.heroField
         field.strength = 15
         field.region = SKRegion(size: CGSize(width: 300, height: (scene as! GameScene).totalSceneSize.height))
-//        addChild(field)
+        addChild(field)
     }
     
     private func addPlatform(between lhs: CGFloat, and rhs: CGFloat) {
