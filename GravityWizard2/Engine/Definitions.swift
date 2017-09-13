@@ -208,6 +208,8 @@ struct PhysicsCategory {
     static let border:              UInt32 = 0x1 << 20
     
     static let heroField:           UInt32 = 0x1 << 21
+    
+    static let movable:             UInt32 = 0x1 << 22
 }
 
 struct LightingMask {
@@ -233,6 +235,7 @@ enum CollisionCombination {
     case heroCollidesWithEnemy
     case heroCollidesWithObstacle
     case heroCollidesWithWater
+    case heroCollidesWithMovable
     
     case enemyCollidesWithBorder
     case enemyCollidesWithGround
@@ -263,6 +266,8 @@ extension UInt32 {
             return .heroCollidesWithObstacle
         case PhysicsCategory.Hero | PhysicsCategory.water:
             return .heroCollidesWithWater
+        case PhysicsCategory.Hero | PhysicsCategory.movable:
+            return .heroCollidesWithMovable
             
             // ARROW
         case PhysicsCategory.arrow | PhysicsCategory.Edge:

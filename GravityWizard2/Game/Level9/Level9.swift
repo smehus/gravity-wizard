@@ -8,6 +8,55 @@
 
 import SpriteKit
 
+private enum Sprite: SpriteConfiguration {
+    case moveable
+    
+    var name: String {
+        switch self {
+        case .moveable: return "//movable"
+        }
+    }
+    
+    var categoryBitMask: UInt32 {
+        switch self {
+        case .moveable:
+            return PhysicsCategory.movable
+        }
+    }
+    
+    var contactTestBitMask: UInt32 {
+        switch self {
+        case .moveable:
+            return PhysicsCategory.Hero
+        }
+    }
+    
+    var collisionBitMask: UInt32 {
+        switch self {
+        case .moveable:
+            return PhysicsCategory.Hero | PhysicsCategory.Ground | PhysicsCategory.enemy | PhysicsCategory.movable
+        }
+    }
+    
+    var isDynamic: Bool {
+        switch self {
+        case .moveable: return true
+        }
+    }
+    
+    var affectedByGravity: Bool {
+        switch self {
+        case .moveable: return true
+        }
+    }
+    
+    var allowsRotation: Bool {
+        switch self {
+        case .moveable: return true
+        }
+    }
+}
+
 class Level9: GameScene {
     
     var currentLevel: Level {
@@ -34,6 +83,11 @@ class Level9: GameScene {
     
     override func setupNodes() {
         super.setupNodes()
+        
+        enumerateChildNodes(withName: Sprite.moveable.name) { (node, stop) in
+            guard let sprite = node as? SKSpriteNode else { return }
+            sprite.configure(with: Sprite.moveable)
+        }
     }
     
     override func update(levelWith currentTime: TimeInterval, delta: TimeInterval) {
@@ -46,7 +100,7 @@ class Level9: GameScene {
     
     override func contactDidBegin(with contact: SKPhysicsContact) {
         super.contactDidBegin(with: contact)
-        let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
+        let _ = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
     }
     
     override func levelCompleted() {

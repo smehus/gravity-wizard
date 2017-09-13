@@ -676,6 +676,10 @@ extension GameScene: SKPhysicsContactDelegate {
         if collision.collisionCombination() == .heroCollidesWithWater {
             heroCollidesWithWater(with: contact)
         }
+        
+        if collision.collisionCombination() == .heroCollidesWithMovable {
+            heroCollidesWithMovable(with: contact)
+        }
     }
     
     func didEnd(_ contact: SKPhysicsContact) {
@@ -694,6 +698,24 @@ extension GameScene {
     ///
     /// Hero
     ///
+    
+    private func heroCollidesWithMovable(with contact: SKPhysicsContact) {
+        let movable = contact.bodyA.categoryBitMask == PhysicsCategory.movable ? contact.bodyA.node : contact.bodyB.node
+        let hero = contact.bodyA.categoryBitMask == PhysicsCategory.Hero ? contact.bodyA.node : contact.bodyB.node
+        
+        guard
+            let movableSprite = movable as? SKSpriteNode,
+            let movableBody = movableSprite.physicsBody,
+            let rose = hero as? RoseNode
+        else {
+            conditionFailure(with: "heroCollidesWithMovable: Failed to cast as sprites")
+            return
+        }
+        
+        if movableBody.velocity > CGVector(dx: 0, dy: 0) {
+            rose.attacked()
+        }
+    }
     
     private func heroCollidesWithWater(with contact: SKPhysicsContact) {
         guard let rose = rose else { return }

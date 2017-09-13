@@ -95,6 +95,10 @@ public extension CGVector {
   }
 }
 
+public func > (left: CGVector, right: CGVector) -> Bool {
+    return (left.dx > right.dx) || (left.dy > right.dy)
+}
+
 /**
  * Adds two CGVector values and returns the result as a new CGVector.
  */
@@ -180,6 +184,7 @@ public func / (vector: CGVector, scalar: CGFloat) -> CGVector {
 public func /= (vector: inout CGVector, scalar: CGFloat) {
   vector = vector / scalar
 }
+
 
 /**
  * Performs a linear interpolation between two CGVector values.
