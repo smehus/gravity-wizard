@@ -41,6 +41,8 @@
 		A59FB6A01E0A088A00D1C915 /* SKTTimingFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59FB6941E0A088A00D1C915 /* SKTTimingFunctions.swift */; };
 		A59FB6A11E0A088A00D1C915 /* Vector3.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59FB6951E0A088A00D1C915 /* Vector3.swift */; };
 		A59FB6AC1E0A257600D1C915 /* CGSize+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59FB6AB1E0A257500D1C915 /* CGSize+Extensions.swift */; };
+		A5A3982B1F695382001EEF5C /* Level9.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A3982A1F695382001EEF5C /* Level9.swift */; };
+		A5A3982E1F69542B001EEF5C /* Level9.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5A3982D1F69542B001EEF5C /* Level9.sks */; };
 		A5A968391EEAC80500A509DB /* LevelCompleteLabel.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5A968181EEAC80500A509DB /* LevelCompleteLabel.sks */; };
 		A5A9683A1EEAC80500A509DB /* WeaponSelector.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5A968191EEAC80500A509DB /* WeaponSelector.sks */; };
 		A5A968411EEAC80500A509DB /* Blood.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5A968221EEAC80500A509DB /* Blood.sks */; };
@@ -182,6 +184,8 @@
 		A59FB6941E0A088A00D1C915 /* SKTTimingFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKTTimingFunctions.swift; sourceTree = "<group>"; };
 		A59FB6951E0A088A00D1C915 /* Vector3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector3.swift; sourceTree = "<group>"; };
 		A59FB6AB1E0A257500D1C915 /* CGSize+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGSize+Extensions.swift"; sourceTree = "<group>"; };
+		A5A3982A1F695382001EEF5C /* Level9.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level9.swift; sourceTree = "<group>"; };
+		A5A3982D1F69542B001EEF5C /* Level9.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level9.sks; sourceTree = "<group>"; };
 		A5A968181EEAC80500A509DB /* LevelCompleteLabel.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LevelCompleteLabel.sks; sourceTree = "<group>"; };
 		A5A968191EEAC80500A509DB /* WeaponSelector.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = WeaponSelector.sks; sourceTree = "<group>"; };
 		A5A968221EEAC80500A509DB /* Blood.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Blood.sks; sourceTree = "<group>"; };
@@ -353,6 +357,22 @@
 			path = SKTUtils;
 			sourceTree = "<group>";
 		};
+		A5A398291F69536F001EEF5C /* Level9 */ = {
+			isa = PBXGroup;
+			children = (
+				A5A3982A1F695382001EEF5C /* Level9.swift */,
+			);
+			path = Level9;
+			sourceTree = "<group>";
+		};
+		A5A3982C1F69540F001EEF5C /* Level9 */ = {
+			isa = PBXGroup;
+			children = (
+				A5A3982D1F69542B001EEF5C /* Level9.sks */,
+			);
+			path = Level9;
+			sourceTree = "<group>";
+		};
 		A5A968161EEAC80500A509DB /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
@@ -423,6 +443,7 @@
 		A5A968571EEAC99C00A509DB /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				A5A398291F69536F001EEF5C /* Level9 */,
 				A5C5E05A1F5B3EC800D4DEA5 /* Level8 */,
 				A5C5E0501F5B01E600D4DEA5 /* Level7 */,
 				A5A968581EEAC99C00A509DB /* GameScene.swift */,
@@ -552,6 +573,7 @@
 		A5A968B91EEACF5D00A509DB /* Levels */ = {
 			isa = PBXGroup;
 			children = (
+				A5A3982C1F69540F001EEF5C /* Level9 */,
 				A5C5E0571F5B3E9D00D4DEA5 /* Level8 */,
 				A551222B1F5AE9B7004B2DDB /* Level7 */,
 				A5DCD08C1F3340550018D211 /* Level6 */,
@@ -739,6 +761,7 @@
 				A576E07F1F3492310062228D /* AngledIcePlatform.sks in Resources */,
 				A5A968421EEAC80500A509DB /* GravityProjectileTail.sks in Resources */,
 				A5A968C51EEACF5D00A509DB /* ForegroundLayer3.sks in Resources */,
+				A5A3982E1F69542B001EEF5C /* Level9.sks in Resources */,
 				A551222D1F5AE9D1004B2DDB /* Level7.sks in Resources */,
 				A5674C2B1EE81E3D00D29F2B /* wave.fsh in Resources */,
 				A5B58EC21E09DC4900ADC865 /* Main.storyboard in Resources */,
@@ -825,6 +848,7 @@
 				A5A968AE1EEACE9D00A509DB /* StonePlatform.swift in Sources */,
 				A5A968B31EEACE9D00A509DB /* RewindSelector.swift in Sources */,
 				A5EE58CD1E5F1BB700D3D25B /* SKSpriteNode+Extensions.swift in Sources */,
+				A5A3982B1F695382001EEF5C /* Level9.swift in Sources */,
 				A5A968AA1EEACE9D00A509DB /* PlatformNode.swift in Sources */,
 				A59FB69E1E0A088A00D1C915 /* SKTAudio.swift in Sources */,
 				A59FB6961E0A088A00D1C915 /* CGFloat+Extensions.swift in Sources */,
