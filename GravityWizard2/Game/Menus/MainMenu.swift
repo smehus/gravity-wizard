@@ -50,14 +50,21 @@ class MainMenu: SKScene {
         let position = touch.location(in: self)
         let touchNodes = nodes(at: position)
         
-        if let _ = touchNodes.filter({ $0.name == Sprite.startLabel.name }).first {
-            // begin scene
+        if let _ = touchNodes.filter({ $0.name == Sprite.startLabel.name }).first as? SKLabelNode {
+            // make label different color
         }
     }
     
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
+        guard let touch = touches.first else { return }
+        let position = touch.location(in: self)
+        let touchNodes = nodes(at: position)
         // move forward to level picker
+        
+        if let _ = touchNodes.filter({ $0.name == Sprite.startLabel.name }).first as? SKLabelNode {
+            // got to level selector
+        }
     }
 }
