@@ -8,18 +8,51 @@
 
 import SpriteKit
 
+private enum Sprite {
+    case hero
+    case startLabel
+    
+    var name: String {
+        switch self {
+        case .hero: return "rose"
+        case .startLabel: return "start"
+        }
+    }
+}
+
 class MainMenu: SKScene {
     
     private var rose: SKSpriteNode?
     private var startButton: SKLabelNode?
     
+    static func instantiate() -> MainMenu? {
+        return SKScene(fileNamed: String(describing: MainMenu.self)) as? MainMenu
+    }
+    
     override func didMove(to view: SKView) {
+        guard
+            let roseNode = childNode(withName: Sprite.hero.name) as? SKSpriteNode,
+            let start = childNode(withName: Sprite.startLabel.name) as? SKLabelNode
+        else {
+            conditionFailure(with: "failed to resolve sprites")
+            return
+        }
         
+        rose = roseNode
+        startButton = start
+        
+        // begin animating the character
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
-        // Change color of label
+        guard let touch = touches.first else { return }
+        let position = touch.location(in: self)
+        let touchNodes = nodes(at: position)
+        
+        if let _ = touchNodes.filter({ $0.name == Sprite.startLabel.name }).first {
+            // begin scene
+        }
     }
     
     
