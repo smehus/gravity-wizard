@@ -19,6 +19,7 @@ class ExplodingBlock: SKSpriteNode {
         body.categoryBitMask = PhysicsCategory.explodingBlock
         body.collisionBitMask = PhysicsCategory.arrow | PhysicsCategory.Hero | PhysicsCategory.Ground | PhysicsCategory.explodingBlock
         body.contactTestBitMask = PhysicsCategory.arrow
+        body.fieldBitMask = PhysicsCategory.RadialGravity
     }
 }
 

@@ -880,7 +880,19 @@ extension GameScene {
     }
     
     private func arrowCollidesWithExplodingBlock(with contact: SKPhysicsContact) {
-        arrowCollidesWithGround(with: contact)
+        let arrowNode = contact.bodyA.categoryBitMask == PhysicsCategory.arrow ? contact.bodyA.node : contact.bodyB.node
+        arrowNode?.removeFromParent()
+        
+        // create gravity explosion
+        
+        explosion(at: contact.contactPoint)
+        let field = SKFieldNode.radialGravityField()
+        field.categoryBitMask = PhysicsCategory.RadialGravity
+        field.strength = -50.0
+        field.position = contact.contactPoint
+        let removeAction = SKAction.afterDelay(0.3, performAction: SKAction.removeFromParent())
+        addChild(field)
+        field.run(removeAction)
     }
     
     private func gravityProjectileHitGround(with contact: SKPhysicsContact) {
