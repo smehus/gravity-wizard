@@ -9,50 +9,50 @@
 import SpriteKit
 
 private enum Sprite: SpriteConfiguration {
-    case moveable
+    case roseFlower
     
     var name: String {
         switch self {
-        case .moveable: return "//movable"
+        case .roseFlower: return "rose-flower"
         }
     }
     
     var categoryBitMask: UInt32 {
         switch self {
-        case .moveable:
-            return PhysicsCategory.movable
+        case .roseFlower:
+            return PhysicsCategory.LevelComplete
         }
     }
     
     var contactTestBitMask: UInt32 {
         switch self {
-        case .moveable:
+        case .roseFlower:
             return PhysicsCategory.Hero
         }
     }
     
     var collisionBitMask: UInt32 {
         switch self {
-        case .moveable:
-            return PhysicsCategory.Hero | PhysicsCategory.Ground | PhysicsCategory.enemy | PhysicsCategory.movable
+        case .roseFlower:
+            return PhysicsCategory.None
         }
     }
     
     var isDynamic: Bool {
         switch self {
-        case .moveable: return true
+        case .roseFlower: return false
         }
     }
     
     var affectedByGravity: Bool {
         switch self {
-        case .moveable: return true
+        case .roseFlower: return false
         }
     }
     
     var allowsRotation: Bool {
         switch self {
-        case .moveable: return true
+        case .roseFlower: return false
         }
     }
 }
@@ -83,6 +83,13 @@ class Level9: GameScene {
     
     override func setupNodes() {
         super.setupNodes()
+        
+        guard let roseFlower = childNode(withName: Sprite.roseFlower.name) as? SKSpriteNode else {
+            conditionFailure(with: "Failed to resolve rose flower")
+            return
+        }
+        
+        roseFlower.configure(with: Sprite.roseFlower)
     }
     
     override func update(levelWith currentTime: TimeInterval, delta: TimeInterval) {
@@ -99,7 +106,7 @@ class Level9: GameScene {
     }
     
     override func levelCompleted() {
-        guard let successLevel = LevelCompleteLabel.createLabel(), let camera = camera else { return }
+        guard let successLevel = LevelCompleteLabel.createLabel(with: "You Win!"), let camera = camera else { return }
         successLevel.move(toParent: camera)
         successLevel.position = CGPoint.zero
         
