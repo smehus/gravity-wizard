@@ -210,6 +210,7 @@ struct PhysicsCategory {
     static let heroField:           UInt32 = 0x1 << 21
     
     static let movable:             UInt32 = 0x1 << 22
+    static let explodingBlock:      UInt32 = 0x1 << 23
 }
 
 struct LightingMask {
@@ -226,6 +227,7 @@ enum CollisionCombination {
     case arrowCollidesWithGround
     case arrowCollidesWithEnemy
     case arrowCollidesWithDesctructible
+    case arrowCollidesWithExplodingBlock
     
     case heroCollidesWithLevelComplete
     case heroCollidesWithLava
@@ -236,6 +238,7 @@ enum CollisionCombination {
     case heroCollidesWithObstacle
     case heroCollidesWithWater
     case heroCollidesWithMovable
+    case heroCollidesWithExplodingBlock
     
     case enemyCollidesWithBorder
     case enemyCollidesWithGround
@@ -268,18 +271,23 @@ extension UInt32 {
             return .heroCollidesWithWater
         case PhysicsCategory.Hero | PhysicsCategory.movable:
             return .heroCollidesWithMovable
+        case PhysicsCategory.Hero | PhysicsCategory.explodingBlock:
+            return .heroCollidesWithExplodingBlock
             
             // ARROW
         case PhysicsCategory.arrow | PhysicsCategory.Edge:
             return .arrowCollidesWithEdge
         case PhysicsCategory.arrow | PhysicsCategory.BreakableFormation :
             return .arrowCollidesWithBreakable
-        case PhysicsCategory.arrow | PhysicsCategory.Ground :
+        case PhysicsCategory.arrow | PhysicsCategory.Ground:
             return .arrowCollidesWithGround
         case PhysicsCategory.arrow | PhysicsCategory.enemy:
             return .arrowCollidesWithEnemy
         case PhysicsCategory.arrow | PhysicsCategory.destructible:
             return .arrowCollidesWithDesctructible
+        case PhysicsCategory.arrow | PhysicsCategory.explodingBlock:
+            return .arrowCollidesWithExplodingBlock
+            
             
             // Enemy - aka boulders
             

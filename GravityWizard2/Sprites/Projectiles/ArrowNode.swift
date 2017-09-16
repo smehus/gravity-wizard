@@ -12,8 +12,8 @@ final class ArrowNode: SKSpriteNode {
     
     struct Physics {
         static let category = PhysicsCategory.arrow
-        static let contact = PhysicsCategory.Edge | PhysicsCategory.Ground
-        static let collision = PhysicsCategory.Edge | PhysicsCategory.Ground | PhysicsCategory.destructible
+        static let contact = PhysicsCategory.Edge | PhysicsCategory.Ground | PhysicsCategory.explodingBlock
+        static let collision = PhysicsCategory.Edge | PhysicsCategory.Ground | PhysicsCategory.destructible | PhysicsCategory.explodingBlock
         static let field = PhysicsCategory.heroField
     }
     

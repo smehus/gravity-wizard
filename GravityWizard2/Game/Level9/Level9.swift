@@ -83,11 +83,6 @@ class Level9: GameScene {
     
     override func setupNodes() {
         super.setupNodes()
-        
-        enumerateChildNodes(withName: Sprite.moveable.name) { (node, stop) in
-            guard let sprite = node as? SKSpriteNode else { return }
-            sprite.configure(with: Sprite.moveable)
-        }
     }
     
     override func update(levelWith currentTime: TimeInterval, delta: TimeInterval) {

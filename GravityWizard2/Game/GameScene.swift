@@ -619,6 +619,10 @@ extension GameScene: SKPhysicsContactDelegate {
             arrowCollidesWithEnemy(with: contact)
         }
         
+        if collision.collisionCombination() == .arrowCollidesWithExplodingBlock {
+            arrowCollidesWithExplodingBlock(with: contact)
+        }
+        
         
         ///
         /// Enemy
@@ -680,6 +684,10 @@ extension GameScene: SKPhysicsContactDelegate {
         if collision.collisionCombination() == .heroCollidesWithMovable {
             heroCollidesWithMovable(with: contact)
         }
+        
+        if collision.collisionCombination() == .heroCollidesWithExplodingBlock {
+            heroCollidesWithExplodingBlock(with: contact)
+        }
     }
     
     func didEnd(_ contact: SKPhysicsContact) {
@@ -698,6 +706,24 @@ extension GameScene {
     ///
     /// Hero
     ///
+    
+    private func heroCollidesWithExplodingBlock(with contact: SKPhysicsContact) {
+        let movable = contact.bodyA.categoryBitMask == PhysicsCategory.explodingBlock ? contact.bodyA.node : contact.bodyB.node
+        let hero = contact.bodyA.categoryBitMask == PhysicsCategory.Hero ? contact.bodyA.node : contact.bodyB.node
+        
+        guard
+            let movableSprite = movable as? SKSpriteNode,
+            let movableBody = movableSprite.physicsBody,
+            let rose = hero as? RoseNode
+            else {
+                conditionFailure(with: "heroCollidesWithMovable: Failed to cast as sprites")
+                return
+        }
+        
+        if movableBody.velocity > CGVector(dx: 0, dy: 0) {
+            rose.attacked()
+        }
+    }
     
     private func heroCollidesWithMovable(with contact: SKPhysicsContact) {
         let movable = contact.bodyA.categoryBitMask == PhysicsCategory.movable ? contact.bodyA.node : contact.bodyB.node
@@ -851,6 +877,10 @@ extension GameScene {
         }
         
         destructible.hit()
+    }
+    
+    private func arrowCollidesWithExplodingBlock(with contact: SKPhysicsContact) {
+        arrowCollidesWithGround(with: contact)
     }
     
     private func gravityProjectileHitGround(with contact: SKPhysicsContact) {
