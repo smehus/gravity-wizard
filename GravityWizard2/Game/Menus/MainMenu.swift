@@ -50,8 +50,9 @@ class MainMenu: SKScene {
         let position = touch.location(in: self)
         let touchNodes = nodes(at: position)
         
-        if let _ = touchNodes.filter({ $0.name == Sprite.startLabel.name }).first as? SKLabelNode {
+        if let label = touchNodes.filter({ $0.name == Sprite.startLabel.name }).first as? SKLabelNode {
             // make label different color
+            label.fontColor = .red
         }
     }
     

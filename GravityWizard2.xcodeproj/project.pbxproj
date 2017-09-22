@@ -146,6 +146,8 @@
 		A5E3150F1E2166F100D3652C /* SKScene+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E3150E1E2166F100D3652C /* SKScene+Extensions.swift */; };
 		A5E58B571F6DBC17002E3A50 /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E58B561F6DBC17002E3A50 /* MainMenu.swift */; };
 		A5EE58CD1E5F1BB700D3D25B /* SKSpriteNode+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EE58CC1E5F1BB700D3D25B /* SKSpriteNode+Extensions.swift */; };
+		A5F674661F7534E20080C4BD /* LevelSelectorMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F674651F7534E20080C4BD /* LevelSelectorMenu.swift */; };
+		A5F674681F7535F80080C4BD /* LevelSelectorMenu.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5F674671F7535F80080C4BD /* LevelSelectorMenu.sks */; };
 		A5F991671F542519001CE504 /* IceTerrain.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5F991661F542519001CE504 /* IceTerrain.sks */; };
 		A5F991691F542546001CE504 /* IceTerrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F991681F542546001CE504 /* IceTerrain.swift */; };
 		A5F9916C1F542613001CE504 /* IceTerrain-flipped.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5F9916B1F542613001CE504 /* IceTerrain-flipped.sks */; };
@@ -294,6 +296,8 @@
 		A5E3150E1E2166F100D3652C /* SKScene+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKScene+Extensions.swift"; sourceTree = "<group>"; };
 		A5E58B561F6DBC17002E3A50 /* MainMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
 		A5EE58CC1E5F1BB700D3D25B /* SKSpriteNode+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKSpriteNode+Extensions.swift"; sourceTree = "<group>"; };
+		A5F674651F7534E20080C4BD /* LevelSelectorMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSelectorMenu.swift; sourceTree = "<group>"; };
+		A5F674671F7535F80080C4BD /* LevelSelectorMenu.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LevelSelectorMenu.sks; sourceTree = "<group>"; };
 		A5F991661F542519001CE504 /* IceTerrain.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = IceTerrain.sks; sourceTree = "<group>"; };
 		A5F991681F542546001CE504 /* IceTerrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IceTerrain.swift; sourceTree = "<group>"; };
 		A5F9916B1F542613001CE504 /* IceTerrain-flipped.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "IceTerrain-flipped.sks"; sourceTree = "<group>"; };
@@ -315,6 +319,7 @@
 			isa = PBXGroup;
 			children = (
 				A506C6041F6D8746003D4C2A /* MainMenu.sks */,
+				A5F674671F7535F80080C4BD /* LevelSelectorMenu.sks */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -697,6 +702,7 @@
 			isa = PBXGroup;
 			children = (
 				A5E58B561F6DBC17002E3A50 /* MainMenu.swift */,
+				A5F674651F7534E20080C4BD /* LevelSelectorMenu.swift */,
 			);
 			path = Menus;
 			sourceTree = "<group>";
@@ -810,6 +816,7 @@
 				A5AA18E01F5C77C7009D68B3 /* UpwardsWind.sks in Resources */,
 				A5A9684E1EEAC80500A509DB /* RotarySlider.sks in Resources */,
 				A5A968C31EEACF5D00A509DB /* Level2.sks in Resources */,
+				A5F674681F7535F80080C4BD /* LevelSelectorMenu.sks in Resources */,
 				A5B58EC41E09DC4900ADC865 /* Assets.xcassets in Resources */,
 				A5A968CA1EEACFC700A509DB /* Level4.sks in Resources */,
 				A5A968531EEAC80500A509DB /* VerticalRotarySlider.sks in Resources */,
@@ -913,6 +920,7 @@
 				A59FB6AC1E0A257600D1C915 /* CGSize+Extensions.swift in Sources */,
 				A59FB69B1E0A088A00D1C915 /* SKAction+SpecialEffects.swift in Sources */,
 				A5A9685E1EEAC99C00A509DB /* Level0.swift in Sources */,
+				A5F674661F7534E20080C4BD /* LevelSelectorMenu.swift in Sources */,
 				A5A968AF1EEACE9D00A509DB /* TreasureChestNode.swift in Sources */,
 				A5855E5D1F112FE100A34344 /* SwingingPlatformNode.swift in Sources */,
 				A5173E001F6574430090095B /* StateMachine.swift in Sources */,
