@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class LevelSelectorSprite: SKSpriteNode {
+class LevelSelectorNode: SKNode {
     var level: Level?
 }
 
