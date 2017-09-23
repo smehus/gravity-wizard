@@ -25,6 +25,7 @@ protocol StringInitable {
 }
 
 enum ActionType {
+    case menu
     case arrow
     case gravity
     case walk

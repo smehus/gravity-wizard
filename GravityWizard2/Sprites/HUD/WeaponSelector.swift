@@ -14,12 +14,14 @@ extension ActionType {
         
         switch normalized {
         case 0:
-            return .arrow
+            return .menu
         case 1:
-            return .gravity
+            return .arrow
         case 2:
-            return .walk
+            return .gravity
         case 3:
+            return .walk
+        case 4:
             return .spring
         default:
             return nil
@@ -33,6 +35,7 @@ final class WeaponSelector: SKNode {
     fileprivate var gravityButton: SKSpriteNode?
     fileprivate var walkingButton: SKSpriteNode?
     fileprivate var springButton: SKSpriteNode?
+    fileprivate var menuButton: SKLabelNode?
 
     let fadeOff = SKAction.fadeAlpha(to: 0.5, duration: 0.1)
     let fadeOn = SKAction.fadeAlpha(to: 1.0, duration: 0.1)
@@ -60,7 +63,8 @@ final class WeaponSelector: SKNode {
             let arrow = file.childNode(withName: "//arrow") as? SKSpriteNode,
             let gravity = file.childNode(withName: "//gravity") as? SKSpriteNode,
             let walking = file.childNode(withName: "//walking") as? SKSpriteNode,
-            let spring = file.childNode(withName: "//spring") as? SKSpriteNode
+            let spring = file.childNode(withName: "//spring") as? SKSpriteNode,
+            let menu = file.childNode(withName: "//menu") as? SKLabelNode
         else {
                 assertionFailure("Failed to load button sprites")
                 return nil
@@ -71,6 +75,7 @@ final class WeaponSelector: SKNode {
         node.gravityButton = gravity
         node.walkingButton = walking
         node.springButton = spring
+        node.menuButton = menu
         node.selectedSpring()
         node.zPosition = 100
         return node
@@ -122,7 +127,13 @@ final class WeaponSelector: SKNode {
             return
         }
         
-        scene.currentActionType = action
+        if action == .menu, let menu = MainMenu.instantiate() {
+            let transition = SKTransition.doorway(withDuration: 1.0)
+            menu.scaleMode = scene.scaleMode
+            scene.view?.presentScene(menu, transition: transition)
+        } else {
+            scene.currentActionType = action
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -133,6 +144,8 @@ final class WeaponSelector: SKNode {
         
         guard let type = ActionType.action(for: touchPoint.x, sectionWidth: buttonWidth) else { return }
         switch type {
+        case .menu:
+            selected(action: type)
         case .arrow:
             selectedArrow()
         case .gravity:
