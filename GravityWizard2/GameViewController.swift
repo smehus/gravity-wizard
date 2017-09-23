@@ -17,6 +17,9 @@ class GameViewController: UIViewController {
         // Update this when ios 11 comes out
         // This is need to let the system know the preferredScreenEdgesDeferringSystemGestures has changed
         //            setNeedsUpdateOfScreenEdgesDeferringSystemGestures()
+        
+//        restrictAllLevels()
+        Level.zero.setAccess(access: true)
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
             if let scene = MainMenu.instantiate() {
@@ -60,6 +63,12 @@ class GameViewController: UIViewController {
 
     override var prefersStatusBarHidden: Bool {
         return true
+    }
+    
+    private func restrictAllLevels() {
+        for level in Level.all() {
+            level.setAccess(access: false)
+        }
     }
     
     fileprivate func sceneTransition() -> SKTransition {

@@ -40,6 +40,10 @@ class LevelSelectorNode: SKNode {
         labelNode.zPosition = 10
         labelNode.position = CGPoint(x: buttonNode.position.x, y: buttonNode.position.y - (labelNode.frame.size.halfHeight))
         
+        if level.hasAccess() {
+            buttonNode.texture = SKTexture(image: #imageLiteral(resourceName: "available-level"))
+        }
+        
         label = labelNode
         button = buttonNode
     }
@@ -75,6 +79,7 @@ class LevelSelectorMenu: SKScene {
         guard
             let node = touchNodes.filter({ $0 is LevelSelectorNode }).first as? LevelSelectorNode,
             let level = node.level,
+            level.hasAccess(),
             let levelScene = level.levelScene()
         else { return }
         

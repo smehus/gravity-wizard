@@ -55,6 +55,10 @@ enum Level: Int {
     case eight
     case nine
     
+    var defaultsKey: String {
+        return "level\(rawValue)"
+    }
+    
     init?(string: String?) {
         guard let typeString = string else { return nil }
         var value: Int?
@@ -76,7 +80,9 @@ enum Level: Int {
     
     func nextLevel() -> Level? {
         let nextInt = self.rawValue + 1
-        return Level(rawValue: nextInt)
+        let nextLevel = Level(rawValue: nextInt)
+        nextLevel?.setAccess(access: true)
+        return nextLevel
     }
     
     func levelScene() -> GameScene? {
@@ -102,6 +108,15 @@ enum Level: Int {
         case .nine:
             return SKScene(fileNamed: "Level9") as? Level9
         }
+    }
+    
+    func hasAccess() -> Bool {
+        return UserDefaults.standard.bool(forKey: defaultsKey)
+    }
+    
+    func setAccess(access: Bool) {
+        let defaults = UserDefaults.standard
+        defaults.set(access, forKey: defaultsKey)
     }
 }
 
