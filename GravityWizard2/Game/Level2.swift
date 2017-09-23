@@ -11,6 +11,7 @@ import SpriteKit
 fileprivate struct Names {
     static let movingPlatform = "MovingPlatformContainer"
     static let breakableStoneStructure = "BreakableStoneStructure"
+    static let followLight = "//FollowLight"
 }
 
 fileprivate struct Constants {
@@ -19,6 +20,8 @@ fileprivate struct Constants {
 
 @objcMembers
 final class Level2: GameScene {
+    
+    private var light: SKNode?
     
     var currentLevel: Level {
         return .two
@@ -39,10 +42,17 @@ final class Level2: GameScene {
         super.setupNodes()
         setupPlatform()
         setupBreakableStoneStructure()
+        
+        
+        light = childNode(withName: Names.followLight)
     }
     
     override func update(levelWith currentTime: TimeInterval, delta: TimeInterval) {
         movingPlatform?.animate(with: Constants.platformVelocityX)
+    }
+    
+    override func didSimulatePhysicsForLevel() {
+        updateFollowNodePosition(followNode: light, originNode: rose)
     }
     
     @objc override func contactDidBegin(with contact: SKPhysicsContact) {

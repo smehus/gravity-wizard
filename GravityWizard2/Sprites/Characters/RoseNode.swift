@@ -167,7 +167,9 @@ enum JumpRestorationType {
                 let smokePOS = gameScene.convert(position, from: parent!)
                 let variance: CGFloat = 30
                 smokeSprite.position = CGPoint(x: CGFloat.random(min: smokePOS.x - variance, max: smokePOS.x + variance), y: CGFloat.random(min: smokePOS.y - variance, max: smokePOS.y + variance))
-                
+                smokeSprite.lightingBitMask = 1
+                smokeSprite.shadowedBitMask = 1
+                smokeSprite.shadowCastBitMask = 0
                 smokeSprite.zPosition = 10
                 
                 gameScene.addChild(smokeSprite)

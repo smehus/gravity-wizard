@@ -32,6 +32,9 @@ final class ArrowNode: SKSpriteNode {
         physicsBody?.collisionBitMask = Physics.collision
         physicsBody?.fieldBitMask = Physics.field
         zPosition = 30
+        lightingBitMask = 1
+        shadowedBitMask = 1
+        shadowCastBitMask = 1
     }
     
     required init?(coder aDecoder: NSCoder) {
