@@ -57,7 +57,8 @@ class MainMenu: SKScene {
         
         if let _ = touchNodes.filter({ $0.name == Sprite.startLabel.name || $0.name == Sprite.startButton.name }).first {
             // make label different color
-            startLabel?.fontColor = UIColor.blue
+            startButton?.run(SKAction.scale(by: 0.8, duration: 0.1))
+            startLabel?.run(SKAction.scale(by: 0.8, duration: 0.1))
         }
     }
     
@@ -68,7 +69,11 @@ class MainMenu: SKScene {
         let touchNodes = nodes(at: position)
         // move forward to level picker
         
+        startButton?.run(SKAction.scale(by: 1.2, duration: 0.1))
+        startLabel?.run(SKAction.scale(by: 1.2, duration: 0.1))
+        
         if let _ = touchNodes.filter({ $0.name == Sprite.startButton.name || $0.name == Sprite.startButton.name }).first {
+           
             // got to level selector
             let nextMenu = LevelSelectorMenu.instantiate()
             nextMenu.scaleMode = self.scaleMode

@@ -51,6 +51,8 @@ class LevelSelectorNode: SKNode {
 
 class LevelSelectorMenu: SKScene {
     
+    var selectedNode: LevelSelectorNode?
+    
     static func instantiate() -> LevelSelectorMenu {
         return SKScene(fileNamed: String(describing: LevelSelectorMenu.self)) as! LevelSelectorMenu
     }
@@ -68,6 +70,14 @@ class LevelSelectorMenu: SKScene {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
+        guard let touch = touches.first else { return }
+        let noddePosition = touch.location(in: self)
+        let touchedNodes = nodes(at: noddePosition)
+        
+        if let node = touchedNodes.filter({ $0 is LevelSelectorNode }).first as? LevelSelectorNode {
+            selectedNode = node
+            node.run(SKAction.scale(by: 0.8, duration: 0.1))
+        }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -75,6 +85,8 @@ class LevelSelectorMenu: SKScene {
         guard let touch = touches.first else { return }
         let position = touch.location(in: self)
         let touchNodes = nodes(at: position)
+        
+        selectedNode?.run(SKAction.scale(to: 1.0, duration: 0.1))
         
         guard
             let node = touchNodes.filter({ $0 is LevelSelectorNode }).first as? LevelSelectorNode,
