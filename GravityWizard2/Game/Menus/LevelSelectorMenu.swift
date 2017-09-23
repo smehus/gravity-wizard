@@ -19,6 +19,8 @@ class LevelSelectorMenu: SKScene {
     }
     
     override func didMove(to view: SKView) {
-        
+        for levelNode in children.filter({ $0 is LevelSelectorNode }) {
+            guard let level = Level(string: levelNode.name) else { continue }
+        }
     }
 }

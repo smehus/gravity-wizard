@@ -55,6 +55,21 @@ enum Level: Int {
     case eight
     case nine
     
+    init?(string: String?) {
+        guard let typeString = string else { return nil }
+        var value: Int?
+        
+        for i in 0..<Level.all().count {
+            guard typeString == "level\(i)" else { continue }
+            value = i
+            break
+        }
+        
+        guard let finalValue = value else { return nil }
+        
+        self.init(rawValue: finalValue)
+    }
+    
     static func all() -> [Level] {
         return [.zero, .one, .two, .three, .four, .five, .six, .seven, .eight, .nine]
     }
