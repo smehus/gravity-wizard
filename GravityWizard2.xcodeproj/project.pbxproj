@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A506C6051F6D8746003D4C2A /* MainMenu.sks in Resources */ = {isa = PBXBuildFile; fileRef = A506C6041F6D8746003D4C2A /* MainMenu.sks */; };
 		A5173E001F6574430090095B /* StateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5173DFF1F6574430090095B /* StateMachine.swift */; };
+		A51B14D41F76EE730008A8A1 /* JumpSmoke.sks in Resources */ = {isa = PBXBuildFile; fileRef = A51B14D31F76EE730008A8A1 /* JumpSmoke.sks */; };
 		A52366A91F656F640038E0CA /* DownwardsWind.sks in Resources */ = {isa = PBXBuildFile; fileRef = A52366A81F656F630038E0CA /* DownwardsWind.sks */; };
 		A53CB1CC1F0D9F0B000B9C64 /* WaterSceneNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53CB1CB1F0D9F0B000B9C64 /* WaterSceneNode.swift */; };
 		A549CF661F6D5BF1006C3117 /* ExplodingBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A549CF651F6D5BF1006C3117 /* ExplodingBlock.swift */; };
@@ -157,6 +158,7 @@
 /* Begin PBXFileReference section */
 		A506C6041F6D8746003D4C2A /* MainMenu.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MainMenu.sks; sourceTree = "<group>"; };
 		A5173DFF1F6574430090095B /* StateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateMachine.swift; sourceTree = "<group>"; };
+		A51B14D31F76EE730008A8A1 /* JumpSmoke.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = JumpSmoke.sks; sourceTree = "<group>"; };
 		A52366A81F656F630038E0CA /* DownwardsWind.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = DownwardsWind.sks; sourceTree = "<group>"; };
 		A53CB1CB1F0D9F0B000B9C64 /* WaterSceneNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterSceneNode.swift; sourceTree = "<group>"; };
 		A549CF651F6D5BF1006C3117 /* ExplodingBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplodingBlock.swift; sourceTree = "<group>"; };
@@ -425,6 +427,7 @@
 				A5E21F9D1F4EF94400934CE2 /* SnowParticle.sks */,
 				A5AA18DF1F5C77C7009D68B3 /* UpwardsWind.sks */,
 				A52366A81F656F630038E0CA /* DownwardsWind.sks */,
+				A51B14D31F76EE730008A8A1 /* JumpSmoke.sks */,
 			);
 			path = Particles;
 			sourceTree = "<group>";
@@ -800,6 +803,7 @@
 				A5F991671F542519001CE504 /* IceTerrain.sks in Resources */,
 				A5A9684D1EEAC80500A509DB /* Rose.sks in Resources */,
 				A5C5E0591F5B3EB200D4DEA5 /* Level8.sks in Resources */,
+				A51B14D41F76EE730008A8A1 /* JumpSmoke.sks in Resources */,
 				A5A968501EEAC80500A509DB /* SlidingPlatform.sks in Resources */,
 				A5A968471EEAC80500A509DB /* ChainedRotary.sks in Resources */,
 				A549D5CF1F2E02F800470E2D /* Level5.sks in Resources */,

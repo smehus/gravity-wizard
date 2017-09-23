@@ -151,6 +151,48 @@ enum JumpRestorationType {
         guard jumpCount != 0 else { return }
         jumpCount -= 1
         physicsBody?.velocity = vector
+        
+        if let gameScene = scene as? GameScene {
+//            let jumpParticle = ParticleFactory.sharedFactory.jumpSmoke()
+//            jumpParticle.targetNode = gameScene
+//            jumpParticle.position = gameScene.convert(position, from: parent!)
+//            jumpParticle.advanceSimulationTime(1)
+//            jumpParticle.run(SKAction.removeFromParentAfterDelay(2.0))
+//            gameScene.addChild(jumpParticle)
+            
+            for _ in 0..<3 {
+                
+                let smokeTexture = SKTexture(image: #imageLiteral(resourceName: "whitePuff0"))
+                let smokeSprite = SKSpriteNode(texture: smokeTexture, color: .white, size: smokeTexture.size() * 0.1)
+                let smokePOS = gameScene.convert(position, from: parent!)
+                let variance: CGFloat = 30
+                smokeSprite.position = CGPoint(x: CGFloat.random(min: smokePOS.x - variance, max: smokePOS.x + variance), y: CGFloat.random(min: smokePOS.y - variance, max: smokePOS.y + variance))
+                
+                smokeSprite.zPosition = 10
+                
+                gameScene.addChild(smokeSprite)
+                
+                let textures = createSmokeTextures()
+                let timePerFrame = Double(CGFloat.random(min: 0.01, max: 0.03))
+                let textAnim = SKAction.animate(with: textures, timePerFrame: timePerFrame)
+                let removeAction = SKAction.removeFromParentAfterDelay(timePerFrame * Double(textures.count))
+                let alphaAction = SKAction.fadeAlpha(to: 0.0, duration: timePerFrame * Double(textures.count))
+                let sizeAction = SKAction.scale(by: 4, duration: timePerFrame * Double(textures.count))
+                smokeSprite.run(SKAction.group([textAnim, removeAction, alphaAction, sizeAction]))
+            }
+        }
+    }
+    
+    private func createSmokeTextures() -> [SKTexture] {
+        var animationTextures: [SKTexture] = []
+        
+        for i in 0...24 {
+            let name = "whitePuff\(i)"
+            let text = SKTexture(imageNamed: name)
+            animationTextures.append(text)
+        }
+        
+        return animationTextures
     }
     
     func hardLanding(with body: SKPhysicsBody, contactPoint: CGPoint, addJoint: Bool) {

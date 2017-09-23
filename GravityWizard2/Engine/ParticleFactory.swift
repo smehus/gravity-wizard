@@ -16,6 +16,7 @@ class ParticleFactory {
         case snowyLand
         case upwardWind
         case downwardWind
+        case jumpSmoke
         
         var filename: String {
             switch self {
@@ -29,11 +30,17 @@ class ParticleFactory {
                 return "UpwardsWind"
             case .downwardWind:
                 return "DownwardsWind"
+            case .jumpSmoke:
+                return "JumpSmoke"
             }
         }
     }
     
     static let sharedFactory = ParticleFactory()
+    
+    func jumpSmoke() -> SKEmitterNode {
+        return SKEmitterNode(fileNamed: Particle.jumpSmoke.filename)!
+    }
     
     func upwardsWind() -> SKEmitterNode {
         return SKEmitterNode(fileNamed: Particle.upwardWind.filename)!

@@ -57,7 +57,7 @@ class MainMenu: SKScene {
         
         if let _ = touchNodes.filter({ $0.name == Sprite.startLabel.name || $0.name == Sprite.startButton.name }).first {
             // make label different color
-            startLabel?.fontColor = .red
+            startLabel?.fontColor = UIColor.blue
         }
     }
     
