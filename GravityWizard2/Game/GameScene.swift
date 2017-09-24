@@ -153,7 +153,7 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel, SceneEdgeDecider {
         roseScene = heroScene
         rose = hero
         jumpCountObserver = rose?.observe(\.jumpCount) { (rose, change) in
-            self.jumpCountLabel?.text = "\(rose.jumpCount)"
+            self.jumpCountLabel?.text = "Jumps: \(rose.jumpCount)"
         }
         
         setHeroStartingPosition()
@@ -247,10 +247,10 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel, SceneEdgeDecider {
     
     private func setupJumpCountLabel() {
         guard let camera = camera, let camSize = cameraSize else { return }
-        let label = SKLabelNode(text: "\(rose?.jumpCount ?? 0)")
-        label.fontSize = 100
-        
-        let point = CGPoint(x: ((camSize.width / 2) - label.frame.maxX), y: -((camSize.height / 2) - label.frame.maxY))
+        let label = SKLabelNode(text: "Jumps: \(rose?.jumpCount ?? 0)")
+        label.fontSize = 70
+        label.fontName = "AvenirNextCondensed-Heavy"
+        let point = CGPoint(x: ((camSize.width / 2) - (label.frame.maxX + 20)), y: -((camSize.height / 2) - label.frame.maxY))
         label.position = point
         label.zPosition = 20
         camera.addChild(label)

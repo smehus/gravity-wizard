@@ -40,9 +40,11 @@ final class Level2: GameScene {
     
     override func setupNodes() {
         super.setupNodes()
+        
+        rose?.MAX_JUMP_COUNT = 2
+        rose?.currentHealth = .quarter
         setupPlatform()
         setupBreakableStoneStructure()
-        
         
         light = childNode(withName: Names.followLight)
     }
