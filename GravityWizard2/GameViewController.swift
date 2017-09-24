@@ -22,7 +22,7 @@ class GameViewController: UIViewController {
         Level.zero.setAccess(access: true)
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
-            if let scene = MainMenu.instantiate() {
+            if let scene = Level.five.levelScene() {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
                 
@@ -31,11 +31,10 @@ class GameViewController: UIViewController {
             }
             
             view.ignoresSiblingOrder = true
-            
             view.showsFPS = true
             view.showsNodeCount = true
             view.showsPhysics = false
-            view.showsFields = true
+            view.showsFields = false
         }
     }
 

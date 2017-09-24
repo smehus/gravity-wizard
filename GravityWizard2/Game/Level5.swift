@@ -63,6 +63,7 @@ final class Level5: GameScene {
     
     override func setupNodes() {
         super.setupNodes()
+        populateBackground()
         lastPlatformPosition = 1000
         populatePlatforms()
         generateField()
@@ -94,6 +95,23 @@ final class Level5: GameScene {
         if rosePosition.y < 0 {
             gameOver()
             isRendering = false
+        }
+    }
+    
+    private func populateBackground() {
+        let numOfSprites = Int(ceil(totalSceneSize.width / size.width))
+        let bgTexture = SKTexture(image: #imageLiteral(resourceName: "colored_desert"))
+        
+        var lastXPosition: CGFloat = 0
+        
+        for i in 0..<numOfSprites {
+            let sprite = SKSpriteNode(texture: bgTexture, color: .white, size: size)
+            sprite.anchorPoint = CGPoint(x: 0, y: 0)
+            sprite.position = (i == 0) ? CGPoint(x: lastXPosition, y: 0) : CGPoint(x: (lastXPosition + sprite.size.width), y: 0)
+            sprite.zPosition = -1
+            addChild(sprite)
+            
+            lastXPosition = sprite.position.x
         }
     }
     
