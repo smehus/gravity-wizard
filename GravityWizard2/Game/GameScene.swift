@@ -252,7 +252,7 @@ class GameScene: SKScene, Game, LifecycleEmitter, GameLevel, SceneEdgeDecider {
         label.fontName = "AvenirNextCondensed-Heavy"
         let point = CGPoint(x: ((camSize.width / 2) - (label.frame.maxX + 20)), y: -((camSize.height / 2) - label.frame.maxY))
         label.position = point
-        label.zPosition = 20
+        label.zPosition = 50
         camera.addChild(label)
         jumpCountLabel = label
     }

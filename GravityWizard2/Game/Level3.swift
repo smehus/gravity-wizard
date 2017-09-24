@@ -56,6 +56,7 @@ final class Level3: GameScene {
             return
         }
         
+        rose?.MAX_JUMP_COUNT = 10
         foreground = foregroundNode
         background = backgroundNode
     }
