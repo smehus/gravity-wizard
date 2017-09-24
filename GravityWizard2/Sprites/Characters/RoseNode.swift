@@ -106,13 +106,15 @@ enum JumpRestorationType {
 
 @objcMembers final class RoseNode: SKSpriteNode, GravityStateTracker {
     
-    struct Constants {
-        static let MAX_JUMP_COUNT = 100
+    var MAX_JUMP_COUNT = 0 {
+        didSet {
+            jumpCount = MAX_JUMP_COUNT
+        }
     }
     
     var jumpRestorationType: JumpRestorationType = .groundRestore
     var isGrounded = true
-    dynamic var jumpCount = Constants.MAX_JUMP_COUNT
+    dynamic var jumpCount = 0
     var previousVelocity: CGVector?
     var startingPosition: CGPoint?
     var currentHealth: Health = .full {
@@ -153,12 +155,6 @@ enum JumpRestorationType {
         physicsBody?.velocity = vector
         
         if let gameScene = scene as? GameScene {
-//            let jumpParticle = ParticleFactory.sharedFactory.jumpSmoke()
-//            jumpParticle.targetNode = gameScene
-//            jumpParticle.position = gameScene.convert(position, from: parent!)
-//            jumpParticle.advanceSimulationTime(1)
-//            jumpParticle.run(SKAction.removeFromParentAfterDelay(2.0))
-//            gameScene.addChild(jumpParticle)
             
             for _ in 0..<3 {
                 
@@ -204,7 +200,7 @@ enum JumpRestorationType {
         
         isGrounded = true
         if jumpRestorationType == .groundRestore {
-            jumpCount = Constants.MAX_JUMP_COUNT
+            jumpCount = MAX_JUMP_COUNT
         }
         
         gravityState = .landing
@@ -373,6 +369,7 @@ extension RoseNode: GameLoopListener {
 extension RoseNode: LifecycleListener {
     func didMoveToScene() {
         xScale = 1.0
+        jumpCount = MAX_JUMP_COUNT
         setPhysicsBody()
     }
 }

@@ -31,6 +31,7 @@
 		A5840A9C1F11266F00659404 /* SwingingPlatform.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5840A9B1F11266F00659404 /* SwingingPlatform.sks */; };
 		A5855E5D1F112FE100A34344 /* SwingingPlatformNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5855E5C1F112FE100A34344 /* SwingingPlatformNode.swift */; };
 		A59152C81EDC608A00F90D5E /* Assert+SKNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59152C71EDC608A00F90D5E /* Assert+SKNode.swift */; };
+		A59344431F7811AB00886693 /* GameCompleted.sks in Resources */ = {isa = PBXBuildFile; fileRef = A59344421F7811AB00886693 /* GameCompleted.sks */; };
 		A59FB6961E0A088A00D1C915 /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59FB68A1E0A088A00D1C915 /* CGFloat+Extensions.swift */; };
 		A59FB6971E0A088A00D1C915 /* CGPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59FB68B1E0A088A00D1C915 /* CGPoint+Extensions.swift */; };
 		A59FB6981E0A088A00D1C915 /* CGVector+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59FB68C1E0A088A00D1C915 /* CGVector+Extensions.swift */; };
@@ -180,6 +181,7 @@
 		A5840A9B1F11266F00659404 /* SwingingPlatform.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SwingingPlatform.sks; sourceTree = "<group>"; };
 		A5855E5C1F112FE100A34344 /* SwingingPlatformNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwingingPlatformNode.swift; sourceTree = "<group>"; };
 		A59152C71EDC608A00F90D5E /* Assert+SKNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assert+SKNode.swift"; sourceTree = "<group>"; };
+		A59344421F7811AB00886693 /* GameCompleted.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameCompleted.sks; sourceTree = "<group>"; };
 		A59FB68A1E0A088A00D1C915 /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
 		A59FB68B1E0A088A00D1C915 /* CGPoint+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extensions.swift"; sourceTree = "<group>"; };
 		A59FB68C1E0A088A00D1C915 /* CGVector+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+Extensions.swift"; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 			children = (
 				A506C6041F6D8746003D4C2A /* MainMenu.sks */,
 				A5F674671F7535F80080C4BD /* LevelSelectorMenu.sks */,
+				A59344421F7811AB00886693 /* GameCompleted.sks */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -824,6 +827,7 @@
 				A5B58EC41E09DC4900ADC865 /* Assets.xcassets in Resources */,
 				A5A968CA1EEACFC700A509DB /* Level4.sks in Resources */,
 				A5A968531EEAC80500A509DB /* VerticalRotarySlider.sks in Resources */,
+				A59344431F7811AB00886693 /* GameCompleted.sks in Resources */,
 				A5A968481EEAC80500A509DB /* Floor.sks in Resources */,
 				A5B58EC71E09DC4900ADC865 /* LaunchScreen.storyboard in Resources */,
 				A5BE41401F276DFD0052E56A /* WaterReflection.fsh in Resources */,
