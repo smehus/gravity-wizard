@@ -36,6 +36,7 @@ final class Level4: GameScene {
     
     override func setupNodes() {
         super.setupNodes()
+        rose?.MAX_JUMP_COUNT = 3
         // add shaders
     }
     
