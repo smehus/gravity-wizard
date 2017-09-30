@@ -118,7 +118,8 @@ class Level9: GameScene {
             /// Present menu screen
             ///
             
-            let completedScene = GameCompleted.instantiate()
+            let completedScene = GameCompleted.instantiate()!
+            completedScene.scaleMode = self.scaleMode
             let transition = SKTransition.crossFade(withDuration: 2.0)
             self.view?.presentScene(completedScene, transition: transition)
         }
@@ -142,7 +143,6 @@ class Level9: GameScene {
             reloadLevel.scaleMode = self.scaleMode
             let transition = SKTransition.doorsOpenHorizontal(withDuration: 1.0)
             self.view?.presentScene(reloadLevel, transition: transition)
-            
         }
         
         run(presentScene)
