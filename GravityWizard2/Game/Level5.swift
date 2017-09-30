@@ -72,10 +72,17 @@ final class Level5: GameScene {
     
     override func update(levelWith currentTime: TimeInterval, delta: TimeInterval) {
         guard isRendering else { return }
+
+        lastFieldWave += delta
+        
+
+    }
+    
+    override func didSimulatePhysicsForLevel() {
+        
         roseCheck()
         populatePlatforms()
         
-        lastFieldWave += delta
         
         ///
         /// Create gravity waves
@@ -147,19 +154,18 @@ final class Level5: GameScene {
     }
     
     private func generateField() {
-        let fieldHeight: CGFloat = scene!.size.height / 2
         let fieldWidth: CGFloat = 500
         
         let field = Field.linear.generate()
         //TODO: Y position of camera is off at first - similar to how the x pos was off before
         
         
-        field.position = CGPoint(x: maxXPosition, y: camera!.position.y)
-        field.region = SKRegion(size: CGSize(width: fieldWidth, height: fieldHeight))
+        field.position = CGPoint(x: maxXPosition, y: totalSceneSize.halfHeight)
+        field.region = SKRegion(size: CGSize(width: fieldWidth, height: totalSceneSize.height))
         field.categoryBitMask = PhysicsCategory.heroField
         addChild(field)
         
-        let stormParticle = particleFactory.sandStorm(width: fieldWidth, height: fieldHeight)
+        let stormParticle = particleFactory.sandStorm(width: fieldWidth, height: totalSceneSize.height)
         
         let constraint = SKConstraint.distance(SKRange(constantValue: 0), to: CGPoint(x: -(fieldWidth / 2), y: 0), in: field)
         stormParticle.constraints = [constraint]

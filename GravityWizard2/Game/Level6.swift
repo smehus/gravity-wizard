@@ -114,6 +114,7 @@ final class Level6: GameScene {
     
     override func setupNodes() {
         super.setupNodes()
+        rose?.MAX_JUMP_COUNT = 5
         particleFactory.addWinterSnowyBackground(scene: self)
         addPhysicsBorders(size: totalSceneSize)
     }
