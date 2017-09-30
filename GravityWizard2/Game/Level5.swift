@@ -72,10 +72,7 @@ final class Level5: GameScene {
     
     override func update(levelWith currentTime: TimeInterval, delta: TimeInterval) {
         guard isRendering else { return }
-
         lastFieldWave += delta
-        
-
     }
     
     override func didSimulatePhysicsForLevel() {
