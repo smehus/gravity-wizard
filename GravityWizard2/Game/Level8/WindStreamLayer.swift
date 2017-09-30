@@ -53,10 +53,12 @@ class WindStreamLayer: SKNode {
             ///
             /// Add platform if required
             ///
-            if ((parentScene.size.width * CGFloat(passCount)) + parentScene.size.halfWidth) < streamPosition.x {
-                addPlatform(between: streamPosition.x, and: nextPosition.x)
-                passCount += 1
-            }
+//            if ((parentScene.size.width * CGFloat(passCount)) + parentScene.size.halfWidth) < streamPosition.x {
+//                addPlatform(between: streamPosition.x, and: nextPosition.x)
+//                passCount += 1
+//            }
+            
+            addPlatform(between: streamPosition.x, and: nextPosition.x)
             
             streamPosition = nextPosition
             
@@ -93,7 +95,7 @@ class WindStreamLayer: SKNode {
     private func addPlatform(between lhs: CGFloat, and rhs: CGFloat) {
         let diff = (rhs - lhs) / 2
         let xPos = lhs + diff
-        let yPos = CGFloat.random(min: 0, max: parentScene.totalSceneSize.height - 300)
+        let yPos = CGFloat.random(min: 0, max: parentScene.totalSceneSize.halfHeight)
         let platformPosition = CGPoint(x: xPos, y: yPos)
         
         let texture = SKTexture(image: #imageLiteral(resourceName: "grass-edge-platform"))

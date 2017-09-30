@@ -70,6 +70,8 @@ class Level8: GameScene {
         windStreamLayer = windLayer
         
         repeatBackground()
+        
+        rose?.MAX_JUMP_COUNT = 5
     }
     
     override func update(levelWith currentTime: TimeInterval, delta: TimeInterval) {
