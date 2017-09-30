@@ -90,6 +90,7 @@ class Level9: GameScene {
         }
         
         roseFlower.configure(with: Sprite.roseFlower)
+        rose?.MAX_JUMP_COUNT = 3
     }
     
     override func update(levelWith currentTime: TimeInterval, delta: TimeInterval) {
@@ -116,6 +117,10 @@ class Level9: GameScene {
             ///
             /// Present menu screen
             ///
+            
+            let completedScene = GameCompleted.instantiate()
+            let transition = SKTransition.crossFade(withDuration: 2.0)
+            self.view?.presentScene(completedScene, transition: transition)
         }
         
         run(presentScene)
