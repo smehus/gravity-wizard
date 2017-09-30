@@ -51,6 +51,13 @@ private enum SpriteConfig: SpriteConfiguration {
         }
     }
     
+    var fieldBitMask: UInt32 {
+        switch self {
+        case .block, .platformTop: return PhysicsCategory.heroField
+        case .baseBlock: return PhysicsCategory.None
+        }
+    }
+    
     // Physics
     
     var isDynamic: Bool {

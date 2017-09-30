@@ -47,6 +47,7 @@ extension SKSpriteNode {
         body.isDynamic = config.isDynamic
         body.affectedByGravity = config.affectedByGravity
         body.allowsRotation = config.allowsRotation
+        body.fieldBitMask = config.fieldBitMask
     }
 }
 

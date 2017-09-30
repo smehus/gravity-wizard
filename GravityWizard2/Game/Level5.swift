@@ -63,6 +63,7 @@ final class Level5: GameScene {
     
     override func setupNodes() {
         super.setupNodes()
+        rose?.MAX_JUMP_COUNT = 5
         populateBackground()
         lastPlatformPosition = 1000
         populatePlatforms()
@@ -152,7 +153,7 @@ final class Level5: GameScene {
         let field = Field.linear.generate()
         //TODO: Y position of camera is off at first - similar to how the x pos was off before
         
-        print("🎒 cam pos: \(camera!.position.y)")
+        
         field.position = CGPoint(x: maxXPosition, y: camera!.position.y)
         field.region = SKRegion(size: CGSize(width: fieldWidth, height: fieldHeight))
         field.categoryBitMask = PhysicsCategory.heroField

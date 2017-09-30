@@ -13,7 +13,14 @@ protocol SpriteConfiguration {
     var categoryBitMask: UInt32 { get }
     var contactTestBitMask: UInt32 { get }
     var collisionBitMask: UInt32  { get }
+    var fieldBitMask: UInt32 { get }
     var isDynamic: Bool { get }
     var affectedByGravity: Bool { get }
     var allowsRotation: Bool  { get }
+}
+
+extension SpriteConfiguration {
+    var fieldBitMask: UInt32 {
+        return PhysicsCategory.None
+    }
 }
