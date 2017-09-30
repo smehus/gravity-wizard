@@ -63,7 +63,7 @@ final class Level5: GameScene {
     
     override func setupNodes() {
         super.setupNodes()
-        rose?.MAX_JUMP_COUNT = 5
+        rose?.MAX_JUMP_COUNT = 8
         populateBackground()
         lastPlatformPosition = 1000
         populatePlatforms()
