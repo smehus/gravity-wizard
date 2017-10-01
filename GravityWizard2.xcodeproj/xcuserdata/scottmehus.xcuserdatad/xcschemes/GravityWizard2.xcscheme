@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A5B58EB21E09DC4900ADC865"
-               BuildableName = "Rose.app"
+               BuildableName = "JumpJump Alien.app"
                BlueprintName = "GravityWizard2"
                ReferencedContainer = "container:GravityWizard2.xcodeproj">
             </BuildableReference>
@@ -34,7 +34,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A5B58EB21E09DC4900ADC865"
-            BuildableName = "Rose.app"
+            BuildableName = "JumpJump Alien.app"
             BlueprintName = "GravityWizard2"
             ReferencedContainer = "container:GravityWizard2.xcodeproj">
          </BuildableReference>
@@ -58,7 +58,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A5B58EB21E09DC4900ADC865"
-            BuildableName = "Rose.app"
+            BuildableName = "JumpJump Alien.app"
             BlueprintName = "GravityWizard2"
             ReferencedContainer = "container:GravityWizard2.xcodeproj">
          </BuildableReference>
@@ -77,7 +77,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A5B58EB21E09DC4900ADC865"
-            BuildableName = "Rose.app"
+            BuildableName = "JumpJump Alien.app"
             BlueprintName = "GravityWizard2"
             ReferencedContainer = "container:GravityWizard2.xcodeproj">
          </BuildableReference>
