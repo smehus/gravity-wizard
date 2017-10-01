@@ -280,7 +280,7 @@
 		A5ACBA691F2D014700CB83E4 /* BorderNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderNode.swift; sourceTree = "<group>"; };
 		A5ACBA6B1F2D1A9000CB83E4 /* EdgeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeNode.swift; sourceTree = "<group>"; };
 		A5AFBA1B1E1828F200CE29E9 /* SKTexture+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKTexture+Extensions.swift"; sourceTree = "<group>"; };
-		A5B58EB31E09DC4900ADC865 /* Rose.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rose.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5B58EB31E09DC4900ADC865 /* JumpJump Alien.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JumpJump Alien.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5B58EB61E09DC4900ADC865 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5B58EBE1E09DC4900ADC865 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		A5B58EC11E09DC4900ADC865 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -646,7 +646,7 @@
 		A5B58EB41E09DC4900ADC865 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A5B58EB31E09DC4900ADC865 /* Rose.app */,
+				A5B58EB31E09DC4900ADC865 /* JumpJump Alien.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -742,7 +742,7 @@
 			);
 			name = GravityWizard2;
 			productName = GravityWizard2;
-			productReference = A5B58EB31E09DC4900ADC865 /* Rose.app */;
+			productReference = A5B58EB31E09DC4900ADC865 /* JumpJump Alien.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1089,7 +1089,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mehus.GravityWizard;
-				PRODUCT_NAME = Rose;
+				PRODUCT_NAME = "JumpJump Alien";
 				PROVISIONING_PROFILE = "69b4769c-74c8-46c6-bda7-567b3dc302c6";
 				PROVISIONING_PROFILE_SPECIFIER = "Gravity Wizard Dev";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1110,7 +1110,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mehus.GravityWizard;
-				PRODUCT_NAME = Rose;
+				PRODUCT_NAME = "JumpJump Alien";
 				PROVISIONING_PROFILE = "69bf7260-7640-42e3-adb2-9d5d5692e001";
 				PROVISIONING_PROFILE_SPECIFIER = "Gravity Wizard Distribution";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;

@@ -14,7 +14,7 @@ default_platform :ios
 # don't worry, fastlane will prompt you for required
 # info which you can add here later
 lane :upload do
-  # increment_build_number
+  increment_build_number
 
   # build your iOS app
   gym(
