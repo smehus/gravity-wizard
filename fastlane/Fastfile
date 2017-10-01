@@ -19,7 +19,8 @@ lane :upload do
   # build your iOS app
   gym(
     # scheme: "YourScheme",
-    export_method: "app-store"
+    export_method: "app-store",
+    include_bitcode: true
   )
 
   # upload to Testflight
