@@ -759,7 +759,7 @@
 						CreatedOnToolsVersion = 8.2;
 						DevelopmentTeam = 4HWQ95CTCF;
 						LastSwiftMigration = 0900;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -1082,12 +1082,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Scott mehus (32M8ER9697)";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 4HWQ95CTCF;
 				INFOPLIST_FILE = GravityWizard2/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mehus.GravityWizard2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mehus.GravityWizard;
 				PRODUCT_NAME = Rose;
+				PROVISIONING_PROFILE = "2cee86eb-d3a8-489b-9de7-c0bde8f16325";
+				PROVISIONING_PROFILE_SPECIFIER = "Gravity Wizard Development";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
@@ -1098,12 +1102,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Scott Mehus (4HWQ95CTCF)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Scott Mehus (4HWQ95CTCF)";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 4HWQ95CTCF;
 				INFOPLIST_FILE = GravityWizard2/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mehus.GravityWizard2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mehus.GravityWizard;
 				PRODUCT_NAME = Rose;
+				PROVISIONING_PROFILE = "0a02cc78-8f79-4ab8-9fd2-b64c3bcf476e";
+				PROVISIONING_PROFILE_SPECIFIER = "Gravity Wizard";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
 			};
