@@ -44,7 +44,7 @@ class GameViewController: UIViewController {
     
     override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
         if event?.subtype == UIEventSubtype.motionShake {
-            #if !RELEASE
+            #if DEBUG
                 showLevelSelector()
             #endif
         }
