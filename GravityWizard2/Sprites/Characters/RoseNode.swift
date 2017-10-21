@@ -328,18 +328,11 @@ enum JumpRestorationType {
             gravityState = .falling
         } else if body.velocity.dy > 50 || body.velocity.dx > 50 || body.velocity.dx < -50 {
             
-            
-            if body.velocity.dx > 0 {
-                face(towards: .right)
-                let angle = body.velocity.angle
-                let action = SKAction.rotate(toAngle: angle, duration: 0.2, shortestUnitArc: true)
-                run(action)
-            } else if body.velocity.dx < 0 {
-                face(towards: .left)
-                let df = body.velocity.angle.radiansToDegrees() + 180
-                let angle = df.degreesToRadians()
-                let action = SKAction.rotate(toAngle: angle, duration: 0.2, shortestUnitArc: true)
-                run(action)
+            for rule in [goRightRule(), goLeftRule()] {
+                if let (action, direction) = rule(body) {
+                    face(towards: direction)
+                    run(action)
+                }
             }
             
             gravityState = .pull
@@ -353,6 +346,31 @@ enum JumpRestorationType {
             
             gravityState = .ground
             zRotation = 0
+        }
+    }
+    
+    typealias Rule = (_: SKPhysicsBody) -> (SKAction, Direction)?
+    
+    func goRightRule() -> Rule {
+        return { body in
+            if body.velocity.dx > 0 {
+                let angle = body.velocity.angle
+                return (SKAction.rotate(toAngle: angle, duration: 0.2, shortestUnitArc: true), .right)
+            }
+            
+            return nil
+        }
+    }
+    
+    func goLeftRule() -> Rule {
+        return { body in
+            if body.velocity.dx < 0 {
+                let df = body.velocity.angle.radiansToDegrees() + 180
+                let angle = df.degreesToRadians()
+                return (SKAction.rotate(toAngle: angle, duration: 0.2, shortestUnitArc: true), .left)
+            }
+
+            return nil
         }
     }
 }
